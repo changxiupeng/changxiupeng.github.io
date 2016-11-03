@@ -1,0 +1,577 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="为什么 JavaScript 是单线程的单线程的特点是同一时间只能做一件事。JavaScript 之所以采用这种方式主要跟它的用途有关，JavaScript 的用途主要是操作 DOM 与用户互动，如果采用多线程同时处理很多件任务，很可能导致用户收到的反馈与其进行的操作不符的情况，带来很复杂的同步问题。但是为了利用多核 CPU 的计算能力，HTML5 提出 Web Worker标准，允许 JavaS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 的异步机制">
+<meta property="og:url" content="http://yoursite.com/2016/10/27/JavaScript异步机制/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="为什么 JavaScript 是单线程的单线程的特点是同一时间只能做一件事。JavaScript 之所以采用这种方式主要跟它的用途有关，JavaScript 的用途主要是操作 DOM 与用户互动，如果采用多线程同时处理很多件任务，很可能导致用户收到的反馈与其进行的操作不符的情况，带来很复杂的同步问题。但是为了利用多核 CPU 的计算能力，HTML5 提出 Web Worker标准，允许 JavaS">
+<meta property="og:updated_time" content="2016-10-27T11:27:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript 的异步机制">
+<meta name="twitter:description" content="为什么 JavaScript 是单线程的单线程的特点是同一时间只能做一件事。JavaScript 之所以采用这种方式主要跟它的用途有关，JavaScript 的用途主要是操作 DOM 与用户互动，如果采用多线程同时处理很多件任务，很可能导致用户收到的反馈与其进行的操作不符的情况，带来很复杂的同步问题。但是为了利用多核 CPU 的计算能力，HTML5 提出 Web Worker标准，允许 JavaS">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/27/JavaScript异步机制/"/>
+
+
+  <title> JavaScript 的异步机制 | Hexo </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript 的异步机制
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-27T11:18:58+08:00" content="2016-10-27">
+              2016-10-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="为什么-JavaScript-是单线程的"><a href="#为什么-JavaScript-是单线程的" class="headerlink" title="为什么 JavaScript 是单线程的"></a>为什么 JavaScript 是单线程的</h2><p>单线程的特点是同一时间只能做一件事。JavaScript 之所以采用这种方式主要跟它的用途有关，JavaScript 的用途主要是操作 DOM 与用户互动，如果采用多线程同时处理很多件任务，很可能导致用户收到的反馈与其进行的操作不符的情况，带来很复杂的同步问题。<br>但是为了利用多核 CPU 的计算能力，HTML5 提出 Web Worker标准，允许 JavaScript 创建多个线程，但是子线程完全受主线程控制，且不得操作 DOM。所以，这个标准并没有改变这门语言单线程的本质。</p>
+<h2 id="同步和异步的区别"><a href="#同步和异步的区别" class="headerlink" title="同步和异步的区别"></a>同步和异步的区别</h2><p>一般操作分为两步：发出调用和得到结果。</p>
+<p>这其中又分为两种情况：<br>发出调用，立即得到结果。<br>发出调用，不能立即得到结果，需要额外的操作才能得到结果。</p>
+<p>同步是第一种情况，调用之后一直等待，直到返回结果。<br>异步属于第二种情况，调用之后不能立即得到结果，需要通过其他的一系列手段才能拿到结果，但是在发出调用到拿到结果之间的时间，可以介入其他的任务。</p>
+<h2 id="实现异步的方法"><a href="#实现异步的方法" class="headerlink" title="实现异步的方法"></a>实现异步的方法</h2><p>JS 是单线程的，但是 JS 的运行环境（浏览器）是支持多线程的。我们可以将 JS 引擎提供的线程称为主线程，运行环境提供的线程称为工作线程。需要注意的一点是，不论是同步任务还是异步任务，它们最终都要在主线程上执行。</p>
+<ol>
+<li>首先，不管是同步任务和异步任务都会在主线程按序进行调用，只是异步任务还需要其它一系列的操作才能拿到结果，所以会进入工作线程，不会阻塞后面同步任务的执行，主线程首先会将同步任务依次执行完。</li>
+<li>进入工作线程的异步任务在经过一定的操作后（IO操作完成，用户点击一次鼠标，Ajax完成，或一个图片加载完成等）会产生一个相应的事件（消息）加入到事件（消息）队列里。（事件队列/消息队列）</li>
+<li>主线程执行完同步任务后会查看事件（消息）队列里是否有事件，如果有，就取回排在最前面的事件执行。主线程从工作线程取事件，执行事件的过程是循环重复的。（事件循环/Event Loop）</li>
+</ol>
+<p>JS 始终只有一个线程，它还维护一个事件（消息）队列，当前函数栈执行完成后就去不断的读取事件（消息），取到了就执行。但是 JS 引擎只负责取事件（消息），不负责生产事件（消息）。<br>JS 运行时（运行环境）负责给 JS 引擎发送事件（信息）。JS 运行时负责生产事件（消息），不负责取事件（消息）。</p>
+<p>本文参考：<br>【1】<a href="https://segmentfault.com/a/1190000004322358" target="_blank" rel="external">https://segmentfault.com/a/1190000004322358</a><br>【2】<a href="http://blog.csdn.net/lin_credible/article/details/40143961" target="_blank" rel="external">http://blog.csdn.net/lin_credible/article/details/40143961</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/25/从输入 URL 到页面加载完成中间经历了哪些过程/" rel="next" title="从输入 URL 到页面加载完成中间发生了什么">
+                <i class="fa fa-chevron-left"></i> 从输入 URL 到页面加载完成中间发生了什么
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/27/JavaScript 异步编程的方法/" rel="prev" title="JavaScript 异步编程的方法">
+                JavaScript 异步编程的方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么-JavaScript-是单线程的"><span class="nav-number">1.</span> <span class="nav-text">为什么 JavaScript 是单线程的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步和异步的区别"><span class="nav-number">2.</span> <span class="nav-text">同步和异步的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现异步的方法"><span class="nav-number">3.</span> <span class="nav-text">实现异步的方法</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

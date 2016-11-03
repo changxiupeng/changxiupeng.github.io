@@ -1,0 +1,1466 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/page/2/"/>
+
+
+  <title> Hexo </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/23/怎样将一个元素水平垂直居中/" itemprop="url">
+                  怎样将一个元素水平垂直居中
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-23T20:54:00+08:00" content="2016-10-23">
+              2016-10-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h1><ol>
+<li>如果是行内元素，则对其父元素应用 <code>text-align: center;</code></li>
+<li>如果是块级元素，则对其应用 <code>margin: auto;</code></li>
+</ol>
+<h1 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h1><h2 id="行内元素或行内块状元素"><a href="#行内元素或行内块状元素" class="headerlink" title="行内元素或行内块状元素"></a>行内元素或行内块状元素</h2><ol>
+<li>如果是单行，可以将其行高 <code>inline-height</code> 设置为容器的高度, 或者调整其上下 padding 值</li>
+<li>如果是多行，也可以调整其上下 padding 值</li>
+</ol>
+<h2 id="块状元素"><a href="#块状元素" class="headerlink" title="块状元素"></a>块状元素</h2><h3 id="绝对定位的方法"><a href="#绝对定位的方法" class="headerlink" title="绝对定位的方法"></a>绝对定位的方法</h3><ol>
+<li>块级元素宽高已知<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">block-element &#123;</div><div class="line">  width: 18px;</div><div class="line">  height: 10px;</div><div class="line">  position: absolute;</div><div class="line">  top: 50%;</div><div class="line">  left: 50%;</div><div class="line">  margin-top: -5px;</div><div class="line">  margin-left: -9px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">block-element &#123;</div><div class="line">  width: 18px;</div><div class="line">  height: 10px;</div><div class="line">  position: absolute;</div><div class="line">  top: cal(50% - 5px);</div><div class="line">  left: cal(50% - 9px);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>以上两种方法都可以实现</p>
+<ol>
+<li>块级元素宽高未知<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">block-element &#123;</div><div class="line">  position: absolute;</div><div class="line">  top: 50%;</div><div class="line">  left: 50%;</div><div class="line">  transform: translate(-50%, -50%);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="利用-flexbox"><a href="#利用-flexbox" class="headerlink" title="利用 flexbox"></a>利用 flexbox</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">father-element &#123;</div><div class="line">  display: flex;</div><div class="line">&#125;</div><div class="line">block-element &#123;</div><div class="line">  margin: auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者直接在父元素上应用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">father-element &#123;</div><div class="line">    display: flex;</div><div class="line">    align-items: center;</div><div class="line">    justify-content: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/23/单行及多行文本溢出省略显示/" itemprop="url">
+                  单行及多行文本省略显示
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-23T14:10:21+08:00" content="2016-10-23">
+              2016-10-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="单行文本省略显示"><a href="#单行文本省略显示" class="headerlink" title="单行文本省略显示"></a>单行文本省略显示</h1><p>CSS3有个 <code>text-overflow</code> 属性可以用来实现单行文本溢出的省略显示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.ellipsis &#123;</div><div class="line">	display: block;</div><div class="line">	width: 80px;</div><div class="line">	white-space: nowrap;</div><div class="line">	/* 上面的代码是让文本能够在单行溢出，即能溢出的元素必须是有固定宽度（IE6)的块状或内联块状元素，并且强制其不会自动换行*/</div><div class="line">	overflow: hidden;</div><div class="line">	text-overflow: ellipsis;</div><div class="line">	-o-text-overflow: ellipsis;</div><div class="line">	/*这一部分代码使溢出的部分隐藏，并且用省略号代替，加上 Opera 的私有属性可以兼容 Opera 浏览器*/</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面的代码在 IE， Chrome， Safari， Opera浏览器中可以正常使用，但是较低版本的 Firefox 不支持 <code>text-overflow</code>。</p>
+<p>要兼容较低版本的 Firefox 需要用到 Firefox 的私有属性 <code>-moz-binding</code> 去调用一个 XML 文件<a href="http://www.zhangxinxu.com/study/xml/ellipsis.xml" target="_blank" rel="external">ellipsis.xml</a> (右击另存为)。<br>调用方式如下：<code>-moz-binding:url(&#39;ellipsis.xml#ellipsis&#39;);</code>，路径只支持相对路径，且该文件只能放在 css 文件同级或下级目录中。</p>
+<p>以下的代码可以完美兼容各主流浏览器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">.ellipsis &#123;</div><div class="line">	diaplay: block;</div><div class="line">	width: 80px;</div><div class="line">	white-space: nowrap;</div><div class="line">	overflow: hidden;</div><div class="line">	text-overflow: ellipsis;</div><div class="line">	-o-text-overflow: ellipsis;</div><div class="line">	-moz-binding: url(&apos;ellipsis.xml#ellipsis&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="多行文本省略显示"><a href="#多行文本省略显示" class="headerlink" title="多行文本省略显示"></a>多行文本省略显示</h1><h2 id="Webkit-内核浏览器解决方法"><a href="#Webkit-内核浏览器解决方法" class="headerlink" title="Webkit 内核浏览器解决方法"></a>Webkit 内核浏览器解决方法</h2><p>这个方式适用于 Webkit 内核浏览器以及移动端（绝大部分移动端浏览器采用 Webkit 内核），主流浏览器中 IE 和 Firefox 不支持。<br>实现方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.multiline-ellipsis &#123;</div><div class="line">	overflow: hidden;</div><div class="line">	display: -webkit-box;</div><div class="line">	-webkit-line-orient: vertical;</div><div class="line">	-webkit-line-clamp: 2;</div><div class="line">	text-overflow: ellipsis;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li><code>display: -webkit-box;</code> 将元素盒子设置为弹性伸缩盒子</li>
+<li><code>-webkit-line-orient: vertical;</code> 规定子元素的排列方向为垂直</li>
+<li><code>-webkit-line-clamp: 2;</code> 规定显示的行数</li>
+</ul>
+<h2 id="跨浏览器解决方案（CSS）"><a href="#跨浏览器解决方案（CSS）" class="headerlink" title="跨浏览器解决方案（CSS）"></a>跨浏览器解决方案（CSS）</h2><p>下面是一个老外的解决方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">.block-with-text &#123;</div><div class="line">	/*设置文本在超出三行的时候隐藏（1.2 * 3 = 3.6）*/</div><div class="line">	position: relative;</div><div class="line">	overflow: hidden;</div><div class="line">	line-height: 1.2em;</div><div class="line">	max-height: 3.6em;</div><div class="line">	/*解决每行最后一个单词没有紧贴右边的问题*/</div><div class="line">	text-align: justify;</div><div class="line">	/*为省略号留下空隙。 使文本在右边界不移动的情况下右 padding 增加 1em，如果不设置 margin，</div><div class="line">	文本最右边会向左缩 1em 来增加 padding。 增加 padding，是因为绝对定位的时父元素是padding-box，</div><div class="line">	这样就可以将新增加的内容添加到 padding 中，而不与文本重合（与文本重合会造成单词或字母不完整）*/</div><div class="line">	margin-right: -1em;</div><div class="line">	padding-right: 1em;</div><div class="line">&#125;</div><div class="line">.block-with-text:before &#123;</div><div class="line">	/*为所有需要溢出省略的文本在后面添加省略号*/</div><div class="line">	content: &quot;...&quot;;</div><div class="line">	/*绝对定位是相对于元素框来定位的，而这里的 bottom 指的是隐藏后框的底部，所以这里的伪元素</div><div class="line">	会定位到隐藏后框的右下角，而不是加上隐藏部分整体框的右下角*/</div><div class="line">	position: absolute;</div><div class="line">	right: 0px;</div><div class="line">	bottom: 0px;</div><div class="line">  /*伪元素默认为内联元素，但是内联元素如果被设置为绝对定位，那么他会表现出块级元素的特征，</div><div class="line">  所以这里可以设置其宽高*/</div><div class="line">	width: 1em;</div><div class="line">	height: 1.2em;</div><div class="line">	background: white;</div><div class="line">&#125;   </div><div class="line">.block-with-text:after &#123;</div><div class="line">	content: &quot;&quot;;</div><div class="line">	/*这里没有设置 bottom，所以伪元素在整体框的右下角，当没有文本被隐藏时，伪元素是显示的，</div><div class="line">	有文本被隐藏时，伪元素是隐藏的，利用这一点，可以将没有文本溢出时添加的省略号覆盖掉，有文本</div><div class="line">	溢出时，因为此时两个伪元素的位置不一样，所以不会被隐藏*/</div><div class="line">	position: absolute;</div><div class="line">	right: 0px;</div><div class="line">	width: 1em;</div><div class="line">	height: 1.2em;</div><div class="line">	background: white;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>需要注意的是，覆盖省略号所用的伪元素背景色应该跟父元素的颜色一致，这就使得父元素的背景必须为纯色。<br>本文参考：<br><a href="http://hackingui.com/front-end/a-pure-css-solution-for-multiline-text-truncation/" target="_blank" rel="external">http://hackingui.com/front-end/a-pure-css-solution-for-multiline-text-truncation/</a><br><a href="http://www.zhangxinxu.com/wordpress/2009/09/%E5%85%B3%E4%BA%8E%E6%96%87%E5%AD%97%E5%86%85%E5%AE%B9%E6%BA%A2%E5%87%BA%E7%94%A8%E7%82%B9%E7%82%B9%E7%82%B9-%E7%9C%81%E7%95%A5%E5%8F%B7%E8%A1%A8%E7%A4%BA/" target="_blank" rel="external">http://www.zhangxinxu.com/wordpress/2009/09/%E5%85%B3%E4%BA%8E%E6%96%87%E5%AD%97%E5%86%85%E5%AE%B9%E6%BA%A2%E5%87%BA%E7%94%A8%E7%82%B9%E7%82%B9%E7%82%B9-%E7%9C%81%E7%95%A5%E5%8F%B7%E8%A1%A8%E7%A4%BA/</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/16/实参形参的区别/" itemprop="url">
+                  argument vs parameter
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-16T10:59:04+08:00" content="2016-08-16">
+              2016-08-16
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="实参（argument-actual-parameter）"><a href="#实参（argument-actual-parameter）" class="headerlink" title="实参（argument/actual parameter）"></a>实参（argument/actual parameter）</h2><p>是在调用时传递给函数的参数，可以是常量、变量、表达式、函数等，无论实参是何种类型的量，在进行函数调用时，它都必须有 <strong>确定的值</strong>，以便把这些值传递给形参。因此应预先用赋值，输入等方法使实参获得确定值。</p>
+<h2 id="形参（parameter）"><a href="#形参（parameter）" class="headerlink" title="形参（parameter）"></a>形参（parameter）</h2><p>它不是实际存在变量，所以又称虚拟变量。是在定义函数名和函数体的时候使用的参数，目的是用来接收调用改函数是传入的实参。在调用函数时，实参将赋值给形参。因而，必须注意实参的个数，类型应与形参对应。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/13/CSS Spesificity/" itemprop="url">
+                  CSS 选择器优先级
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-13T23:31:51+08:00" content="2016-08-13">
+              2016-08-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如果同一个元素被不同的 css 选择器选中改变其同一个性质的样式，遵循哪个选择器的命令就要看哪个选择器的优先级高了，优先级是可以评分的，评分规则如下：</p>
+<ol>
+<li>如果该性质是在 html 文档中的 <code>&lt;style&gt;</code> 元素中定义的，则加1000分</li>
+<li>如果该性质后面加了 <code>!important</code> ,加100分，选择器中有 id 名称也加100分</li>
+<li>选择器中有 class，pseudo-class，attribute，加10分</li>
+<li>选择器中有 element，pseudo-element，加1分<br>连在一起的都要算，如 <code>p.nav:first-child</code> 要算三个<br>参考：<br><img src="/images/specificity.png" alt="参考"></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/13/设置一个维护性极好的按钮/" itemprop="url">
+                  一个可复制易维护的按钮
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-13T23:02:12+08:00" content="2016-08-13">
+              2016-08-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>设计一个按钮，</p>
+<ol>
+<li>只需改变字体大小，其他的宽高，阴影大小，圆角半径等都会随之改变，而不用一个个修改</li>
+<li>只需改变背景颜色，边框颜色，阴影颜色随之改变，不用一一修改</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">.button a &#123;</div><div class="line">  display: block;</div><div class="line">  font-size: 1em;</div><div class="line">  text-decoration: none;</div><div class="line">  color: black;</div><div class="line">  padding: .3em .8em;</div><div class="line">  line-height: 2;</div><div class="line">  border-radius: .4em;</div><div class="line">  border: .07em solid rgba(0,0,0,.1);</div><div class="line">  box-shadow: .07em .28em .21em rgba(0,0,0,.5);</div><div class="line">  text-shadow: 0 -.06em .06em rgba(0,0,0,.5);</div><div class="line">  background: linear-gradient(to right bottom, hsla(0,0%,100%,.3), transparent);</div><div class="line">  background-color: gold;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>要想其他性质随字体大小改变只需将其他性质的数值改为相应的 em 为单位的值，行高也可以设为单纯的数字，那也是字体大小的倍数</li>
+<li>边框，字体倒影，盒子倒影，都设为半透明的黑色，这样背景色改变时也可以搭</li>
+<li>渐变色设为半透明的白色渐变到完全透明</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/12/logo的处理方法/" itemprop="url">
+                  logo 的处理方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-12T16:56:09+08:00" content="2016-08-12">
+              2016-08-12
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如果 logo 单纯用图片的话，不能用于搜索，屏幕阅读器和其他一些辅助设备，将会丢失重要信息，最好的办法是将 logo 设成背景，文字则缩进到屏幕外，不显示。<br>第一种方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">h1#logo &#123;</div><div class="line">width: 450px;</div><div class="line">height: 80px</div><div class="line">background: url(jenware.png) no-repeat;</div><div class="line">text-indent: 100%;</div><div class="line">white-space: nowrap;</div><div class="line">overflow: hidden;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>h1 是块级元素，可以将其设置为 logo 的长宽，文字则向右缩进屏幕宽度的100%，到屏幕右侧外，为了防止换行，加一个 <code>white-space: no-wrap;</code> 。然后将溢出屏幕的部分隐藏。</p>
+<p>第二种方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">h1#logo &#123;</div><div class="line">width: 450px;</div><div class="line">height: 100px</div><div class="line">background: url(jenware.png) no-repeat;</div><div class="line">text-indent: -9999px;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>第二种方法是将文字向左缩进一个很大的距离，这种方法不用担心折叠，也不用隐藏溢出，code 简单，但是缺点是浏览器会计算和画出这个超长的元素框。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/12/Flexbox/" itemprop="url">
+                  Flexbox
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-12T14:56:37+08:00" content="2016-08-12">
+              2016-08-12
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>父元素（flex container）中添加 <code>display: flex;</code> 使得子元素（flex items）以同样宽高的 column 排列</li>
+<li><code>flex-direction</code> 可以指定排列的方向，有 <code>row</code> 和 <code>column</code> 可选</li>
+<li>如果 row 排列撑不下可以叫 <code>flex-wrap: wrap</code> ，shorthand为 <code>flex-flow: row wrap</code>；</li>
+<li>还可以指定各个栏的宽度，在子元素中加 <code>flex：1 200px;</code> 第一个数字要跟其他子元素对比才有意义，200px是设定了栏的最小尺寸</li>
+</ol>
+<hr>
+<ol>
+<li><code>align-items</code> 是定义 flex item 垂直排列的，有 <code>flex-start，flex-end，center</code>也可以对子元素单独定义，<code>align-self：flex-end/flex-start/center</code></li>
+<li><code>justify-content</code> 是水平排列，有<code>flex-start，flex-end，center，space-around，space-between</code></li>
+</ol>
+<hr>
+<ol>
+<li>也可以在子元素中指定顺序，order：1；这里的1并不一定代表第一为，所有的子元素默认为0，1就要排到0后面，－1就排到0前面</li>
+</ol>
+<hr>
+<p>flex是可以嵌套的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">section - article</div><div class="line">          article</div><div class="line">          article - div - button   </div><div class="line">                    div   button</div><div class="line">                    div   button</div><div class="line">                          button</div><div class="line">                          button</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">section &#123;</div><div class="line">  dispaly: flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>三个article以flex的形式横向排列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">article:nth-of-type(3) &#123;</div><div class="line">  flex: 3 200px;</div><div class="line">  display: flex;</div><div class="line">  flex-flow: column;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>第三个 article 中的 三个 div 以 flex 的形式纵向排列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">article:nth-of-type(3) div:first-child &#123;</div><div class="line">  display: flex;</div><div class="line">  flex-flow: row wrap;</div><div class="line">  align-items: center;</div><div class="line">  justify-content: space-around;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>第三个 article 中的第一个 div 中的元素以横向可折叠且space-around，纵向居中的方式进行排列<br>！first-child 指的是父元素的第一个子元素，这里指的是 article 的第一个 div<br>与之对比的是 first-of-type 父元素第一个次类型的子元素</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/01/Video-and-audio-in-HTML/" itemprop="url">
+                  Video and audio contents in HTML
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-01T19:34:57+08:00" content="2016-08-01">
+              2016-08-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h1><h2 id="在文档中简单的插入一个视频"><a href="#在文档中简单的插入一个视频" class="headerlink" title="在文档中简单的插入一个视频"></a>在文档中简单的插入一个视频</h2><p><code>&lt;video&gt;</code>元素可以让你很容易地插入一段视频：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;video src=&quot;rabbit320.webm&quot; controls&gt;</div><div class="line">  &lt;p&gt;Your browser doern&apos;t support HTML5 video. Here is a &lt;a href=&quot;rabbit320.webm&quot;&gt;link to the video&lt;/a&gt; instead.&lt;/p&gt;</div><div class="line">&lt;/video&gt;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><code>src</code>属性的作用跟<code>&lt;img&gt;</code>中的一样<br><code>controls</code>提供视频的控制选项，比如开始，停止，音量等。<br>包含在里面的段落内容是备选内容，跟<code>&lt;img&gt;</code>中<code>alt</code>属性作用一样，即视频无法正常播放时这些内容会出现在页面上。</p>
+</blockquote>
+<h2 id="保证选取的视频格式浏览器是支持的"><a href="#保证选取的视频格式浏览器是支持的" class="headerlink" title="保证选取的视频格式浏览器是支持的"></a>保证选取的视频格式浏览器是支持的</h2><p>不同的浏览器又不同的codec（多媒体数字编码信号解调器），但是绝大多数浏览器都的codec都支持mp4和webm这两种视频格式的一种或两种，所以我们就要提供这两种格式的视频供选择：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;video controls&gt;</div><div class="line">  &lt;source src=&quot;rabbit320.mp4&quot; type=&quot;video/mp4&quot;&gt;</div><div class="line">  &lt;source src=&quot;rabbit320.webm&quot; type=&quot;video/webm&quot;&gt;</div><div class="line">  &lt;p&gt;Your browser doesn&apos;t support HTML5 video. Here is a &lt;a href=&quot;rabbit320.mp4&quot;&gt;link to the video&lt;/a&gt; instead.&lt;/p&gt;</div><div class="line">&lt;/video&gt;</div></pre></td></tr></table></figure></p>
+<p>这里将<code>src</code>从<code>&lt;video&gt;</code>标签中拿去，取而代之的是两个独立的<code>&lt;source&gt;</code>元素，分别指向了两种不同格式的视频，该元素中除了给出视频路径还加上了<code>type</code>属性，这个属性可以被浏览器快速识别，然后选择能播放的一个，如果不加的话也行，但是浏览器会一个个试视频能不能播放，直到找到能播放的那个，这就大大降低了效率。所以这个属性最好加上。</p>
+<h2 id="加上其他的一些特性"><a href="#加上其他的一些特性" class="headerlink" title="加上其他的一些特性"></a>加上其他的一些特性</h2><p>设置大小跟<code>&lt;img&gt;</code>是一样的，直接加在<code>&lt;video&gt;</code>中添加<code>width</code> <code>height</code>或<code>style=&quot;width:;height:;&quot;</code>属性<br>自动播放加<code>autoplay</code>属性<br>循环播放加<code>loop</code>属性<br>静音加<code>muted</code>属性<br>如果希望播放之前的画面是一张特定的画，比如广告，则添加<code>poster</code>属性给出图片路径，需要注意的是，如果设置了自动播放，画是不出现的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;video controls width=&quot;400&quot; height=&quot;400&quot; autoplay loop muted poster=&quot;poster.png”&gt;</div><div class="line">  &lt;source src=&quot;rabbit320.mp4&quot; type=&quot;video/mp4&quot;&gt;</div><div class="line">  &lt;source src=&quot;rabbit320.webm&quot; type=&quot;video/webm&quot;&gt;</div><div class="line">  &lt;p&gt;Your browser doesn&apos;t support HTML5 video. Here is a &lt;a href=&quot;rabbit320.mp4&quot;&gt;link to the video&lt;/a&gt; instead.&lt;/p&gt;</div><div class="line">&lt;/video&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="为视频加上字幕（subtitles），提示语（captions）描述语-timed-descriptions"><a href="#为视频加上字幕（subtitles），提示语（captions）描述语-timed-descriptions" class="headerlink" title="为视频加上字幕（subtitles），提示语（captions）描述语(timed descriptions)"></a>为视频加上字幕（subtitles），提示语（captions）描述语(timed descriptions)</h2><p>需要在<code>&lt;video&gt;</code>元素中包含一个<code>&lt;track&gt;</code>元素，给出添加文本的类型，地址，语言这些属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;video controls&gt;</div><div class="line">  &lt;source src=&quot;example.mp4&quot; type=&quot;video/mp4&quot;&gt;</div><div class="line">  &lt;source src=&quot;example.webm&quot; type=&quot;video/webm&quot;&gt;</div><div class="line">  &lt;track kind=&quot;subtitles&quot; src=&quot;subtitles.vtt&quot; srclang=&quot;en&quot;&gt;</div><div class="line">&lt;/video&gt;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>vtt文件需要另外制作</p>
+</blockquote>
+<h1 id="Audio"><a href="#Audio" class="headerlink" title="Audio"></a>Audio</h1><p>跟视频差不多，其中格式换为<code>mp3</code>和<code>ogg</code><br>其他一些不能显示的属性，像大小，贴画，字幕都不用添加。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/01/HTML-Forms/" itemprop="url">
+                  HTML Forms
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-01T15:55:04+08:00" content="2016-08-01">
+              2016-08-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="The-lt-form-gt-Element"><a href="#The-lt-form-gt-Element" class="headerlink" title="The &lt;form&gt; Element"></a>The <code>&lt;form&gt;</code> Element</h2><p>HTML Forms （表单）是用来收集用户输入信息的（点击或敲入的都算）。<code>&lt;form&gt;</code>定义了一个表单：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;form&gt;</div><div class="line">.</div><div class="line">form elements</div><div class="line">.</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>form elements 由不同类型的输入元素组成，这些输入元素包括：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;input&gt;(定义输入控制)</div><div class="line">&lt;select&gt;(定义下拉式列表)</div><div class="line">&lt;textarea&gt;（定义文本输入区）</div><div class="line">&lt;button&gt;（定义一个可点击的按钮）</div><div class="line">...</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="The-types-of-lt-input-gt-Element"><a href="#The-types-of-lt-input-gt-Element" class="headerlink" title="The types of &lt;input&gt; Element"></a>The types of <code>&lt;input&gt;</code> Element</h2><p><code>&lt;input&gt;</code>是表单元素中最重要的输入元素,它有很多类型：</p>
+<h3 id="text类型"><a href="#text类型" class="headerlink" title="text类型"></a>text类型</h3><p><code>&lt;input type=&quot;text&quot;&gt;</code>为文本输入定义了一行输入区域：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;form&gt;</div><div class="line">  First name:&lt;br&gt;</div><div class="line">  &lt;input type=&quot;text&quot; name=&quot;firstname&quot;&gt;&lt;br&gt;</div><div class="line">  Last name:&lt;br&gt;</div><div class="line">  &lt;input type=&quot;text&quot; name=&quot;lastname&quot;&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="password类型"><a href="#password类型" class="headerlink" title="password类型"></a>password类型</h3><p><code>&lt;input type=&quot;password&quot;&gt;</code>为密码输入定义了一行输入区域，跟text相似，只是输入的内容用星号代替：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;form&gt;</div><div class="line">  user name:&lt;br&gt;</div><div class="line">  &lt;input type=&quot;text&quot; name=&quot;user name&quot;&gt;&lt;br&gt;</div><div class="line">  user password:&lt;br&gt;</div><div class="line">  &lt;input type=&quot;password&quot; name=&quot;pwd&quot;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="submit类型"><a href="#submit类型" class="headerlink" title="submit类型"></a>submit类型</h3><p><code>&lt;input type=&quot;submit&quot;&gt;</code>定义了一个将输入内容提交给表单处理器的按钮，表单处理器由<code>action</code>属性定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;form action=&quot;action_page.php&quot;&gt;</div><div class="line">  First name:&lt;br&gt;</div><div class="line">  &lt;input type=&quot;text&quot; name=&quot;firsrname&quot; value=&quot;Mickey&quot;&gt;&lt;br&gt;</div><div class="line">  Last name:&lt;br&gt;</div><div class="line">  &lt;input type=&quot;text&quot; name=&quot;lastname&quot; value=&quot;Mouse&quot;&gt;&lt;br&gt;</div><div class="line">  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>value属性给了输入框一个预设值，不加的话，默认是“submit”<br>submit不需要name</p>
+</blockquote>
+<h3 id="radio类型"><a href="#radio类型" class="headerlink" title="radio类型"></a>radio类型</h3><p><code>&lt;input type=&quot;radio&quot;&gt;</code>定义了一个单选按钮：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;form&gt;</div><div class="line">  &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;male&quot; checked&gt;&lt;br&gt;</div><div class="line">  &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt;&lt;br&gt;</div><div class="line">  &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;other&quot;&gt;&lt;br&gt;</div><div class="line">  &lt;input type=&quot;submit&quot;&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="checkbox类型"><a href="#checkbox类型" class="headerlink" title="checkbox类型"></a>checkbox类型</h3><p><code>&lt;input type=&quot;checkbox&quot;&gt;</code>定义了一个复选框：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;form&gt;</div><div class="line">  &lt;input type=&quot;checkbox&quot; name=&quot;vehicle1&quot; value=&quot;Bike&quot;&gt;I have a car&lt;br&gt;</div><div class="line">  &lt;input type=&quot;checkbox&quot; name=&quot;vehicle2&quot; value=&quot;Car&quot;&gt;I have a car&lt;br&gt;</div><div class="line">  &lt;input type=&quot;checkbox&quot; name=&quot;vehicle3&quot; value=&quot;Bus&quot;&gt;I have a Bus&lt;br&gt;</div><div class="line">  &lt;input type=&quot;submit&quot;&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="others"><a href="#others" class="headerlink" title="others"></a>others</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">color</div><div class="line">date</div><div class="line">datetime</div><div class="line">datetime-local</div><div class="line">email</div><div class="line">month</div><div class="line">number</div><div class="line">range</div><div class="line">Search</div><div class="line">tel</div><div class="line">time</div><div class="line">url</div><div class="line">week</div></pre></td></tr></table></figure>
+<h2 id="The-attributes-of-lt-input-gt"><a href="#The-attributes-of-lt-input-gt" class="headerlink" title="The attributes of &lt;input&gt;"></a>The attributes of <code>&lt;input&gt;</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">value: 指定了初始值</div><div class="line">readonly: 初始值不能修改</div><div class="line">size: 指定了输入区域最多能输多少字</div><div class="line">maxlength：指定了输入区域最大长度</div><div class="line">...</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/01/Cheatsheet-HTML斜体元素/" itemprop="url">
+                  Cheatsheet-HTML斜体元素
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-01T11:53:42+08:00" content="2016-08-01">
+              2016-08-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;em&gt;&lt;/em&gt;</div><div class="line">&lt;i&gt;&lt;/i&gt;</div><div class="line">&lt;address&gt;&lt;/address&gt;</div><div class="line">&lt;cite&gt;&lt;/cite&gt;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

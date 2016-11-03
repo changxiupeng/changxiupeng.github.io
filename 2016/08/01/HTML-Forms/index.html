@@ -1,0 +1,586 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="The &amp;lt;form&amp;gt; ElementHTML Forms （表单）是用来收集用户输入信息的（点击或敲入的都算）。&amp;lt;form&amp;gt;定义了一个表单：12345&amp;lt;form&amp;gt;.form elements.&amp;lt;/form&amp;gt;
+
+form elements 由不同类型的输入元素组成，这些输入元素包括：12345&amp;lt;input&amp;gt;(定义输入控制)&amp;lt;selec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML Forms">
+<meta property="og:url" content="http://yoursite.com/2016/08/01/HTML-Forms/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="The &amp;lt;form&amp;gt; ElementHTML Forms （表单）是用来收集用户输入信息的（点击或敲入的都算）。&amp;lt;form&amp;gt;定义了一个表单：12345&amp;lt;form&amp;gt;.form elements.&amp;lt;/form&amp;gt;
+
+form elements 由不同类型的输入元素组成，这些输入元素包括：12345&amp;lt;input&amp;gt;(定义输入控制)&amp;lt;selec">
+<meta property="og:updated_time" content="2016-08-01T09:21:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML Forms">
+<meta name="twitter:description" content="The &amp;lt;form&amp;gt; ElementHTML Forms （表单）是用来收集用户输入信息的（点击或敲入的都算）。&amp;lt;form&amp;gt;定义了一个表单：12345&amp;lt;form&amp;gt;.form elements.&amp;lt;/form&amp;gt;
+
+form elements 由不同类型的输入元素组成，这些输入元素包括：12345&amp;lt;input&amp;gt;(定义输入控制)&amp;lt;selec">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/01/HTML-Forms/"/>
+
+
+  <title> HTML Forms | Hexo </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                HTML Forms
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-01T15:55:04+08:00" content="2016-08-01">
+              2016-08-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="The-lt-form-gt-Element"><a href="#The-lt-form-gt-Element" class="headerlink" title="The &lt;form&gt; Element"></a>The <code>&lt;form&gt;</code> Element</h2><p>HTML Forms （表单）是用来收集用户输入信息的（点击或敲入的都算）。<code>&lt;form&gt;</code>定义了一个表单：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;form&gt;</div><div class="line">.</div><div class="line">form elements</div><div class="line">.</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>form elements 由不同类型的输入元素组成，这些输入元素包括：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;input&gt;(定义输入控制)</div><div class="line">&lt;select&gt;(定义下拉式列表)</div><div class="line">&lt;textarea&gt;（定义文本输入区）</div><div class="line">&lt;button&gt;（定义一个可点击的按钮）</div><div class="line">...</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="The-types-of-lt-input-gt-Element"><a href="#The-types-of-lt-input-gt-Element" class="headerlink" title="The types of &lt;input&gt; Element"></a>The types of <code>&lt;input&gt;</code> Element</h2><p><code>&lt;input&gt;</code>是表单元素中最重要的输入元素,它有很多类型：</p>
+<h3 id="text类型"><a href="#text类型" class="headerlink" title="text类型"></a>text类型</h3><p><code>&lt;input type=&quot;text&quot;&gt;</code>为文本输入定义了一行输入区域：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;form&gt;</div><div class="line">  First name:&lt;br&gt;</div><div class="line">  &lt;input type=&quot;text&quot; name=&quot;firstname&quot;&gt;&lt;br&gt;</div><div class="line">  Last name:&lt;br&gt;</div><div class="line">  &lt;input type=&quot;text&quot; name=&quot;lastname&quot;&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="password类型"><a href="#password类型" class="headerlink" title="password类型"></a>password类型</h3><p><code>&lt;input type=&quot;password&quot;&gt;</code>为密码输入定义了一行输入区域，跟text相似，只是输入的内容用星号代替：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;form&gt;</div><div class="line">  user name:&lt;br&gt;</div><div class="line">  &lt;input type=&quot;text&quot; name=&quot;user name&quot;&gt;&lt;br&gt;</div><div class="line">  user password:&lt;br&gt;</div><div class="line">  &lt;input type=&quot;password&quot; name=&quot;pwd&quot;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="submit类型"><a href="#submit类型" class="headerlink" title="submit类型"></a>submit类型</h3><p><code>&lt;input type=&quot;submit&quot;&gt;</code>定义了一个将输入内容提交给表单处理器的按钮，表单处理器由<code>action</code>属性定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;form action=&quot;action_page.php&quot;&gt;</div><div class="line">  First name:&lt;br&gt;</div><div class="line">  &lt;input type=&quot;text&quot; name=&quot;firsrname&quot; value=&quot;Mickey&quot;&gt;&lt;br&gt;</div><div class="line">  Last name:&lt;br&gt;</div><div class="line">  &lt;input type=&quot;text&quot; name=&quot;lastname&quot; value=&quot;Mouse&quot;&gt;&lt;br&gt;</div><div class="line">  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>value属性给了输入框一个预设值，不加的话，默认是“submit”<br>submit不需要name</p>
+</blockquote>
+<h3 id="radio类型"><a href="#radio类型" class="headerlink" title="radio类型"></a>radio类型</h3><p><code>&lt;input type=&quot;radio&quot;&gt;</code>定义了一个单选按钮：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;form&gt;</div><div class="line">  &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;male&quot; checked&gt;&lt;br&gt;</div><div class="line">  &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt;&lt;br&gt;</div><div class="line">  &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;other&quot;&gt;&lt;br&gt;</div><div class="line">  &lt;input type=&quot;submit&quot;&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="checkbox类型"><a href="#checkbox类型" class="headerlink" title="checkbox类型"></a>checkbox类型</h3><p><code>&lt;input type=&quot;checkbox&quot;&gt;</code>定义了一个复选框：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;form&gt;</div><div class="line">  &lt;input type=&quot;checkbox&quot; name=&quot;vehicle1&quot; value=&quot;Bike&quot;&gt;I have a car&lt;br&gt;</div><div class="line">  &lt;input type=&quot;checkbox&quot; name=&quot;vehicle2&quot; value=&quot;Car&quot;&gt;I have a car&lt;br&gt;</div><div class="line">  &lt;input type=&quot;checkbox&quot; name=&quot;vehicle3&quot; value=&quot;Bus&quot;&gt;I have a Bus&lt;br&gt;</div><div class="line">  &lt;input type=&quot;submit&quot;&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="others"><a href="#others" class="headerlink" title="others"></a>others</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">color</div><div class="line">date</div><div class="line">datetime</div><div class="line">datetime-local</div><div class="line">email</div><div class="line">month</div><div class="line">number</div><div class="line">range</div><div class="line">Search</div><div class="line">tel</div><div class="line">time</div><div class="line">url</div><div class="line">week</div></pre></td></tr></table></figure>
+<h2 id="The-attributes-of-lt-input-gt"><a href="#The-attributes-of-lt-input-gt" class="headerlink" title="The attributes of &lt;input&gt;"></a>The attributes of <code>&lt;input&gt;</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">value: 指定了初始值</div><div class="line">readonly: 初始值不能修改</div><div class="line">size: 指定了输入区域最多能输多少字</div><div class="line">maxlength：指定了输入区域最大长度</div><div class="line">...</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/01/Cheatsheet-HTML斜体元素/" rel="next" title="Cheatsheet-HTML斜体元素">
+                <i class="fa fa-chevron-left"></i> Cheatsheet-HTML斜体元素
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/01/Video-and-audio-in-HTML/" rel="prev" title="Video and audio contents in HTML">
+                Video and audio contents in HTML <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-lt-form-gt-Element"><span class="nav-number">1.</span> <span class="nav-text">The <form> Element</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-types-of-lt-input-gt-Element"><span class="nav-number">2.</span> <span class="nav-text">The types of <input> Element</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#text类型"><span class="nav-number">2.1.</span> <span class="nav-text">text类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#password类型"><span class="nav-number">2.2.</span> <span class="nav-text">password类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#submit类型"><span class="nav-number">2.3.</span> <span class="nav-text">submit类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#radio类型"><span class="nav-number">2.4.</span> <span class="nav-text">radio类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#checkbox类型"><span class="nav-number">2.5.</span> <span class="nav-text">checkbox类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#others"><span class="nav-number">2.6.</span> <span class="nav-text">others</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-attributes-of-lt-input-gt"><span class="nav-number">3.</span> <span class="nav-text">The attributes of <input></span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

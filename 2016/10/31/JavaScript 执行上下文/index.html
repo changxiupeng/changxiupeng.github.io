@@ -1,0 +1,674 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="执行上下文代码执行时会进入一种执行环境（作用域）中，JavaScript 中代码的执行环境由代码的类型决定，代码的类型有以下三种：
+
+全局代码全局代码在执行时会进入全局执行环境，全局执行环境是最外围的执行环境，是 JavaScript 代码开始执行时的默认执行环境
+函数代码函数代码在执行时会进入函数执行环境
+eval 代码使用 eval() 执行代码时会进入 eval 执行环境
+
+JavaScri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 执行上下文">
+<meta property="og:url" content="http://yoursite.com/2016/10/31/JavaScript 执行上下文/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="执行上下文代码执行时会进入一种执行环境（作用域）中，JavaScript 中代码的执行环境由代码的类型决定，代码的类型有以下三种：
+
+全局代码全局代码在执行时会进入全局执行环境，全局执行环境是最外围的执行环境，是 JavaScript 代码开始执行时的默认执行环境
+函数代码函数代码在执行时会进入函数执行环境
+eval 代码使用 eval() 执行代码时会进入 eval 执行环境
+
+JavaScri">
+<meta property="og:image" content="http://yoursite.com/images/execution-stack.png">
+<meta property="og:image" content="http://yoursite.com/images/execution-context.png">
+<meta property="og:image" content="http://yoursite.com/images/scope-chain.png">
+<meta property="og:updated_time" content="2016-11-02T07:08:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript 执行上下文">
+<meta name="twitter:description" content="执行上下文代码执行时会进入一种执行环境（作用域）中，JavaScript 中代码的执行环境由代码的类型决定，代码的类型有以下三种：
+
+全局代码全局代码在执行时会进入全局执行环境，全局执行环境是最外围的执行环境，是 JavaScript 代码开始执行时的默认执行环境
+函数代码函数代码在执行时会进入函数执行环境
+eval 代码使用 eval() 执行代码时会进入 eval 执行环境
+
+JavaScri">
+<meta name="twitter:image" content="http://yoursite.com/images/execution-stack.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/31/JavaScript 执行上下文/"/>
+
+
+  <title> JavaScript 执行上下文 | Hexo </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript 执行上下文
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-31T10:26:17+08:00" content="2016-10-31">
+              2016-10-31
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h2><p>代码执行时会进入一种执行环境（作用域）中，JavaScript 中代码的执行环境由代码的类型决定，代码的类型有以下三种：</p>
+<ol>
+<li>全局代码<br>全局代码在执行时会进入全局执行环境，全局执行环境是最外围的执行环境，是 JavaScript 代码开始执行时的默认执行环境</li>
+<li>函数代码<br>函数代码在执行时会进入函数执行环境</li>
+<li>eval 代码<br>使用 eval() 执行代码时会进入 eval 执行环境</li>
+</ol>
+<p>JavaScript 中有一个专门的概念 <em>执行上下文（Execution Context）</em> 来表示执行环境，所以我们通常所说的执行环境和执行上下文其实是一个东西。下面是 <em>Ecma-262</em> 中关于 <em>Execution Context</em> 的描述：</p>
+<blockquote>
+<p>An execution context is a specification device that is used to track the runtime evaluation of code by an ECMAScript implementation. At any point in time, there is at most one execution context that is actually executing code. This is known as the running execution context.</p>
+</blockquote>
+<p>执行上下文是一个抽象的概念，用来跟踪代码的执行计算，规定在此环境中执行的代码所能访问的变量以及其他一些数据。</p>
+<h2 id="执行上下文栈"><a href="#执行上下文栈" class="headerlink" title="执行上下文栈"></a>执行上下文栈</h2><p>下面是 <em>Ecma-262</em> 中关于 <em>Execution Context Stack</em> 的描述：</p>
+<blockquote>
+<p>The execution context stack is used to track execution contexts. The running execution context is always the top element of this stack. A new execution context is created whenever control is transferred from the executable code associated with the currently running execution context to executable code that is not associated with that execution context. The newly created execution context is pushed onto the stack and becomes the running execution context.</p>
+</blockquote>
+<ul>
+<li>当 javascript 代码文件被浏览器载入后，默认最先进入的是一个全局的执行上下文。代码在全局上下文中执行，有代码正在执行的执行上下文称为 <em>进行中的执行上下文（running execution context）</em>，此时全局上下文就是进行中的执行上下文。</li>
+<li>当在全局上下文中调用执行一个函数时，<strong><em>程序流</em></strong> 就进入该被调用函数内，此时引擎就会为该函数创建一个新的执行上下文。新的执行上下文变为进行中的执行上下文。这个函数执行上下文还可以激活另一个新的执行上下文，以此类推。</li>
+<li>这些相互关联的执行上下文从逻辑上构成了一个执行上下文栈。栈底总是全局执行上下文，被激活的执行上下文在激活执行上下文上面，栈顶是进行中的执行上下文。</li>
+<li>浏览器总是执行当前在栈顶部的执行上下文（进行中的执行上下文），一旦执行完毕，该执行上下文就会从栈顶被弹出，进入其下的执行上下文执行代码。这样，栈中的执行上下文就会被依次执行并且弹出栈，直到回到全局的执行上下文。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var a = &quot;global var&quot;;</div><div class="line"></div><div class="line">function foo()&#123;</div><div class="line">    console.log(a);</div><div class="line">&#125;</div><div class="line"></div><div class="line">function outerFunc()&#123;</div><div class="line">    var b = &quot;var in outerFunc&quot;;</div><div class="line">    console.log(b);</div><div class="line"></div><div class="line">    function innerFunc()&#123;</div><div class="line">        var c = &quot;var in innerFunc&quot;;</div><div class="line">        console.log(c);</div><div class="line">        foo();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    innerFunc();</div><div class="line">&#125;</div><div class="line"></div><div class="line">outerFunc()</div></pre></td></tr></table></figure>
+<p>上面代码首先进入全局执行上下文，然后依次进入 outerFunc，innerFunc，foo 函数执行上下文，执行上下文栈如下午所示：<br><img src="/images/execution-stack.png" alt="call stack"></p>
+<h2 id="执行上下文详解"><a href="#执行上下文详解" class="headerlink" title="执行上下文详解"></a>执行上下文详解</h2><p>我们可以把执行上下文当做一个对象来理解。这个对象有三个重要的属性：<strong>变量对象（Variable Object，VO）</strong>、<strong>作用域链（Scope chain）</strong>、<strong>this</strong>。<br>下面我们来详细了解一下这三个重要属性：</p>
+<h3 id="VO-AO"><a href="#VO-AO" class="headerlink" title="VO/AO"></a>VO/AO</h3><h4 id="变量对象-VO"><a href="#变量对象-VO" class="headerlink" title="变量对象 VO"></a>变量对象 VO</h4><p>变量对象是与执行上下文相关的数据作用域。它是一个与执行上下文对应的特殊对象，其中定义了在执行上下文中声明的变量和函数。也就是说变量对象中包含以下信息：</p>
+<ul>
+<li>变量</li>
+<li>函数声明</li>
+<li>函数的形参</li>
+</ul>
+<p>在当前执行上下文中执行的代码，如果试图寻找一个变量，就会首先查找当前执行上下文的 VO。</p>
+<h4 id="活动对象-AO"><a href="#活动对象-AO" class="headerlink" title="活动对象 AO"></a>活动对象 AO</h4><p>在函数执行上下文中，VO 不能直接被访问，这时 AO 就扮演了 VO 得角色，也就是说在全局执行上下文中创建的是 VO，在函数执行上下文中创建的是 AO。只不过 AO 中除了 VO 中包含的变量、函数声明和函数形参外，多了一个 <code>arguments</code>属性，这个属性保存的是一个对象，这个对象都包括以下属性：</p>
+<ul>
+<li>index 函数的实参的数字索引，值对应的是实参值</li>
+<li>length 真正传递的参数值（传入的实参数可能比形参多或少）的数目</li>
+<li>callee 指向当前函数的引用</li>
+</ul>
+<p><img src="/images/execution-context.png" alt="执行上下文"><br>我们已经知道，每当一个函数被调用的时候，JavaScript 解释器都会为这个函数创建一个执行上下文，这是在函数内部代码被执行前进行的。在函数体内代码执行时，函数执行上下文会更新。我们看一下这两个阶段执行上下文发生了什么：</p>
+<ol>
+<li>执行上下文创建阶段<ul>
+<li>创建作用域链（Scope chain）</li>
+<li>创建变量对象（VO）/ 活动对象（AO）（variable, functions and arguments）</li>
+<li>设置 this 值</li>
+</ul>
+</li>
+<li>执行上下文更新阶段<ul>
+<li>指派变量的值和函数的引用，解释执行代码</li>
+</ul>
+</li>
+</ol>
+<p>这两个阶段的区别主要体现在 VO/AO 上</p>
+<p>在执行上下文创建阶段，创建 VO/AO 这一步 JavaScript 引擎主要做了下面的事情：</p>
+<ul>
+<li>根据函数的参数，创建并初始化普通参数和 <code>arguments</code> 属性</li>
+<li>扫描函数内部代码，查找变量声明<ul>
+<li>对于所有找到的变量声明，将变量名存入 VO/AO 中，相当于不进行初始化（相当于初始化为 “undefined” ）</li>
+<li>如果变量名称和已经声明的形参和函数声明重复，变量声明不会干扰之前的声明</li>
+</ul>
+</li>
+<li>扫描函数内部代码，查找函数声明<ul>
+<li>对于所有找到的函数声明，将函数名存入 VO/AO 中，并初始化为函数引用</li>
+<li><strong>如果 VO/AO 中已经有重名的函数，进行覆盖</strong></li>
+</ul>
+</li>
+</ul>
+<p>在执行上下文更新阶段，为存入 VO/AO 中的声明变量指定值和函数引用, 然后解释/执行代码，从这里我们可以更好地理解上篇文章中的变量和函数声明的<a href="http://localhost:4000/2016/10/29/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E5%92%8C%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_blank" rel="external"><strong>提升</strong></a></p>
+<p>我们通过一段代码来看一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function foo(i) &#123;</div><div class="line">    var a = &apos;hello&apos;;</div><div class="line">    var b = function privateB() &#123;</div><div class="line"></div><div class="line">    &#125;;</div><div class="line">    function c() &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(22);</div></pre></td></tr></table></figure></p>
+<p>对于上面一段代码，在执行上下文创建阶段，可以得到如下的 AO：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">fooExecutionContext = &#123;</div><div class="line">  scopeChain: &#123;.....&#125;,</div><div class="line">  activationObject: &#123;</div><div class="line">    c: pointer to function c() &#123;&#125;,</div><div class="line">    a: &quot;undefined&quot;,</div><div class="line">    b: &quot;undefined&quot;,</div><div class="line">    arguments: &#123;</div><div class="line">      0: 22,</div><div class="line">      length: 1,</div><div class="line">      callee: pointer to function foo() &#123;&#125;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  this: &#123; ... &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在执行上下文更新阶段，可以得到如下的 AO：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">fooExecutionContext = &#123;</div><div class="line">  scopeChain: &#123;.....&#125;,</div><div class="line">  activationObject: &#123;</div><div class="line">    c: pointer to function c() &#123;&#125;,</div><div class="line">    a: &apos;hello&apos;,</div><div class="line">    b: pointer to function privateB() &#123;&#125;,</div><div class="line">    arguments: &#123;</div><div class="line">      0: 22,</div><div class="line">      length: 1,</div><div class="line">      callee: pointer to function foo() &#123;&#125;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  this: &#123; ... &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="作用域链（Scope-chain）"><a href="#作用域链（Scope-chain）" class="headerlink" title="作用域链（Scope chain）"></a>作用域链（Scope chain）</h3><p>现在我们知道，在每一个执行上下文中都有一个 VO/AO，用来存放变量，函数和参数等信息。</p>
+<p>在 JavaScript 代码运行中，所有用到的变量都要先去当前的 VO/AO 中查找，当找不到的时候，就会继续查找上层执行上下文中的 VO/AO。这样一级级向上查找的过程，就组成了一个作用域链。</p>
+<p>所以说，作用域链与一个执行上下文相关，是当前执行上下文 VO/AO 和所有父 VO/AO（执行上下文栈中在当前执行上下文下面的执行上下文的 VO/AO）的列表，用于变量查询。<br>Scope chain = VO/AO + all parent VO/AO</p>
+<p>需要注意的一点是，VO/AO 都是基于函数被定义时的作用域，而不是函数被执行时的作用域。也正如 JavaScript 权威指南中那句经典的描述：“JavaScript 中的函数运行在它们被定义是的作用域中，而不是它们被执行时的作用域中”</p>
+<p>我们通过一段代码来了解一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var x = 10;</div><div class="line"></div><div class="line">function foo() &#123;</div><div class="line">    var y = 20;</div><div class="line"></div><div class="line">    function bar() &#123;</div><div class="line">        var z = 30;</div><div class="line"></div><div class="line">        console.log(x + y + z);</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    bar()</div><div class="line">&#125;;</div><div class="line"></div><div class="line">foo();</div></pre></td></tr></table></figure></p>
+<p>下图紫色方框内就是 bar 函数执行上下文的作用域链<br><img src="/images/scope-chain.png" alt="Scope Chain"></p>
+<p>这里就引出了一个 <strong>闭包</strong> 的概念<br>JavaScript 高级程序设计中对闭包是这样定义的：</p>
+<blockquote>
+<p>闭包是指有权访问另一个函数作用域中的变量的函数。创建闭包的常见方式，就是在一个函数内部创建另一个函数。</p>
+</blockquote>
+<p>一般来说，当一个函数被执行完以后，在这个函数内声明的局部变量都会被垃圾回收机制销毁。</p>
+<p>但是，当一个函数执行的结果是返回其子函数（闭包），<strong>子函数（闭包）会引用父函数的整个活动对象</strong>，即使子函数没有直接引用活动对象中的变量，活动对象中任然会保存一个引用（采用引用计数垃圾收集机制的 IE9 之前的 IE 浏览器会有内存泄漏的问题）。</p>
+<p>在父函数体外调用这个子函数时，这个子函数仍然能访问父函数中定义的局部变量（保持其作用域链中的所有变量对象）。也就是说父函数虽然已经执行完了，但是其声明的变量并没有被垃圾回收机制回收掉，跟子函数一起形成了一个闭包，仍然保存在内存中，而且可以被子函数访问。</p>
+<p>在后台执行环境中，闭包的作用域链包含着它自己的作用域，父函数的作用域和全局作用域。</p>
+<p>我们来看一个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = function () &#123;</div><div class="line">    var x = 1;</div><div class="line">    return function b(y) &#123;</div><div class="line">      console.log(x + y);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">var x = 3;</div><div class="line">var c = a();</div><div class="line">c(2); // 3</div></pre></td></tr></table></figure></p>
+<p>a 函数执行完以后，理论上在其函数体内声明的 x 会被销毁。但是其子函数 b 被返回并且引用了这个 x变量，b 函数跟 x 一起构成一个闭包。当在函数体外执行子函数的引用时，子函数访问的是闭包内的 x 变量。</p>
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><p>this 属性涉及的知识比较多，下篇文章将详细讨论</p>
+<p>本文参考：<br>【1】<a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf" target="_blank" rel="external">ECMA-262 5th Edition</a><br>【2】<a href="http://www.cnblogs.com/wilber2013/p/4909430.html" target="_blank" rel="external">JavaScript的执行上下文</a><br>【3】<a href="http://www.cnblogs.com/wilber2013/p/4909459.html" target="_blank" rel="external">理解JavaScript的作用域链</a><br>【4】<a href="http://www.laruence.com/2009/05/28/863.html" target="_blank" rel="external">Javascript作用域原理</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/29/函数声明和函数表达式/" rel="next" title="函数声明 VS 函数表达式">
+                <i class="fa fa-chevron-left"></i> 函数声明 VS 函数表达式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/01/JavaScript 中的 this/" rel="prev" title="JavaScript 中的 this">
+                JavaScript 中的 this <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#执行上下文"><span class="nav-number">1.</span> <span class="nav-text">执行上下文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行上下文栈"><span class="nav-number">2.</span> <span class="nav-text">执行上下文栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行上下文详解"><span class="nav-number">3.</span> <span class="nav-text">执行上下文详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VO-AO"><span class="nav-number">3.1.</span> <span class="nav-text">VO/AO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变量对象-VO"><span class="nav-number">3.1.1.</span> <span class="nav-text">变量对象 VO</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#活动对象-AO"><span class="nav-number">3.1.2.</span> <span class="nav-text">活动对象 AO</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域链（Scope-chain）"><span class="nav-number">3.2.</span> <span class="nav-text">作用域链（Scope chain）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this"><span class="nav-number">3.3.</span> <span class="nav-text">this</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

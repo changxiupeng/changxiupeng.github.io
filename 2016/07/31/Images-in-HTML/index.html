@@ -1,0 +1,591 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="在文档中简单地插入一张图片准备一张图片，可以是本地的，也可以是网上的，但是地址一定要清楚。需要用到的元素是空元素&amp;lt;img&amp;gt;, 属性是src,完整的元素是：
+
+&amp;lt;img src=&amp;quot;picture.jpg&amp;quot;&amp;gt;上面的路径只是举例，这个路径表明这张图在本地而且跟本html文档在同一个文件夹里；如果是网上的图片只需将其改成图片显示页的URL即可，但是网上的图片不可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Images in HTML">
+<meta property="og:url" content="http://yoursite.com/2016/07/31/Images-in-HTML/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在文档中简单地插入一张图片准备一张图片，可以是本地的，也可以是网上的，但是地址一定要清楚。需要用到的元素是空元素&amp;lt;img&amp;gt;, 属性是src,完整的元素是：
+
+&amp;lt;img src=&amp;quot;picture.jpg&amp;quot;&amp;gt;上面的路径只是举例，这个路径表明这张图在本地而且跟本html文档在同一个文件夹里；如果是网上的图片只需将其改成图片显示页的URL即可，但是网上的图片不可">
+<meta property="og:updated_time" content="2016-08-01T12:25:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Images in HTML">
+<meta name="twitter:description" content="在文档中简单地插入一张图片准备一张图片，可以是本地的，也可以是网上的，但是地址一定要清楚。需要用到的元素是空元素&amp;lt;img&amp;gt;, 属性是src,完整的元素是：
+
+&amp;lt;img src=&amp;quot;picture.jpg&amp;quot;&amp;gt;上面的路径只是举例，这个路径表明这张图在本地而且跟本html文档在同一个文件夹里；如果是网上的图片只需将其改成图片显示页的URL即可，但是网上的图片不可">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/31/Images-in-HTML/"/>
+
+
+  <title> Images in HTML | Hexo </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Images in HTML
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-31T15:27:54+08:00" content="2016-07-31">
+              2016-07-31
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="在文档中简单地插入一张图片"><a href="#在文档中简单地插入一张图片" class="headerlink" title="在文档中简单地插入一张图片"></a>在文档中简单地插入一张图片</h2><p>准备一张图片，可以是本地的，也可以是网上的，但是地址一定要清楚。<br>需要用到的元素是空元素<code>&lt;img&gt;</code>, 属性是<code>src</code>,完整的元素是：</p>
+<blockquote>
+<p><code>&lt;img src=&quot;picture.jpg&quot;&gt;</code><br>上面的路径只是举例，这个路径表明这张图在本地而且跟本html文档在同一个文件夹里；如果是网上的图片只需将其改成图片显示页的URL即可，但是网上的图片不可控因素太多，最好不用。</p>
+</blockquote>
+<h2 id="为图片增加替代文本"><a href="#为图片增加替代文本" class="headerlink" title="为图片增加替代文本"></a>为图片增加替代文本</h2><p>如果因为图片路径或者标记语言错误导致图片无法显示，那么最好能够在图片因该显示的部分出现提醒文字，这些文字即替代文本，用到的属性是<code>alt</code>，完整元素为：</p>
+<blockquote>
+<p><code>&lt;img src=&quot;picture.jpg&quot; alt=&quot;this is my home in anyang&quot; &gt;</code><br>代替语言非常重要，屏幕阅读器会阅读这些文字，搜索引擎也会浏览这些文字，用户选择不显示图片的话也需要这文字来提醒。<br>选择怎样的替代文字的关键是想清楚如果没有图片显示的话，需要给出怎样的文本用户才不会遗漏必要的内容，但是最好不要重复主要内容中的内容。<br>不同属性之间用一个空格隔开，顺序没有区别。</p>
+</blockquote>
+<h2 id="为图片设置大小"><a href="#为图片设置大小" class="headerlink" title="为图片设置大小"></a>为图片设置大小</h2><p>服务器一般都是先传输给用户html文档，浏览器解读文档的过程中遇到图片时会向服务器提出申请，服务器才会将图片传给用户。也就是说，文本是先于图片再浏览器上显示的。如果不给图片流出空间的话，等图片传过来页面就需要重新排版，就使得效率降低。所以就需要事先给图片留出空间，图片到了以后直接在留出的空间显示。需要的元素为<code>width</code> 和 <code>height</code>，完整元素为：</p>
+<blockquote>
+<p><code>&lt;img src=&quot;picture.jpg&quot; alt=&quot;this is my home in anyang&quot; width=&quot;12&quot; height=&quot;12&quot;&gt;</code><br>如果需要css再次修改图片的样式，上面的写法就是正确的，但是如果不希望外界的css对图片的大小进行更改则图片大小应该用<code>style</code>属性进行定义，完整的元素应该是这样的：<br><code>&lt;img src=&quot;picture.jpg&quot; alt=&quot;this is my home in anyang&quot; style=&quot;width:12px;height:12px;&quot;&gt;</code><br>style中不同值之间应该用semicolon隔开</p>
+</blockquote>
+<h2 id="为图片添加提示信息"><a href="#为图片添加提示信息" class="headerlink" title="为图片添加提示信息"></a>为图片添加提示信息</h2><p>如果希望在鼠标放在图片上时出现图片的介绍内容，作为一种提示信息，可以用<code>title</code>属性，完整的元素变成：</p>
+<blockquote>
+<p><code>&lt;img src=&quot;picture.jpg&quot; alt=&quot;this is my home in anyang&quot; width=&quot;12&quot; height=&quot;12&quot; title＝&quot;my home&quot;&gt;</code><br>title 不是很重要，只有在正文没有足够篇幅介绍的时候才添加，比如博物馆中。</p>
+</blockquote>
+<h2 id="把图片作为链接使用"><a href="#把图片作为链接使用" class="headerlink" title="把图片作为链接使用"></a>把图片作为链接使用</h2><p>如果希望点击图片时页面跳转到其他地方，则需要将整个图片元素nest到链接元素的显示内容中，完整元素为：</p>
+<blockquote>
+<p><code>&lt;a href=&quot;www.google.com&quot;&gt;&lt;img src=&quot;picture.jpg&quot; alt=&quot;this is my home in anyang&quot; width=&quot;12&quot; height=&quot;12&quot; title＝&quot;my home&quot;&gt;&lt;/a&gt;</code><br>这样点击图片后页面会跳转到Google主页。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/31/HTML elements 几个简单分类/" rel="next" title="HTML elements 几个简单分类">
+                <i class="fa fa-chevron-left"></i> HTML elements 几个简单分类
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/31/在文档中插入超链接/" rel="prev" title="在文档中插入超链接">
+                在文档中插入超链接 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在文档中简单地插入一张图片"><span class="nav-number">1.</span> <span class="nav-text">在文档中简单地插入一张图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为图片增加替代文本"><span class="nav-number">2.</span> <span class="nav-text">为图片增加替代文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为图片设置大小"><span class="nav-number">3.</span> <span class="nav-text">为图片设置大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为图片添加提示信息"><span class="nav-number">4.</span> <span class="nav-text">为图片添加提示信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把图片作为链接使用"><span class="nav-number">5.</span> <span class="nav-text">把图片作为链接使用</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

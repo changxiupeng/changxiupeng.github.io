@@ -238,8 +238,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/11/03/hello-world/" itemprop="url">
-                  Hello World
+                <a class="post-title-link" href="/2016/11/03/创建对象/" itemprop="url">
+                  创建对象
                 </a>
               
             
@@ -252,8 +252,129 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-03T23:29:53+08:00" content="2016-11-03">
+            <time itemprop="dateCreated" datetime="2016-11-03T09:57:13+08:00" content="2016-11-03">
               2016-11-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-Object-构造函数和对象字面量"><a href="#1-Object-构造函数和对象字面量" class="headerlink" title="1. Object 构造函数和对象字面量"></a>1. Object 构造函数和对象字面量</h2><h3 id="1-1-Object-构造函数"><a href="#1-1-Object-构造函数" class="headerlink" title="1.1 Object 构造函数"></a>1.1 Object 构造函数</h3><p>创建一个自定义对象最简单的方式就是创建一个 <code>Object</code> 实例然后再为它添加属性和方法，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">person.name = <span class="string">"Paco"</span>;</div><div class="line">person.age = <span class="number">26</span>;</div><div class="line">person.saySomething = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alert(<span class="string">"Hi, I'm "</span> + <span class="keyword">this</span>.name);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h3 id="1-2-对象字面量"><a href="#1-2-对象字面量" class="headerlink" title="1.2 对象字面量"></a>1.2 对象字面量</h3><p>使用对象字面量的方式可以更简单地创建一个单例对象：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">"Paco"</span>,</div><div class="line">  <span class="attr">age</span>: <span class="number">26</span>,</div><div class="line">  <span class="attr">saySomething</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="string">"Hi, I'm "</span> + <span class="keyword">this</span>.name);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>采用这两种方式构造一个单例对象是很方便的，但是要创建多个共有一些属性或方法的对象时，每次创建一个对象，就要重写一遍共有的属性或方法，这样产生了很多重复的代码。后来就演变出<code>工厂模式</code>。</p>
+<h2 id="2-工厂模式"><a href="#2-工厂模式" class="headerlink" title="2. 工厂模式"></a>2. 工厂模式</h2><p>用一个函数来封装以 new Object() 接口创建对象的细节：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name, age</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">  <span class="keyword">var</span> o.name = name;</div><div class="line">  o.age = age;</div><div class="line">  o.saySomething = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="string">"Hi, I'm "</span> + <span class="keyword">this</span>.name);</div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">return</span> o;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> person1 = createPerson(<span class="string">"Paco"</span>, <span class="number">26</span>);</div><div class="line"><span class="keyword">var</span> person2 = createPerson(<span class="string">"xiaoming"</span>, <span class="number">10</span>);</div><div class="line"></div><div class="line">person1 <span class="keyword">instanceof</span> <span class="built_in">Object</span>; <span class="comment">// true</span></div><div class="line">person2 <span class="keyword">instanceof</span> createPerson; <span class="comment">// false</span></div></pre></td></tr></table></figure></p>
+<p>可以无数次调用这个函数，不用重复那些细节代码, 每次它都会返回一个包含两个属性一个方法的对象。但是，工厂模式虽然解决了创建多个相似对象的问题，但是却没有解决对象识别的问题。在检测新创建的对象是谁的实例时，只能知道是 Object 的实例，而不能知道是来自什么类型（人、动物或什么）的对象，是从什么模板创建的。</p>
+<h2 id="3-构造函数模式"><a href="#3-构造函数模式" class="headerlink" title="3. 构造函数模式"></a>3. 构造函数模式</h2><p>构造函数可以创建特定类型的对象。可以将前面的例子用构造函数改写：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.age = age;</div><div class="line">  <span class="keyword">this</span>.saySomething = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="string">"Hi, I'm "</span> + <span class="keyword">this</span>.name);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">"Paco"</span>, <span class="number">26</span>);</div><div class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person(<span class="string">"xiaoming"</span>, <span class="number">10</span>);</div></pre></td></tr></table></figure></p>
+<p>这个例子中，Person()函数取代了 createPerson() 函数。person1 和 person2 分别保存着 Person 的一个不同的实例。这两个对象都有一个 constructor 属性，该属性指向对象的构造函数，即 Person。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">alert(person1.constructor === Person); <span class="comment">//true</span></div><div class="line">alert(person2.constructor === Person); <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<p>但是说到检测对象的类型，还是 instanceof 操作符要更靠谱一些。我们例子中创建的所有对象即是 Object 的实例，又是 Person 的实例，这一点通过 instanceof 操作符可以得到验证。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">alert(person1 <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">//true</span></div><div class="line">alert(person1 <span class="keyword">instanceof</span> Person); <span class="comment">//true</span></div><div class="line">alert(person2 <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">//true</span></div><div class="line">alert(person2 <span class="keyword">instanceof</span> Person); <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<p>这一点就要比工厂模式强，还可以知道实例是从哪个 Object 下面那一个对象模板得到。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/02/理解对象及对象属性/" itemprop="url">
+                  理解对象及对象属性
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-02T16:07:19+08:00" content="2016-11-02">
+              2016-11-02
             </time>
           </span>
 
@@ -282,15 +403,1095 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <h2 id="理解对象"><a href="#理解对象" class="headerlink" title="理解对象"></a>理解对象</h2><p>ECMA-262 把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数”。<br>对象的每个属性或方法（保存了函数的属性）都有一个名字，而每个名字都映射到一个值，也就是说名字和对应的值构成了一个属性，而一组属性的散列表构成了一个对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> me = &#123;</div><div class="line">	<span class="attr">name</span>: <span class="string">"Paco"</span>,</div><div class="line">	<span class="attr">age</span>: <span class="number">26</span>,</div><div class="line">	<span class="attr">job</span>: <span class="string">"student"</span>,</div><div class="line">	<span class="attr">saySomething</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		alert(<span class="string">"Hi, I'm"</span> + <span class="string">" "</span> + <span class="keyword">this</span>.name);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面代码是一个 me 对象，包含了三个属性和一个方法</p>
+<h2 id="对象属性"><a href="#对象属性" class="headerlink" title="对象属性"></a>对象属性</h2><p>JavaScript 中有两种属性：数据属性和访问器属性。</p>
+<h3 id="数据属性"><a href="#数据属性" class="headerlink" title="数据属性"></a>数据属性</h3><p>数据属性包含一个数据值的位置。在这个位置可以读取或写入值。数据属性有4个描述其行为的特性：</p>
+<ul>
+<li>[[Configurable]]：表示能否修改属性的特性，能够将属性修改成访问器属性，能否通过 delete 删除属性。默认值为 true。</li>
+<li>[[Enumerable]]：表示能否通过 for-in 循环返回属性。默认值为 true。</li>
+<li>[[Writable]]：表示能否修改属性的值。默认值为 true。</li>
+<li>[[Value]]：这个属性的数据值。从这里读写属性值。默认为 undefined。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> me = &#123;</div><div class="line">	<span class="attr">name</span>: <span class="string">"Paco"</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这里在 me 对象中创建了一个 name 属性，并为它指定值为“Paco”。也就是说此时，name 属性的[[Value]]特性被设置为“Paco”。如果将 name 属性的值修改为 “xiaoming”，那么[[Value]]特性被重新设置为 “xiaoming”。</p>
+<p>如果想要修改对象属性的默认特性值，需要用到 <strong>Object.defineProperty()</strong> 方法。这个方法接收三个参数，分别是 <strong>属性所在的对象</strong>，<strong>属性名</strong>(字符串形式，带引号)，<strong>描述符对象</strong>。描述符对象的属性必须是：configurable, enumerable, writable 和 value 中的一个或几个。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> me = &#123;&#125;;</div><div class="line"><span class="built_in">Object</span>.defineProperty(me, <span class="string">"name"</span>, &#123;</div><div class="line">  <span class="attr">configurable</span>: <span class="literal">false</span>,</div><div class="line">	<span class="attr">writable</span>: <span class="literal">false</span>,</div><div class="line">	<span class="attr">value</span>: <span class="string">"Paco"</span></div><div class="line">	&#125;);</div><div class="line"></div><div class="line">alert(me.name); <span class="comment">// Paco</span></div><div class="line">me.name = <span class="string">"xiaoming"</span>;</div><div class="line">alert(me.name);<span class="comment">// Paco</span></div><div class="line"></div><div class="line"><span class="keyword">delete</span> me.name; <span class="comment">// false</span></div><div class="line">alert(me.name); <span class="comment">// Paco</span></div><div class="line"></div><div class="line"><span class="built_in">Object</span>.defineProperty(me, <span class="string">"name"</span>, &#123;</div><div class="line">	<span class="attr">configurable</span>: <span class="literal">true</span>，</div><div class="line">	writable: <span class="literal">true</span></div><div class="line">	&#125;)；<span class="comment">// Uncaught TypeError: Cannot redefine property: name</span></div></pre></td></tr></table></figure>
+<p>上面代码我们可以看出，将 configurable 设置为 false 后，不能删除属性也不能对属性的特性进行修改。 将 writable 设置为 false 后，不能对属性的值进行重写。</p>
+<p><strong>需要注意的是</strong>，当用 Object.defineProperty() 去创建一个属性的时候，即原来对象中没有这个属性，configurable, enumerable, writable 的默认值都为 false。上面的代码中，如果我们将 <code>writable: false</code> 删去，得到的结果是一样的。</p>
+<h3 id="访问器属性"><a href="#访问器属性" class="headerlink" title="访问器属性"></a>访问器属性</h3><p>访问器属性不包含数据值，它们是一对 getter 和 setter 函数（这两个函数都不是必须的）。在读取访问器属性时，会调用 getter 函数，这个函数负责返回有效的值。在写入访问器属性时，会调用 setter 函数并传入新值，这个函数负责决定如何处理数据。访问器属性有如下4个特性：</p>
+<ul>
+<li>[[Configurable]]：表示能否修改属性的特性，能够将属性修改成数据属性，能否通过 delete 删除属性。默认值为 false。</li>
+<li>[[Enumerable]]：表示能否通过 for-in 循环返回属性。默认值为 false。</li>
+<li>[[Get]]：在读取属性时调用的函数。默认值为 undefined。</li>
+<li>[[Set]]：在写入属性时调用的函数。默认值为 undefined。</li>
+</ul>
+<p>访问器属性不能直接定义，必须使用 Object.defineProperty() 来定义。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> smartisan = &#123;</div><div class="line">	<span class="attr">_year</span>: <span class="number">2014</span>,</div><div class="line">	<span class="attr">edition</span>: <span class="string">"T1"</span>,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">Object</span>.defineProperty(smartisan, <span class="string">`year`</span>, &#123;</div><div class="line">	<span class="attr">get</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>._year;</div><div class="line">	&#125;,</div><div class="line">	<span class="attr">set</span>: <span class="function"><span class="keyword">function</span> (<span class="params">newValue</span>) </span>&#123;</div><div class="line">		<span class="keyword">if</span> (newValue &gt; <span class="number">2014</span>) &#123;</div><div class="line">			<span class="keyword">this</span>._year = newValue;</div><div class="line">			<span class="keyword">this</span>.edition = <span class="string">"T"</span> + (<span class="number">1</span> + newValue - <span class="number">2014</span>);</div><div class="line">		&#125;;</div><div class="line">	&#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">delete</span> smartisan.year; <span class="comment">// false</span></div><div class="line">alert(smartisan.year); <span class="comment">// 2014</span></div><div class="line">smartisan.year = <span class="number">2016</span>;</div><div class="line">alert(smartisan.edition); <span class="comment">// T3</span></div></pre></td></tr></table></figure>
+<p>上面的代码创建了一个 smartisan 对象，并给它定义了两个默认的属性：<code>_year</code> 和 <code>edition</code>。 <code>_year</code>之前的下划线是一种常用的记号，用于表示只能通过对象方法访问的属性。而访问器属性 <code>year</code> 则包含一个 getter 和一个 setter 函数。当对象直接调用这个访问器属性时，比如 <code>smartisan.year</code>。那就会调用 getter 函数，看 getter 函数返回了什么默认属性的值。如果对象调用访问器属性，并对其进行赋值，比如<code>smartisan.year = 2016;</code>,那么就会调用 setter 函数，并且将赋的值传入到 setter 函数中，对默认属性进行修改。</p>
+<p>不一定非要同时指定 getter 和 setter。只指定 getter 意味着属性是不能写的，尝试写入属性会被忽略。类似的，只指定 setter 函数的属性也不能读。</p>
+<p>这里还有个 <strong>兼容性的问题</strong>，支持 Object.defineProperty() 方法的浏览器有 IE9+（IE8 只是部分实现）、Firefox 4+、 Safari 5+、 Opera12+ 和 Chrome 。所以在这些浏览器版本之下的浏览器要创建访问器属性一般采用两个非标准的方法：<code>_defineGetter_</code> 和 <code>_defineSetter_</code>.之前的例子重写后就变成：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> smartisan = &#123;</div><div class="line">  <span class="attr">_year</span>: <span class="number">2014</span>,</div><div class="line">  <span class="attr">edition</span>: <span class="string">"T1"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">smartisan._defineGetter_(<span class="string">"year"</span> , <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>._year;</div><div class="line">&#125;);</div><div class="line">smartisan._defineSetter_(<span class="string">"year"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">newValue</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (newValue &gt; <span class="number">2014</span>) &#123;</div><div class="line">    <span class="keyword">this</span>._year = newValue;</div><div class="line">    <span class="keyword">this</span>.edition = <span class="string">"T"</span> + (<span class="number">1</span> + newValue - <span class="number">2014</span>);</div><div class="line">  &#125;;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">alert(smartisan.year); <span class="comment">// 2014</span></div><div class="line">smartisan.year = <span class="number">2016</span>;</div><div class="line">alert(smartisan.edition); <span class="comment">// T3</span></div></pre></td></tr></table></figure></p>
+<h3 id="用-Object-defineProperties-方法定义多个属性"><a href="#用-Object-defineProperties-方法定义多个属性" class="headerlink" title="用 Object.defineProperties() 方法定义多个属性"></a>用 Object.defineProperties() 方法定义多个属性</h3><p>利用 Object.defineProperties() 方法可以通过描述符一次定义多个属性。这个方法接受两个参数：第一个对象是要添加和修改其属性的对象，第二个对象的属性与第一个对象中要添加和修改的属性一一对应。例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> smartisan = &#123;&#125;;</div><div class="line"></div><div class="line"><span class="built_in">Object</span>.defineProperties(smartisan, &#123;</div><div class="line">	<span class="attr">_year</span>: &#123;</div><div class="line">		<span class="attr">value</span>: <span class="number">2014</span></div><div class="line">	&#125;,</div><div class="line">	<span class="attr">edition</span>: &#123;</div><div class="line">		<span class="attr">value</span>: <span class="string">"T1"</span></div><div class="line">	&#125;,</div><div class="line">	<span class="attr">year</span>: &#123;</div><div class="line">		<span class="attr">get</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">this</span>._year;</div><div class="line">		&#125;;</div><div class="line">		set: <span class="function"><span class="keyword">function</span>(<span class="params">newValue</span>) </span>&#123;</div><div class="line">			<span class="keyword">if</span> (newValue &gt; <span class="number">2014</span>) &#123;</div><div class="line">				<span class="keyword">this</span>._year = newValue;</div><div class="line">				<span class="keyword">this</span>.edition = <span class="string">"T"</span> + (<span class="number">1</span> + newValue - <span class="number">2014</span>);</div><div class="line">			&#125;;</div><div class="line">		&#125;;</div><div class="line">	&#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="用-Object-getOwnPropertyDescriptor-方法读取属性的特性"><a href="#用-Object-getOwnPropertyDescriptor-方法读取属性的特性" class="headerlink" title="用 Object.getOwnPropertyDescriptor() 方法读取属性的特性"></a>用 Object.getOwnPropertyDescriptor() 方法读取属性的特性</h3><p>这个方法接收两个参数：第一个参数是属性所在的对象；第二个参数是到读取描述符（特性）的属性名。返回一个对象，如果是访问器属性，这个对象的属性有 configurable, enumerable, get, set; 如果是数据属性，这个对象的属性有 configurable, enumerable, writable, value。例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> smartisan = &#123;&#125;;</div><div class="line"></div><div class="line"><span class="built_in">Object</span>.defineProperties(smartisan, &#123;</div><div class="line">	<span class="attr">_year</span>: &#123;</div><div class="line">		<span class="attr">value</span>: <span class="number">2014</span></div><div class="line">	&#125;,</div><div class="line">	<span class="attr">edition</span>: &#123;</div><div class="line">		<span class="attr">value</span>: <span class="string">"T1"</span></div><div class="line">	&#125;,</div><div class="line">	<span class="attr">year</span>: &#123;</div><div class="line">		<span class="attr">get</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">this</span>._year;</div><div class="line">		&#125;;</div><div class="line">		set: <span class="function"><span class="keyword">function</span>(<span class="params">newValue</span>) </span>&#123;</div><div class="line">			<span class="keyword">if</span> (newValue &gt; <span class="number">2014</span>) &#123;</div><div class="line">				<span class="keyword">this</span>._year = newValue;</div><div class="line">				<span class="keyword">this</span>.edition = <span class="string">"T"</span> + (<span class="number">1</span> + newValue - <span class="number">2014</span>);</div><div class="line">			&#125;;</div><div class="line">		&#125;;</div><div class="line">	&#125;;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">var</span> descriptor = <span class="built_in">Object</span>.getOwnPropertyDescriptor(smartisan, _year);</div><div class="line">alert(descriptor.value); <span class="comment">// 2014</span></div><div class="line">alert(desctiptor.configurable); <span class="literal">false</span></div><div class="line">alert(<span class="keyword">typeof</span> descriptor.get); <span class="comment">// undefined</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> desctiptor = <span class="built_in">Object</span>.getOwnPropertyDescriptor(smartisan, year);</div><div class="line">alert(descriptor.value); <span class="comment">// undefined</span></div><div class="line">alert(<span class="keyword">typeof</span> descriptor.get); <span class="comment">// function</span></div></pre></td></tr></table></figure></p>
+<p>本文参考：<br>【1】<a href="http://item.jd.com/10951037.html" target="_blank" rel="external">JavaScript 高级程序设计（第3版）</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/01/JavaScript 中的 this/" itemprop="url">
+                  JavaScript 中的 this
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-01T17:14:24+08:00" content="2016-11-01">
+              2016-11-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>前面一篇文章介绍了 JavaScript 执行上下文中两个重要的属性：VO/AO 和 scope chain，本文来看一下 this 属性。</p>
+<ul>
+<li>this 是执行上下文中的一个重要属性，是一个与执行上下文相关的特殊对象，它也可以叫作上下文对象（context）。</li>
+<li><strong>函数的每次调用都有一个与之密切相关的上下文，这个上下文是拥有或者说控制当前执行代码的对象，这个对象的引用绑定到了 this 关键字上。</strong></li>
+<li>也可以这样理解，正在使用的那个对象就是 this 关键字绑定的对象。</li>
+</ul>
+<p>在函数被调用之前 this 的指向是不知道的，只有在函数被调用的时候，this 才会进行绑定。具体的绑定规则如下：</p>
+<h2 id="1-默认绑定"><a href="#1-默认绑定" class="headerlink" title="1. 默认绑定"></a>1. 默认绑定</h2><p>当函数前面不加任何修饰直接进行调用时，比如 a()，this 会采用默认绑定规则，指向全局对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">	var a = 1;</div><div class="line">	console.log(this.a);</div><div class="line">&#125;</div><div class="line">var a = 2;</div><div class="line">foo(); // 2</div></pre></td></tr></table></figure></p>
+<p>上面代码尽管在 foo 函数体内也声明并初始化了一个变量 a，但是这里的 this 指向的是全局对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">	&quot;use strict&quot;;</div><div class="line">	var a = 1;</div><div class="line">	console.log(this.a);</div><div class="line">&#125;</div><div class="line">var a = 2;</div><div class="line">foo(); // TypeError: this is undefined</div></pre></td></tr></table></figure>
+<p>但是在严格模式下，this 不能绑定到全局对象上，会被绑定到 undefined。这是因为这种绑定规则被认为是 JavaScript 语言的一个错误设计，没有实际用途，还会造成一些误解，比如下面：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var a = &quot;global object&quot;;</div><div class="line">var Foo = &#123;</div><div class="line">	 a: &quot;Foo object&quot;,</div><div class="line">	 method: function () &#123;</div><div class="line">	 function test() &#123;</div><div class="line">	   console.log(this.a);</div><div class="line">	 &#125;</div><div class="line">	 test();</div><div class="line">	 &#125;</div><div class="line">&#125;</div><div class="line">Foo.method(); // &quot;global object&quot;</div></pre></td></tr></table></figure></p>
+<p>一个常见的误解是 test 中的 this 会指向 Foo 对象，但实际上这里采用了默认绑定的规则，将 this 绑定到了全局对象上。<br>为了在 test 中获取对 Foo 对象的引用，我们需要在 method 函数内创建一个局部变量指向 Foo 对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var a = &quot;global object&quot;;</div><div class="line">var Foo = &#123;</div><div class="line">	 a: &quot;Foo object&quot;,</div><div class="line">	 method: function () &#123;</div><div class="line">	 var that = this;</div><div class="line">	 function test() &#123;</div><div class="line">	   console.log(that.a);</div><div class="line">	 &#125;</div><div class="line">	 test();</div><div class="line">	 &#125;</div><div class="line">&#125;</div><div class="line">Foo.method(); // &quot;Foo object&quot;</div></pre></td></tr></table></figure></p>
+<h2 id="2-隐式绑定"><a href="#2-隐式绑定" class="headerlink" title="2. 隐式绑定"></a>2. 隐式绑定</h2><p>当一个函数被作为对象的方法调用时，this 指向调用函数的对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a = &quot;global object&quot;;</div><div class="line">var Foo = &#123;</div><div class="line">	 a: &quot;Foo object&quot;,</div><div class="line">	 method: function () &#123;</div><div class="line">	   console.log(this.a);</div><div class="line">	 &#125;</div><div class="line">&#125;</div><div class="line">Foo.method(); // &quot;Foo object&quot;</div></pre></td></tr></table></figure></p>
+<p>这里有一个常见的隐式丢失的问题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var a = &quot;global object&quot;;</div><div class="line">var Foo = &#123;</div><div class="line">	 a: &quot;Foo object&quot;,</div><div class="line">	 method: function aName() &#123;</div><div class="line">	   console.log(this.a);</div><div class="line">	 &#125;</div><div class="line">&#125;</div><div class="line">var test = Foo.method;</div><div class="line">Foo.method(); // &quot;Foo object&quot;</div><div class="line">test(); // &quot;global object&quot;</div></pre></td></tr></table></figure></p>
+<p>test 虽然是 Foo.method 的一个引用，但是实际上，它引用的是 aName 函数本身，调用 test 实际上是调用 aName 函数，采用默认绑定。<br>传参实际上是一个隐式的赋值操作，和上面的结果是一样的。</p>
+<h2 id="3-显示绑定"><a href="#3-显示绑定" class="headerlink" title="3. 显示绑定"></a>3. 显示绑定</h2><p>Function.prototype 上的 call 和 apply 方法（任何函数都有），可以用来间接地调用函数。两个方法都允许显示地指定调用时所需的 this 值（调用对象）。<br>也就是说，任何函数都可以被任何对象进行调用，不论这个函数是不是对象内的方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a = 1;</div><div class="line">function foo() &#123;</div><div class="line">	console.log(this.a);</div><div class="line">&#125;</div><div class="line">var obj = &#123;</div><div class="line">	a:2</div><div class="line">&#125;</div><div class="line">foo.call(obj); // 2</div></pre></td></tr></table></figure></p>
+<h3 id="3-1-数组方法中的-this-绑定"><a href="#3-1-数组方法中的-this-绑定" class="headerlink" title="3.1 数组方法中的 this 绑定"></a>3.1 数组方法中的 this 绑定</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">	id: &quot;awesome&quot;</div><div class="line">&#125;;</div><div class="line">[1,2,3].forEach(function (ele) &#123;</div><div class="line">	  console.log(el, this.id)</div><div class="line">	&#125;, obj);</div><div class="line">// 1 &quot;awesome&quot;</div><div class="line">// 2 &quot;awesome&quot;</div><div class="line">// 3 &quot;awesome&quot;</div></pre></td></tr></table></figure>
+<p>数组几乎所有方法都接受这样的第二个参数用于指定第一个函数参数中的 this 值</p>
+<h2 id="4-new-绑定"><a href="#4-new-绑定" class="headerlink" title="4. new 绑定"></a>4. new 绑定</h2><p>用 new 来调用函数时，会自动执行下面的操作：</p>
+<ol>
+<li>创建一个全新的对象</li>
+<li>将新对象绑定到 this 上</li>
+<li>执行代码</li>
+<li>如果函数没有返回其他对象，那么会自动返回这个新对象</li>
+</ol>
+<h2 id="5-判断-this-的绑定"><a href="#5-判断-this-的绑定" class="headerlink" title="5. 判断 this 的绑定"></a>5. 判断 this 的绑定</h2><ol>
+<li>函数是否通过 new 调用，如果是的话，this 绑定到新创建的对象</li>
+<li>函数是否通过显式绑定调用，如果是的话，this 绑定到指定的对象上</li>
+<li>函数时候通过隐式绑定调用，如果是的话，this 绑定到调用函数的对象上</li>
+<li>如果都不是的话，使用默认绑定。如果在严格模式下，就绑定到 undefined，否则绑定到全局对象。</li>
+</ol>
+<h2 id="6-忽略-this-指向，保护全局对象"><a href="#6-忽略-this-指向，保护全局对象" class="headerlink" title="6. 忽略 this 指向，保护全局对象"></a>6. 忽略 this 指向，保护全局对象</h2><p>显示绑定中指定对象为 null 或者 undefined 时，函数中的 this 指向全局对象。<br>之所以要指定对象为 null 或 undefined，是因为有展开数组，或尽心柯里化（将需要两个参数的函数变成需要一个参数的函数）的这种需要，这时不需要 this<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function foo(a, b) &#123;</div><div class="line">  console.log(&quot;a:&quot; + a + &quot;, b:&quot; + b);</div><div class="line">&#125;</div><div class="line">// 把数组展开成参数</div><div class="line">foo.apply(null, [2, 3]); // &quot;a:2, b:3&quot;</div><div class="line">// 使用 bind 进行柯里化</div><div class="line">var bar = foo.bind(null, 2);</div><div class="line">bar(3);// &quot;a:2, b:3&quot;</div></pre></td></tr></table></figure></p>
+<p>ES6 中 <code>foo(...[1,2])</code> 和 <code>foo(1,2)</code> 是一样的，<code>...</code> 代替了 apply(..) 来展开数组。但是没有柯里化的新语法。<br>我们可以创建一个空对象，将函数中的 this 指向这个空对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function foo(a,b) &#123;</div><div class="line">console.log( &quot;a:&quot; + a + &quot;, b:&quot; + b );</div><div class="line">&#125;</div><div class="line">// 空对象</div><div class="line">var ø = Object.create( null );</div><div class="line">// 把数组展开成参数</div><div class="line">foo.apply( ø, [2, 3] ); // a:2, b:3</div><div class="line">// 使用 bind(..) 进行柯里化</div><div class="line">var bar = foo.bind( ø, 2 );</div><div class="line">bar( 3 ); // a:2, b:3</div></pre></td></tr></table></figure></p>
+<h2 id="7-ES6-中箭头函数的-this-指向"><a href="#7-ES6-中箭头函数的-this-指向" class="headerlink" title="7. ES6 中箭头函数的 this 指向"></a>7. ES6 中箭头函数的 this 指向</h2><p>箭头函数并不会根据上面介绍的四条绑定规则决定 this 的指向，而是根据当前的词法作用域来决定，具体来说，箭头函数会继承外层函数调用的 this 绑定。这就解决了之前语法在默认绑定时的错误设计：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">    // 返回一个箭头函数</div><div class="line">    return (a) =&gt; &#123;</div><div class="line">    //this 继承自 foo()</div><div class="line">    console.log( this.a );</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line">var obj1 = &#123;</div><div class="line">     a:2</div><div class="line">&#125;;</div><div class="line">var obj2 = &#123;</div><div class="line">    a:3</div><div class="line">&#125;;</div><div class="line">var bar = foo.call( obj1 );</div><div class="line">bar.call( obj2 ); // 2, 不是 3 ！</div></pre></td></tr></table></figure></p>
+<p>本文参考：<br>【1】<a href="http://item.jd.com/11676671.html" target="_blank" rel="external">你不知道的 JavaScript（上）</a><br>【2】<a href="http://www.cnblogs.com/wilber2013/p/4909505.html" target="_blank" rel="external">JavaScript中的this</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/31/JavaScript 执行上下文/" itemprop="url">
+                  JavaScript 执行上下文
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-31T10:26:17+08:00" content="2016-10-31">
+              2016-10-31
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h2><p>代码执行时会进入一种执行环境（作用域）中，JavaScript 中代码的执行环境由代码的类型决定，代码的类型有以下三种：</p>
+<ol>
+<li>全局代码<br>全局代码在执行时会进入全局执行环境，全局执行环境是最外围的执行环境，是 JavaScript 代码开始执行时的默认执行环境</li>
+<li>函数代码<br>函数代码在执行时会进入函数执行环境</li>
+<li>eval 代码<br>使用 eval() 执行代码时会进入 eval 执行环境</li>
+</ol>
+<p>JavaScript 中有一个专门的概念 <em>执行上下文（Execution Context）</em> 来表示执行环境，所以我们通常所说的执行环境和执行上下文其实是一个东西。下面是 <em>Ecma-262</em> 中关于 <em>Execution Context</em> 的描述：</p>
+<blockquote>
+<p>An execution context is a specification device that is used to track the runtime evaluation of code by an ECMAScript implementation. At any point in time, there is at most one execution context that is actually executing code. This is known as the running execution context.</p>
+</blockquote>
+<p>执行上下文是一个抽象的概念，用来跟踪代码的执行计算，规定在此环境中执行的代码所能访问的变量以及其他一些数据。</p>
+<h2 id="执行上下文栈"><a href="#执行上下文栈" class="headerlink" title="执行上下文栈"></a>执行上下文栈</h2><p>下面是 <em>Ecma-262</em> 中关于 <em>Execution Context Stack</em> 的描述：</p>
+<blockquote>
+<p>The execution context stack is used to track execution contexts. The running execution context is always the top element of this stack. A new execution context is created whenever control is transferred from the executable code associated with the currently running execution context to executable code that is not associated with that execution context. The newly created execution context is pushed onto the stack and becomes the running execution context.</p>
+</blockquote>
+<ul>
+<li>当 javascript 代码文件被浏览器载入后，默认最先进入的是一个全局的执行上下文。代码在全局上下文中执行，有代码正在执行的执行上下文称为 <em>进行中的执行上下文（running execution context）</em>，此时全局上下文就是进行中的执行上下文。</li>
+<li>当在全局上下文中调用执行一个函数时，<strong><em>程序流</em></strong> 就进入该被调用函数内，此时引擎就会为该函数创建一个新的执行上下文。新的执行上下文变为进行中的执行上下文。这个函数执行上下文还可以激活另一个新的执行上下文，以此类推。</li>
+<li>这些相互关联的执行上下文从逻辑上构成了一个执行上下文栈。栈底总是全局执行上下文，被激活的执行上下文在激活执行上下文上面，栈顶是进行中的执行上下文。</li>
+<li>浏览器总是执行当前在栈顶部的执行上下文（进行中的执行上下文），一旦执行完毕，该执行上下文就会从栈顶被弹出，进入其下的执行上下文执行代码。这样，栈中的执行上下文就会被依次执行并且弹出栈，直到回到全局的执行上下文。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var a = &quot;global var&quot;;</div><div class="line"></div><div class="line">function foo()&#123;</div><div class="line">    console.log(a);</div><div class="line">&#125;</div><div class="line"></div><div class="line">function outerFunc()&#123;</div><div class="line">    var b = &quot;var in outerFunc&quot;;</div><div class="line">    console.log(b);</div><div class="line"></div><div class="line">    function innerFunc()&#123;</div><div class="line">        var c = &quot;var in innerFunc&quot;;</div><div class="line">        console.log(c);</div><div class="line">        foo();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    innerFunc();</div><div class="line">&#125;</div><div class="line"></div><div class="line">outerFunc()</div></pre></td></tr></table></figure>
+<p>上面代码首先进入全局执行上下文，然后依次进入 outerFunc，innerFunc，foo 函数执行上下文，执行上下文栈如下午所示：<br><img src="/images/execution-stack.png" alt="call stack"></p>
+<h2 id="执行上下文详解"><a href="#执行上下文详解" class="headerlink" title="执行上下文详解"></a>执行上下文详解</h2><p>我们可以把执行上下文当做一个对象来理解。这个对象有三个重要的属性：<strong>变量对象（Variable Object，VO）</strong>、<strong>作用域链（Scope chain）</strong>、<strong>this</strong>。<br>下面我们来详细了解一下这三个重要属性：</p>
+<h3 id="VO-AO"><a href="#VO-AO" class="headerlink" title="VO/AO"></a>VO/AO</h3><h4 id="变量对象-VO"><a href="#变量对象-VO" class="headerlink" title="变量对象 VO"></a>变量对象 VO</h4><p>变量对象是与执行上下文相关的数据作用域。它是一个与执行上下文对应的特殊对象，其中定义了在执行上下文中声明的变量和函数。也就是说变量对象中包含以下信息：</p>
+<ul>
+<li>变量</li>
+<li>函数声明</li>
+<li>函数的形参</li>
+</ul>
+<p>在当前执行上下文中执行的代码，如果试图寻找一个变量，就会首先查找当前执行上下文的 VO。</p>
+<h4 id="活动对象-AO"><a href="#活动对象-AO" class="headerlink" title="活动对象 AO"></a>活动对象 AO</h4><p>在函数执行上下文中，VO 不能直接被访问，这时 AO 就扮演了 VO 得角色，也就是说在全局执行上下文中创建的是 VO，在函数执行上下文中创建的是 AO。只不过 AO 中除了 VO 中包含的变量、函数声明和函数形参外，多了一个 <code>arguments</code>属性，这个属性保存的是一个对象，这个对象都包括以下属性：</p>
+<ul>
+<li>index 函数的实参的数字索引，值对应的是实参值</li>
+<li>length 真正传递的参数值（传入的实参数可能比形参多或少）的数目</li>
+<li>callee 指向当前函数的引用</li>
+</ul>
+<p><img src="/images/execution-context.png" alt="执行上下文"><br>我们已经知道，每当一个函数被调用的时候，JavaScript 解释器都会为这个函数创建一个执行上下文，这是在函数内部代码被执行前进行的。在函数体内代码执行时，函数执行上下文会更新。我们看一下这两个阶段执行上下文发生了什么：</p>
+<ol>
+<li>执行上下文创建阶段<ul>
+<li>创建作用域链（Scope chain）</li>
+<li>创建变量对象（VO）/ 活动对象（AO）（variable, functions and arguments）</li>
+<li>设置 this 值</li>
+</ul>
+</li>
+<li>执行上下文更新阶段<ul>
+<li>指派变量的值和函数的引用，解释执行代码</li>
+</ul>
+</li>
+</ol>
+<p>这两个阶段的区别主要体现在 VO/AO 上</p>
+<p>在执行上下文创建阶段，创建 VO/AO 这一步 JavaScript 引擎主要做了下面的事情：</p>
+<ul>
+<li>根据函数的参数，创建并初始化普通参数和 <code>arguments</code> 属性</li>
+<li>扫描函数内部代码，查找变量声明<ul>
+<li>对于所有找到的变量声明，将变量名存入 VO/AO 中，相当于不进行初始化（相当于初始化为 “undefined” ）</li>
+<li>如果变量名称和已经声明的形参和函数声明重复，变量声明不会干扰之前的声明</li>
+</ul>
+</li>
+<li>扫描函数内部代码，查找函数声明<ul>
+<li>对于所有找到的函数声明，将函数名存入 VO/AO 中，并初始化为函数引用</li>
+<li><strong>如果 VO/AO 中已经有重名的函数，进行覆盖</strong></li>
+</ul>
+</li>
+</ul>
+<p>在执行上下文更新阶段，为存入 VO/AO 中的声明变量指定值和函数引用, 然后解释/执行代码，从这里我们可以更好地理解上篇文章中的变量和函数声明的<a href="http://localhost:4000/2016/10/29/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E5%92%8C%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_blank" rel="external"><strong>提升</strong></a></p>
+<p>我们通过一段代码来看一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function foo(i) &#123;</div><div class="line">    var a = &apos;hello&apos;;</div><div class="line">    var b = function privateB() &#123;</div><div class="line"></div><div class="line">    &#125;;</div><div class="line">    function c() &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(22);</div></pre></td></tr></table></figure></p>
+<p>对于上面一段代码，在执行上下文创建阶段，可以得到如下的 AO：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">fooExecutionContext = &#123;</div><div class="line">  scopeChain: &#123;.....&#125;,</div><div class="line">  activationObject: &#123;</div><div class="line">    c: pointer to function c() &#123;&#125;,</div><div class="line">    a: &quot;undefined&quot;,</div><div class="line">    b: &quot;undefined&quot;,</div><div class="line">    arguments: &#123;</div><div class="line">      0: 22,</div><div class="line">      length: 1,</div><div class="line">      callee: pointer to function foo() &#123;&#125;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  this: &#123; ... &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在执行上下文更新阶段，可以得到如下的 AO：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">fooExecutionContext = &#123;</div><div class="line">  scopeChain: &#123;.....&#125;,</div><div class="line">  activationObject: &#123;</div><div class="line">    c: pointer to function c() &#123;&#125;,</div><div class="line">    a: &apos;hello&apos;,</div><div class="line">    b: pointer to function privateB() &#123;&#125;,</div><div class="line">    arguments: &#123;</div><div class="line">      0: 22,</div><div class="line">      length: 1,</div><div class="line">      callee: pointer to function foo() &#123;&#125;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  this: &#123; ... &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="作用域链（Scope-chain）"><a href="#作用域链（Scope-chain）" class="headerlink" title="作用域链（Scope chain）"></a>作用域链（Scope chain）</h3><p>现在我们知道，在每一个执行上下文中都有一个 VO/AO，用来存放变量，函数和参数等信息。</p>
+<p>在 JavaScript 代码运行中，所有用到的变量都要先去当前的 VO/AO 中查找，当找不到的时候，就会继续查找上层执行上下文中的 VO/AO。这样一级级向上查找的过程，就组成了一个作用域链。</p>
+<p>所以说，作用域链与一个执行上下文相关，是当前执行上下文 VO/AO 和所有父 VO/AO（执行上下文栈中在当前执行上下文下面的执行上下文的 VO/AO）的列表，用于变量查询。<br>Scope chain = VO/AO + all parent VO/AO</p>
+<p>需要注意的一点是，VO/AO 都是基于函数被定义时的作用域，而不是函数被执行时的作用域。也正如 JavaScript 权威指南中那句经典的描述：“JavaScript 中的函数运行在它们被定义是的作用域中，而不是它们被执行时的作用域中”</p>
+<p>我们通过一段代码来了解一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var x = 10;</div><div class="line"></div><div class="line">function foo() &#123;</div><div class="line">    var y = 20;</div><div class="line"></div><div class="line">    function bar() &#123;</div><div class="line">        var z = 30;</div><div class="line"></div><div class="line">        console.log(x + y + z);</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    bar()</div><div class="line">&#125;;</div><div class="line"></div><div class="line">foo();</div></pre></td></tr></table></figure></p>
+<p>下图紫色方框内就是 bar 函数执行上下文的作用域链<br><img src="/images/scope-chain.png" alt="Scope Chain"></p>
+<p>这里就引出了一个 <strong>闭包</strong> 的概念<br>JavaScript 高级程序设计中对闭包是这样定义的：</p>
+<blockquote>
+<p>闭包是指有权访问另一个函数作用域中的变量的函数。创建闭包的常见方式，就是在一个函数内部创建另一个函数。</p>
+</blockquote>
+<p>一般来说，当一个函数被执行完以后，在这个函数内声明的局部变量都会被垃圾回收机制销毁。</p>
+<p>但是，当一个函数执行的结果是返回其子函数（闭包），<strong>子函数（闭包）会引用父函数的整个活动对象</strong>，即使子函数没有直接引用活动对象中的变量，活动对象中任然会保存一个引用（采用引用计数垃圾收集机制的 IE9 之前的 IE 浏览器会有内存泄漏的问题）。</p>
+<p>在父函数体外调用这个子函数时，这个子函数仍然能访问父函数中定义的局部变量（保持其作用域链中的所有变量对象）。也就是说父函数虽然已经执行完了，但是其声明的变量并没有被垃圾回收机制回收掉，跟子函数一起形成了一个闭包，仍然保存在内存中，而且可以被子函数访问。</p>
+<p>在后台执行环境中，闭包的作用域链包含着它自己的作用域，父函数的作用域和全局作用域。</p>
+<p>我们来看一个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = function () &#123;</div><div class="line">    var x = 1;</div><div class="line">    return function b(y) &#123;</div><div class="line">      console.log(x + y);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">var x = 3;</div><div class="line">var c = a();</div><div class="line">c(2); // 3</div></pre></td></tr></table></figure></p>
+<p>a 函数执行完以后，理论上在其函数体内声明的 x 会被销毁。但是其子函数 b 被返回并且引用了这个 x变量，b 函数跟 x 一起构成一个闭包。当在函数体外执行子函数的引用时，子函数访问的是闭包内的 x 变量。</p>
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><p>this 属性涉及的知识比较多，下篇文章将详细讨论</p>
+<p>本文参考：<br>【1】<a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf" target="_blank" rel="external">ECMA-262 5th Edition</a><br>【2】<a href="http://www.cnblogs.com/wilber2013/p/4909430.html" target="_blank" rel="external">JavaScript的执行上下文</a><br>【3】<a href="http://www.cnblogs.com/wilber2013/p/4909459.html" target="_blank" rel="external">理解JavaScript的作用域链</a><br>【4】<a href="http://www.laruence.com/2009/05/28/863.html" target="_blank" rel="external">Javascript作用域原理</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/29/函数声明和函数表达式/" itemprop="url">
+                  函数声明 VS 函数表达式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T19:31:08+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="英文"><a href="#英文" class="headerlink" title="英文"></a>英文</h2><p>函数声明对应的英文名称为 Function Declaration<br>函数表达式对应的英文名称为 Function Expression</p>
+<blockquote>
+<p>Function Statement 有时是 Function Declaration 的另一种说法。在 mozilla 中，Function Statement 是 Function Declaration 的一种拓展，使得 Function Declaration 语句可以在任何允许使用 statement（语句）的地方使用。 <em>For example, a function statement can be nested within an if statement</em> （<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function" target="_blank" rel="external">Conditionally created functions</a>）。但是 Function Statement 现在还不是标准，所以不建议应用在产品开发中。</p>
+</blockquote>
+<h2 id="定义函数的方式"><a href="#定义函数的方式" class="headerlink" title="定义函数的方式"></a>定义函数的方式</h2><p>JS 中，函数声明和函数表达式都是用来定义函数的。</p>
+<ul>
+<li>函数声明定义了一个具名的且不需要赋值的“函数变量”，它是独立的语法，只能用在全局和函数体内。类似于变量的声明，就像变量声明必须用 <code>var/let/const</code> 开头一样，函数声明也必须用 <code>function</code> 开头。</li>
+<li>函数表达式将函数定义为一个表达式的一部分（通常是赋值表达式）。函数表达式可以不命名，分为匿名函数表达式和具名函数表达式。<br>PS：表达式是由运算符和操作符构成，并产生运算结果的语法结构。也就是说表达式是一个单纯的运算过程，并且总是有返回值。</li>
+</ul>
+<p>一个函数声明定义的函数，被赋予一个变量 <em>add</em>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function add(a, b) &#123;</div><div class="line">  return a + b;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>一个匿名函数的函数表达式，被赋予一个变量 <em>add</em>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var add = function(a, b) &#123;</div><div class="line">  return a + b;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>一个具名函数的函数表达式，被赋予一个变量 <em>add</em>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var add = function add1(a, b) &#123;</div><div class="line">  return a + b;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>区分函数声明和函数表达式最简单的办法是看 <code>function</code> 关键字出现在声明中的位置（不仅仅是一行代码，而是整个声明中的位置）。如果 <code>function</code> 关键字是声明中的第一个词，那么这就是个函数声明，否则就是一个函数表达式。</p>
+<h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><p>函数声明的调用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function add(a, b) &#123;</div><div class="line">  return a + b;</div><div class="line">&#125;</div><div class="line">add(1, 2);</div></pre></td></tr></table></figure></p>
+<p>函数表达式的调用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var add = function(a, b) &#123;</div><div class="line">  return a + b;</div><div class="line">&#125;</div><div class="line">add(1, 2);</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(function (a, b) &#123;</div><div class="line">   return a + b;</div><div class="line">&#125;)(1, 2);</div></pre></td></tr></table></figure>
+<p>函数声明的调用只需要用函数变量（定义以后就无法更改）即可。<br>函数表达式的调用分两种情况：</p>
+<ul>
+<li>将函数表达式赋值的变量（该变量可更改）作为函数用</li>
+<li>在函数表达式前后加上一对圆括号调用（IIEF）</li>
+</ul>
+<h2 id="函数声明和具名函数表达式的名称有什么区别？"><a href="#函数声明和具名函数表达式的名称有什么区别？" class="headerlink" title="函数声明和具名函数表达式的名称有什么区别？"></a>函数声明和具名函数表达式的名称有什么区别？</h2><p>函数名和被函数赋值的变量存在着差别。函数名不能被改变，而被函数的赋值变量却可以再分配。函数名只能在函数体内使用。倘若在函数体外使用函数名将会导致错误。</p>
+<p>另一方面，被函数赋值的变量仅仅受限于它被声明时的作用域。</p>
+<p>函数声明时也同时创建了一个与函数名同名的变量。因此，与函数表达式不同，函数声明定义的函数的函数名能在函数体内外使用。</p>
+<p>此处是函数声明，add 被绑定到了所在的作用域中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function add(a, b) &#123;</div><div class="line">  return a + b;</div><div class="line">&#125;</div><div class="line">add(1, 2);</div></pre></td></tr></table></figure></p>
+<p>此处是函数表达式，add1 被绑定到了自身函数中而不是所在作用域中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var add = function add1(a, b) &#123;</div><div class="line">  return a + b;</div><div class="line">&#125;</div><div class="line">add1(1, 2); // add1 is not defined</div></pre></td></tr></table></figure></p>
+<h2 id="提升是什么？"><a href="#提升是什么？" class="headerlink" title="提升是什么？"></a>提升是什么？</h2><p>JS 引擎处理一段代码实际上分为两个阶段：编译阶段和执行阶段。<br>PS: JS 虽然不是一种编译语言，但是在执行前也需要先进行编译。只不过跟普通的编译语言不同的是 JS 是一边编译一边执行的。</p>
+<p>其中变量和函数的声明发生在 <em>编译阶段</em>。其他操作如赋值等都发生在 <em>执行阶段</em>。<br>这意味着无论作用域中的声明出现在什么地方，都将在代码执行之前首先被处理。可以将这个过程形象地想象为所有的声明（变量和函数）都被“移动”到了各自作用域的最顶端，这个过程被称为 <em>提升</em>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">alert(a);</div><div class="line">alert(b);</div><div class="line">function a() &#123;&#125;</div><div class="line">var b = function b2() &#123;&#125;;</div><div class="line">alert(b);</div></pre></td></tr></table></figure>
+<p>上面代码段的输出结果为<code>function a() {}</code>,<code>undefiend</code>,<code>function b2() {}</code></p>
+<p>JS 引擎处理上面代码的顺序可能是这样的：</p>
+<ol>
+<li>声明变量 <code>a</code> 和 <code>b</code>, 并将它们赋值 <code>undefined</code></li>
+<li>创建函数 <code>a</code> 的函数体，并将其赋值给变量 <code>a</code></li>
+<li>执行 <code>alert(a); alert(b);</code></li>
+<li>创建函数 <code>b2</code> ，并将其赋值给变量 <code>b</code></li>
+</ol>
+<p><strong>注意</strong>:在IE8及IE8以下版本浏览器<code>b2</code>在外部也是可见的，是因为浏览器对命名函数赋值表达式进行了错误的解析， 解析成两个函数 <code>b</code> 和 <code>b2</code></p>
+<p>那我们现在就知道，变量和函数声明都会提升。但是，当变量和函数声明的函数名相同时，谁的优先级会更高呢。<br>答案是看情况：<br>同样是一个 <code>x</code> 标识</p>
+<ul>
+<li>如果在进行函数 <code>function x() {};</code> 声明的同时，只声明 <code>var x;</code> 而不对 <code>x</code> 进行赋值操作，那么此时函数声明优先级更高，函数声明会覆盖掉变量声明</li>
+<li>如果在进行函数 <code>function x() {};</code> 声明的同时，不仅声明 <code>var x;</code> 而且还对 <code>x</code> 进行赋值操作，即 <code>var x = 1;</code>，那么此时，变量声明会被 <strong><em>保存</em></strong> ，不会被覆盖。如果在变量声明的下面对 <code>x</code> 进行操作的话，变量声明的优先级更高, 会覆盖掉函数声明。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function a() &#123;&#125;</div><div class="line">console.log(a);</div><div class="line">var a;</div><div class="line">console.log(a);</div></pre></td></tr></table></figure>
+<p>上面代码执行结果为 <code>function a() {}</code> <code>function a() {}</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function a() &#123;&#125;</div><div class="line">console.log(a);</div><div class="line">var a = 1;</div><div class="line">console.log(a);</div></pre></td></tr></table></figure>
+<p>上面代码执行结果为 <code>function a() {}</code> <code>1</code></p>
+<h2 id="到底是用函数声明还是函数表达式？"><a href="#到底是用函数声明还是函数表达式？" class="headerlink" title="到底是用函数声明还是函数表达式？"></a>到底是用函数声明还是函数表达式？</h2><ol>
+<li><p>在 JavaScript 中，函数是第一等对象，之所以这样说，是因为它不仅可以像对象一样拥有属性和方法，而且可普通对象不一样的是它还可以被调用执行。函数表达式能更直观地看出是创建了一个对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function add(a,b) &#123;</div><div class="line">  return a + b</div><div class="line">&#125;</div><div class="line">var add = function(a,b) &#123;</div><div class="line">  return a + b</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>函数表达式的使用范围更广。函数声明语句并非真正的语句，JS 规范只是允许它们作为顶级语句。它们可以出现在全局代码中，或者内嵌在其他函数中，但它们不能出现在循环、条件判断，或者 try/cache/finally 以及 with 语句中。相比之下，函数表达式是更大意义上表达式的一部分。你可以创建匿名函数用作回调函数，作为其它对象的属性（这里只指定义函数，函数声明的函数名也可以这样用），用立即执行函数创建私有作用域等等，它们可以出现在代码的任何地方。</p>
+</li>
+<li>函数表达式不会出现函数提升，放在哪里就在哪里执行，不会像函数声明那样随意放置具有误导性。</li>
+<li>函数声明不能放在 if 条件句中，在一些浏览器中无论条件为 false 还是 true，函数都会被定义。</li>
+<li><p>但是匿名函数表达式存在一些问题：</p>
+<ul>
+<li>可读性，可理解性较差，有时候一个描述性的名称可以让你的代码不言自明。</li>
+<li>匿名函数在栈追踪中不会显示出有意义的名称，使得调试很困难，虽然可以用具名函数表达式，但是赋值具名函数表达式在 IE9 以下又无法正确执行（浏览器对命名函数赋值表达式进行错误的解析， 解析成两个函数，一个变量名，一个函数名）。</li>
+<li>如果没有函数名，函数在调用自身的时候就只能用 <strong>过期</strong> 的 <code>arguments.callee</code> 。函数调用自身的例子有递归以及事件触发后事件监听器需要解绑自身。</li>
+</ul>
+<p>因此，除了赋值命名函数表达式外，对函数表达式命名是很有必要的。</p>
+</li>
+</ol>
+<p><strong>总结</strong>：大部分情况下，用函数表达式代替函数声明都是很好的实践，但是有时用函数声明定义函数也是很有必要的，比如要用到多次的函数。所以还是要根据具体情况决定到底用哪种方式去定义函数。</p>
+<p>本文参考：<br>【1】<a href="https://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/" target="_blank" rel="external">https://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/</a><br>【2】<a href="http://codingfishman.github.io/2016/05/29/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_blank" rel="external">http://codingfishman.github.io/2016/05/29/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/</a><br>【3】<a href="http://item.jd.com/11676671.html" target="_blank" rel="external">你不知道的 JavaScript（上卷)</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/28/作用域、词法作用域和作用域链/" itemprop="url">
+                  作用域、作用域链和词法作用域
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-28T13:18:03+08:00" content="2016-10-28">
+              2016-10-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p><em>JavaScript 高级程序设计</em> 中对作用域的描述：</p>
+<blockquote>
+<p>所有变量（包括基本类型和引用类型）都存在于一个执行环境（作用域）当中，这个执行环境决定了变量的生命周期，以及哪一部分代码可以访问其中的变量。</p>
+</blockquote>
+<p>JS 中可以分为全局作用域和局部作用域，局部作用域又可以细分为函数级作用域和块级作用域（ES6 中新增加的）。</p>
+<ul>
+<li>函数级作用域：函数级作用域中的变量只在函数体及其子函数内是可访问的，一般在函数体中声明的变量在函数级作用域中；</li>
+<li>块级作用域：块级作用域中的变量只在其绑定的任意作用域中可访问（通常是 <code>{}</code> 内部），用 <code>let/const</code> 关键字声明的变量在块级作用域中；</li>
+<li>全局作用域：全局作用域中的变量可以在代码的任意地方被访问，下面几种情况声明的变量在全局作用域中：<ol>
+<li>用 <code>var</code> 关键字, 且没有在函数内声明</li>
+<li>声明的时候没有带 <code>var/let/const</code> 关键字</li>
+<li>window 对象的全部属性</li>
+</ol>
+</li>
+</ul>
+<p>作用域也可以理解为是一套规则，用来确定查找变量的范围以及查找变量的方式。<br>其中方式有 LHS(Left-Hand Side) 和 RHS(Right-Hand Side)</p>
+<ul>
+<li>LHS：如果查找变量是为了对变量进行赋值（储存数据），比如 <code>a = 1;</code>, 就使用 LHS，之所以用这个缩写是因为此时变量往往在<code>=</code>左边，但是函数在传入实参的时候，实际上是一个隐式的赋值过程，所以也用 LHS 查询。</li>
+<li>RHS：如果查找变量是为了获取储存在该变量上的数据，比如<code>var b = a;</code> 和 <code>console.log(a);</code>中查找变量 a, 就使用 RHS 查找（变量 b 采用 LHS 查找），之所以用这个缩写是因为此时变量往往在<code>=</code>右边。</li>
+</ul>
+<h2 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h2><p>当一个块或函数嵌套在另一个块或函数内部时，就发生了作用域的嵌套。<br>因此在当前作用域中无法找到某个变量时，引擎就会在外层嵌套的作用域中继续查找，直到找到该变量，或抵达最外层的作用域为止（即全局作用域）。<br>这种作用域的嵌套就构成了作用域链。<br>更深层次的理解看这篇文章<a href="https://changxiupeng.github.io/2016/10/31/JavaScript%20%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/" target="_blank" rel="external">JavaScript执行上下文</a></p>
+<h2 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h2><p>作用域共有两种主要的工作模型。<br>第一种是最为普遍的，被大多数编程语言所采用的词法作用域，我们会对这种作用域进行深入讨论。<br>另外一种叫作动态作用域，仍有一些编程语言在使用（ 比如 Bash 脚本、 Perl 中的一些模式等）。</p>
+<p>简单地说，词法作用域就是定义在词法阶段的作用域。换句话说，词法作用域是由你在写代码的时候将变量和块作用域写在哪里决定的，因此，当词法分析器处理代码时会保持作用域不变。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/27/JavaScript 异步编程的方法/" itemprop="url">
+                  JavaScript 异步编程的方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-27T20:55:00+08:00" content="2016-10-27">
+              2016-10-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h2><h2 id="监听函数"><a href="#监听函数" class="headerlink" title="监听函数"></a>监听函数</h2><h2 id="发布-订阅"><a href="#发布-订阅" class="headerlink" title="发布/订阅"></a>发布/订阅</h2><h2 id="Promise-对象"><a href="#Promise-对象" class="headerlink" title="Promise 对象"></a>Promise 对象</h2>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/27/JavaScript异步机制/" itemprop="url">
+                  JavaScript 的异步机制
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-27T11:18:58+08:00" content="2016-10-27">
+              2016-10-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="为什么-JavaScript-是单线程的"><a href="#为什么-JavaScript-是单线程的" class="headerlink" title="为什么 JavaScript 是单线程的"></a>为什么 JavaScript 是单线程的</h2><p>单线程的特点是同一时间只能做一件事。JavaScript 之所以采用这种方式主要跟它的用途有关，JavaScript 的用途主要是操作 DOM 与用户互动，如果采用多线程同时处理很多件任务，很可能导致用户收到的反馈与其进行的操作不符的情况，带来很复杂的同步问题。<br>但是为了利用多核 CPU 的计算能力，HTML5 提出 Web Worker标准，允许 JavaScript 创建多个线程，但是子线程完全受主线程控制，且不得操作 DOM。所以，这个标准并没有改变这门语言单线程的本质。</p>
+<h2 id="同步和异步的区别"><a href="#同步和异步的区别" class="headerlink" title="同步和异步的区别"></a>同步和异步的区别</h2><p>一般操作分为两步：发出调用和得到结果。</p>
+<p>这其中又分为两种情况：<br>发出调用，立即得到结果。<br>发出调用，不能立即得到结果，需要额外的操作才能得到结果。</p>
+<p>同步是第一种情况，调用之后一直等待，直到返回结果。<br>异步属于第二种情况，调用之后不能立即得到结果，需要通过其他的一系列手段才能拿到结果，但是在发出调用到拿到结果之间的时间，可以介入其他的任务。</p>
+<h2 id="实现异步的方法"><a href="#实现异步的方法" class="headerlink" title="实现异步的方法"></a>实现异步的方法</h2><p>JS 是单线程的，但是 JS 的运行环境（浏览器）是支持多线程的。我们可以将 JS 引擎提供的线程称为主线程，运行环境提供的线程称为工作线程。需要注意的一点是，不论是同步任务还是异步任务，它们最终都要在主线程上执行。</p>
+<ol>
+<li>首先，不管是同步任务和异步任务都会在主线程按序进行调用，只是异步任务还需要其它一系列的操作才能拿到结果，所以会进入工作线程，不会阻塞后面同步任务的执行，主线程首先会将同步任务依次执行完。</li>
+<li>进入工作线程的异步任务在经过一定的操作后（IO操作完成，用户点击一次鼠标，Ajax完成，或一个图片加载完成等）会产生一个相应的事件（消息）加入到事件（消息）队列里。（事件队列/消息队列）</li>
+<li>主线程执行完同步任务后会查看事件（消息）队列里是否有事件，如果有，就取回排在最前面的事件执行。主线程从工作线程取事件，执行事件的过程是循环重复的。（事件循环/Event Loop）</li>
+</ol>
+<p>JS 始终只有一个线程，它还维护一个事件（消息）队列，当前函数栈执行完成后就去不断的读取事件（消息），取到了就执行。但是 JS 引擎只负责取事件（消息），不负责生产事件（消息）。<br>JS 运行时（运行环境）负责给 JS 引擎发送事件（信息）。JS 运行时负责生产事件（消息），不负责取事件（消息）。</p>
+<p>本文参考：<br>【1】<a href="https://segmentfault.com/a/1190000004322358" target="_blank" rel="external">https://segmentfault.com/a/1190000004322358</a><br>【2】<a href="http://blog.csdn.net/lin_credible/article/details/40143961" target="_blank" rel="external">http://blog.csdn.net/lin_credible/article/details/40143961</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/25/从输入 URL 到页面加载完成中间经历了哪些过程/" itemprop="url">
+                  从输入 URL 到页面加载完成中间发生了什么
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-25T17:00:25+08:00" content="2016-10-25">
+              2016-10-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>主要经历了以下几个步骤：</p>
+<ol>
+<li>通过 DNS 解析获取域名的服务器 IP 地址</li>
+<li>浏览器与服务器建立 TCP 连接</li>
+<li>浏览器通过 TCP 连接向服务器发送 HTTP 请求</li>
+<li>服务器处理请求并返回 HTTP 报文</li>
+<li>浏览器解析渲染页面</li>
+</ol>
+<h2 id="通过-DNS-解析获取域名的服务器-IP-地址"><a href="#通过-DNS-解析获取域名的服务器-IP-地址" class="headerlink" title="通过 DNS 解析获取域名的服务器 IP 地址"></a>通过 DNS 解析获取域名的服务器 IP 地址</h2><p>URL 中的域名需要解析成 IP 地址才能与服务器建立联系，那么可以通过 DNS 解析来将域名解析成 IP 地址。具体的解析过程如图所示：<br><img src="/images/dns-query.png" alt="DNS查找过程"></p>
+<ol>
+<li>浏览器会检查自身缓存中有没有这个域名对应的解析过的 IP 地址，如果有，解析过程结束</li>
+<li>如果浏览器缓存中没有对应的 IP 地址，那么浏览器会继续查找操作系统中是否有该域名解析过的 IP 地址，如果有，解析过程结束</li>
+<li>如果浏览器和操作系统中都没有缓存这个域名的 IP 地址，那么操作系统会把这个域名发送到本地域名服务器（LDNS），比如你接的是校园网，那么 LDNS 即为学校，通常80%的域名解析到此结束，也就是说 LDNS 承担了绝大部分的域名解析任务</li>
+<li>如果 LDNS 任然没有查到该 IP 地址，那么该域名会被提交到根域名服务器（Root Server）</li>
+<li>根域名服务器返回给本地域名服务器一个对应的主域名服务器（gTLD Server）地址，主域名服务器是全球顶级域名服务器，全球只有13个，如 .com, .cn, .org 等，这里就会返回 .com 的顶级域名服务器地址</li>
+<li>本地域名服务器再向返回的顶级域名服务器发送请求</li>
+<li>接受请求的顶级域名服务器会返回一个该域名的 Name Server 域名服务器地址，给域名服务器地址是用户的域名提供商的服务器地址</li>
+<li>Name Server 域名服务器会向 LDNS 返回该域名的 IP 地址</li>
+</ol>
+<h2 id="浏览器与服务器建立-TCP-连接"><a href="#浏览器与服务器建立-TCP-连接" class="headerlink" title="浏览器与服务器建立 TCP 连接"></a>浏览器与服务器建立 TCP 连接</h2><p>TCP 提供的是面向连接的、可靠的字节流传输服务。</p>
+<p>面向连接：意味着两个使用 TCP 的应用（通常一个客户端，一个服务器）在彼此交换数据之前必须先建立一个 TCP 连接。在 TCP 连接中，仅有两方进行彼此通信。</p>
+<p>可靠：</p>
+<ol>
+<li>应用数据被分割成 TCP 认为最适合发送的数据块，并标上序号</li>
+<li>为了准确无误地将数据送达目标，TCP 协议采用三次握手的策略，TCP 协议不会对传送后的情况置之不理，它一定会向对方确认<ul>
+<li>发送端发送一个带 SYN 标志的数据包给接收端</li>
+<li>接收端回传一个带有 SYN/ACK 标志的数据包以示收到数据包</li>
+<li>发送端再回传一个带有 ACK 标志的数据包，握手结束</li>
+</ul>
+</li>
+</ol>
+<p>若在握手过程中某个阶段莫名中断，TCP 协议会再次以相同的顺序发送相同的数据包</p>
+<h2 id="浏览器通过-TCP-连接向服务器发送-HTTP-请求"><a href="#浏览器通过-TCP-连接向服务器发送-HTTP-请求" class="headerlink" title="浏览器通过 TCP 连接向服务器发送 HTTP 请求"></a>浏览器通过 TCP 连接向服务器发送 HTTP 请求</h2><ol>
+<li>首先，作为发送端的客户端（浏览器）在应用层（HTTP 协议）发出一个想看某 Web 页面的 HTTP 请求</li>
+<li>接着，为了传输方便，在传输层（TCP 协议）把从应用层处收到的数据（HTTP 请求报文）进行分割，并在各个报文上打上标记序号及端口号后转发给网络层</li>
+<li>在网络层（IP 协议），增加作为通信目的地的 MAC 地址后转发给链路层</li>
+<li>接收端的服务器在链路层接收到的数据，按序往上层发送，一直到应用层。当传输到应用层，服务器才能算是真正接受到了 HTTP 请求<br>对这个过程不了解的推荐继续阅读 <em>阮一峰</em> 老师的这两篇文章<a href="http://www.ruanyifeng.com/blog/2012/05/internet_protocol_suite_part_i.html" target="_blank" rel="external">互联网入门协议（一）</a>、<a href="http://www.ruanyifeng.com/blog/2012/06/internet_protocol_suite_part_ii.html" target="_blank" rel="external">互联网入门协议（二）</a>，虽然分层有一点差别，但没有本质上的不同。</li>
+</ol>
+<h2 id="服务器处理请求并返回-HTTP-报文"><a href="#服务器处理请求并返回-HTTP-报文" class="headerlink" title="服务器处理请求并返回 HTTP 报文"></a>服务器处理请求并返回 HTTP 报文</h2><h2 id="浏览器解析渲染页面"><a href="#浏览器解析渲染页面" class="headerlink" title="浏览器解析渲染页面"></a>浏览器解析渲染页面</h2><ol>
+<li>将 HTML 解析成 DOM Tree</li>
+<li>将 CSS 解析成 CSSOM Tree</li>
+<li>将 DOM Tree 和 CSSOM Tree 融合成 Render Tree（网罗页面上所有可见的 DOM 内容和每个节点的 CSSOM 样式信息）</li>
+<li>浏览器从 Render Tree 的根节点开始遍历，计算页面上每个节点对象的几何信息，确定每个对象在视窗中的几何尺寸和位置</li>
+<li>在频幕上绘制每个节点</li>
+</ol>
+<p>1、2两步中还涉及到 JS 的加载和运行：</p>
+<ul>
+<li>JS 可以查询、修改 DOM 和 CSSOM</li>
+<li>遇到 <code>script</code> 标签时，DOM 的构建会停止，直到 JS 执行完毕</li>
+<li>CSSOM 准备就绪前，JS 执行被延后</li>
+</ul>
+<p>所以解决好 HTML、CSS 与 JavaScript 之间的依存关系，对浏览器解析渲染页面的效率非常重要</p>
+<p>本文参考：<br>【1】<a href="http://edusagar.com/articles/view/70/What-happens-when-you-type-a-URL-in-browser" target="_blank" rel="external">http://edusagar.com/articles/view/70/What-happens-when-you-type-a-URL-in-browser</a><br>【2】<a href="http://stackoverflow.com/questions/2092527/what-happens-when-you-type-in-a-url-in-browser" target="_blank" rel="external">http://stackoverflow.com/questions/2092527/what-happens-when-you-type-in-a-url-in-browser</a><br>【3】<a href="https://segmentfault.com/a/1190000006879700" target="_blank" rel="external">https://segmentfault.com/a/1190000006879700</a><br>【4】<a href="http://www.cnblogs.com/xrq730/p/4931418.html" target="_blank" rel="external">http://www.cnblogs.com/xrq730/p/4931418.html</a><br>【5】<a href="http://igoro.com/archive/what-really-happens-when-you-navigate-to-a-url/" target="_blank" rel="external">http://igoro.com/archive/what-really-happens-when-you-navigate-to-a-url/</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/24/::before和::after伪元素的用法/" itemprop="url">
+                  ::before和::after伪元素的用法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-24T09:26:05+08:00" content="2016-10-24">
+              2016-10-24
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ol>
+<li><p>伪元素是什么？<br>下面是 MDN 给出的定义：</p>
+<blockquote>
+<p>Just like pseudo-classes, pseudo-elements are added to selectors but instead of describing a special state, they allow you to style certain parts of a document. For example, the ::first-line pseudo-element targets only  the first line of an element specified by the selector.</p>
+</blockquote>
+<p>大概意思是这样的：语法上，伪元素跟伪类一样是添加到 CSS 选择器后面的；但是在用法上，伪类用于在元素处于某种状态时（例如被点击），对元素的样式进行操作。而伪元素是对元素的某个特定部位进行样式操作或者内容添加，例如 <code>::first-line</code> 就指定了该元素的第一行。</p>
+</li>
+<li><p>为什么会有 <code>:before</code> 和 <code>::before</code> 这两种写法？<br>简单来说在 CSS3 之前，伪类和伪元素都用单冒号，CSS3规定伪类必须用单冒号，伪元素必须用双冒号，所以主要是兼容性的问题，目前为止 IE6，7，8 均不支持双冒号的用法。<br>详细解释看此文章：<a href="https://www.impressivewebs.com/before-after-css3/" target="_blank" rel="external">What’s the Difference Between “:before” and “::before”?</a></p>
+</li>
+<li><p>伪元素有很多种，这里我们只讨论::before和::after这两种伪元素，所以下文提到的伪元素特指这两种伪元素。</p>
+</li>
+</ol>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>下面分别是 MDN 对<code>::before</code>和<code>::after</code>的定义</p>
+<blockquote>
+<p>::before creates a pseudo-element that is the first child of the element matched. It is often used to add cosmetic content to an element by using the “content” property. This element is inline by default.</p>
+<p>::after pseudo-element matches a virtual last child of the selected element. It is typically used to add cosmetic content to an element by using the “content” CSS property. This element is inline by default.</p>
+</blockquote>
+<p> 大概意思是，<code>::before</code>和<code>::after</code>伪元素分别代表的是当前元素的第一个和最后一个 <strong>子元素</strong>（虚拟的，该子元素并不存在于 DOM 中，只能在 CSS 中看到），通常可以用其 <em>content</em> 属性来为当前元素添加 <strong>修饰性</strong> 的内容（添加的内容视为匿名的置换元素），并且该子元素默认为 <strong>内联元素</strong>。</p>
+<h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.an-element::after &#123;</div><div class="line">	content:&quot;#&quot;;</div><div class="line">&#125;</div><div class="line">.an-element::before &#123;</div><div class="line">	content:&quot;#&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上代码分别在 class 属性为 an-element 的元素的前后添加了一个符号。我们可以从定义中看到，这两种伪元素的作用主要是通过其特有的 <em>content</em> 属性为当前元素添加修饰性内容，所以当我们没有设置 <em>content</em> 属性时，该伪元素是无用的，至少你应该将 <em>content</em> 属性值设置为空 <code>content=&quot;&quot;;</code>，将该伪元素作为一个没有内容的盒子用。</p>
+<h3 id="content-属性值的类别"><a href="#content-属性值的类别" class="headerlink" title="content 属性值的类别"></a>content 属性值的类别</h3><ol>
+<li><p>string， 插入字符串（文本内容）<br>文本内容为常量，需要用单引号或双引号括起来<br>代码实现如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">h1::before &#123;</div><div class="line">	content: &quot;Chapter&quot;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#new::after &#123;</div><div class="line">	content: &quot;new&quot;;</div><div class="line">	color: red;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果要插入特殊字符，需要将其转义，CSS转义序列与HTMl/XHTML字符实体类似。字符实体是以“&amp;”符号开始的，后面跟有字符的名称或十进制值（后者要使用“#”值后缀），将反斜杠（\）加上十六进制字符则是 CSS 转义序列，从此可以创建同样的字符。序列“\A”与字符实体“&amp;#010”是相同的。<a href="https://css-tricks.com/snippets/html/glyphs/" target="_blank" rel="external">字符集</a></p>
+</li>
+<li><p>attr， 调用当前元素的属性值<br>可以方便地将链接的 href 地址显示出来, 也就是说可以动态地从页面元素中提取内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a::after &#123;</div><div class="line">	content: &quot;(&quot; attr(href) &quot;)&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>字符串的连接不需要加号，上面代码 content 属性值就是由三部分组成：两个常量圆括号和一个提取值</p>
+</li>
+<li><p>url， 使用指定的绝对或相对链接插入一个外部媒体文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">h1::before &#123;</div><div class="line">	content: url(logo.png) &quot;标题&quot;;</div><div class="line">	font: x-small Arial, freeSans, sans-serif;</div><div class="line">	color: gray;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的代码，在标题前面插入一个图标和文本</p>
+</li>
+<li>none， 不生成任何值<br>可以用来清除浮动<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">.clearfix::after &#123;</div><div class="line"> content: &quot;.&quot;;</div><div class="line"> display: block;</div><div class="line"> height: 0;</div><div class="line"> visibility: hidden;</div><div class="line"> clear: both;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.clearfix &#123;</div><div class="line"> *zoom:1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>本文参考：<br>[1]<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/content" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/CSS/content</a><br>[2]<a href="http://www.w3cplus.com/css3/learning-to-use-the-before-and-after-pseudo-elements-in-css.html" target="_blank" rel="external">http://www.w3cplus.com/css3/learning-to-use-the-before-and-after-pseudo-elements-in-css.html</a><br>[3]<a href="http://www.w3cplus.com/solution/css3content/css3content.html" target="_blank" rel="external">http://www.w3cplus.com/solution/css3content/css3content.html</a><br>[4]<a href="http://blog.dimpurr.com/css-before-after/" target="_blank" rel="external">http://blog.dimpurr.com/css-before-after/</a></p>
 
           
         
@@ -322,6 +1523,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -360,11 +1565,18 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
           
 
           

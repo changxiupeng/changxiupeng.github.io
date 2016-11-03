@@ -1,0 +1,604 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="Heading and paragraphHeading: &amp;lt;h1&amp;gt;&amp;lt;h2&amp;gt;&amp;lt;h3&amp;gt;&amp;lt;h4&amp;gt;&amp;lt;h5&amp;gt;&amp;lt;h6&amp;gt;重要性依次降低，每页最好只用一个&amp;lt;h1&amp;gt;，这些元素之间有层级关系，不要跳着用，浏览器会识别混乱不要用这些元素去简单得改变字体大小，它们是有语义的。Paragragh: &amp;lt;p&amp;gt;
+Emphasis a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML文本格式化">
+<meta property="og:url" content="http://yoursite.com/2016/07/31/Text-formatting/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Heading and paragraphHeading: &amp;lt;h1&amp;gt;&amp;lt;h2&amp;gt;&amp;lt;h3&amp;gt;&amp;lt;h4&amp;gt;&amp;lt;h5&amp;gt;&amp;lt;h6&amp;gt;重要性依次降低，每页最好只用一个&amp;lt;h1&amp;gt;，这些元素之间有层级关系，不要跳着用，浏览器会识别混乱不要用这些元素去简单得改变字体大小，它们是有语义的。Paragragh: &amp;lt;p&amp;gt;
+Emphasis a">
+<meta property="og:updated_time" content="2016-08-13T15:50:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML文本格式化">
+<meta name="twitter:description" content="Heading and paragraphHeading: &amp;lt;h1&amp;gt;&amp;lt;h2&amp;gt;&amp;lt;h3&amp;gt;&amp;lt;h4&amp;gt;&amp;lt;h5&amp;gt;&amp;lt;h6&amp;gt;重要性依次降低，每页最好只用一个&amp;lt;h1&amp;gt;，这些元素之间有层级关系，不要跳着用，浏览器会识别混乱不要用这些元素去简单得改变字体大小，它们是有语义的。Paragragh: &amp;lt;p&amp;gt;
+Emphasis a">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/31/Text-formatting/"/>
+
+
+  <title> HTML文本格式化 | Hexo </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                HTML文本格式化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-31T22:48:51+08:00" content="2016-07-31">
+              2016-07-31
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Heading-and-paragraph"><a href="#Heading-and-paragraph" class="headerlink" title="Heading and paragraph"></a>Heading and paragraph</h2><p>Heading: <code>&lt;h1&gt;&lt;h2&gt;&lt;h3&gt;&lt;h4&gt;&lt;h5&gt;&lt;h6&gt;</code><br>重要性依次降低，每页最好只用一个<code>&lt;h1&gt;</code>，这些元素之间有层级关系，不要跳着用，浏览器会识别混乱不要用这些元素去简单得改变字体大小，它们是有语义的。<br>Paragragh: <code>&lt;p&gt;</code></p>
+<h2 id="Emphasis-and-importance"><a href="#Emphasis-and-importance" class="headerlink" title="Emphasis and importance"></a>Emphasis and importance</h2><p>Emphasis: <code>&lt;em&gt;</code> 语义为强调，显示的文字为斜体，屏幕阅读器会重读。<br>Importance: <code>&lt;strong&gt;</code> 语义为重要，显示的文字为加粗体，屏幕阅读器会重读。</p>
+<h2 id="Abbreviations"><a href="#Abbreviations" class="headerlink" title="Abbreviations"></a>Abbreviations</h2><p>元素<code>&lt;abbr&gt;</code>用来标记缩写，属性<code>title</code>的值为缩写的全称，完整的元素为：</p>
+<blockquote>
+<p><code>&lt;abbr title=&quot;American Borned Chinese&quot;&gt;ABC&lt;/abbr&gt;</code></p>
+</blockquote>
+<p>还有一个相近的元素叫<code>&lt;acronym&gt;</code>专门用来定义首字母缩写的，但是意义不大，基本弃用。</p>
+<h2 id="Address"><a href="#Address" class="headerlink" title="Address"></a>Address</h2><p>标记联系方式的语义化标签是<code>&lt;address&gt;</code>,包含在<code>&lt;body&gt;</code>中是该文档的联系人的联系方式，包含在<code>&lt;article&gt;</code>中的是该文章的联系人的联系方式，显示出来的联系方式为斜体，并且在单独的一段。完整的元素为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;address&gt;</div><div class="line">Written by &lt;a href=&quot;xpchem@163.com&quot;&gt;Mr.Chang&lt;/a&gt;.&lt;br&gt;</div><div class="line">Visit me at:&lt;br&gt;</div><div class="line">changxiupeng.github.io&lt;br&gt;</div><div class="line">&lt;/address&gt;</div></pre></td></tr></table></figure></p>
+<p>地址内容要编排，容易跟<code>&lt;pre&gt;</code>搞混，<code>&lt;pre&gt;</code>在文本编辑器中不带标签的断行断段可以在页面保持, 并且字体为等宽，类似电传打字机样式的字体（Courier），一般用于标记代码（源代码字符要变为实体，希望执行的不用）和诗句。</p>
+<h2 id="Source-code"><a href="#Source-code" class="headerlink" title="Source code"></a>Source code</h2><p>有两个元素，一个是<code>&lt;code&gt;</code>,一个是<code>&lt;pre&gt;</code><br>它们的区别大致跟<code>&lt;q&gt;</code>和<code>&lt;blockquote&gt;</code>的区别一样，</p>
+<blockquote>
+<p><code>&lt;code&gt;</code>: For making up generic pieces of computer code;<br><code>&lt;pre&gt;</code>: For making up blocks of fixed width text, in which the whitespace is retained (generaly code blocks).</p>
+</blockquote>
+<h2 id="Entities"><a href="#Entities" class="headerlink" title="Entities"></a>Entities</h2><p>HTML中某些字符是预留的，即标签里会用到，比如&lt;,&gt;,&amp;等，如果不希望浏览器将它们识别为标签，就要把这些预留字符转换成字符实体：<br>小于号（<code>&lt;</code>）对应<code>&amp;lt;</code><br>大于号（<code>&gt;</code>）对应<code>&amp;gt;</code><br>不间断空格对应<code>&amp;nbsp;</code><br>版权符号对应<code>&amp;copy;</code><br>更多的实体字符看<a href="http://www.w3school.com.cn/tags/html_ref_entities.html" target="_blank" rel="external">实体字符参考手册</a></p>
+<blockquote>
+<p>不间断空格指该空格相连的文字视为一体，换行不会分开。</p>
+</blockquote>
+<h2 id="Quotations"><a href="#Quotations" class="headerlink" title="Quotations"></a>Quotations</h2><p>短的引用用<code>&lt;q&gt;</code>,完整的元素为：</p>
+<blockquote>
+<p><code>&lt;q cite=&quot;有些道理只是逼真&quot;&gt;有些道理只是逼真&lt;／q&gt;</code></p>
+</blockquote>
+<p>长的引用用<code>&lt;blockquote&gt;</code>，完整的元素为：</p>
+<blockquote>
+<p><code>&lt;blockquote cite=&quot;商场不是战场&quot;&gt;交易不是简单的商品互换，而是价值排序的取舍。交易形成的价格更是包含了巨大的信息。&lt;/blockquote&gt;</code></p>
+</blockquote>
+<p>引用显示的字体不会有什么区别，只是两边带上了双引号，长引用会显示为缩进编排的一个新段落，并且有双引号<br><code>cite</code>的值是你的引用地址，但是不会有在页面不会有任何显示，屏幕阅读器也不会有识别，除非用css和javascript。<br>如果想要这些内容显示在页面上，一个可行的方法就是将这些内容包含在一个<code>&lt;cite&gt;</code>元素里，放到引用内容的旁边，通常都是书名，说这些话的人名。上面的引用就会变成：</p>
+<blockquote>
+<p><code>&lt;q&gt;有些道理只是逼真&lt;／q&gt;&lt;cite&gt;有些道理只是逼真&lt;/cite&gt;</code><br><code>&lt;blockquote&gt;交易不是简单的商品互换，而是价值排序的取舍。交易形成的价格更是包含了巨大的信息。&lt;/blockquote&gt; -- &lt;cite&gt;商场不是战场&lt;/cite&gt;</code></p>
+</blockquote>
+<p><code>&lt;cite&gt;</code>包含的内容为斜体<br><code>&lt;cite&gt;</code>元素也可以包含在一个<code>&lt;a&gt;</code>中，起到链接的作用，指向引用地址。</p>
+<h2 id="Lists"><a href="#Lists" class="headerlink" title="Lists"></a>Lists</h2><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p>用<code>&lt;ul&gt;</code>（unordered list）包含所有的列表条目，每条列表条目也要用<code>&lt;li&gt;</code>包含，比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">  &lt;li&gt;eggs&lt;/li&gt;</div><div class="line">  &lt;li&gt;milk&lt;/li&gt;</div><div class="line">  &lt;li&gt;bread&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>用<code>&lt;ol&gt;</code>(ordered list) 包含所有的列表条目，每条列表条目用<code>&lt;li&gt;</code>包含，比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;ol&gt;</div><div class="line">  &lt;li&gt;拿笔&lt;/li&gt;</div><div class="line">  &lt;li&gt;拿纸&lt;/li&gt;</div><div class="line">  &lt;li&gt;写字&lt;/li&gt;</div><div class="line">&lt;/ol&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="描述列表"><a href="#描述列表" class="headerlink" title="描述列表"></a>描述列表</h3><p>用<code>&lt;dl&gt;</code>(description list)包含所用的词条和相应的描述语言，<code>&lt;dt&gt;</code>(description term)包含解释词条 <code>&lt;dd&gt;</code>(description description) 包含解释：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;dl&gt;</div><div class="line">  &lt;dt&gt;soliloquy&lt;/dt&gt;</div><div class="line">  &lt;dd&gt;In drama, where a character speaks to themselves, representing their inner thoughts or feelings and in the process relaying them to the audience&lt;/dd&gt;</div><div class="line">  &lt;dt&gt;monologue&lt;/dt&gt;</div><div class="line">  &lt;dd&gt;In drama, where a character speaks their thoughts out loud to share them with the sudience and any other character present.&lt;/dd&gt;</div><div class="line">  &lt;dt&gt;aside&lt;/dt&gt;</div><div class="line">  &lt;dd&gt;In drama,where a character shares a comment only with the audience for humorous or dramatic effect. This is usually a feeling,thought or piece of additional background information.&lt;/dd&gt;</div><div class="line">&lt;/dl&gt;</div></pre></td></tr></table></figure></p>
+<p>列表里能嵌套列表，嵌套的列表会缩进，相当于次级列表，不影响上级列表的排序。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>上标<code>&lt;sup&gt;</code><br>下标<code>&lt;sub&gt;</code><br>变量<code>&lt;var&gt;</code><br>时间<code>&lt;date&gt;</code><br>键入内容<code>&lt;kbd&gt;</code><br>计算机输出内容<code>&lt;samp&gt;</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;time datetime=&quot;2016-08-01&quot;&gt;1 August 2016&lt;/time&gt;</div><div class="line">&lt;time datetime=&quot;2016-08&quot;&gt;August 2016&lt;/time&gt;</div><div class="line">&lt;time datetime=&quot;08-01&quot;&gt;1 August&lt;/time&gt;</div><div class="line">&lt;time datetime=&quot;13:07&quot;&gt;13:07&lt;/time&gt;</div><div class="line">&lt;time datetime=&quot;2016-08-01T13:07&quot;&gt;13:07, 1 August 2016&lt;/time&gt;</div><div class="line">&lt;time datetime=&quot;2016-08-01T13:07+08:00&quot;&gt;1.07pm, 1 August 2016 is 9.07pm in Beijing&lt;/time&gt;</div><div class="line">&lt;time datetime=&quot;2016-W08&quot;&gt;The eighth week of 2016&lt;/time&gt;</div></pre></td></tr></table></figure></p>
+<p>之所以要标定时间是要让浏览器能识别。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;p&gt;Select all the text with &lt;kbd&gt;Ctrl&lt;/kbd&gt;/&lt;kbd&gt;Cmd&lt;/kbd&gt; + &lt;kbd&gt;A&lt;/kbd&gt;.&lt;/p&gt;</div><div class="line"></div><div class="line">&lt;pre&gt;</div><div class="line">$ &lt;kbd&gt;ping mozilla.org&lt;/kbd&gt;</div><div class="line">&lt;samp&gt;PING mozilla.org (63.245.215.20): 56 data bytes</div><div class="line">64 bytes from 63.245.215.20: icmp_seq=0 ttl=40 time=158.233 ms&lt;/samp&gt;</div><div class="line">&lt;/pre&gt;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/31/在文档中插入超链接/" rel="next" title="在文档中插入超链接">
+                <i class="fa fa-chevron-left"></i> 在文档中插入超链接
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/01/Cheatsheet-HTML斜体元素/" rel="prev" title="Cheatsheet-HTML斜体元素">
+                Cheatsheet-HTML斜体元素 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Heading-and-paragraph"><span class="nav-number">1.</span> <span class="nav-text">Heading and paragraph</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Emphasis-and-importance"><span class="nav-number">2.</span> <span class="nav-text">Emphasis and importance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Abbreviations"><span class="nav-number">3.</span> <span class="nav-text">Abbreviations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Address"><span class="nav-number">4.</span> <span class="nav-text">Address</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Source-code"><span class="nav-number">5.</span> <span class="nav-text">Source code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Entities"><span class="nav-number">6.</span> <span class="nav-text">Entities</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quotations"><span class="nav-number">7.</span> <span class="nav-text">Quotations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lists"><span class="nav-number">8.</span> <span class="nav-text">Lists</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无序列表"><span class="nav-number">8.1.</span> <span class="nav-text">无序列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序列表"><span class="nav-number">8.2.</span> <span class="nav-text">有序列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#描述列表"><span class="nav-number">8.3.</span> <span class="nav-text">描述列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">9.</span> <span class="nav-text">其他</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,606 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="作用域JavaScript 高级程序设计 中对作用域的描述：
+
+所有变量（包括基本类型和引用类型）都存在于一个执行环境（作用域）当中，这个执行环境决定了变量的生命周期，以及哪一部分代码可以访问其中的变量。
+
+JS 中可以分为全局作用域和局部作用域，局部作用域又可以细分为函数级作用域和块级作用域（ES6 中新增加的）。
+
+函数级作用域：函数级作用域中的变量只在函数体及其子函数内是可访问的，一般在函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="作用域、作用域链和词法作用域">
+<meta property="og:url" content="http://yoursite.com/2016/10/28/作用域、词法作用域和作用域链/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="作用域JavaScript 高级程序设计 中对作用域的描述：
+
+所有变量（包括基本类型和引用类型）都存在于一个执行环境（作用域）当中，这个执行环境决定了变量的生命周期，以及哪一部分代码可以访问其中的变量。
+
+JS 中可以分为全局作用域和局部作用域，局部作用域又可以细分为函数级作用域和块级作用域（ES6 中新增加的）。
+
+函数级作用域：函数级作用域中的变量只在函数体及其子函数内是可访问的，一般在函数">
+<meta property="og:updated_time" content="2016-11-02T07:08:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="作用域、作用域链和词法作用域">
+<meta name="twitter:description" content="作用域JavaScript 高级程序设计 中对作用域的描述：
+
+所有变量（包括基本类型和引用类型）都存在于一个执行环境（作用域）当中，这个执行环境决定了变量的生命周期，以及哪一部分代码可以访问其中的变量。
+
+JS 中可以分为全局作用域和局部作用域，局部作用域又可以细分为函数级作用域和块级作用域（ES6 中新增加的）。
+
+函数级作用域：函数级作用域中的变量只在函数体及其子函数内是可访问的，一般在函数">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/28/作用域、词法作用域和作用域链/"/>
+
+
+  <title> 作用域、作用域链和词法作用域 | Hexo </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                作用域、作用域链和词法作用域
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-28T13:18:03+08:00" content="2016-10-28">
+              2016-10-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p><em>JavaScript 高级程序设计</em> 中对作用域的描述：</p>
+<blockquote>
+<p>所有变量（包括基本类型和引用类型）都存在于一个执行环境（作用域）当中，这个执行环境决定了变量的生命周期，以及哪一部分代码可以访问其中的变量。</p>
+</blockquote>
+<p>JS 中可以分为全局作用域和局部作用域，局部作用域又可以细分为函数级作用域和块级作用域（ES6 中新增加的）。</p>
+<ul>
+<li>函数级作用域：函数级作用域中的变量只在函数体及其子函数内是可访问的，一般在函数体中声明的变量在函数级作用域中；</li>
+<li>块级作用域：块级作用域中的变量只在其绑定的任意作用域中可访问（通常是 <code>{}</code> 内部），用 <code>let/const</code> 关键字声明的变量在块级作用域中；</li>
+<li>全局作用域：全局作用域中的变量可以在代码的任意地方被访问，下面几种情况声明的变量在全局作用域中：<ol>
+<li>用 <code>var</code> 关键字, 且没有在函数内声明</li>
+<li>声明的时候没有带 <code>var/let/const</code> 关键字</li>
+<li>window 对象的全部属性</li>
+</ol>
+</li>
+</ul>
+<p>作用域也可以理解为是一套规则，用来确定查找变量的范围以及查找变量的方式。<br>其中方式有 LHS(Left-Hand Side) 和 RHS(Right-Hand Side)</p>
+<ul>
+<li>LHS：如果查找变量是为了对变量进行赋值（储存数据），比如 <code>a = 1;</code>, 就使用 LHS，之所以用这个缩写是因为此时变量往往在<code>=</code>左边，但是函数在传入实参的时候，实际上是一个隐式的赋值过程，所以也用 LHS 查询。</li>
+<li>RHS：如果查找变量是为了获取储存在该变量上的数据，比如<code>var b = a;</code> 和 <code>console.log(a);</code>中查找变量 a, 就使用 RHS 查找（变量 b 采用 LHS 查找），之所以用这个缩写是因为此时变量往往在<code>=</code>右边。</li>
+</ul>
+<h2 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h2><p>当一个块或函数嵌套在另一个块或函数内部时，就发生了作用域的嵌套。<br>因此在当前作用域中无法找到某个变量时，引擎就会在外层嵌套的作用域中继续查找，直到找到该变量，或抵达最外层的作用域为止（即全局作用域）。<br>这种作用域的嵌套就构成了作用域链。<br>更深层次的理解看这篇文章<a href="https://changxiupeng.github.io/2016/10/31/JavaScript%20%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/" target="_blank" rel="external">JavaScript执行上下文</a></p>
+<h2 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h2><p>作用域共有两种主要的工作模型。<br>第一种是最为普遍的，被大多数编程语言所采用的词法作用域，我们会对这种作用域进行深入讨论。<br>另外一种叫作动态作用域，仍有一些编程语言在使用（ 比如 Bash 脚本、 Perl 中的一些模式等）。</p>
+<p>简单地说，词法作用域就是定义在词法阶段的作用域。换句话说，词法作用域是由你在写代码的时候将变量和块作用域写在哪里决定的，因此，当词法分析器处理代码时会保持作用域不变。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/27/JavaScript 异步编程的方法/" rel="next" title="JavaScript 异步编程的方法">
+                <i class="fa fa-chevron-left"></i> JavaScript 异步编程的方法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/29/函数声明和函数表达式/" rel="prev" title="函数声明 VS 函数表达式">
+                函数声明 VS 函数表达式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域"><span class="nav-number">1.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域链"><span class="nav-number">2.</span> <span class="nav-text">作用域链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词法作用域"><span class="nav-number">3.</span> <span class="nav-text">词法作用域</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
