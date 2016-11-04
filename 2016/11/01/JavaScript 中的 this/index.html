@@ -113,7 +113,7 @@ this 是执行上下文中的一个重要属性，是一个与执行上下文相
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"right","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -150,7 +150,7 @@ this 是执行上下文中的一个重要属性，是一个与执行上下文相
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -198,18 +198,10 @@ this 是执行上下文中的一个重要属性，是一个与执行上下文相
         </li>
       
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
             
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-schedule">
-          <a href="/schedule" rel="section">
-            
-            日程
+            分类
           </a>
         </li>
       
@@ -271,6 +263,13 @@ this 是执行上下文中的一个重要属性，是一个与执行上下文相
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/01/JavaScript 中的 this/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/01/JavaScript 中的 this/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -387,6 +386,10 @@ this 是执行上下文中的一个重要属性，是一个与执行上下文相
           
   <div class="comments" id="comments">
     
+      <div class="ds-thread" data-thread-key="2016/11/01/JavaScript 中的 this/"
+           data-title="JavaScript 中的 this" data-url="http://yoursite.com/2016/11/01/JavaScript 中的 this/">
+      </div>
+    
   </div>
 
 
@@ -436,10 +439,10 @@ this 是执行上下文中的一个重要属性，是一个与执行上下文相
 
           
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories">
                 <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
-              
+              </a>
             </div>
           
 
@@ -589,9 +592,30 @@ this 是执行上下文中的一个重要属性，是一个与执行上下文相
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"changxiupeng.github.io"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
 
 
 

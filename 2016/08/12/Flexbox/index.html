@@ -110,7 +110,7 @@ flex-direction 可以指定排列的方向，有 row 和 column 可选
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"right","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -147,7 +147,7 @@ flex-direction 可以指定排列的方向，有 row 和 column 可选
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -195,18 +195,10 @@ flex-direction 可以指定排列的方向，有 row 和 column 可选
         </li>
       
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
             
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-schedule">
-          <a href="/schedule" rel="section">
-            
-            日程
+            分类
           </a>
         </li>
       
@@ -268,6 +260,13 @@ flex-direction 可以指定排列的方向，有 row 和 column 可选
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/12/Flexbox/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/12/Flexbox/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -372,6 +371,10 @@ flex-direction 可以指定排列的方向，有 row 和 column 可选
           
   <div class="comments" id="comments">
     
+      <div class="ds-thread" data-thread-key="2016/08/12/Flexbox/"
+           data-title="Flexbox" data-url="http://yoursite.com/2016/08/12/Flexbox/">
+      </div>
+    
   </div>
 
 
@@ -421,10 +424,10 @@ flex-direction 可以指定排列的方向，有 row 和 column 可选
 
           
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories">
                 <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
-              
+              </a>
             </div>
           
 
@@ -574,9 +577,30 @@ flex-direction 可以指定排列的方向，有 row 和 column 可选
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"changxiupeng.github.io"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
 
 
 
