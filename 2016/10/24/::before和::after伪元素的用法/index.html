@@ -96,7 +96,7 @@ Just like pseudo-classes, pseudo-elements are added to selectors but instead of 
 伪元素是什么？下面是 MDN 给出的定义：
 
 Just like pseudo-classes, pseudo-elements are added to selectors but instead of describing a special state, they allow you to style certain parts of a document. For example,">
-<meta property="og:updated_time" content="2016-10-24T09:17:00.000Z">
+<meta property="og:updated_time" content="2016-11-04T05:26:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="::before和::after伪元素的用法">
 <meta name="twitter:description" content="背景
@@ -208,6 +208,16 @@ Just like pseudo-classes, pseudo-elements are added to selectors but instead of 
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
 
       
     </ul>
@@ -263,6 +273,25 @@ Just like pseudo-classes, pseudo-elements are added to selectors but instead of 
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -445,12 +474,19 @@ Just like pseudo-classes, pseudo-elements are added to selectors but instead of 
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
           
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
