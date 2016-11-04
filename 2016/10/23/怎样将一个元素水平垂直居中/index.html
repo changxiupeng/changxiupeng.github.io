@@ -93,7 +93,7 @@
 如果是多行，也可以调整其上下 padding 值
 
 块状元素绝对定位的方法
-块级元素宽高已知123456789101">
+块级元素宽高已知block-elemen">
 <meta property="og:type" content="article">
 <meta property="og:title" content="怎样将一个元素水平垂直居中">
 <meta property="og:url" content="http://yoursite.com/2016/10/23/怎样将一个元素水平垂直居中/index.html">
@@ -107,7 +107,7 @@
 如果是多行，也可以调整其上下 padding 值
 
 块状元素绝对定位的方法
-块级元素宽高已知123456789101">
+块级元素宽高已知block-elemen">
 <meta property="og:updated_time" content="2016-11-04T05:33:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="怎样将一个元素水平垂直居中">
@@ -120,7 +120,7 @@
 如果是多行，也可以调整其上下 padding 值
 
 块状元素绝对定位的方法
-块级元素宽高已知123456789101">
+块级元素宽高已知block-elemen">
 
 
 
@@ -349,16 +349,16 @@
 <li>如果是多行，也可以调整其上下 padding 值</li>
 </ol>
 <h2 id="块状元素"><a href="#块状元素" class="headerlink" title="块状元素"></a>块状元素</h2><h3 id="绝对定位的方法"><a href="#绝对定位的方法" class="headerlink" title="绝对定位的方法"></a>绝对定位的方法</h3><ol>
-<li>块级元素宽高已知<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">block-element &#123;</div><div class="line">  width: 18px;</div><div class="line">  height: 10px;</div><div class="line">  position: absolute;</div><div class="line">  top: 50%;</div><div class="line">  left: 50%;</div><div class="line">  margin-top: -5px;</div><div class="line">  margin-left: -9px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">block-element &#123;</div><div class="line">  width: 18px;</div><div class="line">  height: 10px;</div><div class="line">  position: absolute;</div><div class="line">  top: cal(50% - 5px);</div><div class="line">  left: cal(50% - 9px);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<li>块级元素宽高已知<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">block-element &#123;</div><div class="line">  width: 18px;</div><div class="line">  height: 10px;</div><div class="line">  position: absolute;</div><div class="line">  top: 50%;</div><div class="line">  left: 50%;</div><div class="line">  margin-top: -5px;</div><div class="line">  margin-left: -9px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">block-element &#123;</div><div class="line">  width: 18px;</div><div class="line">  height: 10px;</div><div class="line">  position: absolute;</div><div class="line">  top: cal(50% - 5px);</div><div class="line">  left: cal(50% - 9px);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>以上两种方法都可以实现</p>
 <ol>
-<li>块级元素宽高未知<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">block-element &#123;</div><div class="line">  position: absolute;</div><div class="line">  top: 50%;</div><div class="line">  left: 50%;</div><div class="line">  transform: translate(-50%, -50%);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<li>块级元素宽高未知<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">block-element &#123;</div><div class="line">  position: absolute;</div><div class="line">  top: 50%;</div><div class="line">  left: 50%;</div><div class="line">  transform: translate(-50%, -50%);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="利用-flexbox"><a href="#利用-flexbox" class="headerlink" title="利用 flexbox"></a>利用 flexbox</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">father-element &#123;</div><div class="line">  display: flex;</div><div class="line">&#125;</div><div class="line">block-element &#123;</div><div class="line">  margin: auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>或者直接在父元素上应用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">father-element &#123;</div><div class="line">    display: flex;</div><div class="line">    align-items: center;</div><div class="line">    justify-content: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="利用-flexbox"><a href="#利用-flexbox" class="headerlink" title="利用 flexbox"></a>利用 flexbox</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">father-element &#123;</div><div class="line">  display: flex;</div><div class="line">&#125;</div><div class="line">block-element &#123;</div><div class="line">  margin: auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者直接在父元素上应用：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">father-element &#123;</div><div class="line">    display: flex;</div><div class="line">    align-items: center;</div><div class="line">    justify-content: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
