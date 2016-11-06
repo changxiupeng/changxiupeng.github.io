@@ -85,18 +85,18 @@
 
 
 <meta name="description" content="理解对象ECMA-262 把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数”。对象的每个属性或方法（保存了函数的属性）都有一个名字，而每个名字都映射到一个值，也就是说名字和对应的值构成了一个属性，而一组属性的散列表构成了一个对象。
-var me = &amp;#123;	name: &quot;Paco&quot;,	age: 26,	job: &quot;student&quot;,	saySomething: functi">
+var me = &amp;#123;  name: &quot;Paco&quot;,	age: 26,	job: &quot;student&quot;,	saySomething: funct">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解对象及对象属性">
 <meta property="og:url" content="http://yoursite.com/2016/11/02/理解对象及对象属性/index.html">
 <meta property="og:site_name" content="Comma's">
 <meta property="og:description" content="理解对象ECMA-262 把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数”。对象的每个属性或方法（保存了函数的属性）都有一个名字，而每个名字都映射到一个值，也就是说名字和对应的值构成了一个属性，而一组属性的散列表构成了一个对象。
-var me = &amp;#123;	name: &quot;Paco&quot;,	age: 26,	job: &quot;student&quot;,	saySomething: functi">
-<meta property="og:updated_time" content="2016-11-05T04:13:47.000Z">
+var me = &amp;#123;  name: &quot;Paco&quot;,	age: 26,	job: &quot;student&quot;,	saySomething: funct">
+<meta property="og:updated_time" content="2016-11-06T09:36:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解对象及对象属性">
 <meta name="twitter:description" content="理解对象ECMA-262 把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数”。对象的每个属性或方法（保存了函数的属性）都有一个名字，而每个名字都映射到一个值，也就是说名字和对应的值构成了一个属性，而一组属性的散列表构成了一个对象。
-var me = &amp;#123;	name: &quot;Paco&quot;,	age: 26,	job: &quot;student&quot;,	saySomething: functi">
+var me = &amp;#123;  name: &quot;Paco&quot;,	age: 26,	job: &quot;student&quot;,	saySomething: funct">
 
 
 
@@ -317,12 +317,12 @@ var me = &amp;#123;	name: &quot;Paco&quot;,	age: 26,	job: &quot;student&quot;,	s
 
       
         <h2 id="理解对象"><a href="#理解对象" class="headerlink" title="理解对象"></a>理解对象</h2><p>ECMA-262 把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数”。<br>对象的每个属性或方法（保存了函数的属性）都有一个名字，而每个名字都映射到一个值，也就是说名字和对应的值构成了一个属性，而一组属性的散列表构成了一个对象。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> me = &#123;</div><div class="line">	<span class="attr">name</span>: <span class="string">"Paco"</span>,</div><div class="line">	<span class="attr">age</span>: <span class="number">26</span>,</div><div class="line">	<span class="attr">job</span>: <span class="string">"student"</span>,</div><div class="line">	<span class="attr">saySomething</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		alert(<span class="string">"Hi, I'm"</span> + <span class="string">" "</span> + <span class="keyword">this</span>.name);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> me = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">"Paco"</span>,</div><div class="line">	<span class="attr">age</span>: <span class="number">26</span>,</div><div class="line">	<span class="attr">job</span>: <span class="string">"student"</span>,</div><div class="line">	<span class="attr">saySomething</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		alert(<span class="string">"Hi, I'm"</span> + <span class="string">" "</span> + <span class="keyword">this</span>.name);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>上面代码是一个 me 对象，包含了三个属性和一个方法</p>
 <h2 id="对象属性"><a href="#对象属性" class="headerlink" title="对象属性"></a>对象属性</h2><p>JavaScript 中有两种属性：数据属性和访问器属性。</p>
 <h3 id="数据属性"><a href="#数据属性" class="headerlink" title="数据属性"></a>数据属性</h3><p>数据属性包含一个数据值的位置。在这个位置可以读取或写入值。数据属性有4个描述其行为的特性：</p>
 <ul>
-<li>[[Configurable]]：表示能否修改属性的特性，能够将属性修改成访问器属性，能否通过 delete 删除属性。默认值为 true。</li>
+<li>[[Configurable]]：表示能否修改属性的特性，能否将属性修改成访问器属性，能否通过 delete 删除属性。默认值为 true。</li>
 <li>[[Enumerable]]：表示能否通过 for-in 循环返回属性。默认值为 true。</li>
 <li>[[Writable]]：表示能否修改属性的值。默认值为 true。</li>
 <li>[[Value]]：这个属性的数据值。从这里读写属性值。默认为 undefined。</li>
@@ -330,7 +330,7 @@ var me = &amp;#123;	name: &quot;Paco&quot;,	age: 26,	job: &quot;student&quot;,	s
 <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> me = &#123;</div><div class="line">	<span class="attr">name</span>: <span class="string">"Paco"</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>这里在 me 对象中创建了一个 name 属性，并为它指定值为“Paco”。也就是说此时，name 属性的[[Value]]特性被设置为“Paco”。如果将 name 属性的值修改为 “xiaoming”，那么[[Value]]特性被重新设置为 “xiaoming”。</p>
 <p>如果想要修改对象属性的默认特性值，需要用到 <strong>Object.defineProperty()</strong> 方法。这个方法接收三个参数，分别是 <strong>属性所在的对象</strong>，<strong>属性名</strong>(字符串形式，带引号)，<strong>描述符对象</strong>。描述符对象的属性必须是：configurable, enumerable, writable 和 value 中的一个或几个。例如：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> me = &#123;&#125;;</div><div class="line"><span class="built_in">Object</span>.defineProperty(me, <span class="string">"name"</span>, &#123;</div><div class="line">  <span class="attr">configurable</span>: <span class="literal">false</span>,</div><div class="line">	<span class="attr">writable</span>: <span class="literal">false</span>,</div><div class="line">	<span class="attr">value</span>: <span class="string">"Paco"</span></div><div class="line">	&#125;);</div><div class="line"></div><div class="line">alert(me.name); <span class="comment">// Paco</span></div><div class="line">me.name = <span class="string">"xiaoming"</span>;</div><div class="line">alert(me.name);<span class="comment">// Paco</span></div><div class="line"></div><div class="line"><span class="keyword">delete</span> me.name; <span class="comment">// false</span></div><div class="line">alert(me.name); <span class="comment">// Paco</span></div><div class="line"></div><div class="line"><span class="built_in">Object</span>.defineProperty(me, <span class="string">"name"</span>, &#123;</div><div class="line">	<span class="attr">configurable</span>: <span class="literal">true</span>，</div><div class="line">	writable: <span class="literal">true</span></div><div class="line">	&#125;)；<span class="comment">// Uncaught TypeError: Cannot redefine property: name</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> me = &#123;&#125;;</div><div class="line"><span class="built_in">Object</span>.defineProperty(me, <span class="string">"name"</span>, &#123;</div><div class="line">  <span class="attr">configurable</span>: <span class="literal">false</span>,</div><div class="line">  <span class="attr">writable</span>: <span class="literal">false</span>,</div><div class="line">	<span class="attr">value</span>: <span class="string">"Paco"</span></div><div class="line">	&#125;);</div><div class="line"></div><div class="line">alert(me.name); <span class="comment">// Paco</span></div><div class="line">me.name = <span class="string">"xiaoming"</span>;</div><div class="line">alert(me.name);<span class="comment">// Paco</span></div><div class="line"></div><div class="line"><span class="keyword">delete</span> me.name; <span class="comment">// false</span></div><div class="line">alert(me.name); <span class="comment">// Paco</span></div><div class="line"></div><div class="line"><span class="built_in">Object</span>.defineProperty(me, <span class="string">"name"</span>, &#123;</div><div class="line">	<span class="attr">configurable</span>: <span class="literal">true</span>，</div><div class="line">	writable: <span class="literal">true</span></div><div class="line">	&#125;)；<span class="comment">// Uncaught TypeError: Cannot redefine property: name</span></div></pre></td></tr></table></figure>
 <p>上面代码我们可以看出，将 configurable 设置为 false 后，不能删除属性也不能对属性的特性进行修改。 将 writable 设置为 false 后，不能对属性的值进行重写。</p>
 <p><strong>需要注意的是</strong>，当用 Object.defineProperty() 去创建一个属性的时候，即原来对象中没有这个属性，configurable, enumerable, writable 的默认值都为 false。上面的代码中，如果我们将 <code>writable: false</code> 删去，得到的结果是一样的。</p>
 <h3 id="访问器属性"><a href="#访问器属性" class="headerlink" title="访问器属性"></a>访问器属性</h3><p>访问器属性不包含数据值，它们是一对 getter 和 setter 函数（这两个函数都不是必须的）。在读取访问器属性时，会调用 getter 函数，这个函数负责返回有效的值。在写入访问器属性时，会调用 setter 函数并传入新值，这个函数负责决定如何处理数据。访问器属性有如下4个特性：</p>
