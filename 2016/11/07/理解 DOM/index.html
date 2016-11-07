@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="DOM," />
 
 
 
@@ -84,24 +84,22 @@
 
 
 
-<meta name="description" content="HTML elements
-Content within a web page is tagged with HTML elements, which form the building blocks of a website.
-An HTML element usually consists of a start tag and end tag, with the content inserte">
+<meta name="description" content="什么是 DOM（Document Object Model / 文档对象模型）?这是 W3C 对 DOM 的描述：
+
+The Document Object Model is a platform- and language-neutral interface that will allow programs and scripts to dynamically access and update">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTML中几个基本知识点">
-<meta property="og:url" content="http://yoursite.com/2016/07/30/HTML中几个基本知识点/index.html">
+<meta property="og:title" content="理解 DOM">
+<meta property="og:url" content="http://yoursite.com/2016/11/07/理解 DOM/index.html">
 <meta property="og:site_name" content="Comma's">
-<meta property="og:description" content="HTML elements
-Content within a web page is tagged with HTML elements, which form the building blocks of a website.
-An HTML element usually consists of a start tag and end tag, with the content inserte">
-<meta property="og:image" content="http://yoursite.com/images/structure-of-an-html-document.png">
-<meta property="og:updated_time" content="2016-11-03T06:21:53.000Z">
+<meta property="og:description" content="什么是 DOM（Document Object Model / 文档对象模型）?这是 W3C 对 DOM 的描述：
+
+The Document Object Model is a platform- and language-neutral interface that will allow programs and scripts to dynamically access and update">
+<meta property="og:updated_time" content="2016-11-07T15:57:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTML中几个基本知识点">
-<meta name="twitter:description" content="HTML elements
-Content within a web page is tagged with HTML elements, which form the building blocks of a website.
-An HTML element usually consists of a start tag and end tag, with the content inserte">
-<meta name="twitter:image" content="http://yoursite.com/images/structure-of-an-html-document.png">
+<meta name="twitter:title" content="理解 DOM">
+<meta name="twitter:description" content="什么是 DOM（Document Object Model / 文档对象模型）?这是 W3C 对 DOM 的描述：
+
+The Document Object Model is a platform- and language-neutral interface that will allow programs and scripts to dynamically access and update">
 
 
 
@@ -122,10 +120,10 @@ An HTML element usually consists of a start tag and end tag, with the content in
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/07/30/HTML中几个基本知识点/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/07/理解 DOM/"/>
 
 
-  <title> HTML中几个基本知识点 | Comma's </title>
+  <title> 理解 DOM | Comma's </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +253,7 @@ An HTML element usually consists of a start tag and end tag, with the content in
             
             
               
-                HTML中几个基本知识点
+                理解 DOM
               
             
           </h1>
@@ -267,8 +265,8 @@ An HTML element usually consists of a start tag and end tag, with the content in
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-30T20:45:21+08:00" content="2016-07-30">
-              2016-07-30
+            <time itemprop="dateCreated" datetime="2016-11-07T21:17:00+08:00" content="2016-11-07">
+              2016-11-07
             </time>
           </span>
 
@@ -281,8 +279,8 @@ An HTML element usually consists of a start tag and end tag, with the content in
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/HTML/" itemprop="url" rel="index">
-                    <span itemprop="name">HTML</span>
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
                   </a>
                 </span>
 
@@ -297,8 +295,8 @@ An HTML element usually consists of a start tag and end tag, with the content in
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/30/HTML中几个基本知识点/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/30/HTML中几个基本知识点/" itemprop="commentsCount"></span>
+                <a href="/2016/11/07/理解 DOM/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/07/理解 DOM/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -321,39 +319,61 @@ An HTML element usually consists of a start tag and end tag, with the content in
       
 
       
-        <h2 id="HTML-elements"><a href="#HTML-elements" class="headerlink" title="HTML elements"></a>HTML elements</h2><ul>
-<li>Content within a web page is tagged with HTML elements, which form the building blocks of a website.</li>
-<li>An HTML element usually consists of a start tag and end tag, with the content inserted in between</li>
-<li>A tag is part of the markup(brackets and element name)used to delimit an element. An element consists of the content and its tags.</li>
-<li>A handful of elements, however, do not have text content because they are used to provide a simple directive. These elements are said to be empty.</li>
-</ul>
-<h2 id="Attributes"><a href="#Attributes" class="headerlink" title="Attributes"></a>Attributes</h2><ul>
-<li>All HTML elements can have attributes</li>
-<li>Attributes provide additional information about an element</li>
-<li>Attributes are always specified in the start tag</li>
-<li>Attributes usually come in name/value pairs like: name=”value”</li>
-<li>A value might be a number, a word, a string of text, a URL, or a measurement, depending on the purpose of the attribute.</li>
-<li>Either single or double quotation marks are acceptable as long as they are used consistently; however,double quotation marks are the convention. Note that quotation marks in HTML files need to be straight (“) not curly (”).</li>
-<li>There may be several attributes applied to an element, separated by spaces in the opening tag. Their order is not important.</li>
-<li>Most attributes take values, which follow an equals sign (=). In HTML, some attribute values can be reduced to single descriptive words, for example, the checked attribute, which makes a checkbox checked when a form loads. In XHTML, however, all attributes must have explicit values (checked=”checked”).</li>
-</ul>
-<h2 id="Block-and-inline-elements"><a href="#Block-and-inline-elements" class="headerlink" title="Block and inline elements"></a>Block and inline elements</h2><ul>
-<li>Browsers treat block elements as though they are in little rectangular boxes, stacked up in the page. Each block element begins on a new line, and some space is also added above and below the entire element by default.</li>
-<li>By contrast, inline element do not start new lines; they just go with the flow.</li>
-</ul>
-<h2 id="Basic-HTML-document-structure"><a href="#Basic-HTML-document-structure" class="headerlink" title="Basic HTML document structure"></a>Basic HTML document structure</h2><p><img src="/images/structure-of-an-html-document.png" alt="structure of an HTML document"></p>
-<ol>
-<li>A document type declaration, it lets modern browsers know they should interpret the document as written according to the HTML5 specification.</li>
-<li>The entire document is contained within an <strong>html</strong> element. The <strong>html</strong> element is called the root element because it contains all the elements in the document, and it may not be contained within any other element. The language attribute is used there, such as <code>&lt;html lang=&quot;en-US&quot;&gt;</code>.</li>
-<li>Within the html element,the document is divided into a head and a body. The head element contains descriptive information about the document itself, such as its title, the style sheet(s) it uses, scrips, and other types of “meta” information.</li>
-<li>The meta elements within the head element provide information about the document itself. A meta element can be used to provide all sorts of information. There are many good reasons for specifying the charset in every document, so it is a part of the minimal document structure.</li>
-<li>Also in the head is the mandatory title element. Every document must contain a descriptive title.</li>
-<li>Finally, the body element contains everything that we want to show up in the browser window.</li>
-</ol>
-<p>Not only is a title element required for every document, it is quite useful as well. The title is what is displayed in a user’s Bookmarks or Favorites list and on tabs in desktop browsers. Descriptive titles are also a key tool for improving accessibility, as they are the first thing a person hears when using a screen reader. Search engines rely heavily on document tiles as well.</p>
+        <h2 id="什么是-DOM（Document-Object-Model-文档对象模型）"><a href="#什么是-DOM（Document-Object-Model-文档对象模型）" class="headerlink" title="什么是 DOM（Document Object Model / 文档对象模型）?"></a>什么是 DOM（Document Object Model / 文档对象模型）?</h2><p>这是 W3C 对 DOM 的描述：</p>
 <blockquote>
-<p>参考：<br><em>Learning Web Design, 4th Edition</em></p>
+<p>The Document Object Model is a platform- and language-neutral interface that will allow programs and scripts to dynamically access and update the content, structure and style of documents. The document can be further processed and the results of that processing can be incorporated back into the presented page.</p>
 </blockquote>
+<p>文档对象模型是一个与平台和语言无关的通用的通用的应用程序接口（API），我们可以通过这个接口利用程序和脚本去动态地修改文档的内容、结构和样式。</p>
+<p>就像一张城市街道地图可以代表一个实际存在的城市那样，文档对象模型可以视为一张网页的地图，代表着浏览器窗口的当前网页。</p>
+<h2 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h2><p>在 DOM 中，文档是由节点构成的集合，只不过这时的节点分散在文档树上，以文档树的树枝和树叶的形式存在。一份文档就是一棵节点树。</p>
+<p>在 DOM 里有许多不同类型的节点。主要有元素节点、特性节点和文本节点。</p>
+<p>每个节点都是一个对象，这些对象中的每一个还天生具有一系列非常有用的属性和方法，供我们检索甚至改变对象中包含的信息。</p>
+<h2 id="所有节点共享的属性和方法"><a href="#所有节点共享的属性和方法" class="headerlink" title="所有节点共享的属性和方法"></a>所有节点共享的属性和方法</h2><p>JavaScript 中的所有节点类型都继承自 Node 类型，因此所有节点类型都共享着相同的基本属性和方法。</p>
+<h3 id="共享属性"><a href="#共享属性" class="headerlink" title="共享属性"></a>共享属性</h3><ul>
+<li>nodeType<br>该属性用于表明节点的类型</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>节点名称</th>
+<th>对应字符</th>
+<th>对应数字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>元素节点</td>
+<td>Node.ELEMENT_NODE</td>
+<td>1</td>
+</tr>
+<tr>
+<td>特性节点</td>
+<td>Node.ATTRIBUTE_NODE</td>
+<td>2</td>
+</tr>
+<tr>
+<td>文本节点</td>
+<td>Node.TEXT_NODE</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>在判断节点类型时建议用数字形式，因为 IE 不兼容字符形式</p>
+<ul>
+<li>nodeName<br>该属性始终保存的是节点的标签名</li>
+<li>nodeValue<br>只有文本节点的该属性值为对应的文本内容，其他节点都为 null</li>
+<li>parentNode<br>值为该节点的父节点</li>
+<li>childNodes<br>值为一个类数组 NodeList，保存了该节点的所有子节点</li>
+<li>firstChild<br>值为该节点的第一个子节点</li>
+<li>lastChild<br>值为该节点的最后一个子节点</li>
+<li>previousSibling<br>值为该节点的上一个节点（同一层级）</li>
+<li>nextSibling<br>值为该节点的下一个节点（同一层级）</li>
+</ul>
+<h3 id="共享方法"><a href="#共享方法" class="headerlink" title="共享方法"></a>共享方法</h3><ul>
+<li><em>node</em>.appendChild(<em>newNode</em>)<br>在该节点的最后一个子节点后插入新节点</li>
+<li><em>node</em>.insertBefore(<em>newNode</em>, <em>someNode</em>)<br>在该节点的指定子节点前插入新节点</li>
+<li><em>node</em>.replaceChild(<em>newNode</em>, <em>someNode</em>)<br>用一新节点替换该节点的指定子节点</li>
+</ul>
 
       
     </div>
@@ -374,22 +394,24 @@ An HTML element usually consists of a start tag and end tag, with the content in
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/DOM/" rel="tag">#DOM</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/30/对 HTML 的理解/" rel="next" title="对 HTML 的理解">
-                <i class="fa fa-chevron-left"></i> 对 HTML 的理解
+              <a href="/2016/11/05/对象的继承/" rel="next" title="对象的继承">
+                <i class="fa fa-chevron-left"></i> 对象的继承
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/31/HTML elements 几个简单分类/" rel="prev" title="HTML elements 几个简单分类">
-                HTML elements 几个简单分类 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -415,8 +437,8 @@ An HTML element usually consists of a start tag and end tag, with the content in
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/07/30/HTML中几个基本知识点/"
-           data-title="HTML中几个基本知识点" data-url="http://yoursite.com/2016/07/30/HTML中几个基本知识点/">
+      <div class="ds-thread" data-thread-key="2016/11/07/理解 DOM/"
+           data-title="理解 DOM" data-url="http://yoursite.com/2016/11/07/理解 DOM/">
       </div>
     
   </div>
@@ -527,7 +549,7 @@ An HTML element usually consists of a start tag and end tag, with the content in
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-elements"><span class="nav-text">HTML elements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attributes"><span class="nav-text">Attributes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Block-and-inline-elements"><span class="nav-text">Block and inline elements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-HTML-document-structure"><span class="nav-text">Basic HTML document structure</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-DOM（Document-Object-Model-文档对象模型）"><span class="nav-text">什么是 DOM（Document Object Model / 文档对象模型）?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#节点"><span class="nav-text">节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有节点共享的属性和方法"><span class="nav-text">所有节点共享的属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#共享属性"><span class="nav-text">共享属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共享方法"><span class="nav-text">共享方法</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
