@@ -84,22 +84,22 @@
 
 
 
-<meta name="description" content="什么是 DOM（Document Object Model / 文档对象模型）?这是 W3C 对 DOM 的描述：
+<meta name="description" content="1. 什么是 DOM（Document Object Model / 文档对象模型）?这是 W3C 对 DOM 的描述：
 
-The Document Object Model is a platform- and language-neutral interface that will allow programs and scripts to dynamically access and update">
+The Document Object Model is a platform- and language-neutral interface that will allow programs and scripts to dynamically access and upd">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解 DOM">
 <meta property="og:url" content="http://yoursite.com/2016/11/07/理解 DOM/index.html">
 <meta property="og:site_name" content="Comma's">
-<meta property="og:description" content="什么是 DOM（Document Object Model / 文档对象模型）?这是 W3C 对 DOM 的描述：
+<meta property="og:description" content="1. 什么是 DOM（Document Object Model / 文档对象模型）?这是 W3C 对 DOM 的描述：
 
-The Document Object Model is a platform- and language-neutral interface that will allow programs and scripts to dynamically access and update">
-<meta property="og:updated_time" content="2016-11-07T15:57:20.000Z">
+The Document Object Model is a platform- and language-neutral interface that will allow programs and scripts to dynamically access and upd">
+<meta property="og:updated_time" content="2016-11-08T07:54:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解 DOM">
-<meta name="twitter:description" content="什么是 DOM（Document Object Model / 文档对象模型）?这是 W3C 对 DOM 的描述：
+<meta name="twitter:description" content="1. 什么是 DOM（Document Object Model / 文档对象模型）?这是 W3C 对 DOM 的描述：
 
-The Document Object Model is a platform- and language-neutral interface that will allow programs and scripts to dynamically access and update">
+The Document Object Model is a platform- and language-neutral interface that will allow programs and scripts to dynamically access and upd">
 
 
 
@@ -319,17 +319,17 @@ The Document Object Model is a platform- and language-neutral interface that wil
       
 
       
-        <h2 id="什么是-DOM（Document-Object-Model-文档对象模型）"><a href="#什么是-DOM（Document-Object-Model-文档对象模型）" class="headerlink" title="什么是 DOM（Document Object Model / 文档对象模型）?"></a>什么是 DOM（Document Object Model / 文档对象模型）?</h2><p>这是 W3C 对 DOM 的描述：</p>
+        <h2 id="1-什么是-DOM（Document-Object-Model-文档对象模型）"><a href="#1-什么是-DOM（Document-Object-Model-文档对象模型）" class="headerlink" title="1. 什么是 DOM（Document Object Model / 文档对象模型）?"></a>1. 什么是 DOM（Document Object Model / 文档对象模型）?</h2><p>这是 W3C 对 DOM 的描述：</p>
 <blockquote>
 <p>The Document Object Model is a platform- and language-neutral interface that will allow programs and scripts to dynamically access and update the content, structure and style of documents. The document can be further processed and the results of that processing can be incorporated back into the presented page.</p>
 </blockquote>
-<p>文档对象模型是一个与平台和语言无关的通用的通用的应用程序接口（API），我们可以通过这个接口利用程序和脚本去动态地修改文档的内容、结构和样式。</p>
+<p>文档对象模型是一个与平台和语言无关的通用的应用程序接口（API），我们可以通过这个接口利用程序和脚本去动态地修改文档的内容、结构和样式。</p>
 <p>就像一张城市街道地图可以代表一个实际存在的城市那样，文档对象模型可以视为一张网页的地图，代表着浏览器窗口的当前网页。</p>
-<h2 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h2><p>在 DOM 中，文档是由节点构成的集合，只不过这时的节点分散在文档树上，以文档树的树枝和树叶的形式存在。一份文档就是一棵节点树。</p>
-<p>在 DOM 里有许多不同类型的节点。主要有元素节点、特性节点和文本节点。</p>
+<h2 id="2-节点"><a href="#2-节点" class="headerlink" title="2. 节点"></a>2. 节点</h2><p>在 DOM 中，文档是由节点构成的集合，只不过这时的节点分散在文档树上，以文档树的树枝和树叶的形式存在。一份文档就是一棵节点树。</p>
+<p>在 DOM 里有许多不同类型的节点。主要有文档节点、元素节点、特性节点和文本节点。</p>
 <p>每个节点都是一个对象，这些对象中的每一个还天生具有一系列非常有用的属性和方法，供我们检索甚至改变对象中包含的信息。</p>
-<h2 id="所有节点共享的属性和方法"><a href="#所有节点共享的属性和方法" class="headerlink" title="所有节点共享的属性和方法"></a>所有节点共享的属性和方法</h2><p>JavaScript 中的所有节点类型都继承自 Node 类型，因此所有节点类型都共享着相同的基本属性和方法。</p>
-<h3 id="共享属性"><a href="#共享属性" class="headerlink" title="共享属性"></a>共享属性</h3><ul>
+<h2 id="3-所有节点共享的属性和方法"><a href="#3-所有节点共享的属性和方法" class="headerlink" title="3. 所有节点共享的属性和方法"></a>3. 所有节点共享的属性和方法</h2><p>JavaScript 中的所有节点类型都继承自 Node 类型，因此所有节点类型都共享着相同的基本属性和方法。</p>
+<h3 id="3-1-共享属性"><a href="#3-1-共享属性" class="headerlink" title="3.1 共享属性"></a>3.1 共享属性</h3><ul>
 <li>nodeType<br>该属性用于表明节点的类型</li>
 </ul>
 <table>
@@ -360,20 +360,133 @@ The Document Object Model is a platform- and language-neutral interface that wil
 </table>
 <p>在判断节点类型时建议用数字形式，因为 IE 不兼容字符形式</p>
 <ul>
-<li>nodeName<br>该属性始终保存的是节点的标签名</li>
-<li>nodeValue<br>只有文本节点的该属性值为对应的文本内容，其他节点都为 null</li>
-<li>parentNode<br>值为该节点的父节点</li>
-<li>childNodes<br>值为一个类数组 NodeList，保存了该节点的所有子节点</li>
-<li>firstChild<br>值为该节点的第一个子节点</li>
-<li>lastChild<br>值为该节点的最后一个子节点</li>
-<li>previousSibling<br>值为该节点的上一个节点（同一层级）</li>
-<li>nextSibling<br>值为该节点的下一个节点（同一层级）</li>
+<li><em>node</em>.nodeName<br>根据节点的类型，返回不同的值</li>
 </ul>
-<h3 id="共享方法"><a href="#共享方法" class="headerlink" title="共享方法"></a>共享方法</h3><ul>
+<table>
+<thead>
+<tr>
+<th>节点名称</th>
+<th>对应值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>元素节点</td>
+<td>元素大写标签名，如 “DIV”</td>
+</tr>
+<tr>
+<td>特性节点</td>
+<td>特性的名称</td>
+</tr>
+<tr>
+<td>文本节点</td>
+<td>“#text”</td>
+</tr>
+<tr>
+<td>文档节点</td>
+<td>“#document”</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><em>node</em>.nodeValue<br>只有文本节点的该属性值为对应的文本内容，其他节点都为 null</li>
+<li><em>node</em>.parentNode<br>值为该节点的父节点</li>
+<li><em>node</em>.childNodes<br>值为一个 <strong>NodeList</strong> 类数组 ，保存了该节点的所有子节点</li>
+<li><em>node</em>.firstChild<br>值为该节点的第一个子节点</li>
+<li><em>node</em>.lastChild<br>值为该节点的最后一个子节点</li>
+<li><em>node</em>.previousSibling<br>值为该节点的上一个节点（同一层级）</li>
+<li><em>node</em>.nextSibling<br>值为该节点的下一个节点（同一层级）</li>
+</ul>
+<h3 id="3-2-共享方法"><a href="#3-2-共享方法" class="headerlink" title="3.2 共享方法"></a>3.2 共享方法</h3><ul>
 <li><em>node</em>.appendChild(<em>newNode</em>)<br>在该节点的最后一个子节点后插入新节点</li>
+<li><em>node</em>.removeChild(<em>someNode</em>)<br>删除该节点的某个子节点</li>
 <li><em>node</em>.insertBefore(<em>newNode</em>, <em>someNode</em>)<br>在该节点的指定子节点前插入新节点</li>
 <li><em>node</em>.replaceChild(<em>newNode</em>, <em>someNode</em>)<br>用一新节点替换该节点的指定子节点</li>
+<li><em>node</em>.cloneNode(<em>true/false</em>)<br>可以得到节点的一个完全相同的副本，圆括号里是 true 时，执行深复制，也就是复制节点及其整个子节点树；圆括号里是 false 时，执行浅复制，只复制节点本身。<br>这个方法只会复制 DOM 节点中原有的属性，不会复制通过 JavaScript 添加的属性，例如事件处理程序。但是 IE 在此有个 bug，它会复制事件处理程序，所以在执行复制前最好移除事件处理程序。</li>
+<li><em>node</em>.normalize()<br>这个方法用来处理文档树中的文本节点。如果找到空文本节点，则删除它；如果找到相邻的文本节点，则将它们合并为一个文本节点。</li>
 </ul>
+<h2 id="4-document-节点"><a href="#4-document-节点" class="headerlink" title="4. document 节点"></a>4. document 节点</h2><p> document 对象是 HTMLDocument 的一个实例， 是window 对象的一个属性, 表示整个 HTML 页面。</p>
+<p> nodeType 为 9； nodeName 为 “#document”; nodeValue 为 null； parentNode 为null；</p>
+<p> 通过这个文档对象，不仅可以取得与页面有关的信息，而且还能操作页面的外观及其底层结构。</p>
+<h3 id="4-1-文档对象的子节点"><a href="#4-1-文档对象的子节点" class="headerlink" title="4.1 文档对象的子节点"></a>4.1 文档对象的子节点</h3><p>子节点可以是：DocumentType(&lt;!DOCTYPE&gt;)、Element(&lt; html &gt;)、Comment。</p>
+<p>获取 <html> 元素：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> html = <span class="built_in">document</span>.documentElement;</div><div class="line">alert(html === <span class="built_in">document</span>.childNode[<span class="number">0</span>]); <span class="comment">// true</span></div><div class="line">alert(html === <span class="built_in">document</span>.firstChild); <span class="comment">// true</span></div></pre></td></tr></table></figure></html></p>
+<p>上面代码我们可以看出，可以通过三种方法获取 <html> 元素节点。<br><strong>所有浏览器都支持第一种方法</strong>，通过 document 对象的 documentElement 属性获取；但是不是所有浏览器都支持后面两种方法，后面两种方法有很能获取到 &lt;!DOCTYPE&gt; 或注释节点。<br>所以，最可靠的获取 <html> 元素的方式还是第一种方式。</html></html></p>
+<p>另外，document 对象还有一个 body 属性，直接指向 <body> 元素，虽然 <body> 元素并不是它的子节点。<strong>所有浏览器也都支持这种方法</strong>。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> body = <span class="built_in">document</span>.body; <span class="comment">// 取得对 &lt;body&gt; 的引用</span></div></pre></td></tr></table></figure></body></body></p>
+<h3 id="4-2-文档信息"><a href="#4-2-文档信息" class="headerlink" title="4.2 文档信息"></a>4.2 文档信息</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 获取文档标题并重新设置标题</span></div><div class="line"><span class="keyword">var</span> originalTitle = <span class="built_in">document</span>.title;</div><div class="line"><span class="keyword">var</span> originalTitle = <span class="string">"New page title"</span>;</div><div class="line"></div><div class="line"><span class="comment">// 获取完整的 URL（地址栏中显示的 URL）</span></div><div class="line"><span class="keyword">var</span> url = <span class="built_in">document</span>.URL;</div><div class="line"></div><div class="line"><span class="comment">// 获取来源页面的 URL</span></div><div class="line"><span class="keyword">var</span> sourceUrl = <span class="built_in">document</span>.referrer;</div><div class="line"></div><div class="line"><span class="comment">// 获取域名</span></div><div class="line"><span class="keyword">var</span> url = <span class="built_in">document</span>.domain;</div></pre></td></tr></table></figure>
+<h3 id="4-3-查找元素"><a href="#4-3-查找元素" class="headerlink" title="4.3 查找元素"></a>4.3 查找元素</h3><ol>
+<li>document.getElementById()<br>返回具有这个 id 的元素对象</li>
+<li>document.getElementsByTagName()<br>返回一个 <strong>HTMLCollection</strong> 类数组，里面包含了具有这个标签名的所有元素节点</li>
+<li><p>document.getElementsByClassName()<br>返回一个 <strong>HTMLCollection</strong> 类数组，里面包含了具有这个类名的所有元素节点<br>但是这个方法是 HTML5 新加的，一些版本较低的浏览器可能不支持，下面的方法适合新老浏览器：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getElementsByClassName</span>(<span class="params">elem, classname</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">document</span>.getElementsByClassName) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="built_in">document</span>.getElementsByClassName(classname);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">var</span> results = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line">      <span class="keyword">var</span> elems = <span class="built_in">document</span>.getElementsByTagName(classname);</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; elems.length; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (elems[i].className.indexOf(classname) !== <span class="number">-1</span>) &#123;</div><div class="line">          results[elems.length] = elems[i];</div><div class="line">        &#125;;</div><div class="line">      &#125;;</div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">return</span> results;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这种方法的基本思路是利用 document.getElementsByTagName() 方法获取到所有具有相同标签的元素。<br>然后挨个检查这些元素的 className 属性（对应的是 HTML 标签中的 class 特性）中是否有要获取的 classname。<br>如果有的话，就添加到新创建的一个数组中，对应的索引值为当前数组的长度。<br>最后返回这个数组。</p>
+</li>
+<li><p>document.getElementsByName()<br>这个方法会返回带有给定 name 特性的所有元素。这个方法最常用的情况是取得单选按钮；为了确保发送给浏览器的值确定无误，所有单选按钮必须具有相同的 name 特性，如下面例子所示：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;fieldset&gt;</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">legend</span>&gt;</span>Which color do you prefer?<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span></div><div class="line">    &lt;ul&gt;</div><div class="line">        <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">value</span>=<span class="string">"red"</span> <span class="attr">name</span>=<span class="string">"color"</span> <span class="attr">id</span>=<span class="string">"colorRed"</span>&gt;</span></span></div><div class="line">            <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"colorRed"</span>&gt;</span>Red<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">value</span>=<span class="string">"green"</span> <span class="attr">name</span>=<span class="string">"color"</span> <span class="attr">id</span>=<span class="string">"colorGreen"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"colorGreen"</span>&gt;</span>Green<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">value</span>=<span class="string">"blue"</span> <span class="attr">name</span>=<span class="string">"color"</span> <span class="attr">id</span>=<span class="string">"colorBlue"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"colorBlue"</span>&gt;</span>Blue<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>其中所有的单选按钮的 name 的特性值都是”color”，但它们的 ID 可以不同。ID 的作用在于将<label>元素应用到每个单选按钮，而 name 特性则用以确保三个值中只有一个被发送给浏览器。这样，我们就可以使用如下代码取得所有单选按钮：</label></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> radios = <span class="built_in">document</span>.getElementsByName(<span class="string">"color"</span>);</div></pre></td></tr></table></figure>
+<p>返回的是一个 <strong>HTMLCollection</strong> 类数组。</p>
+</li>
+</ol>
+<h3 id="4-4-创建其它节点"><a href="#4-4-创建其它节点" class="headerlink" title="4.4 创建其它节点"></a>4.4 创建其它节点</h3><ol>
+<li><p>创建元素节点<br>使用 document.createElement() 方法可以创建新元素。这个方法接受一个参数，即要创建的元素的标签名。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</div><div class="line">div.id = <span class="string">"myNewDiv"</span>;</div><div class="line">div.className = <span class="string">"box"</span>;</div><div class="line"><span class="built_in">document</span>.body.appendChild(div);</div></pre></td></tr></table></figure>
+<p>上面代码演示了如何创建一个空 div 元素，并将其插入到页面中。</p>
+</li>
+<li><p>创建文本节点<br>使用 document.createTextNode() 创建新文本节点，这个方法接受一个参数–要插入节点中的文本。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> element = <span class="built_in">document</span>.createTextNode(<span class="string">"Hello World!"</span>);</div><div class="line">element.className = <span class="string">"message"</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> textNode = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</div><div class="line">element.appendChild(textNode);</div><div class="line"></div><div class="line"><span class="built_in">document</span>.body.appendChild(element);</div></pre></td></tr></table></figure>
+<p>上面代码演示了如何创建一个包含文本的元素节点，并将这个节点插入页面中。</p>
+</li>
+</ol>
+<h3 id="4-5-特殊集合"><a href="#4-5-特殊集合" class="headerlink" title="4.5 特殊集合"></a>4.5 特殊集合</h3><p>除了属性和方法，document 对象还有一些特殊的集合，这些集合都是 HTMLCollection 类数组：</p>
+<ol>
+<li>document.anchors<br>包含了文档中所有带 name 特性的 <a> 元素</a></li>
+<li>document.links<br>包含了文档中所有带 href 特性的 <a> 元素</a></li>
+<li>document.images<br>包含了文档中所有的 <img> 元素，与 document.getElementsByTagName(“img”) 得到的结果相同</li>
+<li>document.forms<br>包含了文档中所有的 <form> 元素，与 document.getElementsByTagName(“form”) 得到的结果相同</form></li>
+</ol>
+<h2 id="5-element-节点"><a href="#5-element-节点" class="headerlink" title="5. element 节点"></a>5. element 节点</h2><p>nodeType 为 1；nodeName 为元素的标签名（大写）；nodeValue 为 null；parentNode 可能是 Document 或 Element；</p>
+<p>要访问元素的标签名，可以使用 nodeName 属性，也可以使用 tagName 属性；这两个属性会返回相同的值。</p>
+<h3 id="5-1-特性属性"><a href="#5-1-特性属性" class="headerlink" title="5.1 特性属性"></a>5.1 特性属性</h3><p>每个元素节点都有一些对应于 HTML 元素中存在的特性的属性：</p>
+<ul>
+<li>id， 元素在文档中唯一的标识符</li>
+<li>title， 有关元素的附加说明信息（通过提示条显示出来）</li>
+<li>lang， 元素内容的语言代码</li>
+<li>dir， 语言的方向（ltr、rtl）</li>
+<li>className， 与元素的 class 特性对应，之所以改名字是因为 class 是 JavaScript 语言的保留字</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;div id=<span class="string">"myDiv"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"bd"</span> title=<span class="string">"Body text"</span> lang=<span class="string">"en"</span> dir=<span class="string">"ltr"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">"div"</span>);</div><div class="line">alert(div.id); <span class="comment">// "myDiv"</span></div><div class="line">alert(div.className); <span class="comment">// "bd"</span></div><div class="line">alert(div.title); <span class="comment">// "Body text"</span></div><div class="line">alert(div.lang); <span class="comment">// "en"</span></div><div class="line">alert(div.dir); <span class="comment">// "ltr"</span></div></pre></td></tr></table></figure>
+<h3 id="5-2-取得特性"><a href="#5-2-取得特性" class="headerlink" title="5.2 取得特性"></a>5.2 取得特性</h3><p>操作特性的 DOM 方法有三个，分别是 getAttribute() setAttribute() removeAttribute()</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>);</div><div class="line">alert(div.getAttribute(<span class="string">"id"</span>)); <span class="comment">// "myDiv"</span></div><div class="line">alert(div.getAttribute(<span class="string">"class"</span>)); <span class="comment">// "bd"</span></div><div class="line">alert(div.getAttribute(<span class="string">"title"</span>)); <span class="comment">// "Body text"</span></div><div class="line">alert(div.getAttribute(<span class="string">"lang"</span>)); <span class="comment">// "en"</span></div><div class="line">alert(div.getAttribute(<span class="string">"dir"</span>)); <span class="comment">// "ltr"</span></div><div class="line">alert(div.getAttribute(<span class="string">"haha"</span>)); <span class="comment">// null</span></div><div class="line">alert(<span class="keyword">typeof</span> div.getAttribute(<span class="string">"id"</span>)); <span class="comment">// string</span></div></pre></td></tr></table></figure>
+<p>注意这里取得类名是用实际的特性名 class。</p>
+<ul>
+<li><p>特性也可以像 5.1 中那样通过元素属性的形式得到，是因为，特性会以属性的形式添加到元素对象中。但是，需要注意的是，只有公认的特性会添加，程序员自定义的特性不会添加到元素对象中（IE 会）。所以，如果你的元素中有自定义的特性，推荐使用 getAttribute() 方法获取特性。</p>
+</li>
+<li><p>但是，有两个特殊的公认特性，它们虽然有对应的属性名，但属性值和通过 getAttribute() 返回的值并不相同：</p>
+<ol>
+<li>style<br>通过属性访问它返回的是一个对象，通过 getAttribute() 方法返回的是相应代码的字符串。</li>
+<li>onclick<br>通过属性访问它返回的是一个 JavaScript 函数，而通过 getAttribute() 方法返回的是相应的字符  创。</li>
+</ol>
+</li>
+<li><p>所以综合上面的信息，我们需要在获取自定义的特性时，使用 getAttribute()。在获取 style，onclick 特性时通过属性访问，其它公认特性均可。</p>
+</li>
+</ul>
+<h3 id="5-3-设置特性"><a href="#5-3-设置特性" class="headerlink" title="5.3 设置特性"></a>5.3 设置特性</h3><p>与 getAttribute() 对应的方式是 setAttribute()，这个方法接收两个参数：要设置的特性名和值。如果特性已经存在，会以指定的值替代原来的值；如果特性不存在，创建该属性并设置相应的值。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">div.setAttribute(<span class="string">"id"</span>, <span class="string">"someOtherId"</span>);</div><div class="line">div.setAttribute(<span class="string">"dir"</span>, <span class="string">"ltr"</span>);</div></pre></td></tr></table></figure>
+<p>因为所有的特性都是属性，所以直接给属性赋值也可以设置特性的值：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">div.id = <span class="string">"someOtherId"</span>;</div><div class="line">div.dir = <span class="string">"ltr"</span>;</div></pre></td></tr></table></figure></p>
+<p>但是添加或更改自定义特性，只能通过 setAttribute() 方法。</p>
+<h3 id="5-4-移除特性"><a href="#5-4-移除特性" class="headerlink" title="5.4 移除特性"></a>5.4 移除特性</h3><p>removeAttribute()</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">div.removeAttribute(<span class="string">"id"</span>);</div></pre></td></tr></table></figure>
+<p>这个方法不仅会清除特性的值，还会将这个特性从元素中彻底清除。</p>
+<h3 id="5-5-attributes-属性"><a href="#5-5-attributes-属性" class="headerlink" title="5.5 attributes 属性"></a>5.5 attributes 属性</h3><p>元素节点时使用 attributes 属性的唯一一个 DOM 节点类型。attributes 属性中包含一个 NamedNodeMap，与 NodeList 类似，也是一个动态的集合。元素的每一个特性都以一个节点的形式保存在 NamedNodeMap 对象中。</p>
+<p>一般来说 attributes 的方法不够方便，所以开发人员更多的使用 getAttribute()、 removeAttribute()和 setAttribute() 方法操作特性。</p>
+<p>但是在遍历元素特性的时候 attributes 属性可以派上用场。</p>
+<h2 id="6-text-节点"><a href="#6-text-节点" class="headerlink" title="6. text 节点"></a>6. text 节点</h2><p>文本节点包含的是照字面量解释的纯文本内容。纯文本中可以包含转义后的 HTML 字符，但不能包含 HTML 代码。</p>
+<p>nodeType 值为 3；nodeName 值为 “#text”；nodeValue 的值为节点所包含的文本；parentNode 是一个 element 节点；没有子节点。</p>
+<h3 id="6-1-规范化文本节点"><a href="#6-1-规范化文本节点" class="headerlink" title="6.1 规范化文本节点"></a>6.1 规范化文本节点</h3><p>DOM 文档中存在相邻的同胞文本节点很容易导致混乱，因为分不清哪个文本节点表示哪个字符串。如果在一个包含两个或多个文本节点的父元素上调用 normalize() 方法，则会将所有文本节点合并成一个节点，结果节点的 nodeValue 等于合并前每个文本节点的 nodeValue 值拼接起来的值。</p>
+<p>不过浏览器在解析文档节点时，永远不会创建相邻的文本节点。这种情况只会作为执行 DOM 操作的结果出现。</p>
+<h3 id="6-2-分割文本节点"><a href="#6-2-分割文本节点" class="headerlink" title="6.2 分割文本节点"></a>6.2 分割文本节点</h3><p>一个作用与 normalize()相反的方法： splitText(<em>num</em>)，可以将文本在指定的位置断开，原来的文本将包含从开始到指定位置之前的内容，新文本节点将包含剩下的文本。这个方法返回的是一个新文本节点，该节点与原节点的 parentNode 相同。</p>
+<h2 id="7-attr-节点"><a href="#7-attr-节点" class="headerlink" title="7. attr 节点"></a>7. attr 节点</h2><p>从技术角度来讲，特性就是存在于元素的 attributes 属性中的节点。<br>尽管它们也是节点，但特性却不被认为是 DOM 文档树的一部分。开发人员最常用的是 getAttribute() setAttribute() 和 removeAttribute() 方法，很少直接引用特性节点。</p>
+<p>本文参考：<br><a href="http://item.jd.com/10951037.html" target="_blank" rel="external">JavaScript 高级程序设计（第3版）</a><br><a href="http://item.jd.com/10603153.html" target="_blank" rel="external">JavaScript DOM编程艺术</a></p>
 
       
     </div>
@@ -412,6 +525,10 @@ The Document Object Model is a platform- and language-neutral interface that wil
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/08/document.write() VS element.innerHTML/" rel="prev" title="Document.write() VS Element.innerHTML">
+                Document.write() VS Element.innerHTML <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -483,7 +600,7 @@ The Document Object Model is a platform- and language-neutral interface that wil
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -500,7 +617,7 @@ The Document Object Model is a platform- and language-neutral interface that wil
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -549,7 +666,7 @@ The Document Object Model is a platform- and language-neutral interface that wil
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-DOM（Document-Object-Model-文档对象模型）"><span class="nav-text">什么是 DOM（Document Object Model / 文档对象模型）?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#节点"><span class="nav-text">节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有节点共享的属性和方法"><span class="nav-text">所有节点共享的属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#共享属性"><span class="nav-text">共享属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共享方法"><span class="nav-text">共享方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是-DOM（Document-Object-Model-文档对象模型）"><span class="nav-text">1. 什么是 DOM（Document Object Model / 文档对象模型）?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-节点"><span class="nav-text">2. 节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-所有节点共享的属性和方法"><span class="nav-text">3. 所有节点共享的属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-共享属性"><span class="nav-text">3.1 共享属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-共享方法"><span class="nav-text">3.2 共享方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-document-节点"><span class="nav-text">4. document 节点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-文档对象的子节点"><span class="nav-text">4.1 文档对象的子节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-文档信息"><span class="nav-text">4.2 文档信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-查找元素"><span class="nav-text">4.3 查找元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-创建其它节点"><span class="nav-text">4.4 创建其它节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-特殊集合"><span class="nav-text">4.5 特殊集合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-element-节点"><span class="nav-text">5. element 节点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-特性属性"><span class="nav-text">5.1 特性属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-取得特性"><span class="nav-text">5.2 取得特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-设置特性"><span class="nav-text">5.3 设置特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-移除特性"><span class="nav-text">5.4 移除特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-attributes-属性"><span class="nav-text">5.5 attributes 属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-text-节点"><span class="nav-text">6. text 节点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-规范化文本节点"><span class="nav-text">6.1 规范化文本节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-分割文本节点"><span class="nav-text">6.2 分割文本节点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-attr-节点"><span class="nav-text">7. attr 节点</span></a></li></ol></div>
             
           </div>
         </section>
