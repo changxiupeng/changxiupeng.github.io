@@ -226,6 +226,15 @@ h5,
 h6 {
   margin: 20px 0 15px;
 }
+h2 {
+  font-size: 24px !important;
+}
+h3 {
+  font-size: 20px !important;
+}
+h4 {
+  font-size: 18px !important;
+}
 h1 {
   font-size: 22px;
 }
@@ -1565,7 +1574,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #632f2e;
+  background: #ff8c3d;
 }
 .links-of-blogroll {
   font-size: 13px;
