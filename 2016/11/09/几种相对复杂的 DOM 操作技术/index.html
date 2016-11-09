@@ -98,7 +98,7 @@
 
 通过 &amp;lt;script&amp;gt; 标签的 src 特性引入外部资源动态加载的外部 JavaScript 文件能够立即执行，比如下面的 &amp;lt;script&amp;gt; 元素：
 &amp;lt;script type=&quot;text/javascript&quot; src=&quot;test.js">
-<meta property="og:updated_time" content="2016-11-09T11:43:54.000Z">
+<meta property="og:updated_time" content="2016-11-09T11:52:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="几种相对复杂的 DOM 操作技术">
 <meta name="twitter:description" content="1. 动态脚本的添加动态脚本是指，在页面加载时不存在，当页面加载完毕后，通过 DOM 操作动态添加的脚本。
@@ -370,6 +370,7 @@
 <p>for 循环每进行一次循环前都要对条件 <code>i &lt; divs.length</code> 进行求值，意味着会对文档中所有的 div 元素进行一次查询，然后 i 跟这个新集合的 length 比较。所以虽然 i 在增加，可是 divs.length 同样在实时增加。这个循环会一直进行下去。</p>
 <p>如果想要迭代一个这样的集合，最好先将集合的 length 属性初始化一个变量，这样这个变量就保存了一个这个 length 属性的副本。然后让迭代器与该变量进行比较，如下面的例子所示：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> divs = <span class="built_in">document</span>.getElementByTagName(<span class="string">"div"</span>),</div><div class="line">    i,</div><div class="line">    len,</div><div class="line">    div;</div><div class="line"><span class="keyword">for</span> (i=<span class="number">0</span>, len=divs.length; i &lt; len; i++ ) &#123;</div><div class="line">  div = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</div><div class="line">  <span class="built_in">document</span>.body.appendChild(div);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>一般来说，应该尽量减少访问集合的次数。因为每次访问集合，都会执行一次基于文档的查询。所以，可以考虑将从集合中取得的值缓存起来。</p>
+<p>本文参考：<br><a href="http://item.jd.com/10951037.html" target="_blank" rel="external">JavaScript 高级程序设计（第3版）</a></p>
 
       
     </div>
