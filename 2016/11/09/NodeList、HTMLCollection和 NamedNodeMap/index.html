@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="DOM," />
 
 
 
@@ -84,31 +84,22 @@
 
 
 
-<meta name="description" content="设计一个按钮，
-
-只需改变字体大小，其他的宽高，阴影大小，圆角半径等都会随之改变，而不用一个个修改
-只需改变背景颜色，边框颜色，阴影颜色随之改变，不用一一修改
-
-.button a &amp;#123;  display: block;  font-size: 1em;  text-decoration: none;  color: black;  padding: .3em .8em;  line-he">
+<meta name="description" content="NodeList、HTMLCollection和 NamedNodeMap都是通过某些方法获得的节点的集合（类数组的形式），它们的区别主要在保存节点的类型，访问节点的方式上。我们来一一介绍：
+1. NodeList1.1 包含节点类型既可以包含元素节点，也可以包含其他类型的节点，如文本节点、注释节点等。
+1.2 获取方式node.childNodes;node.querySelectorAll()">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个可复制易维护的按钮">
-<meta property="og:url" content="http://yoursite.com/2016/08/13/设置一个维护性极好的按钮/index.html">
+<meta property="og:title" content="NodeList、HTMLCollection和 NamedNodeMap">
+<meta property="og:url" content="http://yoursite.com/2016/11/09/NodeList、HTMLCollection和 NamedNodeMap/index.html">
 <meta property="og:site_name" content="Comma's">
-<meta property="og:description" content="设计一个按钮，
-
-只需改变字体大小，其他的宽高，阴影大小，圆角半径等都会随之改变，而不用一个个修改
-只需改变背景颜色，边框颜色，阴影颜色随之改变，不用一一修改
-
-.button a &amp;#123;  display: block;  font-size: 1em;  text-decoration: none;  color: black;  padding: .3em .8em;  line-he">
-<meta property="og:updated_time" content="2016-11-04T05:33:33.000Z">
+<meta property="og:description" content="NodeList、HTMLCollection和 NamedNodeMap都是通过某些方法获得的节点的集合（类数组的形式），它们的区别主要在保存节点的类型，访问节点的方式上。我们来一一介绍：
+1. NodeList1.1 包含节点类型既可以包含元素节点，也可以包含其他类型的节点，如文本节点、注释节点等。
+1.2 获取方式node.childNodes;node.querySelectorAll()">
+<meta property="og:updated_time" content="2016-11-10T01:11:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个可复制易维护的按钮">
-<meta name="twitter:description" content="设计一个按钮，
-
-只需改变字体大小，其他的宽高，阴影大小，圆角半径等都会随之改变，而不用一个个修改
-只需改变背景颜色，边框颜色，阴影颜色随之改变，不用一一修改
-
-.button a &amp;#123;  display: block;  font-size: 1em;  text-decoration: none;  color: black;  padding: .3em .8em;  line-he">
+<meta name="twitter:title" content="NodeList、HTMLCollection和 NamedNodeMap">
+<meta name="twitter:description" content="NodeList、HTMLCollection和 NamedNodeMap都是通过某些方法获得的节点的集合（类数组的形式），它们的区别主要在保存节点的类型，访问节点的方式上。我们来一一介绍：
+1. NodeList1.1 包含节点类型既可以包含元素节点，也可以包含其他类型的节点，如文本节点、注释节点等。
+1.2 获取方式node.childNodes;node.querySelectorAll()">
 
 
 
@@ -129,10 +120,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/13/设置一个维护性极好的按钮/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/09/NodeList、HTMLCollection和 NamedNodeMap/"/>
 
 
-  <title> 一个可复制易维护的按钮 | Comma's </title>
+  <title> NodeList、HTMLCollection和 NamedNodeMap | Comma's </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +253,7 @@
             
             
               
-                一个可复制易维护的按钮
+                NodeList、HTMLCollection和 NamedNodeMap
               
             
           </h1>
@@ -274,8 +265,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-13T23:02:12+08:00" content="2016-08-13">
-              2016-08-13
+            <time itemprop="dateCreated" datetime="2016-11-09T19:54:42+08:00" content="2016-11-09">
+              2016-11-09
             </time>
           </span>
 
@@ -288,8 +279,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
                   </a>
                 </span>
 
@@ -304,8 +295,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/13/设置一个维护性极好的按钮/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/13/设置一个维护性极好的按钮/" itemprop="commentsCount"></span>
+                <a href="/2016/11/09/NodeList、HTMLCollection和 NamedNodeMap/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/09/NodeList、HTMLCollection和 NamedNodeMap/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -328,17 +319,48 @@
       
 
       
-        <p>设计一个按钮，</p>
-<ol>
-<li>只需改变字体大小，其他的宽高，阴影大小，圆角半径等都会随之改变，而不用一个个修改</li>
-<li>只需改变背景颜色，边框颜色，阴影颜色随之改变，不用一一修改</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">.button a &#123;</div><div class="line">  display: block;</div><div class="line">  font-size: 1em;</div><div class="line">  text-decoration: none;</div><div class="line">  color: black;</div><div class="line">  padding: .3em .8em;</div><div class="line">  line-height: 2;</div><div class="line">  border-radius: .4em;</div><div class="line">  border: .07em solid rgba(0,0,0,.1);</div><div class="line">  box-shadow: .07em .28em .21em rgba(0,0,0,.5);</div><div class="line">  text-shadow: 0 -.06em .06em rgba(0,0,0,.5);</div><div class="line">  background: linear-gradient(to right bottom, hsla(0,0%,100%,.3), transparent);</div><div class="line">  background-color: gold;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>要想其他性质随字体大小改变只需将其他性质的数值改为相应的 em 为单位的值，行高也可以设为单纯的数字，那也是字体大小的倍数</li>
-<li>边框，字体倒影，盒子倒影，都设为半透明的黑色，这样背景色改变时也可以搭</li>
-<li>渐变色设为半透明的白色渐变到完全透明</li>
+        <p>NodeList、HTMLCollection和 NamedNodeMap都是通过某些方法获得的节点的集合（类数组的形式），它们的区别主要在保存节点的类型，访问节点的方式上。我们来一一介绍：</p>
+<h2 id="1-NodeList"><a href="#1-NodeList" class="headerlink" title="1. NodeList"></a>1. NodeList</h2><h3 id="1-1-包含节点类型"><a href="#1-1-包含节点类型" class="headerlink" title="1.1 包含节点类型"></a>1.1 包含节点类型</h3><p>既可以包含元素节点，也可以包含其他类型的节点，如文本节点、注释节点等。</p>
+<h3 id="1-2-获取方式"><a href="#1-2-获取方式" class="headerlink" title="1.2 获取方式"></a>1.2 获取方式</h3><p><em>node</em>.childNodes;<br><em>node</em>.querySelectorAll();</p>
+<p>另外，在除了 IE 的其它浏览器中，document.getElementsByName() 返回的集合也是 NodeList 类型的集合</p>
+<p>注：<em>node</em> 可以是 document 或 element 节点</p>
+<h3 id="1-3-使用方法"><a href="#1-3-使用方法" class="headerlink" title="1.3 使用方法"></a>1.3 使用方法</h3><ul>
+<li><strong>类数组</strong>。之所以叫类数组是因为像数组那样，它的元素有序排列，并可以通过数字索引被访问，而且它还有length 属性，保存其元素的数目；但是，它并没有真正的数组所拥有的那些方法，比如 forEach()，filter()。</li>
+<li><strong>只读性</strong>。无法通过单纯操作数组来增删其中的元素。</li>
+<li><strong>动态性</strong>（通过 childNodes 属性和 getElementsByName() 方法获取的该类型的集合有这个特点）。实时同步 DOM 树的变化，若 DOM 树中有新元素加入，那么数组中就会将新元素添加进来。当执行流再一次碰到该数组时，数组中一定包含了新添加的数组。</li>
+<li><strong>静态性</strong>（通过 querySelectorAll() 方法获取的该类型的集合有这个特点）。理解了动态性，静态性就好理解了。无论 DOM 以后怎么增删节点，都与现在获取的集合无关了。</li>
 </ul>
+<h2 id="2-HTMLCollection"><a href="#2-HTMLCollection" class="headerlink" title="2. HTMLCollection"></a>2. HTMLCollection</h2><h3 id="2-1-包含节点的类型"><a href="#2-1-包含节点的类型" class="headerlink" title="2.1 包含节点的类型"></a>2.1 包含节点的类型</h3><p>只能包含元素节点</p>
+<h3 id="2-2-获取方式"><a href="#2-2-获取方式" class="headerlink" title="2.2 获取方式"></a>2.2 获取方式</h3><p><em>node</em>.getElementsByTagName();<br><em>node</em>.getElementsByClassName();</p>
+<p>document.anchors;<br>document.links;<br>document.forms;<br>document.images;</p>
+<p>另外，在 IE 中，document.getElementsByName() 返回的也是 HTMLCollection 类型的集合</p>
+<p>注：<em>node</em> 可以是 document 或 element 节点</p>
+<h3 id="2-3-使用方法"><a href="#2-3-使用方法" class="headerlink" title="2.3 使用方法"></a>2.3 使用方法</h3><ul>
+<li><strong>类数组</strong></li>
+<li><strong>只读性</strong></li>
+<li><strong>动态性</strong></li>
+</ul>
+<p>前三条和 NodeList 中的特点是一样的，不过，HTMLCollection 比 NodeList 多了一条是：</p>
+<ul>
+<li>可以通过元素的 id 和 name 特性的名称来获取元素；</li>
+</ul>
+<h2 id="3-NamedNodeMap"><a href="#3-NamedNodeMap" class="headerlink" title="3. NamedNodeMap"></a>3. NamedNodeMap</h2><h3 id="3-1-包含节点的类型"><a href="#3-1-包含节点的类型" class="headerlink" title="3.1 包含节点的类型"></a>3.1 包含节点的类型</h3><p>元素节点下的特性节点</p>
+<h3 id="3-2-获取方式"><a href="#3-2-获取方式" class="headerlink" title="3.2 获取方式"></a>3.2 获取方式</h3><p><em>element</em>.attributes;</p>
+<h3 id="3-3-使用方法"><a href="#3-3-使用方法" class="headerlink" title="3.3 使用方法"></a>3.3 使用方法</h3><ul>
+<li>只读性</li>
+<li>动态性</li>
+</ul>
+<p>上面这两条跟前面的定义是一样的，不一样的是下面这一条：</p>
+<ul>
+<li>特别版类数组。之所以称它为特别版，是因为它是无序集合，虽然可以通过数字索引来获取节点，但是该索引并不真实代表特性在元素中的位置。</li>
+</ul>
+<p>这个集合的实用性不是很强，一般对特性的操作都可以通过 getAttribute()、setAttribute() 和 removeAttribute()来完成。</p>
+<h2 id="4-将类数组转化为数组"><a href="#4-将类数组转化为数组" class="headerlink" title="4. 将类数组转化为数组"></a>4. 将类数组转化为数组</h2><p>HTMLCollection 和 NodeList 的动态性非常有用，但是，我们有时候需要迭代一个 HTMLCollection 或者 NodeList 集合，这就需要我们生成一个集合的副本，我们可以将它转化为数组类型：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> staticList = <span class="built_in">Array</span>.prototype.slice.call(nodelist/htmlcollection, <span class="number">0</span>);</div></pre></td></tr></table></figure></p>
+<p>本文参考：</p>
+<ol>
+<li><a href="http://hao.jser.com/archive/11805/" target="_blank" rel="external">NODELIST V.S. HTMLCOLLECTION</a></li>
+<li><a href="http://www.cnblogs.com/fsjohnhuang/p/3819165.html" target="_blank" rel="external">JS魔法堂：那些困扰你的DOM集合类型</a></li>
+</ol>
 
       
     </div>
@@ -359,22 +381,24 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/DOM/" rel="tag">#DOM</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/12/logo的处理方法/" rel="next" title="logo 的处理方法">
-                <i class="fa fa-chevron-left"></i> logo 的处理方法
+              <a href="/2016/11/09/几种相对复杂的 DOM 操作技术/" rel="next" title="几种相对复杂的 DOM 操作技术">
+                <i class="fa fa-chevron-left"></i> 几种相对复杂的 DOM 操作技术
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/13/CSS Spesificity/" rel="prev" title="CSS 选择器优先级">
-                CSS 选择器优先级 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -400,8 +424,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/13/设置一个维护性极好的按钮/"
-           data-title="一个可复制易维护的按钮" data-url="http://yoursite.com/2016/08/13/设置一个维护性极好的按钮/">
+      <div class="ds-thread" data-thread-key="2016/11/09/NodeList、HTMLCollection和 NamedNodeMap/"
+           data-title="NodeList、HTMLCollection和 NamedNodeMap" data-url="http://yoursite.com/2016/11/09/NodeList、HTMLCollection和 NamedNodeMap/">
       </div>
     
   </div>
@@ -512,7 +536,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-NodeList"><span class="nav-text">1. NodeList</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-包含节点类型"><span class="nav-text">1.1 包含节点类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-获取方式"><span class="nav-text">1.2 获取方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-使用方法"><span class="nav-text">1.3 使用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-HTMLCollection"><span class="nav-text">2. HTMLCollection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-包含节点的类型"><span class="nav-text">2.1 包含节点的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-获取方式"><span class="nav-text">2.2 获取方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-使用方法"><span class="nav-text">2.3 使用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-NamedNodeMap"><span class="nav-text">3. NamedNodeMap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-包含节点的类型"><span class="nav-text">3.1 包含节点的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-获取方式"><span class="nav-text">3.2 获取方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-使用方法"><span class="nav-text">3.3 使用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-将类数组转化为数组"><span class="nav-text">4. 将类数组转化为数组</span></a></li></ol></div>
             
           </div>
         </section>
