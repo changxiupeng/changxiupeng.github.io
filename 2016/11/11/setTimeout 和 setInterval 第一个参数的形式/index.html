@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="DOM,Web APIs," />
 
 
 
@@ -84,16 +84,37 @@
 
 
 
-<meta name="description" content="单行文本省略显示CSS3有个 text-overflow 属性可以用来实现单行文本溢出的省略显示：.ellipsis &amp;#123;	display: block;	width: 80px;	white-space: nowrap;	/* 上面的代码是让文本能够在单行溢出，即能溢出的元素必须是	有固定宽度的块状或内联块状元素（IE6)，并且强制其不会自动换行*/	overflow: hidden;">
+<meta name="description" content="先来了解一下这两个方法：
+1. 定义setTimeout() 和 setInterval() 都是 HTML DOM window 对象提供的方法
+
+setTimeout()在指定的延迟时间后调用一个函数或执行一个代码段。
+setInterval()重复调用一个函数或执行一个代码段，在每次调用或执行之间有固定的时间延迟。
+
+2. 语法
+setTimeout(func, milliseconds)s">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单行及多行文本省略显示">
-<meta property="og:url" content="http://yoursite.com/2016/10/23/单行及多行文本溢出省略显示/index.html">
+<meta property="og:title" content="setTimeout() 和 setInterval() 参数的设置">
+<meta property="og:url" content="http://yoursite.com/2016/11/11/setTimeout 和 setInterval 第一个参数的形式/index.html">
 <meta property="og:site_name" content="Comma's">
-<meta property="og:description" content="单行文本省略显示CSS3有个 text-overflow 属性可以用来实现单行文本溢出的省略显示：.ellipsis &amp;#123;	display: block;	width: 80px;	white-space: nowrap;	/* 上面的代码是让文本能够在单行溢出，即能溢出的元素必须是	有固定宽度的块状或内联块状元素（IE6)，并且强制其不会自动换行*/	overflow: hidden;">
-<meta property="og:updated_time" content="2016-11-05T04:26:41.000Z">
+<meta property="og:description" content="先来了解一下这两个方法：
+1. 定义setTimeout() 和 setInterval() 都是 HTML DOM window 对象提供的方法
+
+setTimeout()在指定的延迟时间后调用一个函数或执行一个代码段。
+setInterval()重复调用一个函数或执行一个代码段，在每次调用或执行之间有固定的时间延迟。
+
+2. 语法
+setTimeout(func, milliseconds)s">
+<meta property="og:updated_time" content="2016-11-11T06:27:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单行及多行文本省略显示">
-<meta name="twitter:description" content="单行文本省略显示CSS3有个 text-overflow 属性可以用来实现单行文本溢出的省略显示：.ellipsis &amp;#123;	display: block;	width: 80px;	white-space: nowrap;	/* 上面的代码是让文本能够在单行溢出，即能溢出的元素必须是	有固定宽度的块状或内联块状元素（IE6)，并且强制其不会自动换行*/	overflow: hidden;">
+<meta name="twitter:title" content="setTimeout() 和 setInterval() 参数的设置">
+<meta name="twitter:description" content="先来了解一下这两个方法：
+1. 定义setTimeout() 和 setInterval() 都是 HTML DOM window 对象提供的方法
+
+setTimeout()在指定的延迟时间后调用一个函数或执行一个代码段。
+setInterval()重复调用一个函数或执行一个代码段，在每次调用或执行之间有固定的时间延迟。
+
+2. 语法
+setTimeout(func, milliseconds)s">
 
 
 
@@ -114,10 +135,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/23/单行及多行文本溢出省略显示/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/11/setTimeout 和 setInterval 第一个参数的形式/"/>
 
 
-  <title> 单行及多行文本省略显示 | Comma's </title>
+  <title> setTimeout() 和 setInterval() 参数的设置 | Comma's </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -247,7 +268,7 @@
             
             
               
-                单行及多行文本省略显示
+                setTimeout() 和 setInterval() 参数的设置
               
             
           </h1>
@@ -259,8 +280,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-23T14:10:21+08:00" content="2016-10-23">
-              2016-10-23
+            <time itemprop="dateCreated" datetime="2016-11-11T11:42:56+08:00" content="2016-11-11">
+              2016-11-11
             </time>
           </span>
 
@@ -273,8 +294,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
                   </a>
                 </span>
 
@@ -289,8 +310,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/23/单行及多行文本溢出省略显示/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/23/单行及多行文本溢出省略显示/" itemprop="commentsCount"></span>
+                <a href="/2016/11/11/setTimeout 和 setInterval 第一个参数的形式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/11/setTimeout 和 setInterval 第一个参数的形式/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -313,18 +334,36 @@
       
 
       
-        <h1 id="单行文本省略显示"><a href="#单行文本省略显示" class="headerlink" title="单行文本省略显示"></a>单行文本省略显示</h1><p>CSS3有个 <code>text-overflow</code> 属性可以用来实现单行文本溢出的省略显示：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">.ellipsis &#123;</div><div class="line">	display: block;</div><div class="line">	width: 80px;</div><div class="line">	white-space: nowrap;</div><div class="line">	/* 上面的代码是让文本能够在单行溢出，即能溢出的元素必须是</div><div class="line">	有固定宽度的块状或内联块状元素（IE6)，并且强制其不会自动换行*/</div><div class="line">	overflow: hidden;</div><div class="line">	text-overflow: ellipsis;</div><div class="line">	-o-text-overflow: ellipsis;</div><div class="line">	/*这一部分代码使溢出的部分隐藏，并且用省略号代替，加上 Opera</div><div class="line">	的私有属性可以兼容 Opera 浏览器*/</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>上面的代码在 IE， Chrome， Safari， Opera浏览器中可以正常使用，但是较低版本的 Firefox 不支持 <code>text-overflow</code>，新版本的已经支持了。</p>
-<p>要兼容较低版本的 Firefox 需要用到 Firefox 的私有属性 <code>-moz-binding</code> 去调用一个 XML 文件<a href="http://www.zhangxinxu.com/study/xml/ellipsis.xml" target="_blank" rel="external">ellipsis.xml</a> (右击另存为)。<br>调用方式如下：<code>-moz-binding:url(&#39;ellipsis.xml#ellipsis&#39;);</code>，路径只支持相对路径，且该文件只能放在 css 文件同级或下级目录中。</p>
-<p>以下的代码可以完美兼容各主流浏览器：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">.ellipsis &#123;</div><div class="line">	diaplay: block;</div><div class="line">	width: 80px;</div><div class="line">	white-space: nowrap;</div><div class="line">	overflow: hidden;</div><div class="line">	text-overflow: ellipsis;</div><div class="line">	-o-text-overflow: ellipsis;</div><div class="line">	-moz-binding: url(&apos;ellipsis.xml#ellipsis&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h1 id="多行文本省略显示"><a href="#多行文本省略显示" class="headerlink" title="多行文本省略显示"></a>多行文本省略显示</h1><h2 id="Webkit-内核浏览器解决方法"><a href="#Webkit-内核浏览器解决方法" class="headerlink" title="Webkit 内核浏览器解决方法"></a>Webkit 内核浏览器解决方法</h2><p>这个方式适用于 Webkit 内核浏览器以及移动端（绝大部分移动端浏览器采用 Webkit 内核），主流浏览器中 IE 和 Firefox 不支持。<br>实现方法如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">.multiline-ellipsis &#123;</div><div class="line">	overflow: hidden;</div><div class="line">	display: -webkit-box;</div><div class="line">	-webkit-line-orient: vertical;</div><div class="line">	-webkit-line-clamp: 2;</div><div class="line">	text-overflow: ellipsis;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+        <p>先来了解一下这两个方法：</p>
+<h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h2><p>setTimeout() 和 setInterval() 都是 HTML DOM window 对象提供的方法</p>
 <ul>
-<li><code>display: -webkit-box;</code> 将元素盒子设置为弹性伸缩盒子</li>
-<li><code>-webkit-line-orient: vertical;</code> 规定子元素的排列方向为垂直</li>
-<li><code>-webkit-line-clamp: 2;</code> 规定显示的行数</li>
+<li>setTimeout()<br>在指定的延迟时间后调用一个函数或执行一个代码段。</li>
+<li>setInterval()<br>重复调用一个函数或执行一个代码段，在每次调用或执行之间有固定的时间延迟。</li>
 </ul>
-<h2 id="跨浏览器解决方案（CSS）"><a href="#跨浏览器解决方案（CSS）" class="headerlink" title="跨浏览器解决方案（CSS）"></a>跨浏览器解决方案（CSS）</h2><p>下面是一个老外的解决方法<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">.block-with-text &#123;</div><div class="line">	/*设置文本在超出三行的时候隐藏（1.2 * 3 = 3.6）*/</div><div class="line">	position: relative;</div><div class="line">	overflow: hidden;</div><div class="line">	line-height: 1.2em;</div><div class="line">	max-height: 3.6em;</div><div class="line">	/*解决每行最后一个单词没有紧贴右边的问题*/</div><div class="line">	text-align: justify;</div><div class="line">	/*为省略号留下空隙。 使文本在右边界不移动的情况下右 padding 增加 1em，如果不设置 margin，</div><div class="line">	文本最右边会向左缩 1em 来增加 padding。 增加 padding，是因为绝对定位的时父元素是padding-box，</div><div class="line">	这样就可以将新增加的内容添加到 padding 中，而不与文本重合（与文本重合会造成单词或字母不完整）*/</div><div class="line">	margin-right: -1em;</div><div class="line">	padding-right: 1em;</div><div class="line">&#125;</div><div class="line">.block-with-text:before &#123;</div><div class="line">	/*为所有需要溢出省略的文本在后面添加省略号*/</div><div class="line">	content: &quot;...&quot;;</div><div class="line">	/*绝对定位是相对于元素框来定位的，而这里的 bottom 指的是隐藏后框的底部，所以这里的伪元素</div><div class="line">	会定位到隐藏后框的右下角，而不是加上隐藏部分整体框的右下角*/</div><div class="line">	position: absolute;</div><div class="line">	right: 0px;</div><div class="line">	bottom: 0px;</div><div class="line">  /*伪元素默认为内联元素，但是内联元素如果被设置为绝对定位，那么他会表现出块级元素的特征，</div><div class="line">  所以这里可以设置其宽高*/</div><div class="line">	width: 1em;</div><div class="line">	height: 1.2em;</div><div class="line">	background: white;</div><div class="line">&#125;   </div><div class="line">.block-with-text:after &#123;</div><div class="line">	content: &quot;&quot;;</div><div class="line">	/*这里没有设置 bottom，所以伪元素在整体框的右下角，当没有文本被隐藏时，伪元素是显示的，</div><div class="line">	有文本被隐藏时，伪元素是隐藏的，利用这一点，可以将没有文本溢出时添加的省略号覆盖掉，有文本</div><div class="line">	溢出时，因为此时两个伪元素的位置不一样，所以不会被隐藏*/</div><div class="line">	position: absolute;</div><div class="line">	right: 0px;</div><div class="line">	width: 1em;</div><div class="line">	height: 1.2em;</div><div class="line">	background: white;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>需要注意的是，覆盖省略号所用的伪元素背景色应该跟父元素的颜色一致，这就使得父元素的背景必须为纯色。<br>本文参考：<br><a href="http://hackingui.com/front-end/a-pure-css-solution-for-multiline-text-truncation/" target="_blank" rel="external">http://hackingui.com/front-end/a-pure-css-solution-for-multiline-text-truncation/</a><br><a href="http://www.zhangxinxu.com/wordpress/2009/09/%E5%85%B3%E4%BA%8E%E6%96%87%E5%AD%97%E5%86%85%E5%AE%B9%E6%BA%A2%E5%87%BA%E7%94%A8%E7%82%B9%E7%82%B9%E7%82%B9-%E7%9C%81%E7%95%A5%E5%8F%B7%E8%A1%A8%E7%A4%BA/" target="_blank" rel="external">http://www.zhangxinxu.com/wordpress/2009/09/%E5%85%B3%E4%BA%8E%E6%96%87%E5%AD%97%E5%86%85%E5%AE%B9%E6%BA%A2%E5%87%BA%E7%94%A8%E7%82%B9%E7%82%B9%E7%82%B9-%E7%9C%81%E7%95%A5%E5%8F%B7%E8%A1%A8%E7%A4%BA/</a></p>
+<h2 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h2><ul>
+<li>setTimeout(<em>func</em>, <em>milliseconds</em>)<br>setTimeout(<em>code</em>, <em>milliseconds</em>)</li>
+<li>setInterval(<em>func</em>, <em>milliseconds</em>)<br>setInterval(<em>code</em>, <em>milliseconds</em>)</li>
+</ul>
+<h2 id="3-参数"><a href="#3-参数" class="headerlink" title="3. 参数"></a>3. 参数</h2><p>现在来看一下这两个方法的参数具体是怎么设置的。从语法部分可以知道，这两个方法的第二个参数都是时间，单位是毫秒，但是不用带单位；第一个参数都有两种形式，一种是函数，一种是代码段，我们分别来看一下：</p>
+<h3 id="3-1-函数"><a href="#3-1-函数" class="headerlink" title="3.1 函数"></a>3.1 函数</h3><p>作为这两个方法的参数，这里的函数可以有三种形式：</p>
+<ol>
+<li><strong>函数名</strong> <code>aFunc</code><br>这里的函数名其实是一个具名函数的指针，所以它代表的是一个完整的函数。</li>
+<li><strong>匿名函数</strong> <code>function() {alert&quot;something&quot;};</code><br>匿名函数比较好理解，直接将一个完整的匿名函数作为参数传入，时间到了以后这个匿名函数被执行</li>
+<li><p><strong>在引号内的函数名和圆括号的组合</strong> <code>&quot;aFunc()&quot;</code><br>不加引号的组合 <code>aFunc()</code>，在传参的过程中，<code>aFunc</code>函数会被执行， 所以，实际上传入的是 <code>aFunc</code> 函数执行完之后的返回值，如果没有设置返回值，则传入 <code>undefined</code>。当时间到了以后，浏览器就只能去执行函数的返回值或 <code>undefined</code> 了。</p>
+<p>但是，当加上引号后，这对组合就变成了字符串。虽然也是函数名之后加圆括号，但是传参的过程中这个函数不会被执行。而当设定的时间到了以后，浏览器却不会简单地拿这个参数当字符串处理，而是会像处理 <code>eval()</code> 中传入的字符串一样，去解析执行引号中的内容。所以跟传入函数名是一样的效果。</p>
+<p>那为什么还要这样传入函数呢，那是因为，这样可以 <strong>带参数传入函数</strong>。匿名函数还好说，但是当具名函数需要带参数传入的时候，采用这种方式最简单有效。</p>
+</li>
+</ol>
+<h3 id="3-2-代码段"><a href="#3-2-代码段" class="headerlink" title="3.2 代码段"></a>3.2 代码段</h3><p>并不是将可执行的代码封装成函数以后才能作为这两个方法的参数，一个代码段一样可以传入。</p>
+<p>不过这时， 代码段要用引号包含。原理跟以第三种形式传入函数时是一样的，时间到了以后，引号内的代码段会被解析执行。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">setTimeout(<span class="string">"alert('Hi')"</span>, <span class="number">1000</span>);</div></pre></td></tr></table></figure>
+<p>上面例子中，一秒钟过后，浏览器会弹出 <code>&quot;Hi&quot;</code></p>
+<p>本文参考：</p>
+<ol>
+<li><a href="http://www.w3schools.com/js/js_timing.asp" target="_blank" rel="external">JavaScript Timing Events</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout" target="_blank" rel="external">WindowTimers.setTimeout()</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval" target="_blank" rel="external">WindowTimers.setInterval()</a></li>
+</ol>
 
       
     </div>
@@ -345,22 +384,26 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/DOM/" rel="tag">#DOM</a>
+          
+            <a href="/tags/Web-APIs/" rel="tag">#Web APIs</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/16/实参形参的区别/" rel="next" title="argument vs parameter">
-                <i class="fa fa-chevron-left"></i> argument vs parameter
+              <a href="/2016/11/09/NodeList、HTMLCollection和 NamedNodeMap/" rel="next" title="NodeList、HTMLCollection和 NamedNodeMap">
+                <i class="fa fa-chevron-left"></i> NodeList、HTMLCollection和 NamedNodeMap
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/23/怎样将一个元素水平垂直居中/" rel="prev" title="怎样将一个元素水平垂直居中">
-                怎样将一个元素水平垂直居中 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -386,8 +429,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/23/单行及多行文本溢出省略显示/"
-           data-title="单行及多行文本省略显示" data-url="http://yoursite.com/2016/10/23/单行及多行文本溢出省略显示/">
+      <div class="ds-thread" data-thread-key="2016/11/11/setTimeout 和 setInterval 第一个参数的形式/"
+           data-title="setTimeout() 和 setInterval() 参数的设置" data-url="http://yoursite.com/2016/11/11/setTimeout 和 setInterval 第一个参数的形式/">
       </div>
     
   </div>
@@ -498,7 +541,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#单行文本省略显示"><span class="nav-text">单行文本省略显示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多行文本省略显示"><span class="nav-text">多行文本省略显示</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Webkit-内核浏览器解决方法"><span class="nav-text">Webkit 内核浏览器解决方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跨浏览器解决方案（CSS）"><span class="nav-text">跨浏览器解决方案（CSS）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-定义"><span class="nav-text">1. 定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-语法"><span class="nav-text">2. 语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-参数"><span class="nav-text">3. 参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-函数"><span class="nav-text">3.1 函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-代码段"><span class="nav-text">3.2 代码段</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
