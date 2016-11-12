@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/08/12/logo的处理方法/index.html">
 <meta property="og:site_name" content="Comma's">
 <meta property="og:description" content="如果 logo 单纯用图片的话，不能用于搜索，屏幕阅读器和其他一些辅助设备，将会丢失重要信息，最好的办法是将 logo 设成背景，文字则缩进到屏幕外，不显示。第一种方法：h1#logo &amp;#123;width: 450px;height: 80pxbackground: url(jenware.png) no-repeat;text-indent: 100%;white-space: nowrap">
-<meta property="og:updated_time" content="2016-11-04T05:29:23.000Z">
+<meta property="og:updated_time" content="2016-11-12T13:36:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="logo 的处理方法">
 <meta name="twitter:description" content="如果 logo 单纯用图片的话，不能用于搜索，屏幕阅读器和其他一些辅助设备，将会丢失重要信息，最好的办法是将 logo 设成背景，文字则缩进到屏幕外，不显示。第一种方法：h1#logo &amp;#123;width: 450px;height: 80pxbackground: url(jenware.png) no-repeat;text-indent: 100%;white-space: nowrap">
@@ -314,7 +314,7 @@
 
       
         <p>如果 logo 单纯用图片的话，不能用于搜索，屏幕阅读器和其他一些辅助设备，将会丢失重要信息，最好的办法是将 logo 设成背景，文字则缩进到屏幕外，不显示。<br>第一种方法：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">h1#logo &#123;</div><div class="line">width: 450px;</div><div class="line">height: 80px</div><div class="line">background: url(jenware.png) no-repeat;</div><div class="line">text-indent: 100%;</div><div class="line">white-space: nowrap;</div><div class="line">overflow: hidden;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>h1 是块级元素，可以将其设置为 logo 的长宽，文字则向右缩进屏幕宽度的100%，到屏幕右侧外，为了防止换行，加一个 <code>white-space: no-wrap;</code> 。然后将溢出屏幕的部分隐藏。</p>
+<p>h1 是块级元素，可以将其设置为 logo 的长宽，文字则向右缩进盒子宽度的100%，溢出盒子，为了防止换行，加一个 <code>white-space: nowrap;</code> 。然后将溢出的部分隐藏。</p>
 <p>第二种方法：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">h1#logo &#123;</div><div class="line">width: 450px;</div><div class="line">height: 100px</div><div class="line">background: url(jenware.png) no-repeat;</div><div class="line">text-indent: -9999px;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>第二种方法是将文字向左缩进一个很大的距离，这种方法不用担心折叠，也不用隐藏溢出，code 简单，但是缺点是浏览器会计算和画出这个超长的元素框。</p>
 
