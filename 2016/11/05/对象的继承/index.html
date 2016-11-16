@@ -98,7 +98,7 @@ function Robot(name) &amp;#123;	this.name = name;&amp;#125;Robot.prototype.smile
 function Robot(name) &amp;#123;	this.name = name;&amp;#125;Robot.prototype.smile = function() &amp;#123;	alert(&quot;smile&quot;);&amp;#125;;function Cat(age) &amp;#123;	this.age = age;">
 <meta property="og:image" content="http://yoursite.com/images/rc-1.png">
 <meta property="og:image" content="http://yoursite.com/images/rc-2.png">
-<meta property="og:updated_time" content="2016-11-06T11:59:56.000Z">
+<meta property="og:updated_time" content="2016-11-16T06:19:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对象的继承">
 <meta name="twitter:description" content="本文是对 JavaScript 高级程序设计 一书中相关章节的整理，加上自己的理解
@@ -326,7 +326,7 @@ function Robot(name) &amp;#123;	this.name = name;&amp;#125;Robot.prototype.smile
 
       
         <blockquote>
-<p>本文是对 <strong>JavaScript 高级程序设计</strong> 一书中相关章节的整理，加上自己的理解</p>
+<p>本文是对 <strong><a href="http://item.jd.com/10951037.html" target="_blank" rel="external">JavaScript 高级程序设计</a></strong> 一书中相关章节的整理，加上自己的理解</p>
 </blockquote>
 <hr>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Robot</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">	<span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line">Robot.prototype.smile = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	alert(<span class="string">"smile"</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">age</span>) </span>&#123;</div><div class="line">	<span class="keyword">this</span>.age = age;</div><div class="line">&#125;</div><div class="line">Cat.prototype.climbTree = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	alert(<span class="string">"climb a tree"</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
@@ -369,7 +369,6 @@ function Robot(name) &amp;#123;	this.name = name;&amp;#125;Robot.prototype.smile
 <p>寄生组合式继承是将组合继承（借用构造函数 + 原型链继承）中的原型链继承用寄生继承代替。那么寄生组合继承实际上就是借用构造函数和寄生继承的组合。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name, age</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.age = age;</div><div class="line">  <span class="keyword">this</span>.friends = [<span class="string">"dog"</span>, <span class="string">"mouse"</span>]</div><div class="line">&#125;</div><div class="line">Cat.prototype.saySomething = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="string">"Hi, I'm "</span> + <span class="keyword">this</span>.name);</div><div class="line">  &#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Robot</span>(<span class="params">name, age</span>) </span>&#123;</div><div class="line">	Cat.call(<span class="keyword">this</span>, name, age);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">inheritPrototype</span>(<span class="params">SubType, SuperType</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> prototype = <span class="built_in">Object</span>.create(SuperType.prototype);</div><div class="line">	prototype.constructor = SubType;</div><div class="line">	SubType.prototype = prototype;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> robot1 = <span class="keyword">new</span> Robot(<span class="string">"Paco"</span>, <span class="number">3</span>);</div><div class="line">inheritPrototype(Robot, Cat);</div></pre></td></tr></table></figure>
 <p>这个例子的高效率体现在它只调用了一次 Cat 构造函数，因此避免了在 Robot.prototype 上面创建不必要、多余的属性。<br>开发人员普遍认为寄生组合式继承是引用类型最理想的继承方式。</p>
-<p>本文参考：<br><a href="http://item.jd.com/10951037.html" target="_blank" rel="external">JavaScript 高级程序设计（第3版）</a></p>
 
       
     </div>
@@ -483,7 +482,7 @@ function Robot(name) &amp;#123;	this.name = name;&amp;#125;Robot.prototype.smile
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">35</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -500,7 +499,7 @@ function Robot(name) &amp;#123;	this.name = name;&amp;#125;Robot.prototype.smile
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

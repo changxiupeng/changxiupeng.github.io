@@ -96,7 +96,7 @@
 
 
 1. Object 构造函数和对象字面量1.1 Object 构造函数创建一个自定义对象最简单的方式就是创建一个 Object 实例然后再为它添加属性和方法，如下：var person = new Object();person.name = &quot;Paco&quot;;person.age = 26;person.say">
-<meta property="og:updated_time" content="2016-11-06T11:45:03.000Z">
+<meta property="og:updated_time" content="2016-11-16T06:20:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="创建对象">
 <meta name="twitter:description" content="本文是对 JavaScript 高级程序设计 一书中相关章节的整理，加上自己的理解
@@ -323,7 +323,7 @@
 
       
         <blockquote>
-<p>本文是对 <strong>JavaScript 高级程序设计</strong> 一书中相关章节的整理，加上自己的理解</p>
+<p>本文是对 <strong><a href="http://item.jd.com/10951037.html" target="_blank" rel="external">JavaScript 高级程序设计</a></strong> 一书中相关章节的整理，加上自己的理解</p>
 </blockquote>
 <hr>
 <h2 id="1-Object-构造函数和对象字面量"><a href="#1-Object-构造函数和对象字面量" class="headerlink" title="1. Object 构造函数和对象字面量"></a>1. Object 构造函数和对象字面量</h2><h3 id="1-1-Object-构造函数"><a href="#1-1-Object-构造函数" class="headerlink" title="1.1 Object 构造函数"></a>1.1 Object 构造函数</h3><p>创建一个自定义对象最简单的方式就是创建一个 <code>Object</code> 实例然后再为它添加属性和方法，如下：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">person.name = <span class="string">"Paco"</span>;</div><div class="line">person.age = <span class="number">26</span>;</div><div class="line">person.saySomething = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alert(<span class="string">"Hi, I'm "</span> + <span class="keyword">this</span>.name);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
@@ -369,7 +369,6 @@
 <h2 id="7-寄生构造函数模式"><a href="#7-寄生构造函数模式" class="headerlink" title="7. 寄生构造函数模式"></a>7. 寄生构造函数模式</h2><p>可以理解为把工厂模式寄生到了构造函数模式上<br>代码形式如下：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">CreatePerson</span>(<span class="params">name, age</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">  o.name = name;</div><div class="line">  o.age = age;</div><div class="line">  o.saySomething = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="string">"Hi, I'm "</span> + <span class="keyword">this</span>.name);</div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">return</span> o;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> CreatePerson(<span class="string">"Paco"</span>, <span class="number">26</span>);</div><div class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> CreatePerson(<span class="string">"xiaoming"</span>, <span class="number">10</span>);</div></pre></td></tr></table></figure></p>
 <p>创建对象实例的时候，采用 new 操作符调用函数，由于函数体内实际上是工厂模式的函数体，返回的对象重写了构造函数返回的对象。<br>这种模式通常用来创建具有特殊属性的数组，是因为数组的构造函数不能直接修改：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">SpecialArray</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> sArray = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line">  sArray.push.apply(sArray, <span class="built_in">arguments</span>);</div><div class="line">  sArray.toPipedString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.join(<span class="string">"|"</span>);</div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">return</span> sArray</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> colors = <span class="keyword">new</span> sArray(<span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span>);</div><div class="line">alert(colors.toPipedString()); <span class="comment">// "red|green|blue"</span></div></pre></td></tr></table></figure></p>
 <p>在这个例子中，我们创建了一个名叫 SpecialArray 的构造函数。在这个函数内部，首先创建了一个数组，并且将构造函数接收的参数都 push 到这个数组中，然后我们又为这个数组添加了一个新方法，返回以竖线分割的数组值。</p>
-<p>本文参考：<br><a href="http://item.jd.com/10951037.html" target="_blank" rel="external">JavaScript 高级程序设计（第3版）</a></p>
 
       
     </div>
@@ -483,7 +482,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">35</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -500,7 +499,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
