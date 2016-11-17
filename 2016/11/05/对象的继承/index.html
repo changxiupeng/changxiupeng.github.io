@@ -98,7 +98,7 @@ function Robot(name) &amp;#123;	this.name = name;&amp;#125;Robot.prototype.smile
 function Robot(name) &amp;#123;	this.name = name;&amp;#125;Robot.prototype.smile = function() &amp;#123;	alert(&quot;smile&quot;);&amp;#125;;function Cat(age) &amp;#123;	this.age = age;">
 <meta property="og:image" content="http://yoursite.com/images/rc-1.png">
 <meta property="og:image" content="http://yoursite.com/images/rc-2.png">
-<meta property="og:updated_time" content="2016-11-16T06:19:42.000Z">
+<meta property="og:updated_time" content="2016-11-17T01:51:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对象的继承">
 <meta name="twitter:description" content="本文是对 JavaScript 高级程序设计 一书中相关章节的整理，加上自己的理解
@@ -192,16 +192,6 @@ function Robot(name) &amp;#123;	this.name = name;&amp;#125;Robot.prototype.smile
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
@@ -218,6 +208,16 @@ function Robot(name) &amp;#123;	this.name = name;&amp;#125;Robot.prototype.smile
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
           </a>
         </li>
       
@@ -361,7 +361,7 @@ function Robot(name) &amp;#123;	this.name = name;&amp;#125;Robot.prototype.smile
 <h2 id="4-原型式继承与寄生式继承"><a href="#4-原型式继承与寄生式继承" class="headerlink" title="4. 原型式继承与寄生式继承"></a>4. 原型式继承与寄生式继承</h2><h3 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h3><p>借助原型，可以基于 <strong>已有的对象</strong> 创建新对象，同时还不必因此创建自定义类型。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">	F.prototype = o;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> F();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>在 object() 函数内部，先创建了一个临时性的构造函数，然后将传入的对象（已有的对象）作为这个构造函数的原型，最后返回这个临时类型的一个实例。从本质上讲，object() 对传入其中的对象执行了一次浅复制。对同一个已有对象重复调用该函数创建的所有实例都共享该对象作为它们的原型对象。这是因为重写临时构造函数的原型时是一个赋值操作，而引用类型的传参是采用共享传参的形式，传递的只是一个指针而已。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> robot = &#123;</div><div class="line">	<span class="attr">name</span>: <span class="string">"hhhh"</span>,</div><div class="line">	<span class="attr">friends</span>: [<span class="string">"xiaoming"</span>, <span class="string">"xiaohong"</span>]</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> robot1 = object(robot);</div><div class="line">robot1.friends.push(<span class="string">"laoluo"</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> robot2 = object(robot);</div><div class="line">robot2.friends.push(<span class="string">"xucen"</span>);</div><div class="line"></div><div class="line">alert(robot.friends); <span class="comment">// "xiaoming, xiaohong, laoluo, xucen"</span></div></pre></td></tr></table></figure></p>
 <p>ECMAScript 5 通过新增 <code>Object.create()</code> 方法规范化了原型式继承。这个方法接受两个参数：一个用作新对象原型的对象和一个为新对象定义额外属性的对象（可选）。在只接收一个参数的时候，跟 object() 方式是一样的。两个参数时，第二个参数与 Object.definePropertie() 方法的第二个参数格式相同：每个属性都是通过自己的描述符定义的。以这种方式定义的任何属性都会覆盖原型对象上的同名属性。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> robot = &#123;</div><div class="line">	<span class="attr">name</span>: <span class="string">"hhhh"</span>,</div><div class="line">	<span class="attr">friends</span>: [<span class="string">"xiaoming"</span>, <span class="string">"xiaohong"</span>]</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> robot1 = object(robot, &#123;</div><div class="line">	<span class="attr">name</span>: &#123;</div><div class="line">		<span class="attr">value</span>: <span class="string">"Paco"</span></div><div class="line">	&#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">alert(robot1.name); <span class="comment">// "Paco"</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> robot = &#123;</div><div class="line">	<span class="attr">name</span>: <span class="string">"hhhh"</span>,</div><div class="line">	<span class="attr">friends</span>: [<span class="string">"xiaoming"</span>, <span class="string">"xiaohong"</span>]</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> robot1 = <span class="built_in">Object</span>.create(robot, &#123;</div><div class="line">	<span class="attr">name</span>: &#123;</div><div class="line">		<span class="attr">value</span>: <span class="string">"Paco"</span></div><div class="line">	&#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">alert(robot1.name); <span class="comment">// "Paco"</span></div></pre></td></tr></table></figure>
 <p>在没有必要兴师动众地创建构造函数，而只是想让一个对象与另一个对象类似的情况下，原型式继承是完全可以胜任的。不过别忘了，包含引用类型值得属性始终都会共享相应的值。</p>
 <h3 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h3><p>之所以将这两种方式在一起，是因为它们是密切相关的<br>原型式继承创建的对象的实例属性为空，如果需要对其增强（添加属性或方法）的话，还需要在函数外进行添加。寄生式继承是将这两步封装到了一个函数中：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> robot = &#123;</div><div class="line">	<span class="attr">name</span>: <span class="string">"hhhh"</span>,</div><div class="line">	<span class="attr">friends</span>: [<span class="string">"xiaoming"</span>, <span class="string">"xiaohong"</span>]</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createRobot</span>(<span class="params">original</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> clone = <span class="built_in">Object</span>.create(original);</div><div class="line">	clone.saySomething = &#123;</div><div class="line">		alert(<span class="string">"hi"</span>);</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">return</span> clone;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> robot1 = createRobot();</div><div class="line">robot1.saySomething(); <span class="comment">// "hi"</span></div></pre></td></tr></table></figure></p>
 <p>使用寄生式继承来为对象添加函数，会由于不能做到函数复用而降低效率。这一点与构造函数模式类似。</p>
@@ -482,7 +482,7 @@ function Robot(name) &amp;#123;	this.name = name;&amp;#125;Robot.prototype.smile
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -499,7 +499,7 @@ function Robot(name) &amp;#123;	this.name = name;&amp;#125;Robot.prototype.smile
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
