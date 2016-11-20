@@ -102,7 +102,7 @@
 
 每个函数都是对象，而对象是占用内存的；内存中的对象越多，性能就越差。
 所有的事件处理程序都要事先绑定，这就导致了 DOM">
-<meta property="og:updated_time" content="2016-11-17T15:37:30.000Z">
+<meta property="og:updated_time" content="2016-11-18T02:37:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="事件代理">
 <meta name="twitter:description" content="本文是对 JavaScript 高级程序设计 一书中相关章节的整理，加上自己的理解
@@ -347,6 +347,10 @@
 <p>如果在一个复杂的网页中，对所有的可单击的元素都采用这种方式，那么结果就会有数不清的代码用于添加事件处理程序，产生数不清的函数对象和 DOM 访问。<br>此时，可以利用事件代理技术解决这个问题。如下面代码所示：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> list = <span class="built_in">document</span>.getElementById(<span class="string">"myLinks"</span>);</div><div class="line"></div><div class="line">EventUtil.addHandler(list, <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">  event = EventUtil.getEvent(event);</div><div class="line">  <span class="keyword">var</span> target = EventUtil.getTarget(event);</div><div class="line"></div><div class="line">  <span class="keyword">switch</span>(target.id) &#123;</div><div class="line">    <span class="keyword">case</span> <span class="string">"goSomewhere"</span>:</div><div class="line">      location.href = <span class="string">"https://changxiupeng.github.io"</span>;</div><div class="line">      <span class="keyword">break</span>;</div><div class="line"></div><div class="line">    <span class="keyword">case</span> <span class="string">"doSomething"</span>:</div><div class="line">      <span class="built_in">document</span>.title = <span class="string">"I changed the document's title"</span>;</div><div class="line">      <span class="keyword">break</span>;</div><div class="line"></div><div class="line">    <span class="keyword">case</span> <span class="string">"saySomething"</span>:</div><div class="line">      alert(<span class="string">"hi"</span>);</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
 <p>上面的代码只为 <code>&lt;ul&gt;</code> 元素添加了一个点击事件处理程序。<br>由于所有列表项都是这个元素的子节点，而且它们的事件都会冒泡，所以对子节点的单击事件最终都会冒泡到这个元素上，都可以被这个元素上绑定的句柄处理。<br>我们知道，事件目标是被单击的列表项，故而可以通过检测 id 属性来决定采取适当的操作。<br>这段代码只取得了一个 DOM 元素，只添加了一个事件处理程序。</p>
 <p>最适合采用事件委托技术的事件包括：click、mousedown、mouseup、keypress、keydown、keyup。<br>虽然，mouseover 和 mouseup 事件也冒泡，但是要适当地处理它们并不容易，经常需要计算元素的位置。因为，当鼠标进入该元素的一个子节点，或者从一个子节点移到另一个子节点时，都会再次触发 mouseover/mouseout 事件。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
+<li>可以大量节省内存占用，减少事件注册</li>
+<li>新增子对象时，无需再次对其进行绑定，对于动态内容尤为合适</li>
+</ol>
 <h3 id="封装事件代理"><a href="#封装事件代理" class="headerlink" title="封装事件代理"></a>封装事件代理</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * 传入的参数分别为要绑定事件处理程序的高层元素节点、需要委托事件的</div><div class="line"> * 子节点的选择器、事件的类型、事件处理程序</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">delegateEvent</span>(<span class="params">supNode, selector, type, fn</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// 采用跨浏览器的方式添加事件处理程序</span></div><div class="line">  <span class="keyword">if</span> (supNode.addEventListener) &#123;</div><div class="line">    supNode.addEventListener(type, handler, <span class="literal">false</span>);</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sup.attachEvent) &#123;</div><div class="line">    supNode.attachEvent(<span class="string">"on"</span> + type, handler);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    supNode[<span class="string">"on"</span> + type] = handler;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">//</span></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">handler</span>(<span class="params">event</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 采用跨浏览器的方式获取事件对象和事件目标</span></div><div class="line">    event = event || <span class="built_in">window</span>.event;</div><div class="line">    <span class="keyword">var</span> target = event.target || event.srcElement;</div><div class="line"></div><div class="line">    <span class="comment">// 获取需要委托事件的所有子节点</span></div><div class="line">    <span class="keyword">var</span> targets = <span class="built_in">Array</span>.prototype.slice.call(supNode.querySelectorAll(selector));</div><div class="line"></div><div class="line">    <span class="comment">// 检测事件目标是否在进行事件委托的那些子节点中</span></div><div class="line">    <span class="keyword">if</span> (targets.indexOf(target) !== <span class="number">-1</span>) &#123;</div><div class="line"></div><div class="line">      <span class="comment">/*</span></div><div class="line">       * 如果该事件目标对事件进行了委托，那么将事件处理程序的上下文</div><div class="line">       * 绑定到事件目标上，并将获取的事件对象作为参数传入</div><div class="line">       */</div><div class="line">      fn.call(target, event);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>调用<br><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span> = <span class="string">"myLinks"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span> = <span class="string">"goSomewhere"</span>&gt;</span>Go somewhere <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span> = <span class="string">"doSomething"</span>&gt;</span>Do something <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span> = <span class="string">"saySomething"</span>&gt;</span>Say something <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="keyword">var</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">"myLinks"</span>);</div><div class="line">delegateEvent(ul, <span class="string">"li"</span>, <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alert(<span class="keyword">this</span>.id);</div><div class="line">  alert(event.type);</div><div class="line">&#125;);</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <h2 id="3-移除事件处理程序"><a href="#3-移除事件处理程序" class="headerlink" title="3. 移除事件处理程序"></a>3. 移除事件处理程序</h2><p>每当将事件处理程序指定给元素时，运行中的浏览器代码与支持页面交互的 JavaScript 代码之间就会建立一个连接。这种连接越多，页面执行起来就越慢。<br>上文我们已经知道，可以通过事件代理技术来减少这种连接。<br>另外，我们还可以在不需要某些事件处理程序时，将其移除，来释放它们占用的内存空间。</p>
@@ -403,6 +407,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/19/BOM/" rel="prev" title="BOM 总结">
+                BOM 总结 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -474,7 +482,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -491,7 +499,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -540,7 +548,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-内存和性能问题"><span class="nav-text">1. 内存和性能问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-事件代理"><span class="nav-text">2. 事件代理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#封装事件代理"><span class="nav-text">封装事件代理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-移除事件处理程序"><span class="nav-text">3. 移除事件处理程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从文档中移除带有事件处理程序的元素"><span class="nav-text">从文档中移除带有事件处理程序的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面卸载"><span class="nav-text">页面卸载</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-内存和性能问题"><span class="nav-text">1. 内存和性能问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-事件代理"><span class="nav-text">2. 事件代理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#封装事件代理"><span class="nav-text">封装事件代理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-移除事件处理程序"><span class="nav-text">3. 移除事件处理程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从文档中移除带有事件处理程序的元素"><span class="nav-text">从文档中移除带有事件处理程序的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面卸载"><span class="nav-text">页面卸载</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

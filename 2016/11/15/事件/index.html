@@ -348,7 +348,7 @@ JavaScript 与 HTML 之间的交互是通过事件实现的。
 <p>在 W3C 对 DOM 事件进行规范化之前的事件处理，一般称为 DOM0 级事件处理<br>W3C 在 DOM2 级文档规范中，包含了 DOM 事件（DOM Events）规范，也就是我们通常所说的 DOM2 级事件处理</p>
 </blockquote>
 <h2 id="2-事件流"><a href="#2-事件流" class="headerlink" title="2. 事件流"></a>2. 事件流</h2><p>事件流描述的是当事件被触发时，相应节点接收事件的顺序。事件流有两种类型：事件冒泡和事件捕获。</p>
-<h3 id="2-1-IE-的事件流-—-事件冒泡"><a href="#2-1-IE-的事件流-—-事件冒泡" class="headerlink" title="2.1 IE 的事件流 — 事件冒泡"></a>2.1 IE 的事件流 — 事件冒泡</h3><p>事件冒泡，即事件被触发时，由最具体的元素（文档中嵌套层次最深的那个节点）先就收事件，然后逐级向上传播到较为不具体的节点（最不具体的节点是文档节点）。以下面的 HTML 页面为例：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;title&gt;Event Bubbling Example&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">  &lt;div id="myDiv"&gt;Click Me&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="2-1-IE-的事件流-—-事件冒泡"><a href="#2-1-IE-的事件流-—-事件冒泡" class="headerlink" title="2.1 IE 的事件流 — 事件冒泡"></a>2.1 IE 的事件流 — 事件冒泡</h3><p>事件冒泡，即事件被触发时，由最具体的元素（文档中嵌套层次最深的那个节点）先就收事件，然后逐级向上传播到较为不具体的节点（最不具体的节点是文档节点）。以下面的 HTML 页面为例：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Event Bubbling Example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"myDiv"</span>&gt;</span>Click Me<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <p>如果你单击了页面中的 div 元素，那么这个 click 事件会按照：<br><code>&lt;div&gt;</code> → <code>&lt;body&gt;</code> → <code>&lt;html&gt;</code> → document<br>的顺序传播，并且事件会依次在这四个节点上发生，直至传播到 document 对象上。如果节点上有相应监听函数，则会被执行。</p>
 <h3 id="2-2-网景的事件流-—-事件捕获"><a href="#2-2-网景的事件流-—-事件捕获" class="headerlink" title="2.2 网景的事件流 — 事件捕获"></a>2.2 网景的事件流 — 事件捕获</h3><p>事件捕获跟事件冒泡正好相反，即不太具体的节点应该最早接受到事件，而最具体的节点最晚接受到事件。<br>2.1 中的例子，在这里事件会按照：<br>document → <code>&lt;html&gt;</code> → <code>&lt;body&gt;</code> → <code>&lt;div&gt;</code><br>的顺序传播并发生</p>
 <h3 id="2-3-W3C-规范事件流-—-DOM-事件流"><a href="#2-3-W3C-规范事件流-—-DOM-事件流" class="headerlink" title="2.3 W3C 规范事件流 — DOM 事件流"></a>2.3 W3C 规范事件流 — DOM 事件流</h3><p>这两个浏览器采用截然相反的事件流给开发者带来了极大的痛苦，后来 W3C 在 DOM2 级文档中对事件流进行了规范，推出 <strong>DOM 事件流</strong>。<br>DOM 事件流包含三个阶段：</p>
@@ -603,8 +603,8 @@ JavaScript 与 HTML 之间的交互是通过事件实现的。
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/11/setTimeout 和 setInterval 第一个参数的形式/" rel="next" title="setTimeout() 和 setInterval() 参数的设置">
-                <i class="fa fa-chevron-left"></i> setTimeout() 和 setInterval() 参数的设置
+              <a href="/2016/11/11/setTimeout 和 setInterval 第一个参数的形式/" rel="next" title="setTimeout() 和 setInterval()">
+                <i class="fa fa-chevron-left"></i> setTimeout() 和 setInterval()
               </a>
             
           </div>
@@ -685,7 +685,7 @@ JavaScript 与 HTML 之间的交互是通过事件实现的。
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -702,7 +702,7 @@ JavaScript 与 HTML 之间的交互是通过事件实现的。
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
