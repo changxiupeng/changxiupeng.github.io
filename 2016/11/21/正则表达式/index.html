@@ -1,0 +1,906 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="RegExp," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon2.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="用户在表单中填写信息后，这些信息最终是要提交到服务器上进行处理的。但是，并不是所有的信息都符合要求，我们需要在信息被提交到服务器之前，先对信息进行一下确认，来节约服务器端的系统资源，并提供良好的用户体验。正则表达式在信息验证中起着非常大的作用。
+1. 什么是正则表达式？正则表达式（regular expression / RegExp）是一个描述字符模式的对象。ECMAScript 的 RegEx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式">
+<meta property="og:url" content="http://yoursite.com/2016/11/21/正则表达式/index.html">
+<meta property="og:site_name" content="Comma's">
+<meta property="og:description" content="用户在表单中填写信息后，这些信息最终是要提交到服务器上进行处理的。但是，并不是所有的信息都符合要求，我们需要在信息被提交到服务器之前，先对信息进行一下确认，来节约服务器端的系统资源，并提供良好的用户体验。正则表达式在信息验证中起着非常大的作用。
+1. 什么是正则表达式？正则表达式（regular expression / RegExp）是一个描述字符模式的对象。ECMAScript 的 RegEx">
+<meta property="og:image" content="http://yoursite.com/images/reimage4.png">
+<meta property="og:image" content="http://yoursite.com/images/reimage2.svg">
+<meta property="og:image" content="http://yoursite.com/images/reimage1.svg">
+<meta property="og:image" content="http://yoursite.com/images/reimage3.png">
+<meta property="og:updated_time" content="2016-11-21T14:30:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式">
+<meta name="twitter:description" content="用户在表单中填写信息后，这些信息最终是要提交到服务器上进行处理的。但是，并不是所有的信息都符合要求，我们需要在信息被提交到服务器之前，先对信息进行一下确认，来节约服务器端的系统资源，并提供良好的用户体验。正则表达式在信息验证中起着非常大的作用。
+1. 什么是正则表达式？正则表达式（regular expression / RegExp）是一个描述字符模式的对象。ECMAScript 的 RegEx">
+<meta name="twitter:image" content="http://yoursite.com/images/reimage4.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/21/正则表达式/"/>
+
+
+  <title> 正则表达式 | Comma's </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Comma's</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">study notes</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                正则表达式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-21T14:29:55+08:00" content="2016-11-21">
+              2016-11-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/21/正则表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/21/正则表达式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>用户在表单中填写信息后，这些信息最终是要提交到服务器上进行处理的。但是，并不是所有的信息都符合要求，我们需要在信息被提交到服务器之前，先对信息进行一下确认，来节约服务器端的系统资源，并提供良好的用户体验。正则表达式在信息验证中起着非常大的作用。</p>
+<h2 id="1-什么是正则表达式？"><a href="#1-什么是正则表达式？" class="headerlink" title="1. 什么是正则表达式？"></a>1. 什么是正则表达式？</h2><p>正则表达式（regular expression / RegExp）是一个描述字符模式的对象。ECMAScript 的 RegExp 类表示正则表达式。<br>String 和 RegExp 都定义了使用正则表达式进行强大模式匹配和文本检索与替换的函数。</p>
+<h2 id="2-创建正则表达式"><a href="#2-创建正则表达式" class="headerlink" title="2. 创建正则表达式"></a>2. 创建正则表达式</h2><p>创建正则表达式有两种方式，一种是采用 new 运算符，一种是采用字面量的方式。</p>
+<h3 id="2-1-new-运算符"><a href="#2-1-new-运算符" class="headerlink" title="2.1 new 运算符"></a>2.1 new 运算符</h3><p>RegExp 是 JavaScript 中的内建对象，所以可以用 new 操作符创建一个实例。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"test"</span>，<span class="string">"igm"</span>)</div><div class="line"></div><div class="line">alert(pattern); <span class="comment">// /test/gim</span></div></pre></td></tr></table></figure></p>
+<p>第一个参数是一个字符串，表示要匹配的字符模式；<br>第二个参数是模式修饰符（可选。不分顺序），表示前面的字符模式以怎样的方式进行检索匹配。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">模式修饰符</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">i</td>
+<td style="text-align:center">ignoreCase 的首字母，表示忽略大小写</td>
+</tr>
+<tr>
+<td style="text-align:center">g</td>
+<td style="text-align:center">global 的首字母，表示全局匹配</td>
+</tr>
+<tr>
+<td style="text-align:center">m</td>
+<td style="text-align:center">multiline 的首字母，表示多行匹配，因为 g 全局匹配无法匹配到多行字符串中除第一行之外其他行的字符</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-2-字面量"><a href="#2-2-字面量" class="headerlink" title="2.2 字面量"></a>2.2 字面量</h3><p>上面那段代码中弹窗出来的 RegExp 实例，其实就是字面量的形式。我们可以将字面量写出来，跟用 new 操作符是一样的效果：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern = <span class="regexp">/test/igm</span>;</div></pre></td></tr></table></figure></p>
+<h2 id="3-RegExp-和-String-拥有的关于正则表达式的方法"><a href="#3-RegExp-和-String-拥有的关于正则表达式的方法" class="headerlink" title="3. RegExp 和 String 拥有的关于正则表达式的方法"></a>3. RegExp 和 String 拥有的关于正则表达式的方法</h2><h3 id="3-1-RegExp"><a href="#3-1-RegExp" class="headerlink" title="3.1 RegExp"></a>3.1 RegExp</h3><p>RegExp 对象有两个方法：test() 和 exec() 方法，用于测试字符串匹配。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">pattern.test(str)</td>
+<td style="text-align:center">接收一个字符串参数，在此字符串中进行字符模式的匹配，匹配到返回 true，否则返回 false</td>
+</tr>
+<tr>
+<td style="text-align:center">pattern.exec(str)</td>
+<td style="text-align:center">接收一个字符串参数，在此字符串中进行字符模式的匹配，匹配到后返回一个 <em>数组</em>，数组中第一个元素是匹配到的字符串，如果有分组，后面的元素分别是分组的字符串。如果没有匹配结果则返回 null</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern = <span class="regexp">/goo(gl)(e)/</span>;</div><div class="line"><span class="keyword">var</span> str = <span class="string">"I love google"</span>;</div><div class="line">pattern.test(str); <span class="comment">// true</span></div><div class="line"></div><div class="line">pattern.exec(str); <span class="comment">// [google, gle, e]</span></div></pre></td></tr></table></figure>
+<p>这两个方法都无需用 g 全局模式，用和不用都不影响结果，但是用的时候 pattern 的 lastIndex 属性值会变。</p>
+<h3 id="3-2-String"><a href="#3-2-String" class="headerlink" title="3.2 String"></a>3.2 String</h3><p>字符串有四个方法可以用到正则表达式来提高效率：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">str.search(pattern)</td>
+<td style="text-align:center">返回匹配到的字符串在原字符串中开始的 index，没有则返回 -1</td>
+</tr>
+<tr>
+<td style="text-align:center">str.match(pattern)</td>
+<td style="text-align:center">返回一个数组，不开 g 全局，数组只有一个元素，是匹配到的第一个字符串；开 g 全局，数组可能有多个元素，是匹配到的所有字符串</td>
+</tr>
+<tr>
+<td style="text-align:center">str.replace(pattern, str/func)</td>
+<td style="text-align:center">❶用第二个参数得到的字符串，替换字符串中第一个参数匹配到的字符串，开 g 全替换，不开 g 只替换一个。❷如果第二个参数是一个函数，自动传入四个参数（最少，分组结果可能有多个），分别是 <em>匹配到的字符串</em>、 <em>分组字符串</em>、 <em>匹配项的 index</em>、 <em>原字符串</em>。❸我们需要在函数体中对这些参数处理一下，然后 <strong>返回一个字符串</strong>。❹每当有一个匹配结果时这个函数就被调用一次。</td>
+</tr>
+<tr>
+<td style="text-align:center">str.split(pattern)</td>
+<td style="text-align:center">返回一个数组，包含的是字符串按照指定 pattern 拆分的多个子字符串</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern = <span class="regexp">/goo(gl)(e)/</span>;</div><div class="line"><span class="keyword">var</span> str = <span class="string">"I love google"</span>;</div><div class="line"></div><div class="line">str.search(pattern); <span class="comment">// 7</span></div><div class="line"></div><div class="line">str.match(pattern); <span class="comment">// [google]</span></div><div class="line"></div><div class="line">str.split(<span class="regexp">/l/</span>); <span class="comment">// [goog, e];</span></div><div class="line"></div><div class="line">alert(str.replace(pattern, <span class="string">"xiaoting"</span>)); <span class="comment">// I love xiaotiong</span></div><div class="line"></div><div class="line">alert(str.replace(pattern, <span class="string">"$1 $2"</span>)); <span class="comment">// I love gl e</span></div><div class="line"></div><div class="line">alert(str.replace(pattern, <span class="function"><span class="keyword">function</span>(<span class="params">a,b,c,d,e</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="string">"not doo"</span> + b + c + <span class="string">" but "</span> + <span class="string">"a"</span>;</div><div class="line">&#125;)); <span class="comment">// I love not doogle but google</span></div></pre></td></tr></table></figure>
+<h2 id="4-元字符"><a href="#4-元字符" class="headerlink" title="4. 元字符"></a>4. 元字符</h2><p>正则表达式元字符是包含特殊含义的字符。它们有一些特殊功能，可以控制匹配模式的方式。反斜杠后的元字符将失去原来的含义。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">元字符</th>
+<th style="text-align:center">匹配情况</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.</td>
+<td style="text-align:center">除换行符外的所有字符</td>
+</tr>
+<tr>
+<td style="text-align:center">[a-z0-9]</td>
+<td style="text-align:center">括号中字符集中的任一字符</td>
+</tr>
+<tr>
+<td style="text-align:center">[^a-z0-9]</td>
+<td style="text-align:center">任一不在括号中字符集中的字符</td>
+</tr>
+<tr>
+<td style="text-align:center">\d</td>
+<td style="text-align:center">任一数字</td>
+</tr>
+<tr>
+<td style="text-align:center">\D</td>
+<td style="text-align:center">任一非数字，相当于[^0-9]</td>
+</tr>
+<tr>
+<td style="text-align:center">\w</td>
+<td style="text-align:center">任一字母或数字或_ 相当于[a-zA-Z0-9_]</td>
+</tr>
+<tr>
+<td style="text-align:center">\W</td>
+<td style="text-align:center">任一非字母、数字和_ 相当于[^a-zA-Z0-9_]</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">\b</td>
+<td style="text-align:center">一个词的边界</td>
+</tr>
+<tr>
+<td style="text-align:center">\n</td>
+<td style="text-align:center">换行字符</td>
+</tr>
+<tr>
+<td style="text-align:center">\t</td>
+<td style="text-align:center">制表符</td>
+</tr>
+<tr>
+<td style="text-align:center">\r</td>
+<td style="text-align:center">回车字符</td>
+</tr>
+<tr>
+<td style="text-align:center">\s</td>
+<td style="text-align:center">任何空白字符，包括空格、制表符、换页符等等</td>
+</tr>
+<tr>
+<td style="text-align:center">\S</td>
+<td style="text-align:center">非空白符</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">^</td>
+<td style="text-align:center">整个字符串的行首</td>
+</tr>
+<tr>
+<td style="text-align:center">$</td>
+<td style="text-align:center">整个字符串的行尾</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">x?</td>
+<td style="text-align:center">0个或1个 x</td>
+</tr>
+<tr>
+<td style="text-align:center">x+</td>
+<td style="text-align:center">至少1个 x</td>
+</tr>
+<tr>
+<td style="text-align:center">x*</td>
+<td style="text-align:center">任意个 x</td>
+</tr>
+<tr>
+<td style="text-align:center">(xyz)+</td>
+<td style="text-align:center">至少一个 xyz</td>
+</tr>
+<tr>
+<td style="text-align:center">x{n,m}</td>
+<td style="text-align:center">至少 n 个至多 m 个 x</td>
+</tr>
+<tr>
+<td style="text-align:center">x{n,}</td>
+<td style="text-align:center">至少 n 个 x</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">\1 或 $1</td>
+<td style="text-align:center">第一个分组中的内容</td>
+</tr>
+<tr>
+<td style="text-align:center">\2 或 $2</td>
+<td style="text-align:center">第二个分组中的内容</td>
+</tr>
+<tr>
+<td style="text-align:center">\3 或 $3</td>
+<td style="text-align:center">第三个分组中的内容</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-贪婪和惰性"><a href="#5-贪婪和惰性" class="headerlink" title="5. 贪婪和惰性"></a>5. 贪婪和惰性</h2><p><strong>贪婪模式</strong>：当正则表达式中包含能接受重复的元字符时，通常的行为是（在使整个表达式能得到匹配的前提下）匹配尽可能多的字符。以这个表达式为例：a.*b，它将会匹配最长的以a开始，以b结束的字符串。如果用它来搜索aabab的话，它会匹配整个字符串aabab。这被称为贪婪匹配。</p>
+<p><strong>惰性模式</strong>：意味着匹配任意数量的重复，但是在能使整个匹配成功的前提下使用最少的重复。如果用它来搜索aabab的话，它会匹配整个字符串aab。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">贪婪</th>
+<th style="text-align:center">惰性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+?</td>
+</tr>
+<tr>
+<td style="text-align:center">?</td>
+<td style="text-align:center">??</td>
+</tr>
+<tr>
+<td style="text-align:center">*</td>
+<td style="text-align:center">*?</td>
+</tr>
+<tr>
+<td style="text-align:center">{n,}</td>
+<td style="text-align:center">{n,}?</td>
+</tr>
+<tr>
+<td style="text-align:center">{n,m}</td>
+<td style="text-align:center">{n,m}?</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 贪婪模式，匹配的是 abcdefghijklmn</span></div><div class="line"><span class="keyword">var</span> pattern = <span class="regexp">/[a-z]+/</span>;</div><div class="line"><span class="keyword">var</span> str = <span class="string">"abcdefghijklmn"</span>;</div><div class="line">alert(str.replace(pattern, <span class="string">"xxx"</span>)); <span class="comment">// xxx</span></div><div class="line"></div><div class="line"><span class="comment">// 惰性模式，匹配的是 a</span></div><div class="line"><span class="keyword">var</span> pattern = <span class="regexp">/[a-z]+?/</span>;</div><div class="line"><span class="keyword">var</span> str = <span class="string">"abcdefghijklmn"</span>;</div><div class="line">alert(str.replace(pattern, <span class="string">"xxx"</span>)); <span class="comment">// xxxbcdefghijklmn</span></div><div class="line"></div><div class="line"><span class="comment">// 贪婪模式，匹配的是 9A9B9，忽略掉了中间的 9 ，分组是 A9B</span></div><div class="line"><span class="keyword">var</span> pattern = <span class="regexp">/9(.*)9/</span>;</div><div class="line"><span class="keyword">var</span> str = <span class="string">"9A9B9"</span>;</div><div class="line">alert(str.replace(pattern, <span class="string">"$1"</span>)); <span class="comment">// A9B</span></div><div class="line"></div><div class="line"><span class="comment">// 惰性模式，匹配的是 9A9 ，没有忽略中间的 9 ，分组是 A</span></div><div class="line"><span class="keyword">var</span> pattern = <span class="regexp">/9(.*?)9/</span>;</div><div class="line"><span class="keyword">var</span> str = <span class="string">"9A9B9"</span>;</div><div class="line">alert(str.replace(pattern, <span class="string">"$1"</span>)); <span class="comment">// AB9</span></div></pre></td></tr></table></figure>
+<h2 id="6-前瞻"><a href="#6-前瞻" class="headerlink" title="6. 前瞻"></a>6. 前瞻</h2><p>前瞻就是可以指定需要匹配的字符前面的字符，如果前面的字符不是指定的字符，那么就不算匹配到。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern = <span class="regexp">/google(?=\slove)/</span></div><div class="line"><span class="keyword">var</span> str1 = <span class="string">"I love google"</span>;</div><div class="line"><span class="keyword">var</span> str2 = <span class="string">"google loves world"</span></div><div class="line">alert(str1.replace(pattern, <span class="string">"you"</span>)); <span class="comment">// I love google</span></div><div class="line">alert(str2.replace(pattern, <span class="string">"you"</span>)); <span class="comment">// you loves world</span></div></pre></td></tr></table></figure></p>
+<p><img src="/images/reimage4.png" alt="reimage4"></p>
+<h2 id="7-常见的正则"><a href="#7-常见的正则" class="headerlink" title="7. 常见的正则"></a>7. 常见的正则</h2><h3 id="7-1-检查邮政编码"><a href="#7-1-检查邮政编码" class="headerlink" title="7.1 检查邮政编码"></a>7.1 检查邮政编码</h3><p>邮政编码为6位数字，且首位不为0<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern = <span class="regexp">/[1-9]\d&#123;5&#125;/</span></div></pre></td></tr></table></figure></p>
+<p><img src="/images/reimage2.svg" alt="reimage2"></p>
+<h3 id="7-2-检查文件压缩包"><a href="#7-2-检查文件压缩包" class="headerlink" title="7.2 检查文件压缩包"></a>7.2 检查文件压缩包</h3><p>文件压缩包名称包括三个部分，包名、点号、压缩扩展名，包名可以包含的字符包括数字，字母和下划线：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern = <span class="regexp">/\w+\.(rar|zip|gz)/</span></div></pre></td></tr></table></figure></p>
+<p><img src="/images/reimage1.svg" alt="reimage1"></p>
+<h3 id="7-3-删除多余空格"><a href="#7-3-删除多余空格" class="headerlink" title="7.3 删除多余空格"></a>7.3 删除多余空格</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">str.replace(<span class="regexp">/\s/g</span>, <span class="string">""</span>);</div></pre></td></tr></table></figure>
+<h3 id="7-4-删除首尾空格"><a href="#7-4-删除首尾空格" class="headerlink" title="7.4 删除首尾空格"></a>7.4 删除首尾空格</h3><p>先删前面再删后面<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern = <span class="regexp">/^\s*/</span>;</div><div class="line"><span class="keyword">var</span> str = <span class="string">"    google    "</span>;</div><div class="line"><span class="keyword">var</span> result = str.replace(pattern, <span class="string">""</span>); <span class="comment">// 去前面的空格</span></div><div class="line">pattern = <span class="regexp">/\s*$/</span>;</div><div class="line">result = result.replace(pattern, <span class="string">""</span>); <span class="comment">// 去后面的空格</span></div></pre></td></tr></table></figure></p>
+<h3 id="7-5-简单的电子邮件验证"><a href="#7-5-简单的电子邮件验证" class="headerlink" title="7.5 简单的电子邮件验证"></a>7.5 简单的电子邮件验证</h3><p>邮箱一般有5个部分，用户自定义的，@，公司名称，点号，域名<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern = <span class="regexp">/^([a-zA-Z\.0-9_\-]+)@([a-zA-Z0-9]+)\.(a-zA-Z)&#123;2,4&#125;$/</span>;</div></pre></td></tr></table></figure></p>
+<p><img src="/images/reimage3.png" alt="reimage3"></p>
+<hr>
+<p>本文参考：<a href="http://deerchao.net/tutorials/regex/regex.htm#greedyandlazy" target="_blank" rel="external">http://deerchao.net/tutorials/regex/regex.htm#greedyandlazy</a><br>可视化工具来自<a href="https://regexper.com/" target="_blank" rel="external">Regexper</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RegExp/" rel="tag">#RegExp</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/20/文本框表单脚本/" rel="next" title="文本框表单脚本">
+                <i class="fa fa-chevron-left"></i> 文本框表单脚本
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/21/正则表达式/"
+           data-title="正则表达式" data-url="http://yoursite.com/2016/11/21/正则表达式/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="Paco Chang" />
+          <p class="site-author-name" itemprop="name">Paco Chang</p>
+          <p class="site-description motion-element" itemprop="description">生命不息 学习不止</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/changxiupeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/XiupengChang" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是正则表达式？"><span class="nav-text">1. 什么是正则表达式？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-创建正则表达式"><span class="nav-text">2. 创建正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-new-运算符"><span class="nav-text">2.1 new 运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-字面量"><span class="nav-text">2.2 字面量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-RegExp-和-String-拥有的关于正则表达式的方法"><span class="nav-text">3. RegExp 和 String 拥有的关于正则表达式的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-RegExp"><span class="nav-text">3.1 RegExp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-String"><span class="nav-text">3.2 String</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-元字符"><span class="nav-text">4. 元字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-贪婪和惰性"><span class="nav-text">5. 贪婪和惰性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-前瞻"><span class="nav-text">6. 前瞻</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-常见的正则"><span class="nav-text">7. 常见的正则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-检查邮政编码"><span class="nav-text">7.1 检查邮政编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-检查文件压缩包"><span class="nav-text">7.2 检查文件压缩包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-删除多余空格"><span class="nav-text">7.3 删除多余空格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-删除首尾空格"><span class="nav-text">7.4 删除首尾空格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-简单的电子邮件验证"><span class="nav-text">7.5 简单的电子邮件验证</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Paco Chang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"changxiupeng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
