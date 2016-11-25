@@ -98,7 +98,7 @@
 
 通过 &amp;lt;script&amp;gt; 标签的 src 特性引入外部资源动态加载的外部 JavaScript 文件能够立即执行，比如下面的 &amp;lt;script&amp;gt; 元素：
 &amp;lt;script type=&quot;text/javascript&quot; src=&quot;test.js">
-<meta property="og:updated_time" content="2016-11-09T11:52:58.000Z">
+<meta property="og:updated_time" content="2016-11-21T14:58:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="几种相对复杂的 DOM 操作技术">
 <meta name="twitter:description" content="1. 动态脚本的添加动态脚本是指，在页面加载时不存在，当页面加载完毕后，通过 DOM 操作动态添加的脚本。
@@ -352,7 +352,7 @@
 <li><p>通过 <code>&lt;link&gt;</code> 标签添加外部样式<br>我们以下面的这个 <code>&lt;link&gt;</code> 元素为例：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"test.css"</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>使用 DOM 代码来创建这个元素：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> link = <span class="built_in">document</span>.createElement(<span class="string">"link"</span>);</div><div class="line">link.rel = <span class="string">"stylesheet"</span>;</div><div class="line">link.type = <span class="string">"text/css"</span>;</div><div class="line">link.href = <span class="string">"test.css"</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> head = <span class="built_in">document</span>.getElementByTagName(<span class="string">"link"</span>)[<span class="number">0</span>];</div><div class="line">head.appendChild(link);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> link = <span class="built_in">document</span>.createElement(<span class="string">"link"</span>);</div><div class="line">link.rel = <span class="string">"stylesheet"</span>;</div><div class="line">link.type = <span class="string">"text/css"</span>;</div><div class="line">link.href = <span class="string">"test.css"</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> head = <span class="built_in">document</span>.getElementByTagName(<span class="string">"head"</span>)[<span class="number">0</span>];</div><div class="line">head.appendChild(link);</div></pre></td></tr></table></figure>
 <p>整个过程可以用一个函数进行封装：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadStyle</span>(<span class="params">url</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> link = <span class="built_in">document</span>.createElement(<span class="string">"link"</span>);</div><div class="line">  link.rel = <span class="string">"stylesheet"</span>;</div><div class="line">  link.type = <span class="string">"text/css"</span>;</div><div class="line">  link.href = url;</div><div class="line">  <span class="keyword">var</span> head = <span class="built_in">document</span>.getElementByTagName(<span class="string">"head"</span>);</div><div class="line">  head.appendChild(link);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 调用函数加载外部样式</span></div><div class="line">loadStyle(<span class="string">"test.css"</span>);</div></pre></td></tr></table></figure>
 <p>加载外部样式文件的过程是异步的，也就是说加载样式与执行 JavaScript 代码的过程没有固定的次序。</p>
@@ -484,7 +484,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

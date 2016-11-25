@@ -84,43 +84,40 @@
 
 
 
-<meta name="description" content="水平居中
+<meta name="description" content="一、水平居中
 如果是行内元素，则对其父元素应用 text-align: center;
 如果是块级元素，则对其应用 margin: auto;，前提是这个块状元素有固定的宽度。
 
-垂直居中行内元素或行内块状元素
+二、垂直居中2.1 行内元素或行内块状元素
 如果是单行，可以将其行高 inline-height 设置为容器的高度, 或者调整其上下 padding 值
 如果是多行，也可以调整其上下 padding 值
 
-块状元素绝对定位的方法
-块级元">
+2.2 块状元">
 <meta property="og:type" content="article">
 <meta property="og:title" content="怎样将一个元素水平垂直居中">
 <meta property="og:url" content="http://yoursite.com/2016/10/23/怎样将一个元素水平垂直居中/index.html">
 <meta property="og:site_name" content="Comma's">
-<meta property="og:description" content="水平居中
+<meta property="og:description" content="一、水平居中
 如果是行内元素，则对其父元素应用 text-align: center;
 如果是块级元素，则对其应用 margin: auto;，前提是这个块状元素有固定的宽度。
 
-垂直居中行内元素或行内块状元素
+二、垂直居中2.1 行内元素或行内块状元素
 如果是单行，可以将其行高 inline-height 设置为容器的高度, 或者调整其上下 padding 值
 如果是多行，也可以调整其上下 padding 值
 
-块状元素绝对定位的方法
-块级元">
-<meta property="og:updated_time" content="2016-11-13T06:01:48.000Z">
+2.2 块状元">
+<meta property="og:updated_time" content="2016-11-22T13:18:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="怎样将一个元素水平垂直居中">
-<meta name="twitter:description" content="水平居中
+<meta name="twitter:description" content="一、水平居中
 如果是行内元素，则对其父元素应用 text-align: center;
 如果是块级元素，则对其应用 margin: auto;，前提是这个块状元素有固定的宽度。
 
-垂直居中行内元素或行内块状元素
+二、垂直居中2.1 行内元素或行内块状元素
 如果是单行，可以将其行高 inline-height 设置为容器的高度, 或者调整其上下 padding 值
 如果是多行，也可以调整其上下 padding 值
 
-块状元素绝对定位的方法
-块级元">
+2.2 块状元">
 
 
 
@@ -340,25 +337,18 @@
       
 
       
-        <h1 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h1><ol>
+        <h1 id="一、水平居中"><a href="#一、水平居中" class="headerlink" title="一、水平居中"></a>一、水平居中</h1><ol>
 <li>如果是行内元素，则对其父元素应用 <code>text-align: center;</code></li>
 <li>如果是块级元素，则对其应用 <code>margin: auto;</code>，前提是这个块状元素有固定的宽度。</li>
 </ol>
-<h1 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h1><h2 id="行内元素或行内块状元素"><a href="#行内元素或行内块状元素" class="headerlink" title="行内元素或行内块状元素"></a>行内元素或行内块状元素</h2><ol>
+<h1 id="二、垂直居中"><a href="#二、垂直居中" class="headerlink" title="二、垂直居中"></a>二、垂直居中</h1><h2 id="2-1-行内元素或行内块状元素"><a href="#2-1-行内元素或行内块状元素" class="headerlink" title="2.1 行内元素或行内块状元素"></a>2.1 行内元素或行内块状元素</h2><ol>
 <li>如果是单行，可以将其行高 <code>inline-height</code> 设置为容器的高度, 或者调整其上下 padding 值</li>
 <li>如果是多行，也可以调整其上下 padding 值</li>
 </ol>
-<h2 id="块状元素"><a href="#块状元素" class="headerlink" title="块状元素"></a>块状元素</h2><h3 id="绝对定位的方法"><a href="#绝对定位的方法" class="headerlink" title="绝对定位的方法"></a>绝对定位的方法</h3><ol>
-<li>块级元素宽高已知<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">block-element &#123;</div><div class="line">  width: 18px;</div><div class="line">  height: 10px;</div><div class="line">  position: absolute;</div><div class="line">  top: 50%;</div><div class="line">  left: 50%;</div><div class="line">  margin-top: -5px;</div><div class="line">  margin-left: -9px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">block-element &#123;</div><div class="line">  width: 18px;</div><div class="line">  height: 10px;</div><div class="line">  position: absolute;</div><div class="line">  top: cal(50% - 5px);</div><div class="line">  left: cal(50% - 9px);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>以上两种方法都可以实现</p>
-<ol>
-<li>块级元素宽高未知<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">block-element &#123;</div><div class="line">  position: absolute;</div><div class="line">  top: 50%;</div><div class="line">  left: 50%;</div><div class="line">  transform: translate(-50%, -50%);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="利用-flexbox"><a href="#利用-flexbox" class="headerlink" title="利用 flexbox"></a>利用 flexbox</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">father-element &#123;</div><div class="line">  display: flex;</div><div class="line">&#125;</div><div class="line">block-element &#123;</div><div class="line">  margin: auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>或者直接在父元素上应用：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">father-element &#123;</div><div class="line">    display: flex;</div><div class="line">    align-items: center;</div><div class="line">    justify-content: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="2-2-块状元素"><a href="#2-2-块状元素" class="headerlink" title="2.2 块状元素"></a>2.2 块状元素</h2><h3 id="2-2-1-绝对定位的方法"><a href="#2-2-1-绝对定位的方法" class="headerlink" title="2.2.1 绝对定位的方法"></a>2.2.1 绝对定位的方法</h3><h4 id="2-2-1-1-自身宽高已知"><a href="#2-2-1-1-自身宽高已知" class="headerlink" title="2.2.1.1 自身宽高已知"></a>2.2.1.1 自身宽高已知</h4><figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-tag">block-element</span> &#123;</div><div class="line"></div><div class="line">  <span class="comment">/*设置自身宽高*/</span></div><div class="line">  <span class="attribute">width</span>: <span class="number">18px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">10px</span>;</div><div class="line"></div><div class="line">  <span class="comment">/*相对于父元素绝对定位*/</span></div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line"></div><div class="line">  <span class="comment">/*向下向左分别移动父元素高和宽的50%*/</span></div><div class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</div><div class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</div><div class="line"></div><div class="line">  <span class="comment">/*通过 margin 往回移动自身宽高的50%*/</span></div><div class="line">  <span class="attribute">margin-top</span>: -<span class="number">5px</span>;</div><div class="line">  <span class="attribute">margin-left</span>: -<span class="number">9px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">block-element</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">18px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">10px</span>;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line"></div><div class="line">  <span class="comment">/*通过 cal() 方法得到运算结果*/</span></div><div class="line">  <span class="attribute">top</span>: <span class="built_in">cal</span>(50% - 5px);</div><div class="line">  <span class="attribute">left</span>: <span class="built_in">cal</span>(50% - 9px);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="2-2-1-2-自身宽高未知"><a href="#2-2-1-2-自身宽高未知" class="headerlink" title="2.2.1.2 自身宽高未知"></a>2.2.1.2 自身宽高未知</h4><figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-tag">block-element</span> &#123;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</div><div class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</div><div class="line"></div><div class="line">  <span class="comment">/*这里的百分比是针对自身宽高的*/</span></div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(-50%, -50%);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="2-2-2-利用-flexbox"><a href="#2-2-2-利用-flexbox" class="headerlink" title="2.2.2 利用 flexbox"></a>2.2.2 利用 flexbox</h3><figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-tag">father-element</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">block-element</span> &#123;</div><div class="line">  <span class="attribute">margin</span>: auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者直接在父元素上应用：<br><figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-tag">father-element</span> &#123;</div><div class="line">    <span class="attribute">display</span>: flex;</div><div class="line">    <span class="attribute">align-items</span>: center;</div><div class="line">    <span class="attribute">justify-content</span>: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -466,7 +456,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -532,7 +522,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#水平居中"><span class="nav-text">水平居中</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#垂直居中"><span class="nav-text">垂直居中</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#行内元素或行内块状元素"><span class="nav-text">行内元素或行内块状元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#块状元素"><span class="nav-text">块状元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绝对定位的方法"><span class="nav-text">绝对定位的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用-flexbox"><span class="nav-text">利用 flexbox</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、水平居中"><span class="nav-text">一、水平居中</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、垂直居中"><span class="nav-text">二、垂直居中</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-行内元素或行内块状元素"><span class="nav-text">2.1 行内元素或行内块状元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-块状元素"><span class="nav-text">2.2 块状元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-绝对定位的方法"><span class="nav-text">2.2.1 绝对定位的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-1-自身宽高已知"><span class="nav-text">2.2.1.1 自身宽高已知</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-2-自身宽高未知"><span class="nav-text">2.2.1.2 自身宽高未知</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-利用-flexbox"><span class="nav-text">2.2.2 利用 flexbox</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>

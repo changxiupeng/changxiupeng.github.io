@@ -1,0 +1,803 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="表单," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon2.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="本文是对 JavaScript 高级程序设计 一书中相关章节的整理，加上自己的理解
+
+
+选择框是通过 &amp;lt;select&amp;gt; 和 &amp;lt;option&amp;gt; 两个元素来创建的。
+1. 属性和方法1.1 select 元素除了通用的一些属性和方法外，&amp;lt;select&amp;gt; 还具有如下属性和方法：
+
+
+
+属性/方法
+说明
+
+
+
+
+options
+当前选择框内包含的所有选项的 HTMLC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="选择框脚本">
+<meta property="og:url" content="http://yoursite.com/2016/11/22/选择框脚本/index.html">
+<meta property="og:site_name" content="Comma's">
+<meta property="og:description" content="本文是对 JavaScript 高级程序设计 一书中相关章节的整理，加上自己的理解
+
+
+选择框是通过 &amp;lt;select&amp;gt; 和 &amp;lt;option&amp;gt; 两个元素来创建的。
+1. 属性和方法1.1 select 元素除了通用的一些属性和方法外，&amp;lt;select&amp;gt; 还具有如下属性和方法：
+
+
+
+属性/方法
+说明
+
+
+
+
+options
+当前选择框内包含的所有选项的 HTMLC">
+<meta property="og:updated_time" content="2016-11-22T08:52:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="选择框脚本">
+<meta name="twitter:description" content="本文是对 JavaScript 高级程序设计 一书中相关章节的整理，加上自己的理解
+
+
+选择框是通过 &amp;lt;select&amp;gt; 和 &amp;lt;option&amp;gt; 两个元素来创建的。
+1. 属性和方法1.1 select 元素除了通用的一些属性和方法外，&amp;lt;select&amp;gt; 还具有如下属性和方法：
+
+
+
+属性/方法
+说明
+
+
+
+
+options
+当前选择框内包含的所有选项的 HTMLC">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/22/选择框脚本/"/>
+
+
+  <title> 选择框脚本 | Comma's </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Comma's</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">study notes</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                选择框脚本
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-22T09:52:47+08:00" content="2016-11-22">
+              2016-11-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/22/选择框脚本/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/22/选择框脚本/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文是对 <strong><a href="http://item.jd.com/10951037.html" target="_blank" rel="external">JavaScript 高级程序设计</a></strong> 一书中相关章节的整理，加上自己的理解</p>
+</blockquote>
+<hr>
+<p>选择框是通过 <code>&lt;select&gt;</code> 和 <code>&lt;option&gt;</code> 两个元素来创建的。</p>
+<h2 id="1-属性和方法"><a href="#1-属性和方法" class="headerlink" title="1. 属性和方法"></a>1. 属性和方法</h2><h3 id="1-1-select-元素"><a href="#1-1-select-元素" class="headerlink" title="1.1 select 元素"></a>1.1 select 元素</h3><p>除了通用的一些属性和方法外，<code>&lt;select&gt;</code> 还具有如下属性和方法：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">属性/方法</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">options</td>
+<td style="text-align:center">当前选择框内包含的所有选项的 HTMLCollection 集合</td>
+</tr>
+<tr>
+<td style="text-align:center">size</td>
+<td style="text-align:center">选择框呈现的选项的数目</td>
+</tr>
+<tr>
+<td style="text-align:center">multiple</td>
+<td style="text-align:center">是否允许多选 true/false</td>
+</tr>
+<tr>
+<td style="text-align:center">add(new, rel)</td>
+<td style="text-align:center">插入新元素，并制定位置</td>
+</tr>
+<tr>
+<td style="text-align:center">remove(index)</td>
+<td style="text-align:center">移除给定位置的选项</td>
+</tr>
+<tr>
+<td style="text-align:center">selectedIndex</td>
+<td style="text-align:center">选中项的索引</td>
+</tr>
+</tbody>
+</table>
+<p>另，选择框的 type 属性值不是 <code>selection-one</code> 就是 <code>selection-multiple</code>，取决于 HTML 代码中有没有 multiple 特性</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"myForm"</span> <span class="attr">action</span>=<span class="string">"index.html"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"city"</span> <span class="attr">size</span> = <span class="string">"5"</span> <span class="attr">multiple</span> = <span class="string">"multiple"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"0北京"</span>&gt;</span>北京<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"1上海"</span>&gt;</span>上海<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"2广州"</span>&gt;</span>广州<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>深圳<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>杭州<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="keyword">var</span> form = <span class="built_in">document</span>.getElementById(<span class="string">"myForm"</span>);</div><div class="line">  <span class="keyword">var</span> selection = form.elements[<span class="string">"city"</span>];</div><div class="line">  <span class="keyword">var</span> options = selection.options; <span class="comment">// HTMLOptionCollection</span></div><div class="line">  <span class="keyword">var</span> firstOpt = options[<span class="number">0</span>]; <span class="comment">// HTMLOptionElement</span></div><div class="line">  <span class="keyword">var</span> type = selection.type; <span class="comment">// selection-multiple</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="1-2-option-元素"><a href="#1-2-option-元素" class="headerlink" title="1.2 option 元素"></a>1.2 option 元素</h3><p>除了通用的一些属性和方法外，<code>&lt;option&gt;</code> 还具有如下属性和方法：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">属性/方法</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">index</td>
+<td style="text-align:center">当前选项的索引值</td>
+</tr>
+<tr>
+<td style="text-align:center">value</td>
+<td style="text-align:center">当前选项的值（<strong>最好用这种方法代替 DOM 去获取选项节点的值</strong>）</td>
+</tr>
+<tr>
+<td style="text-align:center">text</td>
+<td style="text-align:center">当前选项的文本（<strong>最好用这种方法代替 DOM 去获取选项节点的文本值</strong>）</td>
+</tr>
+<tr>
+<td style="text-align:center">label</td>
+<td style="text-align:center">当前选项的标签</td>
+</tr>
+<tr>
+<td style="text-align:center">selected</td>
+<td style="text-align:center">当前选项是否被选中 true/false</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 接上面例子中的代码</span></div><div class="line">alert(firstOpt.text); <span class="comment">// 北京</span></div><div class="line">alert(firstOpt.value); <span class="comment">// 0北京</span></div><div class="line">alert(options[<span class="number">3</span>].value); <span class="comment">// ""</span></div><div class="line">alert(options[<span class="number">4</span>].value); <span class="comment">// 没有 value 特性时，IE 返回空字符串，其他浏览器返回 text 特性值</span></div></pre></td></tr></table></figure>
+<p><strong>注</strong>：其他表单字段的 change 事件是在值被修改并失去焦点离开当前焦点时发生，而选择框的 change 事件是只要选中了选项就会发生。</p>
+<h2 id="2-选择选项"><a href="#2-选择选项" class="headerlink" title="2. 选择选项"></a>2. 选择选项</h2><h3 id="2-1-单选框"><a href="#2-1-单选框" class="headerlink" title="2.1 单选框"></a>2.1 单选框</h3><p>对于单选框，访问选中项的最简单方法是利用 <code>select</code> 元素的 selectedIndex 属性，该属性保存了被选中选项在选择框内的索引值。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> selectedOpt = selectBox.options[selectBox.selectedIndex];</div><div class="line"></div><div class="line">alert(<span class="string">"Selected index: "</span> + selectBox.selectedIndex +</div><div class="line">      <span class="string">"\nSelected text: "</span> + selectedOpt.text +</div><div class="line">      <span class="string">"\nSelected value "</span> + selectedOpt.value);</div></pre></td></tr></table></figure>
+<h3 id="2-2-多选框"><a href="#2-2-多选框" class="headerlink" title="2.2 多选框"></a>2.2 多选框</h3><p>对于多选框，selectedIndex 只保存了选中项的第一项。为了访问所有选中项中的信息，我们需要用到 <code>&lt;option&gt;</code> 元素中 selected 属性：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSelectedOpt</span>(<span class="params">whichSelect</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> result = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line">  <span class="keyword">var</span> option = <span class="literal">null</span>;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = whichSelect.options.length; i &lt; len; i++) &#123;</div><div class="line">    option = whichSelect.options[i];</div><div class="line">    <span class="keyword">if</span> (option.selected) &#123;</div><div class="line">      result.push(option);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面定义了一个 getSelectedOpt 函数，这个函数返回一个数组，这个数组中包含选择框中所有被选中的选项节点对象。</p>
+<p>然后我们可以利用下面这个函数提取每个选中项的信息：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> selectBox = <span class="built_in">document</span>.getElementById(<span class="string">"mySelect"</span>);</div><div class="line"><span class="keyword">var</span> selectedOptions = getSelectedOpt(selectBox);</div><div class="line"><span class="keyword">var</span> message = <span class="string">""</span>;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; selectedOptions.length; i++) &#123;</div><div class="line">  message += <span class="string">"Selected index: "</span> + selectedOptions[i].index +</div><div class="line">             <span class="string">"\nSelected text: "</span> + selectedOptions[i].text +</div><div class="line">             <span class="string">"\nSelected value "</span> + selectedOptions[i].value + <span class="string">"\n\n"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">alert(message);</div></pre></td></tr></table></figure></p>
+<h2 id="3-添加选项"><a href="#3-添加选项" class="headerlink" title="3. 添加选项"></a>3. 添加选项</h2><h3 id="3-1-创建选项"><a href="#3-1-创建选项" class="headerlink" title="3.1 创建选项"></a>3.1 创建选项</h3><p>创建选项有两种方法：一种是 DOM 的标准创建法；另一种是用 Option 构造函数创建。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// DOM 标准创建法</span></div><div class="line"><span class="keyword">var</span> newOption = <span class="built_in">document</span>.createElement(<span class="string">"option"</span>);</div><div class="line">newOption.appendChild(<span class="built_in">document</span>.createTextNode(<span class="string">"武汉"</span>));</div><div class="line">newOption.setAttribute(<span class="string">"value"</span>, <span class="string">"6武汉"</span>)；</div><div class="line"></div><div class="line">selectBox.appendChild(newOption);</div><div class="line"></div><div class="line"><span class="comment">// Option 构造函数创建</span></div><div class="line"><span class="keyword">var</span> newOption = <span class="keyword">new</span> Option(<span class="string">"option text"</span>, <span class="string">"option value"</span>);</div><div class="line">selectionBox.appendChild(newOption);</div></pre></td></tr></table></figure></p>
+<p>虽然构造函数会创建一个 option 实例，但在兼容 DOM 的浏览器中会返回一个 <code>&lt;option&gt;</code> 元素节点。所以，也可以用 DOM 的方法去插入到文本中。</p>
+<h3 id="3-2-添加到选择框"><a href="#3-2-添加到选择框" class="headerlink" title="3.2 添加到选择框"></a>3.2 添加到选择框</h3><p>上面提到了，可以用 new 操作符去创建一个选项实例，并且在兼容 DOM 的浏览器中可以将其作为一个节点用 DOM 的方式去插入到文本中。但是，IE8及其以下版本不支持 DOM 标准。</p>
+<p>这时，我们需要用到 select 元素的 add() 方法（DOM 标准的方法，IE 也支持）这方法接收两个参数，分别是新选项和位于新选项之后的选项。</p>
+<p>DOM 规定，第二个参数必填，如果后面没有选项，即新选项添加到最后，那么设为 null。<br>IE 中，第二个参数必须是下一个选项的索引值，且可以不填，填入 null 出错。</p>
+<p>那么，就导致只有 <strong>将新选项插入最后</strong>，才能跨浏览器实现，兼容方法是将第二个参数设为 undefined：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">selectBox.add(newOption, <span class="literal">null</span>); <span class="comment">// IE 出错</span></div><div class="line">selectBox.add(newOption, <span class="literal">undefined</span>); <span class="comment">// 兼容</span></div></pre></td></tr></table></figure></p>
+<p>如果想把新创建的选项插入到其它位置（不是最后一个），就应该使用 DOM 标准的方法，如 insertBefore() 方法。</p>
+<h2 id="4-移除选项"><a href="#4-移除选项" class="headerlink" title="4. 移除选项"></a>4. 移除选项</h2><p>移除选项一般有三种方法：</p>
+<ul>
+<li>第一种是DOM 的 removeChild() 方法</li>
+<li>第二种是 select 元素的 remove() 方法，接受一个参数为选项的索引值</li>
+<li>第三种是将该选项赋值为 null</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">selectBox.removeChild(selectBox.options[<span class="number">0</span>]);</div><div class="line"></div><div class="line">selectBox.remove(<span class="number">0</span>);</div><div class="line"></div><div class="line">selectBox.options[<span class="number">0</span>] = <span class="literal">null</span>;</div></pre></td></tr></table></figure>
+<h2 id="5-移动选项"><a href="#5-移动选项" class="headerlink" title="5. 移动选项"></a>5. 移动选项</h2><ol>
+<li><p>appendChild() 方法<br>这个方法将一个选项从原来的位置删除，并插入到一个选择框的末尾。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> selectBox1 = <span class="built_in">document</span>.getElementById(<span class="string">"mySelect1"</span>);</div><div class="line"><span class="keyword">var</span> selectBox2 = <span class="built_in">document</span>.getElementById(<span class="string">"mySelect2"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 将 selectBox1 中的第二个选项移动到 selectBox2 的末尾</span></div><div class="line">selectBox2.appendChild(selectBox1.options[<span class="number">1</span>]);</div></pre></td></tr></table></figure>
+</li>
+<li><p>insertBefore() 方法<br>appendChild() 方法只适合将一个选项移动到一个选择框的末尾，如果想移动到其它位置，那么就要用到 insertBefore() 方法，这个方法将一个选项插入到另一个选项前面：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> optionToMove = selectBox.options[<span class="number">2</span>];</div><div class="line"></div><div class="line">selectBox.insertBefore(optionToMove, selectBox.options[optionToMove.index - <span class="number">1</span>]);</div></pre></td></tr></table></figure>
+<p>上面的代码将第三位的选项移动到了第二位，原来第二位的选项被挤到了第三位。</p>
+</li>
+</ol>
+<h2 id="6-级联下拉选择器的实现"><a href="#6-级联下拉选择器的实现" class="headerlink" title="6. 级联下拉选择器的实现"></a>6. 级联下拉选择器的实现</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// HTML 代码</span></div><div class="line"><span class="comment">//  &lt;form name = "myForm"&gt;</span></div><div class="line"><span class="comment">//    &lt;select name = "province"&gt;</span></div><div class="line"><span class="comment">//    &lt;option&gt;请选择省份&lt;/option&gt;</span></div><div class="line"><span class="comment">//    &lt;/select&gt;</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//    &lt;select name = "city"&gt;</span></div><div class="line"><span class="comment">//    &lt;option&gt;请选择城市&lt;/option&gt;</span></div><div class="line"><span class="comment">//    &lt;/select&gt;</span></div><div class="line"><span class="comment">// &lt;/form&gt;</span></div><div class="line"></div><div class="line"><span class="comment">// 数据</span></div><div class="line"><span class="keyword">var</span> provinces = [</div><div class="line">  &#123;<span class="attr">text</span>: <span class="string">"1. 广东"</span>, <span class="attr">value</span>: <span class="string">"1"</span>&#125;,</div><div class="line">  &#123;<span class="attr">text</span>: <span class="string">"2. 河南"</span>, <span class="attr">value</span>: <span class="string">"2"</span>&#125;</div><div class="line">];</div><div class="line"></div><div class="line"><span class="keyword">var</span> cities = &#123;</div><div class="line">  <span class="number">1</span>: [</div><div class="line">    &#123;<span class="attr">text</span>: <span class="string">"1.1 广州"</span>, <span class="attr">value</span>: <span class="string">"1.1"</span>&#125;,</div><div class="line">    &#123;<span class="attr">text</span>: <span class="string">"1.2 深圳"</span>, <span class="attr">value</span>: <span class="string">"1.2"</span>&#125;,</div><div class="line">    &#123;<span class="attr">text</span>: <span class="string">"1.3 东莞"</span>, <span class="attr">value</span>: <span class="string">"1.3"</span>&#125;,</div><div class="line">    &#123;<span class="attr">text</span>: <span class="string">"1.4 中山"</span>, <span class="attr">value</span>: <span class="string">"1.4"</span>&#125;,</div><div class="line">    &#123;<span class="attr">text</span>: <span class="string">"1.5 惠州"</span>, <span class="attr">value</span>: <span class="string">"1.5"</span>&#125;,</div><div class="line">    &#123;<span class="attr">text</span>: <span class="string">"1.6 珠海"</span>, <span class="attr">value</span>: <span class="string">"1.6"</span>&#125;</div><div class="line">  ],</div><div class="line">  <span class="number">2</span>: [</div><div class="line">    &#123;<span class="attr">text</span>: <span class="string">"2.1 郑州"</span>, <span class="attr">value</span>: <span class="string">"2.1"</span>&#125;,</div><div class="line">    &#123;<span class="attr">text</span>: <span class="string">"2.2 洛阳"</span>, <span class="attr">value</span>: <span class="string">"2.2"</span>&#125;,</div><div class="line">    &#123;<span class="attr">text</span>: <span class="string">"2.3 安阳"</span>, <span class="attr">value</span>: <span class="string">"2.3"</span>&#125;,</div><div class="line">    &#123;<span class="attr">text</span>: <span class="string">"2.4 信阳"</span>, <span class="attr">value</span>: <span class="string">"2.4"</span>&#125;,</div><div class="line">    &#123;<span class="attr">text</span>: <span class="string">"2.5 新乡"</span>, <span class="attr">value</span>: <span class="string">"2.5"</span>&#125;</div><div class="line">  ]</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 根据数据列表填充选择器，第一个参数是要填充的选择框节点，第二个参数是要填入的数据数组</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fillSelect</span>(<span class="params">select, dataList</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// 对选择框内的选项遍历，并删除全部选项(！！！！！没有完全删除，留下了一个作为默认值！！！！！)</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = select.options.length<span class="number">-1</span>; i &gt; <span class="number">0</span>; i--) &#123;</div><div class="line">    select.remove(i);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 对传入的数据进行遍历，提取每一项数据中的信息，创建一个选项并插入选择框</span></div><div class="line">  dataList.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> option = <span class="keyword">new</span> Option(data.text, data.value);</div><div class="line">    select.appendChild(option);</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> provinceSelect = <span class="built_in">document</span>.forms[<span class="string">"myForm"</span>][<span class="string">"province"</span>];</div><div class="line"><span class="keyword">var</span> citySelect = <span class="built_in">document</span>.forms[<span class="string">"myForm"</span>][<span class="string">"city"</span>]；</div><div class="line"></div><div class="line"><span class="comment">// 填充省份选择框</span></div><div class="line">fillSelect(provinceSelect, provinces);</div><div class="line"></div><div class="line"><span class="comment">// 为省份选择框绑定 change 事件</span></div><div class="line">provinceSelect.addEventListener(</div><div class="line">  <span class="string">"change"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 根据此时的选择框中的值来提取城市数据中对应的数组</span></div><div class="line">    <span class="keyword">var</span> value = event.target.value,</div><div class="line">        list = cities[value] || [];</div><div class="line"></div><div class="line">    <span class="comment">// 将提取的数组填入到城市选择框中</span></div><div class="line">    fillSelect(citySelect, list);</div><div class="line">  &#125;</div><div class="line">)；</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/表单/" rel="tag">#表单</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/21/正则表达式/" rel="next" title="正则表达式">
+                <i class="fa fa-chevron-left"></i> 正则表达式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/22/选择框脚本/"
+           data-title="选择框脚本" data-url="http://yoursite.com/2016/11/22/选择框脚本/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="Paco Chang" />
+          <p class="site-author-name" itemprop="name">Paco Chang</p>
+          <p class="site-description motion-element" itemprop="description">生命不息 学习不止</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/changxiupeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/XiupengChang" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-属性和方法"><span class="nav-text">1. 属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-select-元素"><span class="nav-text">1.1 select 元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-option-元素"><span class="nav-text">1.2 option 元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-选择选项"><span class="nav-text">2. 选择选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-单选框"><span class="nav-text">2.1 单选框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-多选框"><span class="nav-text">2.2 多选框</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-添加选项"><span class="nav-text">3. 添加选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-创建选项"><span class="nav-text">3.1 创建选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-添加到选择框"><span class="nav-text">3.2 添加到选择框</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-移除选项"><span class="nav-text">4. 移除选项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-移动选项"><span class="nav-text">5. 移动选项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-级联下拉选择器的实现"><span class="nav-text">6. 级联下拉选择器的实现</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Paco Chang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"changxiupeng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

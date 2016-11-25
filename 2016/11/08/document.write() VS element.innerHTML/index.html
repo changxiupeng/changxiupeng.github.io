@@ -86,18 +86,18 @@
 
 <meta name="description" content="1. Document.write()write() 方法是 document 对象的一个方法，用来向文档中动态地添加文本、HTML 元素和 JavaScript 文件。
 该方法在文档加载的同时被调用和在文档加载后被调用所产生的结果有很大差异：
-文档加载的同时被调用这种情况下，页面不会被重新加载，内容会被插入到原页面的内容流中
+1.1 文档加载的同时被调用这种情况下，页面不会被重新加载，内容会被插入到原页面的内容流中
 
-向 HTML 文档中直接写入文本这种情况还有另外一个方法 write">
+向 HTML 文档中直接写入文本这种情况还有另外一个方法 w">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Document.write() VS Element.innerHTML">
 <meta property="og:url" content="http://yoursite.com/2016/11/08/document.write() VS element.innerHTML/index.html">
 <meta property="og:site_name" content="Comma's">
 <meta property="og:description" content="1. Document.write()write() 方法是 document 对象的一个方法，用来向文档中动态地添加文本、HTML 元素和 JavaScript 文件。
 该方法在文档加载的同时被调用和在文档加载后被调用所产生的结果有很大差异：
-文档加载的同时被调用这种情况下，页面不会被重新加载，内容会被插入到原页面的内容流中
+1.1 文档加载的同时被调用这种情况下，页面不会被重新加载，内容会被插入到原页面的内容流中
 
-向 HTML 文档中直接写入文本这种情况还有另外一个方法 write">
+向 HTML 文档中直接写入文本这种情况还有另外一个方法 w">
 <meta property="og:image" content="http://yoursite.com/images/write1.png">
 <meta property="og:image" content="http://yoursite.com/images/write2.png">
 <meta property="og:image" content="http://yoursite.com/images/write3.png">
@@ -106,14 +106,14 @@
 <meta property="og:image" content="http://yoursite.com/images/write6.png">
 <meta property="og:image" content="http://yoursite.com/images/write7.png">
 <meta property="og:image" content="http://yoursite.com/images/write8.png">
-<meta property="og:updated_time" content="2016-11-08T15:33:17.000Z">
+<meta property="og:updated_time" content="2016-11-21T14:52:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Document.write() VS Element.innerHTML">
 <meta name="twitter:description" content="1. Document.write()write() 方法是 document 对象的一个方法，用来向文档中动态地添加文本、HTML 元素和 JavaScript 文件。
 该方法在文档加载的同时被调用和在文档加载后被调用所产生的结果有很大差异：
-文档加载的同时被调用这种情况下，页面不会被重新加载，内容会被插入到原页面的内容流中
+1.1 文档加载的同时被调用这种情况下，页面不会被重新加载，内容会被插入到原页面的内容流中
 
-向 HTML 文档中直接写入文本这种情况还有另外一个方法 write">
+向 HTML 文档中直接写入文本这种情况还有另外一个方法 w">
 <meta name="twitter:image" content="http://yoursite.com/images/write1.png">
 
 
@@ -336,7 +336,7 @@
       
         <h2 id="1-Document-write"><a href="#1-Document-write" class="headerlink" title="1. Document.write()"></a>1. Document.write()</h2><p>write() 方法是 document 对象的一个方法，用来向文档中动态地添加文本、HTML 元素和 JavaScript 文件。</p>
 <p>该方法在文档加载的同时被调用和在文档加载后被调用所产生的结果有很大差异：</p>
-<h3 id="文档加载的同时被调用"><a href="#文档加载的同时被调用" class="headerlink" title="文档加载的同时被调用"></a>文档加载的同时被调用</h3><p>这种情况下，页面不会被重新加载，内容会被插入到原页面的内容流中</p>
+<h3 id="1-1-文档加载的同时被调用"><a href="#1-1-文档加载的同时被调用" class="headerlink" title="1.1 文档加载的同时被调用"></a>1.1 文档加载的同时被调用</h3><p>这种情况下，页面不会被重新加载，内容会被插入到原页面的内容流中</p>
 <ol>
 <li><p>向 HTML 文档中直接写入文本<br>这种情况还有另外一个方法 writeln() 可用，它们的区别如下：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Note that write() does NOT add a new line after each statement:<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="built_in">document</span>.write(<span class="string">"Hello World!"</span>);</div><div class="line">  <span class="built_in">document</span>.write(<span class="string">"Have a nice day!"</span>);</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Note that writeln() add a new line after each statement:<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="built_in">document</span>.writeln(<span class="string">"Hello World!"</span>);</div><div class="line">  <span class="built_in">document</span>.writeln(<span class="string">"Have a nice day!"</span>);</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -352,7 +352,7 @@
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>This is a loading page<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="xml"></span></div><div class="line">  document.write("<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">\</span>"<span class="attr">text</span>/<span class="attr">javascript</span>\" <span class="attr">src</span>=<span class="string">\</span>"<span class="attr">file.js</span>\"&gt;</span><span class="xml">" +</span></div><div class="line">"<span class="tag">&lt;<span class="name">\</span>/<span class="attr">script</span>&gt;</span>");</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="文档加载后被调用"><a href="#文档加载后被调用" class="headerlink" title="文档加载后被调用"></a>文档加载后被调用</h3><p>在文档加载后被调用，那么输出的内容将会重写整个页面。在载入页面后，浏览器输出流自动关闭；在此之后，任何一个对当前页面进行操作的document.write()方法将通过自动调用一个 document.open() 方法打开—个新的输出流，它将清除当前页面内容(包括源文档的任何变量或值)。<br><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>This is some content that you won't get to see because it will be overwritten.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">document</span>.write(<span class="string">"&lt;h1&gt;Hello World!&lt;/h1&gt;"</span>);</div><div class="line">  &#125;;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="1-2-文档加载后被调用"><a href="#1-2-文档加载后被调用" class="headerlink" title="1.2 文档加载后被调用"></a>1.2 文档加载后被调用</h3><p>在文档加载后被调用，那么输出的内容将会重写整个页面。在载入页面后，浏览器输出流自动关闭；在此之后，任何一个对当前页面进行操作的document.write()方法将通过自动调用一个 document.open() 方法打开—个新的输出流，它将清除当前页面内容(包括源文档的任何变量或值)。<br><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>This is some content that you won't get to see because it will be overwritten.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">document</span>.write(<span class="string">"&lt;h1&gt;Hello World!&lt;/h1&gt;"</span>);</div><div class="line">  &#125;;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <p><img src="/images/write4.png" alt="write4"></p>
 <p>这种情况主要是用来设置弹窗用的</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Click the button to open a new window called "MsgWindow" with some text.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"myFunction()"</span>&gt;</span>Try it<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> myWindow = <span class="built_in">window</span>.open(<span class="string">""</span>, <span class="string">"MsgWindow"</span>, <span class="string">"width=200,height=100"</span>);</div><div class="line">    myWindow.document.write(<span class="string">"&lt;p&gt;This is 'MsgWindow'. I am 200px wide and 100px tall!&lt;/p&gt;"</span>);</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -490,7 +490,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -556,7 +556,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Document-write"><span class="nav-text">1. Document.write()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文档加载的同时被调用"><span class="nav-text">文档加载的同时被调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档加载后被调用"><span class="nav-text">文档加载后被调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Element-innerHTML"><span class="nav-text">2. Element.innerHTML</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Document-write"><span class="nav-text">1. Document.write()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-文档加载的同时被调用"><span class="nav-text">1.1 文档加载的同时被调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-文档加载后被调用"><span class="nav-text">1.2 文档加载后被调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Element-innerHTML"><span class="nav-text">2. Element.innerHTML</span></a></li></ol></div>
             
           </div>
         </section>
