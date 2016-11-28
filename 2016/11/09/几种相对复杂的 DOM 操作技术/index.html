@@ -358,7 +358,7 @@
 <p>加载外部样式文件的过程是异步的，也就是说加载样式与执行 JavaScript 代码的过程没有固定的次序。</p>
 </li>
 <li><p>通过 <code>&lt;style&gt;</code> 标签包含嵌入式样式<br>我们以下面的这个 <code>&lt;style&gt;</code> 元素为例：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line">  body &#123;</div><div class="line">    background-color: red;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="css"></span></div><div class="line">  <span class="selector-tag">body</span> &#123;</div><div class="line">    <span class="attribute">background-color</span>: red;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>使用 DOM 代码来创建这个元素：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> style = <span class="built_in">document</span>.createElement(<span class="string">"style"</span>);</div><div class="line">style.rel = <span class="string">"stylesheet"</span>;</div><div class="line">style.type = <span class="string">"text/css"</span>;</div><div class="line">style.appendChild(<span class="built_in">document</span>.createTextNode(<span class="string">"body &#123;background-color: red;&#125;"</span>));</div><div class="line"><span class="keyword">var</span> head = <span class="built_in">document</span>.getElementByTagName(<span class="string">"head"</span>);</div><div class="line">head.appendChild(style);</div></pre></td></tr></table></figure>
 <p>跟 <code>&lt;script&gt;</code> 类似，IE 将 <code>&lt;style&gt;</code> 视为一个特殊的元素节点，不允许 DOM 访问其子节点。解决 IE 中的这个问题，需要先访问元素的 styleSheet 属性，然后再访问 styleSheet 属性的 cssText 属性，这个属性可以接受 CSS 代码：</p>
@@ -484,7 +484,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -501,7 +501,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

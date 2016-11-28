@@ -1,0 +1,730 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Ajax,跨域," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon2.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="通过 XHR 实现 Ajax 通信的主要限制，来源于跨域安全策略（同源策略）。XHR 对象只能访问与包含它的页面同源（同一个协议，同一个域名，同一个端口）的资源。虽然这个策略确实可以预防某些恶意行为，但是，实现合理的跨域请求对于开发某些浏览器应用程序也是至关重要的。下面介绍几种利用 Ajax 实现跨域请求的解决方案：
+1. CORS 跨域资源共享CORS 是一个 W3C 标准，是 Cross-Or">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ajax 跨域请求方案">
+<meta property="og:url" content="http://yoursite.com/2016/11/28/Ajax 跨域请求方案/index.html">
+<meta property="og:site_name" content="Comma's">
+<meta property="og:description" content="通过 XHR 实现 Ajax 通信的主要限制，来源于跨域安全策略（同源策略）。XHR 对象只能访问与包含它的页面同源（同一个协议，同一个域名，同一个端口）的资源。虽然这个策略确实可以预防某些恶意行为，但是，实现合理的跨域请求对于开发某些浏览器应用程序也是至关重要的。下面介绍几种利用 Ajax 实现跨域请求的解决方案：
+1. CORS 跨域资源共享CORS 是一个 W3C 标准，是 Cross-Or">
+<meta property="og:updated_time" content="2016-11-28T14:23:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ajax 跨域请求方案">
+<meta name="twitter:description" content="通过 XHR 实现 Ajax 通信的主要限制，来源于跨域安全策略（同源策略）。XHR 对象只能访问与包含它的页面同源（同一个协议，同一个域名，同一个端口）的资源。虽然这个策略确实可以预防某些恶意行为，但是，实现合理的跨域请求对于开发某些浏览器应用程序也是至关重要的。下面介绍几种利用 Ajax 实现跨域请求的解决方案：
+1. CORS 跨域资源共享CORS 是一个 W3C 标准，是 Cross-Or">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/28/Ajax 跨域请求方案/"/>
+
+
+  <title> Ajax 跨域请求方案 | Comma's </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Comma's</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">study notes</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Ajax 跨域请求方案
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-28T14:54:19+08:00" content="2016-11-28">
+              2016-11-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/28/Ajax 跨域请求方案/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/28/Ajax 跨域请求方案/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>通过 XHR 实现 Ajax 通信的主要限制，来源于跨域安全策略（同源策略）。XHR 对象只能访问与包含它的页面同源（同一个协议，同一个域名，同一个端口）的资源。虽然这个策略确实可以预防某些恶意行为，但是，实现合理的跨域请求对于开发某些浏览器应用程序也是至关重要的。<br>下面介绍几种利用 Ajax 实现跨域请求的解决方案：</p>
+<h2 id="1-CORS-跨域资源共享"><a href="#1-CORS-跨域资源共享" class="headerlink" title="1. CORS 跨域资源共享"></a>1. CORS 跨域资源共享</h2><p>CORS 是一个 W3C 标准，是 Cross-Origin Resource Sharing 的首字母缩写，翻译成中文是“跨域资源共享”。<br>它定义了在必须进行跨域访问时，浏览器和服务器应该怎么沟通。</p>
+<h3 id="1-1基本原理"><a href="#1-1基本原理" class="headerlink" title="1.1基本原理"></a>1.1基本原理</h3><p>使用自定义的 HTTP 头部，让浏览器与服务器进行沟通，从而决定请求或响应是应该成功还是失败。</p>
+<p>CORS 需要浏览器和服务器同时支持。目前所有浏览器都支持该功能，IE 不能低于 IE10。<br>CORS 通信与同源的 Ajax 通信，代码是一模一样的。不同的是，当浏览器发现 Ajax 跨源请求，就会 <strong>自动</strong> 添加一些 <strong>附加的头信息</strong>；有时，还会多出一些 <strong>附加的请求</strong>。<br>所以，浏览器在发现这是一个跨域请求的时候会自动帮我们处理一些事，只要服务端提供支持，前端是不需要做额外的事情的。</p>
+<p>浏览器将 CORS 请求分为两类：简单请求（simple request）和非简单请求（not-so-simple）。我们来详细介绍一下这两种请求：</p>
+<h3 id="1-2-简单请求"><a href="#1-2-简单请求" class="headerlink" title="1.2 简单请求"></a>1.2 简单请求</h3><p>只要同时满足以下两大条件，就属于简单请求：</p>
+<ol>
+<li>采用以下一种请求方法<ul>
+<li>HEAD</li>
+<li>GET</li>
+<li>POST</li>
+</ul>
+</li>
+<li>HTTP 的请求头信息不超过一下的几个字段：<ul>
+<li>Accept</li>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+<li>Last-Event-ID</li>
+<li>Content-Type: 只限三个值（application/x-www-form-urlencoded, multipart/form-data, text/plain）</li>
+</ul>
+</li>
+</ol>
+<h4 id="1-2-1-流程"><a href="#1-2-1-流程" class="headerlink" title="1.2.1 流程"></a>1.2.1 流程</h4><p>对于简单请求，浏览器直接发出 CORS 请求，具体来说就是在请求头信息中添加一个 <code>Origin</code> 字段，用来说明本次请求来自哪个源（协议+域名+端口）：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">Origin: https:<span class="comment">//www.google.com</span></div></pre></td></tr></table></figure></p>
+<p>服务器根据这个 Origin 的值，决定是否同意这次请求。</p>
+<h4 id="1-2-2-请求成功"><a href="#1-2-2-请求成功" class="headerlink" title="1.2.2 请求成功"></a>1.2.2 请求成功</h4><p>如果 Origin 指定的源，在服务器的许可范围内，服务器返回的响应中，会多出几个头信息字段：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">Access-Control-Allow-Origin: https:<span class="comment">//www.google.com</span></div><div class="line">Access-Control-Allow-Credentials: <span class="literal">true</span></div><div class="line">Access-Control-Expose-Headers: Paco</div></pre></td></tr></table></figure></p>
+<ol>
+<li>Access-Control-Allow-Origin<br>该字段是必须的，它的字段要么是请求时 Origin 字段的值，要么是一个 *，表示接受任意域名的请求。</li>
+<li><p>Access-Control-Allow-Credentials<br>该字段是可选的，它的值是一个布尔值，表示是否允许发送 Cookie。默认情况下，Cookie 不包含在 CORS 请求中，设为 true，即表示服务器明确许可，Cookie 可以包含在请求中，一起发送给服务器。这个值也只能设为 true，如果服务器不要 Cookie，需要删除这个字段。<br><em>如果浏览器希望能带着 Cookie 一起发到服务器，就必须将 XHR 的 <code>withCredentials</code> 属性值设为 true</em>。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">xhr.withCredentials = <span class="literal">true</span>;</div></pre></td></tr></table></figure>
+<p><em>如果省略这个属性的设置，有的浏览器还是会带 Cookie 一起发送。这时，可以显式地关闭：</em></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">xhr.withCredentials = <span class="literal">false</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Access-Control-Expose-Headers<br>该字段可选。CORS 请求时，XHR 对象只能读取到响应头的部分字段，如果需要拿到额外的字段，就需要在这个字段指定。</p>
+</li>
+</ol>
+<h4 id="1-2-3-请求失败"><a href="#1-2-3-请求失败" class="headerlink" title="1.2.3 请求失败"></a>1.2.3 请求失败</h4><p>如果 Origin 指定的源，不在服务器的许可范围内，那么服务器会返回一个正常的 HTTP 响应。浏览器没有在响应头中发现 Access-Control-Allow-Origin 这个字段，就知道出错了，从而抛出一个错误。这个错误能被 XHR 的 onerror 回调函数捕获。<br><strong>这种错误无法根据 HTTP 状态码识别，回应的状态码有可能是200。</strong></p>
+<h3 id="1-3-非简单请求"><a href="#1-3-非简单请求" class="headerlink" title="1.3 非简单请求"></a>1.3 非简单请求</h3><p>非简单请求是那种对服务器有特殊要求的请求，比如请求方法是 <code>PUT</code>、<code>DELETE</code>，或者 <code>Content-Type</code> 字段的类型是 <code>application/json</code>.</p>
+<p>非简单请求的 CORS 请求，会在正式通信之前，增加一次 HTTP 查询请求，称为“预检”（preflight）。<br>浏览器通过这次请求，询问服务器，当前网页所在的源是否在服务器的许可名单之中，以及可以使用哪些头信息字段。<br>只有得到肯定答复，浏览器才会发出正式的 XHR 请求，否则就报错。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line"><span class="keyword">var</span> url = <span class="string">"https://www.google.com"</span>;</div><div class="line">xhr.withCredentials = <span class="literal">false</span>;</div><div class="line">xhr.open(<span class="string">"put"</span>, url, <span class="literal">true</span>);</div><div class="line">xhr.setRequestHeader(<span class="string">"test"</span>, <span class="string">"inform"</span>);</div><div class="line">xhr.setRequestHeader(<span class="string">"Content-Type"</span>, <span class="string">"application/json"</span>);</div><div class="line">xhr.send();</div></pre></td></tr></table></figure>
+<p>上面的代码中，url 是异源，而且方法是 PUT，<code>Content-Type</code> 字段的类型是 <code>application/json</code>，还增加了一个自定义字段。<br>浏览器发现，这是一个非简单 CORS 请求，就会自动发送一个预检请求，要求服务器确认可以这样请求。</p>
+<p>一旦服务器通过了预检请求，以后每次浏览器正常的 CORS 请求，就都跟简单请求一样，会有一个 Origin 头信息字段。服务器回应，也都会有一个 Access-Control-Allow-Origin 头信息字段。</p>
+<h3 id="1-4-优缺点"><a href="#1-4-优缺点" class="headerlink" title="1.4 优缺点"></a>1.4 优缺点</h3><p>优点：</p>
+<ol>
+<li>功能强大，支持所有的 HTTP 请求方法</li>
+<li>开发者可以使用普通的 XHR 发起请求和获得数据</li>
+<li>能有效地进行错误处理</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>兼容性问题，只有现代浏览器才支持</li>
+</ol>
+<h2 id="2-JSONP"><a href="#2-JSONP" class="headerlink" title="2. JSONP"></a>2. JSONP</h2><p>JSONP 是 JSON with padding 的缩写，中文可以翻译成“填充式 JSON”或“参数式 JSON”，是应用 JSON 的一种新方法。<br>JSONP 看起来和 JSON 差不多，只不过是被包含在回调函数中的 JSON。<br>JSONP 由两部分组成，回调函数和数据。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">callback(&#123;<span class="string">"name"</span>: <span class="string">"Paco"</span>&#125;);</div></pre></td></tr></table></figure></p>
+<p>回调函数的名字一般是在请求中指定的，而数据就是传入回调函数的 JSON。<br>下面是一个典型的 JSONP 请求：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">http:<span class="comment">//www.google.com/json/?callback=handleResponse</span></div></pre></td></tr></table></figure></p>
+<p>上面的代码中通过查询字符串的形式指定了回调函数。</p>
+<h3 id="2-1-基本原理"><a href="#2-1-基本原理" class="headerlink" title="2.1 基本原理"></a>2.1 基本原理</h3><p>浏览器请求脚本资源不受同源策略限制，并且请求到脚本资源后将其立即执行。</p>
+<p>实现思路是，动态地向网页中添加一个 <code>&lt;script&gt;</code>元素，通过这个元素的 src 特性，向异源服务器请求 JSON 数据；服务器收到请求后，将数据作为参数，放在一个指定名字的回调函数里传回来。</p>
+<h3 id="2-2-浏览器端"><a href="#2-2-浏览器端" class="headerlink" title="2.2 浏览器端"></a>2.2 浏览器端</h3><p>发送一个 JSONP 请求，在浏览器端的操作如下：</p>
+<ol>
+<li>注册一个全局回调函数，这个函数接收一个参数，参数是期望得到的服务器端返回数据，函数的具体内容是处理这个数据。</li>
+<li>向网页中动态插入<code>&lt;script&gt;</code> 元素，由它向跨源网址发出请求<br>以下代码展示了浏览器端的操作：<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">   alert(<span class="string">"your girlfriend likes "</span> + data.present);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addScriptTag</span>(<span class="params">src</span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</div><div class="line">   script.setAttribute(<span class="string">"type"</span>, <span class="string">"text/javascript"</span>);</div><div class="line">   script.setAttribute(<span class="string">"src"</span>, src);</div><div class="line">   <span class="built_in">document</span>.body.appendChild(script);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   addScriptTag(<span class="string">"http://test.com/present?callback=foo"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="2-3-服务器端"><a href="#2-3-服务器端" class="headerlink" title="2.3 服务器端"></a>2.3 服务器端</h3><p>异源服务器接收到这个请求后，会将数据放在回调函数的参数位置返回。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">foo(&#123;<span class="string">"present"</span>: <span class="string">"cat"</span>&#125;);</div></pre></td></tr></table></figure></p>
+<p>由于<code>&lt;script&gt;</code> 元素请求的脚本，直接作为代码运行。这时，只要浏览器定义了 foo 函数，该函数就会立即被调用执行。<br>另外，作为参数的 JSON 数据被视为 JavaScript对象，而不是字符串，因此避免了 JSON.parse 的步骤。</p>
+<h3 id="2-4-优缺点"><a href="#2-4-优缺点" class="headerlink" title="2.4 优缺点"></a>2.4 优缺点</h3><p>优点：</p>
+<ol>
+<li>兼容性很好，所有浏览器都支持</li>
+<li>简单易用，能直接访问响应文本，支持在浏览器和服务器之间双向通信<br>缺点：</li>
+<li>只支持 GET 方法</li>
+<li>要确定 JSONP 请求是否失败并不容易。虽然 HTML5给 <code>&lt;script&gt;</code> 元素新增了一个 onerror 事件处理程序，但目前还没有得到浏览器支持。开发人员不得不使用计时器检测指定时间内是否接收到了响应。</li>
+</ol>
+<h2 id="3-搭建中间转发层（代理服务器）"><a href="#3-搭建中间转发层（代理服务器）" class="headerlink" title="3. 搭建中间转发层（代理服务器）"></a>3. 搭建中间转发层（代理服务器）</h2><p>思路是，通过在同源域名的服务器端架设一个代理服务器转发网页的请求，来实现同源策略。<br>你从客户端向你的服务器端的代理发出请求，而不是直接向异源服务器发出请求，然后代理把请求传递到异源服务器上，随后也是由代理向你的客户端传递返回数据。<br>也就是说，你的客户端始终在和你的服务器端打交道，这就符合了同源策略。<br>缺点是，你需要在服务器端进行额外的开发，而且因为中间经过了转发，所以网络开销和性能负载都有影响。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ajax/" rel="tag">#Ajax</a>
+          
+            <a href="/tags/跨域/" rel="tag">#跨域</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/27/Ajax 入门/" rel="next" title="Ajax 入门">
+                <i class="fa fa-chevron-left"></i> Ajax 入门
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/28/Ajax 跨域请求方案/"
+           data-title="Ajax 跨域请求方案" data-url="http://yoursite.com/2016/11/28/Ajax 跨域请求方案/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="Paco Chang" />
+          <p class="site-author-name" itemprop="name">Paco Chang</p>
+          <p class="site-description motion-element" itemprop="description">生命不息 学习不止</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/changxiupeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/XiupengChang" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-CORS-跨域资源共享"><span class="nav-text">1. CORS 跨域资源共享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1基本原理"><span class="nav-text">1.1基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-简单请求"><span class="nav-text">1.2 简单请求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-流程"><span class="nav-text">1.2.1 流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-请求成功"><span class="nav-text">1.2.2 请求成功</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-请求失败"><span class="nav-text">1.2.3 请求失败</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-非简单请求"><span class="nav-text">1.3 非简单请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-优缺点"><span class="nav-text">1.4 优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-JSONP"><span class="nav-text">2. JSONP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-基本原理"><span class="nav-text">2.1 基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-浏览器端"><span class="nav-text">2.2 浏览器端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-服务器端"><span class="nav-text">2.3 服务器端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-优缺点"><span class="nav-text">2.4 优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-搭建中间转发层（代理服务器）"><span class="nav-text">3. 搭建中间转发层（代理服务器）</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Paco Chang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"changxiupeng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

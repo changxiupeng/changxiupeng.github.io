@@ -84,18 +84,18 @@
 
 
 
-<meta name="description" content="1. 定义Ajax 是 Asynchronous JavaScript and XML 的首字母缩写，翻译成中文是“异步 JavaScript 和 XML”。是由大神 Jesse James Garrett 在一篇题为 Ajax: A new Approach to Web Applications的在线文章中提出来的。
+<meta name="description" content="1. 定义Ajax 是 Asynchronous JavaScript and XML 的首字母缩写，翻译成中文是”异步 JavaScript 和 XML”。是由大神 Jesse James Garrett 在一篇题为 Ajax: A new Approach to Web Applications的在线文章中提出来的。
 这一技术能够在无需刷新页面的情况下，在后台异步地向服务器请求额外的数据，实现">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ajax 入门">
 <meta property="og:url" content="http://yoursite.com/2016/11/27/Ajax 入门/index.html">
 <meta property="og:site_name" content="Comma's">
-<meta property="og:description" content="1. 定义Ajax 是 Asynchronous JavaScript and XML 的首字母缩写，翻译成中文是“异步 JavaScript 和 XML”。是由大神 Jesse James Garrett 在一篇题为 Ajax: A new Approach to Web Applications的在线文章中提出来的。
+<meta property="og:description" content="1. 定义Ajax 是 Asynchronous JavaScript and XML 的首字母缩写，翻译成中文是”异步 JavaScript 和 XML”。是由大神 Jesse James Garrett 在一篇题为 Ajax: A new Approach to Web Applications的在线文章中提出来的。
 这一技术能够在无需刷新页面的情况下，在后台异步地向服务器请求额外的数据，实现">
-<meta property="og:updated_time" content="2016-11-28T05:26:35.000Z">
+<meta property="og:updated_time" content="2016-11-28T16:04:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ajax 入门">
-<meta name="twitter:description" content="1. 定义Ajax 是 Asynchronous JavaScript and XML 的首字母缩写，翻译成中文是“异步 JavaScript 和 XML”。是由大神 Jesse James Garrett 在一篇题为 Ajax: A new Approach to Web Applications的在线文章中提出来的。
+<meta name="twitter:description" content="1. 定义Ajax 是 Asynchronous JavaScript and XML 的首字母缩写，翻译成中文是”异步 JavaScript 和 XML”。是由大神 Jesse James Garrett 在一篇题为 Ajax: A new Approach to Web Applications的在线文章中提出来的。
 这一技术能够在无需刷新页面的情况下，在后台异步地向服务器请求额外的数据，实现">
 
 
@@ -316,7 +316,7 @@
       
 
       
-        <h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h2><p>Ajax 是 Asynchronous JavaScript and XML 的首字母缩写，翻译成中文是“异步 JavaScript 和 XML”。是由大神 Jesse James Garrett 在一篇题为 <a href="http://adaptivepath.org/ideas/ajax-new-approach-web-applications/" target="_blank" rel="external">Ajax: A new Approach to Web Applications</a>的在线文章中提出来的。</p>
+        <h1 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h1><p>Ajax 是 Asynchronous JavaScript and XML 的首字母缩写，翻译成中文是”异步 JavaScript 和 XML”。是由大神 Jesse James Garrett 在一篇题为 <a href="http://adaptivepath.org/ideas/ajax-new-approach-web-applications/" target="_blank" rel="external">Ajax: A new Approach to Web Applications</a>的在线文章中提出来的。</p>
 <p>这一技术能够在无需刷新页面的情况下，在后台异步地向服务器请求额外的数据，实现更新页面部分内容的目的。传统的网页如果要更新内容必须要刷新整个页面，而且采用的是 “操作，等待，在操作” 的交互模式。</p>
 <p>Ajax 并不是一门新的编程语言，它是现有的多种技术的组合。主要包括：</p>
 <ol>
@@ -324,7 +324,7 @@
 <li>JavaScript 和 HTML DOM</li>
 </ol>
 <p>一个典型的应用就是 Google 搜索框，当你在搜索框中输入字符时， JavaScript 会将你输入的字符传到服务器端，服务器返回一个搜索建议的列表。</p>
-<h2 id="2-实现原理"><a href="#2-实现原理" class="headerlink" title="2. 实现原理"></a>2. 实现原理</h2><p>在进入具体细节之间，我们首先来看一下这门技术的实现原理：</p>
+<h1 id="2-实现原理"><a href="#2-实现原理" class="headerlink" title="2. 实现原理"></a>2. 实现原理</h1><p>在进入具体细节之间，我们首先来看一下这门技术的实现原理：</p>
 <ol>
 <li>页面中一个事件处理程序被触发</li>
 <li>通过 JavaScript 创建一个 XMLHttpRequest 对象</li>
@@ -333,11 +333,15 @@
 <li>浏览器提取新数据，利用 DOM 将其插入到页面中</li>
 </ol>
 <p>从上面我们不难看出，这门技术实现的第一步就是为页面中某一个节点添加事件处理程序。通过这个事件的触发，来引发后面的一系列操作。这也是 Ajax 为什么能够实现动态交互的原因。</p>
-<h2 id="3-XMLHttpRequest-对象"><a href="#3-XMLHttpRequest-对象" class="headerlink" title="3. XMLHttpRequest 对象"></a>3. XMLHttpRequest 对象</h2><p>Ajax 技术的核心就是 XMLHttpRequest 对象，浏览器和服务器都通过该对象发送和接收数据。</p>
-<h3 id="3-1-创建-XMLHttpRequest-对象"><a href="#3-1-创建-XMLHttpRequest-对象" class="headerlink" title="3.1 创建 XMLHttpRequest 对象"></a>3.1 创建 XMLHttpRequest 对象</h3><p>IE7+、 Firefox、 Opera、 Chrome 和 Safari 都支持原生的 XHR 对象，所以，如果不考虑 IE7 之前的版本，大可只用原生的 XHR 对象，如下：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest();</div></pre></td></tr></table></figure></p>
-<p>但是如果要考虑到 IE7 之前的版本，那么就要做兼容性的处理：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createRequest</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    request = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">  &#125; <span class="keyword">catch</span>(tryMS) &#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      request = <span class="keyword">new</span> ActiveXObject(<span class="string">"Msxml2.XMLHTTP"</span>);</div><div class="line">    &#125; <span class="keyword">catch</span>(otherMS) &#123;</div><div class="line">      <span class="keyword">try</span> &#123;</div><div class="line">        request = <span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</div><div class="line">      &#125; <span class="keyword">catch</span>(failed) &#123;</div><div class="line">        request = <span class="literal">null</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> request;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> request = createRequest();</div></pre></td></tr></table></figure></p>
-<h3 id="3-2-XMLHttpRequest-对象的用法"><a href="#3-2-XMLHttpRequest-对象的用法" class="headerlink" title="3.2 XMLHttpRequest 对象的用法"></a>3.2 XMLHttpRequest 对象的用法</h3><h4 id="3-2-1-初始化（启动）及发送"><a href="#3-2-1-初始化（启动）及发送" class="headerlink" title="3.2.1 初始化（启动）及发送"></a>3.2.1 初始化（启动）及发送</h4><p>在使用 XHR 对象时，首先必须调用 open 方法将其初始化，它接受三个参数：要发送的请求类型（get、post），接收请求的 URL 和表示是否异步的布尔值。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">request.open(<span class="string">"get"</span>, <span class="string">"test.php"</span>, <span class="literal">true</span>);</div></pre></td></tr></table></figure></p>
-<p>open 方法并不会真正发送请求，而只是启动一个请求以备启动。再调用 send 方法即可发送请求。<br>send 方法接受一个参数，表示作为请求主体的数据。如果请求类型为 get，那么就必须填 null。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">request.send(<span class="literal">null</span>);</div></pre></td></tr></table></figure></p>
+<h1 id="3-XMLHttpRequest-对象"><a href="#3-XMLHttpRequest-对象" class="headerlink" title="3. XMLHttpRequest 对象"></a>3. XMLHttpRequest 对象</h1><p>Ajax 技术的核心就是 XMLHttpRequest 对象，浏览器和服务器都通过该对象发送和接收数据。</p>
+<h2 id="3-1-创建-XMLHttpRequest-对象"><a href="#3-1-创建-XMLHttpRequest-对象" class="headerlink" title="3.1 创建 XMLHttpRequest 对象"></a>3.1 创建 XMLHttpRequest 对象</h2><p>IE7+、 Firefox、 Opera、 Chrome 和 Safari 都支持原生的 XHR 对象，所以，如果不考虑 IE7 之前的版本，大可只用原生的 XHR 对象，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest();</div></pre></td></tr></table></figure>
+<p>但是如果要考虑到 IE7 之前的版本，那么就要做兼容性的处理：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createRequest</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    request = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">  &#125; <span class="keyword">catch</span>(tryMS) &#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      request = <span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</div><div class="line">    &#125; <span class="keyword">catch</span>(failed) &#123;</div><div class="line">      request = <span class="literal">null</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> request;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> request = createRequest();</div></pre></td></tr></table></figure>
+<h2 id="3-2-XMLHttpRequest-对象的用法"><a href="#3-2-XMLHttpRequest-对象的用法" class="headerlink" title="3.2 XMLHttpRequest 对象的用法"></a>3.2 XMLHttpRequest 对象的用法</h2><h3 id="3-2-1-初始化（启动）及发送"><a href="#3-2-1-初始化（启动）及发送" class="headerlink" title="3.2.1 初始化（启动）及发送"></a>3.2.1 初始化（启动）及发送</h3><p>在使用 XHR 对象时，首先必须调用 open 方法将其初始化，它接受三个参数：要发送的请求类型（get、post），接收请求的 URL 和表示是否异步的布尔值。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">request.open(<span class="string">"get"</span>, <span class="string">"test.php"</span>, <span class="literal">true</span>);</div></pre></td></tr></table></figure>
+<p>open 方法并不会真正发送请求，而只是启动一个请求以备启动。再调用 send 方法即可发送请求。 send 方法接受一个参数，表示作为请求主体的数据。如果请求类型为 get，那么就必须填 null。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">request.send(<span class="literal">null</span>);</div></pre></td></tr></table></figure>
 <p>当请求发送到服务器端，响应的数据会自动填充 XHR 对象的属性。一共有四个属性：</p>
 <table>
 <thead>
@@ -348,11 +352,11 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">status</td>
+<td style="text-align:center">   status</td>
 <td style="text-align:center">响应的 HTTP 状态码</td>
 </tr>
 <tr>
-<td style="text-align:center">statusText</td>
+<td style="text-align:center"> statusText</td>
 <td style="text-align:center">响应的 HTTP 状态说明</td>
 </tr>
 <tr>
@@ -361,12 +365,12 @@
 </tr>
 <tr>
 <td style="text-align:center">responseXML</td>
-<td style="text-align:center">如果响应主体内容类型不是文本，而是“text/xml”或者”application/xml“,则返回包含响应数据的 XML DOM 文档</td>
+<td style="text-align:center">如果响应主体内容类型不是文本，而是”text/xml”或者”application/xml”,则返回包含响应数据的 XML DOM 文档</td>
 </tr>
 </tbody>
 </table>
 <p>浏览器接收到响应之后，首先需要检查 status 属性的值，以确定响应已经成功返回。一般以 HTTP 状态码为 200 作为成功的标志。此外，状态码为 304 表示请求的资源并没有被修改，可以直接使用浏览器缓存中的版本，也意味着响应是有效的。</p>
-<h4 id="3-2-2-获取、设置头信息"><a href="#3-2-2-获取、设置头信息" class="headerlink" title="3.2.2 获取、设置头信息"></a>3.2.2 获取、设置头信息</h4><ol>
+<h3 id="3-2-2-获取、设置头信息"><a href="#3-2-2-获取、设置头信息" class="headerlink" title="3.2.2 获取、设置头信息"></a>3.2.2 获取、设置头信息</h3><ol>
 <li><p>使用 setRequestHeader() 设置单个请求头信息</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">request.setRequestHeader(<span class="string">"Content-Type"</span>, <span class="string">"application/x-www-form-urlencoded"</span>);</div></pre></td></tr></table></figure>
 </li>
@@ -377,8 +381,8 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">request.getAllResponseHeaders();</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<h4 id="3-2-3-同步"><a href="#3-2-3-同步" class="headerlink" title="3.2.3 同步"></a>3.2.3 同步</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">someNode.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> request = <span class="keyword">new</span> createRequest();</div><div class="line">  request.open(<span class="string">"get"</span>, <span class="string">"test.php"</span>, <span class="literal">false</span>);</div><div class="line">  request.send(<span class="literal">null</span>);</div><div class="line"></div><div class="line">  <span class="comment">// 根据返回的状态码进行处理</span></div><div class="line">  <span class="keyword">if</span> (request.status === <span class="number">200</span> || request.status === <span class="number">304</span>) &#123;</div><div class="line">    alert(request.responseText);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    alert(<span class="string">"status: "</span> + request.status + <span class="string">" statusText: "</span> + request.statusText);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="3-2-4-异步"><a href="#3-2-4-异步" class="headerlink" title="3.2.4 异步"></a>3.2.4 异步</h4><p>上面是同步的方法，异步才是我们真正常用的手段。使用异步时，需要触发 readystatechange 事件，然后检测 XHR 对象的 readyState 属性，接着再进行状态码的判断。<br>readyState 属性表示请求、响应过程的当前活动阶段。有五个值：</p>
+<h3 id="3-2-3-同步"><a href="#3-2-3-同步" class="headerlink" title="3.2.3 同步"></a>3.2.3 同步</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">someNode.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> request = <span class="keyword">new</span> createRequest();</div><div class="line">  request.open(<span class="string">"get"</span>, <span class="string">"test.php"</span>, <span class="literal">false</span>);</div><div class="line">  request.send(<span class="literal">null</span>);</div><div class="line"></div><div class="line">  <span class="comment">// 根据返回的状态码进行处理</span></div><div class="line">  <span class="keyword">if</span> (request.status === <span class="number">200</span> || request.status === <span class="number">304</span>) &#123;</div><div class="line">    alert(request.responseText);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    alert(<span class="string">"status: "</span> + request.status + <span class="string">" statusText: "</span> + request.statusText);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-2-4-异步"><a href="#3-2-4-异步" class="headerlink" title="3.2.4 异步"></a>3.2.4 异步</h3><p>上面是同步的方法，异步才是我们真正常用的手段。使用异步时，需要触发 readystatechange 事件，然后检测 XHR 对象的 readyState 属性，接着再进行状态码的判断。 readyState 属性表示请求、响应过程的当前活动阶段。有五个值：</p>
 <table>
 <thead>
 <tr>
@@ -416,9 +420,22 @@
 </tbody>
 </table>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">someNode.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> request = <span class="keyword">new</span> createRequest();</div><div class="line"></div><div class="line">  request.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (request.readyState === <span class="number">4</span>) &#123;</div><div class="line">      <span class="keyword">if</span> (request.status === <span class="number">200</span> || request.status === <span class="number">304</span>) &#123;</div><div class="line">        alert(request.responseText);</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        alert(<span class="string">"status: "</span> + request.status + <span class="string">" statusText: "</span> + request.statusText);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  request.open(<span class="string">"get"</span>, <span class="string">"test.php"</span>, <span class="literal">false</span>);</div><div class="line">  request.send(<span class="literal">null</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="4-GET-or-POST-？"><a href="#4-GET-or-POST-？" class="headerlink" title="4. GET or POST ？"></a>4. GET or POST ？</h2><h3 id="4-1-GET-请求"><a href="#4-1-GET-请求" class="headerlink" title="4.1 GET 请求"></a>4.1 GET 请求</h3><p>GET 是最常见的请求类型，用于向服务器查询某些信息。<br>必要时，可以将查询字符串参数添加到 URL 的末尾，以便将信息发送给服务器。<br>对于 XHR，位于传入 open() 方法的 URL 末尾的字符串必须经过正确的编码才行。查询字符串的每个参数的名称和值都要使用 encodeURIComponent() 进行编码，然后才能放到 URL 末尾。而且，所有的名值对都必须用和号（&amp;）分隔。<br>下面这个函数可以向现有 URL 的末尾添加查询字符串参数：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addURLParam</span>(<span class="params">url, name, value</span>) </span>&#123;</div><div class="line">  url += (url.indexOf(<span class="string">"?"</span>) === <span class="number">-1</span> ? <span class="string">"?"</span> : <span class="string">"&amp;"</span>);</div><div class="line">  url += <span class="built_in">encodeURIComponent</span>(name) + <span class="string">"="</span> + <span class="built_in">encodeURIComponent</span>(value);</div><div class="line">  <span class="keyword">return</span> url;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>下面是使用这个函数来构建请求 URL 的示例：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> url = <span class="string">"test.php"</span>;</div><div class="line">url = addURLParam(url, <span class="string">"name"</span>, <span class="string">"Paco"</span>);</div><div class="line">url = addURLParam(url, <span class="string">"age"</span>, <span class="string">"26"</span>);</div><div class="line"></div><div class="line">request.open(<span class="string">"get"</span>, url, <span class="literal">true</span>);</div></pre></td></tr></table></figure></p>
-<h3 id="4-2-POST-请求"><a href="#4-2-POST-请求" class="headerlink" title="4.2 POST 请求"></a>4.2 POST 请求</h3><p>使用频率仅次于 GET，通常用于向服务器发送应该被保存的数据。<br>POST 请求应该把数据作为请求的主体提交。POST 请求的主体可以包含非常多的数据，而且格式不限。<br>发送 POST 请求的第一步是将 open() 方法的第一个参数设置为 “post”；第二步是向 send()  方法传入数据。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addRequestData</span>(<span class="params">requestData, name, value</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (requestData !== <span class="string">""</span>) &#123;</div><div class="line">    requestData = requestData + <span class="string">"&amp;"</span>;</div><div class="line">  &#125;</div><div class="line">  requestData += <span class="built_in">encodeURIComponent</span>(name) + <span class="string">"="</span> + <span class="built_in">encodeURIComponent</span>(value);</div><div class="line">  <span class="keyword">return</span> requestData;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> requestData = <span class="string">""</span>;</div><div class="line">requestData = addRequestData(requestData, <span class="string">"name"</span>, <span class="string">"Paco"</span>);</div><div class="line">requestData = addRequestData(requestData, <span class="string">"age"</span>, <span class="string">"26"</span>);</div><div class="line">request.open(<span class="string">"post"</span>, <span class="string">"test.php"</span>, <span class="literal">true</span>);</div><div class="line">request.send(requestData);</div></pre></td></tr></table></figure></p>
+<h1 id="4-GET-or-POST-？"><a href="#4-GET-or-POST-？" class="headerlink" title="4. GET or POST ？"></a>4. GET or POST ？</h1><h2 id="4-1-GET-请求"><a href="#4-1-GET-请求" class="headerlink" title="4.1 GET 请求"></a>4.1 GET 请求</h2><p>GET 是最常见的请求类型，用于向服务器查询某些信息。 必要时，可以将查询字符串参数添加到 URL 的末尾，以便将信息发送给服务器。 对于 XHR，位于传入 open() 方法的 URL 末尾的字符串必须经过正确的编码才行。查询字符串的每个参数的名称和值都要使用 encodeURIComponent() 进行编码，然后才能放到 URL 末尾。而且，所有的名值对都必须用和号（&amp;）分隔。 下面这个函数可以向现有 URL 的末尾添加查询字符串参数：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addURLParam</span>(<span class="params">url, name, value</span>) </span>&#123;</div><div class="line">  url += (url.indexOf(<span class="string">"?"</span>) === <span class="number">-1</span> ? <span class="string">"?"</span> : <span class="string">"&amp;"</span>);</div><div class="line">  url += <span class="built_in">encodeURIComponent</span>(name) + <span class="string">"="</span> + <span class="built_in">encodeURIComponent</span>(value);</div><div class="line">  <span class="keyword">return</span> url;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面是使用这个函数来构建请求 URL 的示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> url = <span class="string">"test.php"</span>;</div><div class="line">url = addURLParam(url, <span class="string">"name"</span>, <span class="string">"Paco"</span>);</div><div class="line">url = addURLParam(url, <span class="string">"age"</span>, <span class="string">"26"</span>);</div><div class="line"></div><div class="line">request.open(<span class="string">"get"</span>, url, <span class="literal">true</span>);</div></pre></td></tr></table></figure>
+<h2 id="4-2-POST-请求"><a href="#4-2-POST-请求" class="headerlink" title="4.2 POST 请求"></a>4.2 POST 请求</h2><p>使用频率仅次于 GET，通常用于向服务器发送应该被保存的数据。 POST 请求应该把数据作为请求的主体提交。POST 请求的主体可以包含非常多的数据，而且格式不限。 发送 POST 请求的第一步是将 open() 方法的第一个参数设置为 “post”；第二步是向 send() 方法传入数据。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addRequestData</span>(<span class="params">requestData, name, value</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (requestData !== <span class="string">""</span>) &#123;</div><div class="line">    requestData = requestData + <span class="string">"&amp;"</span>;</div><div class="line">  &#125;</div><div class="line">  requestData += <span class="built_in">encodeURIComponent</span>(name) + <span class="string">"="</span> + <span class="built_in">encodeURIComponent</span>(value);</div><div class="line">  <span class="keyword">return</span> requestData;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> requestData = <span class="string">""</span>;</div><div class="line">requestData = addRequestData(requestData, <span class="string">"name"</span>, <span class="string">"Paco"</span>);</div><div class="line">requestData = addRequestData(requestData, <span class="string">"age"</span>, <span class="string">"26"</span>);</div><div class="line">request.open(<span class="string">"post"</span>, <span class="string">"test.php"</span>, <span class="literal">true</span>);</div><div class="line">request.send(requestData);</div></pre></td></tr></table></figure>
+<h1 id="5-封装-Ajax"><a href="#5-封装-Ajax" class="headerlink" title="5. 封装 Ajax"></a>5. 封装 Ajax</h1><p>首先我们要列举一下需要传入该函数的参数：</p>
+<ul>
+<li>url：需要请求资源的地址</li>
+<li>type：请求所采取的方法，get 还是 post</li>
+<li>data：所要传输的数据，一个键值对象</li>
+<li>onsuccess：请求成功时调用的函数</li>
+<li>onfial：请求失败时调用的函数</li>
+</ul>
+<p>我们可以将所有的这些参数，以键值对的形式封装成一个对象：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> options = &#123;</div><div class="line">  <span class="attr">url</span>:</div><div class="line">  type:</div><div class="line">  data:</div><div class="line">  onsuccess:</div><div class="line">  onfail:</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>将这个对象最为参数传入到我们封装的 Ajax 函数中，实现如下：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span>(<span class="params">options</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// 1.创建 XHR 对象</span></div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">  &#125; <span class="keyword">catch</span>(tryMS) &#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</div><div class="line">    &#125; <span class="keyword">catch</span>(failed) &#123;</div><div class="line">      xhr = full;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 2. 序列化请求参数</span></div><div class="line">  <span class="keyword">var</span> param = <span class="string">""</span>;</div><div class="line">  <span class="keyword">var</span> data = options.data ? options.data : <span class="number">-1</span>;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> data === <span class="string">"object"</span>) &#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> data) &#123;</div><div class="line">      <span class="keyword">if</span> (data.hasOwnProperty(key)) &#123;</div><div class="line">        param += <span class="built_in">encodeURIComponent</span>(key) + <span class="string">"="</span> + <span class="built_in">encodeURIComponent</span>(data.key) + <span class="string">"&amp;"</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    param.replace(<span class="regexp">/&amp;$/</span>, <span class="string">""</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 3. 启动并发送请求</span></div><div class="line">  <span class="keyword">var</span> type = options.type ? options.type.toUpperCase() : <span class="string">"GET"</span>;</div><div class="line">  <span class="keyword">if</span> (options.type === <span class="string">"GET"</span>) &#123;</div><div class="line">    xhr.open(type, options.url + <span class="string">"?"</span> + param, <span class="literal">true</span>);</div><div class="line">    xhr.send();</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    xhr.open(type, options.url, <span class="literal">true</span>);</div><div class="line">    xhr.setRequestHeader(<span class="string">"Content-Type"</span>, <span class="string">"application/x-www.form-urlencoded"</span>);</div><div class="line">    xhr.send(param);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 4. 接收响应</span></div><div class="line">  xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (xhr.readyState === <span class="number">4</span>) &#123;</div><div class="line">      <span class="keyword">if</span> (xhr.status === <span class="number">200</span>) &#123;</div><div class="line">        options.onsuccess(xhr.responseText);</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">if</span> (options.onfail) &#123;</div><div class="line">          options.onfail(xhr);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 5. 返回请求对象</span></div><div class="line">  <span class="keyword">return</span> xhr;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -459,6 +476,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/28/Ajax 跨域请求方案/" rel="prev" title="Ajax 跨域请求方案">
+                Ajax 跨域请求方案 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -530,7 +551,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -547,7 +568,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -596,7 +617,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-定义"><span class="nav-text">1. 定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-实现原理"><span class="nav-text">2. 实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-XMLHttpRequest-对象"><span class="nav-text">3. XMLHttpRequest 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-创建-XMLHttpRequest-对象"><span class="nav-text">3.1 创建 XMLHttpRequest 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-XMLHttpRequest-对象的用法"><span class="nav-text">3.2 XMLHttpRequest 对象的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-初始化（启动）及发送"><span class="nav-text">3.2.1 初始化（启动）及发送</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2-获取、设置头信息"><span class="nav-text">3.2.2 获取、设置头信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-3-同步"><span class="nav-text">3.2.3 同步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-4-异步"><span class="nav-text">3.2.4 异步</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-GET-or-POST-？"><span class="nav-text">4. GET or POST ？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-GET-请求"><span class="nav-text">4.1 GET 请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-POST-请求"><span class="nav-text">4.2 POST 请求</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-定义"><span class="nav-text">1. 定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-实现原理"><span class="nav-text">2. 实现原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-XMLHttpRequest-对象"><span class="nav-text">3. XMLHttpRequest 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-创建-XMLHttpRequest-对象"><span class="nav-text">3.1 创建 XMLHttpRequest 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-XMLHttpRequest-对象的用法"><span class="nav-text">3.2 XMLHttpRequest 对象的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-初始化（启动）及发送"><span class="nav-text">3.2.1 初始化（启动）及发送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-获取、设置头信息"><span class="nav-text">3.2.2 获取、设置头信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-同步"><span class="nav-text">3.2.3 同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-4-异步"><span class="nav-text">3.2.4 异步</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-GET-or-POST-？"><span class="nav-text">4. GET or POST ？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-GET-请求"><span class="nav-text">4.1 GET 请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-POST-请求"><span class="nav-text">4.2 POST 请求</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-封装-Ajax"><span class="nav-text">5. 封装 Ajax</span></a></li></ol></div>
             
           </div>
         </section>
