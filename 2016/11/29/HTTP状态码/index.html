@@ -1,0 +1,800 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="HTTP," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon2.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="1. 作用及分类1.1 作用状态码是当客户端向服务器发出请求时，用来描述请求返回的结果的。借助状态码，客户端可以知道请求是被正确处理了，还是在哪个部分出现了问题。
+1.2 分类状态码由 3 个数字和一个状态短语组成，例如 200 OK其中数字的第一位表示状态码的类别，根据请求结果的不同，可以将状态码分为 5 个类别：
+
+
+
+
+类别
+状态短语
+
+
+
+
+1xx
+信息性
+接收的请求正在处理
+
+
+2xx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP 状态码">
+<meta property="og:url" content="http://yoursite.com/2016/11/29/HTTP状态码/index.html">
+<meta property="og:site_name" content="Comma's">
+<meta property="og:description" content="1. 作用及分类1.1 作用状态码是当客户端向服务器发出请求时，用来描述请求返回的结果的。借助状态码，客户端可以知道请求是被正确处理了，还是在哪个部分出现了问题。
+1.2 分类状态码由 3 个数字和一个状态短语组成，例如 200 OK其中数字的第一位表示状态码的类别，根据请求结果的不同，可以将状态码分为 5 个类别：
+
+
+
+
+类别
+状态短语
+
+
+
+
+1xx
+信息性
+接收的请求正在处理
+
+
+2xx">
+<meta property="og:updated_time" content="2016-11-29T06:17:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP 状态码">
+<meta name="twitter:description" content="1. 作用及分类1.1 作用状态码是当客户端向服务器发出请求时，用来描述请求返回的结果的。借助状态码，客户端可以知道请求是被正确处理了，还是在哪个部分出现了问题。
+1.2 分类状态码由 3 个数字和一个状态短语组成，例如 200 OK其中数字的第一位表示状态码的类别，根据请求结果的不同，可以将状态码分为 5 个类别：
+
+
+
+
+类别
+状态短语
+
+
+
+
+1xx
+信息性
+接收的请求正在处理
+
+
+2xx">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/29/HTTP状态码/"/>
+
+
+  <title> HTTP 状态码 | Comma's </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Comma's</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">study notes</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                HTTP 状态码
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-29T10:29:57+08:00" content="2016-11-29">
+              2016-11-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网络/" itemprop="url" rel="index">
+                    <span itemprop="name">网络</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/29/HTTP状态码/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/29/HTTP状态码/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-作用及分类"><a href="#1-作用及分类" class="headerlink" title="1. 作用及分类"></a>1. 作用及分类</h2><h3 id="1-1-作用"><a href="#1-1-作用" class="headerlink" title="1.1 作用"></a>1.1 作用</h3><p>状态码是当客户端向服务器发出请求时，用来描述请求返回的结果的。<br>借助状态码，客户端可以知道请求是被正确处理了，还是在哪个部分出现了问题。</p>
+<h3 id="1-2-分类"><a href="#1-2-分类" class="headerlink" title="1.2 分类"></a>1.2 分类</h3><p>状态码由 3 个数字和一个状态短语组成，例如 200 OK<br>其中数字的第一位表示状态码的类别，根据请求结果的不同，可以将状态码分为 5 个类别：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">类别</th>
+<th>状态短语</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1xx</td>
+<td style="text-align:center">信息性</td>
+<td>接收的请求正在处理</td>
+</tr>
+<tr>
+<td style="text-align:center">2xx</td>
+<td style="text-align:center">成功</td>
+<td>请求正常处理完毕</td>
+</tr>
+<tr>
+<td style="text-align:center">3xx</td>
+<td style="text-align:center">重定向</td>
+<td>需要进行附加操作来完成请求</td>
+</tr>
+<tr>
+<td style="text-align:center">4xx</td>
+<td style="text-align:center">客户端错误</td>
+<td>服务器无法处理请求</td>
+</tr>
+<tr>
+<td style="text-align:center">5xx</td>
+<td style="text-align:center">服务器错误</td>
+<td>服务器处理请求出现错误</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-2xx-成功"><a href="#2-2xx-成功" class="headerlink" title="2. 2xx 成功"></a>2. <code>2xx</code> 成功</h2><p>2xx 表示响应结果得到成功的处理</p>
+<ul>
+<li><p>200 OK<br>表示从客户端发来的请求得到的服务器的正常处理</p>
+</li>
+<li><p>204 No Content<br>表示从客户端发来的请求在服务器端成功处理了，但是没有资源可返回，也就是没有实体部分。例如，当你使用 PUT 成功更新一个资源后，如果服务器完整接受了客户端的更新，没有拒绝也没有额外更新，那实际上是不需要返回任何东西的，因为现在客户端和服务器端已经拥有完全一致的状态。在这种情况下，服务器可以返回 204 No Content，同时 body 为空，客户端就知道它的状态已经跟服务器端同步了。</p>
+</li>
+<li><p>206 Partial Content<br>该状态码表示客户端进行了范围请求，而服务器正常处理了这个范围请求。响应报文中包含了由 Content-Range 字段指定范围的 <strong>实体</strong> 内容。</p>
+</li>
+</ul>
+<h2 id="3-3xx-重定向"><a href="#3-3xx-重定向" class="headerlink" title="3. 3xx 重定向"></a>3. <code>3xx</code> 重定向</h2><p>3xx 表示需要浏览器做一些特殊的处理以正确处理请求</p>
+<ul>
+<li><p>301 Moved Permanently<br>永久性重定向。该状态码表示请求的资源被分配了新的地址。如果已经把资源对应的地址保存为书签了，就应该将其更新。</p>
+</li>
+<li><p>302 Found<br>临时重定向。请求的资源现在临时从不同的 URI 响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求。如果这不是一个 GET 或者 HEAD 请求，那么浏览器禁止自动进行重定向，除非得到用户的确认，因为请求的条件可能因此发生变化。<br><strong>GET/ HEAD =&gt; 重定向用回原本的方法 (GET =&gt; GET, HEAD =&gt; HEAD); POST/ DELETE =&gt; 要問客戶是否重定向</strong></p>
+</li>
+<li><p>303 See Other<br>临时重定向。该状态码表示由于请求的资源被分配了新地址，应该使用 GET 方法定向获取请求的资源。<br><strong>POST =&gt; 重定向用 GET (不用问客戶否重定向)</strong></p>
+</li>
+<li><p>304 Not Modified<br>该状态码表示客户端发送了带条件的请求（采用 GET 方法的请求报文中包含If-Modified-Since, If-Unmodified-Since, If-Match, If-None-Match, If-Range中的任一个首部），服务器允许请求访问资源，但是当请求中的条件不能被满足时，就会返回 304 Not Modified（服务器资源未改变，可直接使用客户端未过期的缓存）。<br>304 状态码返回时，不包含任何主体部分。</p>
+</li>
+<li><p>307 Temporary Redirect<br>临时重定向。请求的资源现在临时从不同的 URI 响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求。如果这不是一个 GET 或者 HEAD 请求，那么浏览器禁止自动进行重定向，除非得到用户的确认，因为请求的条件可能因此发生变化。<br><strong>GET/ HEAD =&gt; 重定向用回原本的方法 (GET =&gt; GET, HEAD =&gt; HEAD); POST/ DELETE =&gt; 要問客戶是否重定向</strong></p>
+</li>
+</ul>
+<h3 id="302，303，307区别"><a href="#302，303，307区别" class="headerlink" title="302，303，307区别"></a>302，303，307区别</h3><p>302，303，307都是临时重定向，按说应该有不同的功能，可是为什么302和307是一模一样的，这就要从 HTTP 协议的历史说起。</p>
+<p>这三个状态码，都是说，客户端请求的 url 临时失效了，在响应的报文中，写上了新的有效 url，但是之后的请求还是用老的 url。<br>那它们的区别是什么呢，区别在怎么根据返回的有效 url 处理这次的请求。</p>
+<p>HTTP 1.0 版本中，在处理临时重定向时，只有302，303两个状态码。302 告诉客户端，如果你之前是用 POST 方法，那么还用 POST 方法访问新 url，但是重定向之前要先询问客户是否重定向。<br>而 303，则强制将 POST 换成 GET ，并删除请求报文中的主体，去访问新 url，而且不用询问。</p>
+<p><strong>可是</strong>，支持 HTTP 1.0 版本的浏览器厂商在实现时，把 302 等同于 303，也就是说，只要收到 302 或 303 中的一个，强制将 POST 换成 GET ，并删除请求报文中的主体，去访问新 url，并且是自动再次发送请求。</p>
+<p><strong>但是</strong>，到了 HTTP 1.1 时代，既要实现更加规范化，又要实现兼容性，如果强制将 302，303区分，会造成混乱，多以只能再增加了一个 307 状态码，表示原先 302 状态码的意思。这样。无论 1.0 版本，还是 1.1 版本，302，303 实际上都是一个意思。</p>
+<h2 id="4-4xx-客户端错误"><a href="#4-4xx-客户端错误" class="headerlink" title="4. 4xx 客户端错误"></a>4. <code>4xx</code> 客户端错误</h2><ul>
+<li><p>400 Bad Request<br>该状态码表示请求报文中有语法错误。当错误发生时，需要修改请求中的错误内容后再次发送请求。另外，浏览器会向对待 200 OK 一样对待该状态码。</p>
+</li>
+<li><p>401 Unauthorized<br>该状态码表示发送的请求需要有通过 HTTP 认证的（BASIC, DIGEST认证）的认证信息。浏览器初次接收到 401 时，会弹出认证用的对话框。<br>如果之前已经进行过一次请求，再次收到 401 表示认证失败。</p>
+</li>
+<li><p>403 Forbidden<br>该状态码表示服务器拒绝客户端请求资源的访问，一般是客户端没有获得服务器的授权。</p>
+</li>
+<li><p>404 Not Found<br>该状态码表示服务器上无法找到请求的资源。除此之外，也可以在服务器拒绝请求且不想说明理由时使用。</p>
+</li>
+</ul>
+<h2 id="5-5xx-服务器错误"><a href="#5-5xx-服务器错误" class="headerlink" title="5. 5xx 服务器错误"></a>5. <code>5xx</code> 服务器错误</h2><ul>
+<li><p>500 Internal Server Error<br>该状态码表示服务器在执行请求时发生了错误。也有可能是 Web 应用发生的 bug 或某些临时的故障。</p>
+</li>
+<li><p>503 Server Unavailable<br>该状态码表示服务器暂时处于超负载或正进行停机维护，现在无法处理请求。</p>
+</li>
+</ul>
+<p>本文参考：</p>
+<ol>
+<li><a href="http://www.cnblogs.com/cathsfz/archive/2012/06/19/2553431.html" target="_blank" rel="external">HTTP 状态码详解</a></li>
+<li><a href="https://book.douban.com/subject/25863515/" target="_blank" rel="external">图解 HTTP</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTTP/" rel="tag">#HTTP</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/28/Ajax 跨域请求方案/" rel="next" title="Ajax 跨域请求方案">
+                <i class="fa fa-chevron-left"></i> Ajax 跨域请求方案
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/29/HTTP状态码/"
+           data-title="HTTP 状态码" data-url="http://yoursite.com/2016/11/29/HTTP状态码/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="Studying···" />
+          <p class="site-author-name" itemprop="name">Studying···</p>
+          <p class="site-description motion-element" itemprop="description">生命不息 学习不止</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/changxiupeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/XiupengChang" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-作用及分类"><span class="nav-text">1. 作用及分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-作用"><span class="nav-text">1.1 作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-分类"><span class="nav-text">1.2 分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2xx-成功"><span class="nav-text">2. 2xx 成功</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3xx-重定向"><span class="nav-text">3. 3xx 重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#302，303，307区别"><span class="nav-text">302，303，307区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4xx-客户端错误"><span class="nav-text">4. 4xx 客户端错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5xx-服务器错误"><span class="nav-text">5. 5xx 服务器错误</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Studying···</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"changxiupeng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
