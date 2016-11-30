@@ -186,7 +186,7 @@ th {
 body {
   position: relative;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 2;
   color: #555;
   background: #fff;
@@ -506,7 +506,7 @@ pre,
   overflow: auto;
   margin: 20px 0;
   padding: 15px;
-  font-size: 15px;
+  font-size: 14px;
   color: #ccc;
   background: #2d2d2d;
   line-height: 1.6;
@@ -521,7 +521,7 @@ code {
   color: #ccc;
   background: #2d2d2d;
   border-radius: 3px;
-  font-size: 15px;
+  font-size: 14px;
 }
 pre code {
   padding: 0;
@@ -1042,7 +1042,7 @@ pre .javascript .function {
 .post-body .figure .caption {
   margin: 10px auto 15px;
   text-align: center;
-  font-size: 18px;
+  font-size: 17px;
   color: #999;
   font-weight: bold;
   line-height: 1;
@@ -1574,7 +1574,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #580abe;
+  background: #d139da;
 }
 .links-of-blogroll {
   font-size: 13px;
