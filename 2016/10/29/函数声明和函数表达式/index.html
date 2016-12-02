@@ -94,7 +94,7 @@ Function Statement 有时是 Function Declaration 的另一种说法。在 mozil
 <meta property="og:description" content="英文函数声明对应的英文名称为 Function Declaration函数表达式对应的英文名称为 Function Expression
 
 Function Statement 有时是 Function Declaration 的另一种说法。在 mozilla 中，Function Statement 是 Function Declaration 的一种拓展，使得 Function Declara">
-<meta property="og:updated_time" content="2016-11-04T05:31:45.000Z">
+<meta property="og:updated_time" content="2016-12-02T12:03:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="函数声明 VS 函数表达式">
 <meta name="twitter:description" content="英文函数声明对应的英文名称为 Function Declaration函数表达式对应的英文名称为 Function Expression
@@ -333,7 +333,7 @@ Function Statement 有时是 Function Declaration 的另一种说法。在 mozil
 <blockquote>
 <p>Function Statement 有时是 Function Declaration 的另一种说法。在 mozilla 中，Function Statement 是 Function Declaration 的一种拓展，使得 Function Declaration 语句可以在任何允许使用 statement（语句）的地方使用。 <em>For example, a function statement can be nested within an if statement</em> （<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function" target="_blank" rel="external">Conditionally created functions</a>）。但是 Function Statement 现在还不是标准，所以不建议应用在产品开发中。</p>
 </blockquote>
-<h2 id="定义函数的方式"><a href="#定义函数的方式" class="headerlink" title="定义函数的方式"></a>定义函数的方式</h2><p>JS 中，函数声明和函数表达式都是用来定义函数的。</p>
+<h2 id="定义函数的方式"><a href="#定义函数的方式" class="headerlink" title="定义函数的方式"></a>定义函数的方式</h2><p>JS 中，函数声明和函数表达式都是用来定义函数的。函数声明是独立的语法结构，是单独存在的。但是函数表达式是作为表达式的一部分存在的。</p>
 <ul>
 <li>函数声明定义了一个具名的且不需要赋值的“函数变量”，它是独立的语法，只能用在全局和函数体内。类似于变量的声明，就像变量声明必须用 <code>var/let/const</code> 开头一样，函数声明也必须用 <code>function</code> 开头。</li>
 <li>函数表达式将函数定义为一个表达式的一部分（通常是赋值表达式）。函数表达式可以不命名，分为匿名函数表达式和具名函数表达式。<br>PS：表达式是由运算符和操作符构成，并产生运算结果的语法结构。也就是说表达式是一个单纯的运算过程，并且总是有返回值。</li>
@@ -350,14 +350,14 @@ Function Statement 有时是 Function Declaration 的另一种说法。在 mozil
 <li>将函数表达式赋值的变量（该变量可更改）作为函数用</li>
 <li>在函数表达式前后加上一对圆括号调用（IIEF）</li>
 </ul>
-<h2 id="函数声明和具名函数表达式的名称有什么区别？"><a href="#函数声明和具名函数表达式的名称有什么区别？" class="headerlink" title="函数声明和具名函数表达式的名称有什么区别？"></a>函数声明和具名函数表达式的名称有什么区别？</h2><p>函数名和被函数赋值的变量存在着差别。函数名不能被改变，而被函数的赋值变量却可以再分配。函数名只能在函数体内使用。倘若在函数体外使用函数名将会导致错误。</p>
+<h2 id="函数声明和具名函数表达式的名称有什么区别？"><a href="#函数声明和具名函数表达式的名称有什么区别？" class="headerlink" title="函数声明和具名函数表达式的名称有什么区别？"></a>函数声明和具名函数表达式的名称有什么区别？</h2><p>函数名和被函数赋值的变量存在着差别。函数名不能被改变，而被赋值的变量却可以再分配，且具名函数表达式的函数名只能在函数体内使用，倘若在函数体外使用函数名将会导致错误。</p>
 <p>另一方面，被函数赋值的变量仅仅受限于它被声明时的作用域。</p>
 <p>函数声明时也同时创建了一个与函数名同名的变量。因此，与函数表达式不同，函数声明定义的函数的函数名能在函数体内外使用。</p>
-<p>此处是函数声明，add 被绑定到了所在的作用域中<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">function add(a, b) &#123;</div><div class="line">  return a + b;</div><div class="line">&#125;</div><div class="line">add(1, 2);</div></pre></td></tr></table></figure></p>
-<p>此处是函数表达式，add1 被绑定到了自身函数中而不是所在作用域中<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">var add = function add1(a, b) &#123;</div><div class="line">  return a + b;</div><div class="line">&#125;</div><div class="line">add1(1, 2); // add1 is not defined</div></pre></td></tr></table></figure></p>
+<p>此处是函数声明，add 被绑定到了所在的作用域中<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a, b</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> a + b;</div><div class="line">&#125;</div><div class="line">add(<span class="number">1</span>, <span class="number">2</span>);</div></pre></td></tr></table></figure></p>
+<p>此处是函数表达式，add1 被绑定到了自身函数中而不是所在作用域中<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span> <span class="title">add1</span>(<span class="params">a, b</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> a + b;</div><div class="line">&#125;</div><div class="line">add1(<span class="number">1</span>, <span class="number">2</span>); <span class="comment">// add1 is not defined</span></div></pre></td></tr></table></figure></p>
 <h2 id="提升是什么？"><a href="#提升是什么？" class="headerlink" title="提升是什么？"></a>提升是什么？</h2><p>JS 引擎处理一段代码实际上分为两个阶段：编译阶段和执行阶段。<br>PS: JS 虽然不是一种编译语言，但是在执行前也需要先进行编译。只不过跟普通的编译语言不同的是 JS 是一边编译一边执行的。</p>
 <p>其中变量和函数的声明发生在 <em>编译阶段</em>。其他操作如赋值等都发生在 <em>执行阶段</em>。<br>这意味着无论作用域中的声明出现在什么地方，都将在代码执行之前首先被处理。可以将这个过程形象地想象为所有的声明（变量和函数）都被“移动”到了各自作用域的最顶端，这个过程被称为 <em>提升</em>。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">alert(a);</div><div class="line">alert(b);</div><div class="line">function a() &#123;&#125;</div><div class="line">var b = function b2() &#123;&#125;;</div><div class="line">alert(b);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">alert(a);</div><div class="line">alert(b);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span> <span class="title">b2</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">alert(b);</div></pre></td></tr></table></figure>
 <p>上面代码段的输出结果为<code>function a() {}</code>,<code>undefiend</code>,<code>function b2() {}</code></p>
 <p>JS 引擎处理上面代码的顺序可能是这样的：</p>
 <ol>
@@ -370,15 +370,24 @@ Function Statement 有时是 Function Declaration 的另一种说法。在 mozil
 <p>那我们现在就知道，变量和函数声明都会提升。但是，当变量和函数声明的函数名相同时，谁的优先级会更高呢。<br>答案是看情况：<br>同样是一个 <code>x</code> 标识</p>
 <ul>
 <li>如果在进行函数 <code>function x() {};</code> 声明的同时，只声明 <code>var x;</code> 而不对 <code>x</code> 进行赋值操作，那么此时函数声明优先级更高，函数声明会覆盖掉变量声明</li>
-<li>如果在进行函数 <code>function x() {};</code> 声明的同时，不仅声明 <code>var x;</code> 而且还对 <code>x</code> 进行赋值操作，即 <code>var x = 1;</code>，那么此时，变量声明会被 <strong><em>保存</em></strong> ，不会被覆盖。如果在变量声明的下面对 <code>x</code> 进行操作的话，变量声明的优先级更高, 会覆盖掉函数声明。</li>
+<li>如果在进行函数 <code>function x() {};</code> 声明的同时，不仅声明 <code>var x;</code> 而且同时还对 <code>x</code> 进行赋值操作，即 <code>var x = 1;</code>，那么此时，变量声明会被 <strong><em>保存</em></strong> ，不会被覆盖。变量声明的优先级更高, 会覆盖掉函数声明。只有当函数声明及对函数的操作出现在变量声明之前时，函数声明才不会被覆盖。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">function a() &#123;&#125;</div><div class="line">console.log(a);</div><div class="line">var a;</div><div class="line">console.log(a);</div></pre></td></tr></table></figure>
-<p>上面代码执行结果为 <code>function a() {}</code> <code>function a() {}</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">function a() &#123;&#125;</div><div class="line">console.log(a);</div><div class="line">var a = 1;</div><div class="line">console.log(a);</div></pre></td></tr></table></figure>
-<p>上面代码执行结果为 <code>function a() {}</code> <code>1</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//function a() &#123;&#125;</span></div><div class="line"><span class="keyword">var</span> a;</div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//function a() &#123;&#125;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"><span class="built_in">console</span>.log(a);  <span class="comment">//function a() &#123;&#125;</span></div><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<p>这其实与前面讲的并不矛盾，解析及执行过程如下：</p>
+<ol>
+<li>对变量 a 进行声明，并赋值为 undefined</li>
+<li>将函数体赋值给变量 a<ul>
+<li>如果此时，调用a，那么就是调用的 a 函数</li>
+<li>如果此时出现对 a 的初始化，那么函数声明就被覆盖了，以后每次调用 a，调用的都是变量a。</li>
+</ul>
+</li>
+</ol>
+<p><strong>也就是说，函数声明比变量声明优先级高的规则是没有变的，只是在代码执行阶段，变量被重写了。</strong></p>
 <h2 id="到底是用函数声明还是函数表达式？"><a href="#到底是用函数声明还是函数表达式？" class="headerlink" title="到底是用函数声明还是函数表达式？"></a>到底是用函数声明还是函数表达式？</h2><ol>
 <li><p>在 JavaScript 中，函数是第一等对象，之所以这样说，是因为它不仅可以像对象一样拥有属性和方法，而且可普通对象不一样的是它还可以被调用执行。函数表达式能更直观地看出是创建了一个对象。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">function add(a,b) &#123;</div><div class="line">  return a + b</div><div class="line">&#125;</div><div class="line">var add = function(a,b) &#123;</div><div class="line">  return a + b</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a,b</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> a + b</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> a + b</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 </li>
 <li><p>函数表达式的使用范围更广。函数声明语句并非真正的语句，JS 规范只是允许它们作为顶级语句。它们可以出现在全局代码中，或者内嵌在其他函数中，但它们不能出现在循环、条件判断，或者 try/cache/finally 以及 with 语句中。相比之下，函数表达式是更大意义上表达式的一部分。你可以创建匿名函数用作回调函数，作为其它对象的属性（这里只指定义函数，函数声明的函数名也可以这样用），用立即执行函数创建私有作用域等等，它们可以出现在代码的任何地方。</p>
 </li>
