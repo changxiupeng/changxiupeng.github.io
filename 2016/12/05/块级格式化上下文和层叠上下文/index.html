@@ -1,0 +1,746 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="BFC,上下文," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon2.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="块级格式化上下文（BFC）和层叠上下文困扰了我好一阵子，深入了解后发现这两个东西很像，所以这里就放到一起来总结一下。
+一、BFCBFC 是 Block Formatting Context 的缩写，中文可以翻译成块级格式化上下文。
+BFC 是 W3C CSS 2.1 规范中的一个概念，它是一个独立的布局环境，如果一个元素参与了 BFC，或者说这个元素拥有一个 BFC，那么这个元素内部元素如何布局定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="块级格式化上下文（BFC）和层叠上下文">
+<meta property="og:url" content="http://yoursite.com/2016/12/05/块级格式化上下文和层叠上下文/index.html">
+<meta property="og:site_name" content="Comma's">
+<meta property="og:description" content="块级格式化上下文（BFC）和层叠上下文困扰了我好一阵子，深入了解后发现这两个东西很像，所以这里就放到一起来总结一下。
+一、BFCBFC 是 Block Formatting Context 的缩写，中文可以翻译成块级格式化上下文。
+BFC 是 W3C CSS 2.1 规范中的一个概念，它是一个独立的布局环境，如果一个元素参与了 BFC，或者说这个元素拥有一个 BFC，那么这个元素内部元素如何布局定">
+<meta property="og:image" content="http://yoursite.com/images/stacking-order.png">
+<meta property="og:updated_time" content="2016-12-05T07:24:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="块级格式化上下文（BFC）和层叠上下文">
+<meta name="twitter:description" content="块级格式化上下文（BFC）和层叠上下文困扰了我好一阵子，深入了解后发现这两个东西很像，所以这里就放到一起来总结一下。
+一、BFCBFC 是 Block Formatting Context 的缩写，中文可以翻译成块级格式化上下文。
+BFC 是 W3C CSS 2.1 规范中的一个概念，它是一个独立的布局环境，如果一个元素参与了 BFC，或者说这个元素拥有一个 BFC，那么这个元素内部元素如何布局定">
+<meta name="twitter:image" content="http://yoursite.com/images/stacking-order.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/12/05/块级格式化上下文和层叠上下文/"/>
+
+
+  <title> 块级格式化上下文（BFC）和层叠上下文 | Comma's </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Comma's</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">study notes</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                块级格式化上下文（BFC）和层叠上下文
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-05T14:52:24+08:00" content="2016-12-05">
+              2016-12-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/05/块级格式化上下文和层叠上下文/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/05/块级格式化上下文和层叠上下文/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>块级格式化上下文（BFC）和层叠上下文困扰了我好一阵子，深入了解后发现这两个东西很像，所以这里就放到一起来总结一下。</p>
+<h2 id="一、BFC"><a href="#一、BFC" class="headerlink" title="一、BFC"></a>一、BFC</h2><p>BFC 是 Block Formatting Context 的缩写，中文可以翻译成块级格式化上下文。</p>
+<p>BFC 是 W3C CSS 2.1 规范中的一个概念，它是一个独立的布局环境，如果一个元素参与了 BFC，或者说这个元素拥有一个 BFC，那么这个元素内部元素如何布局定位，以及这个元素与其它元素的相互作用都要符合 BFC 的规则。<br>BFC 可以理解为一个箱子，箱子内部的元素再怎么翻江倒海都不会影响到箱子外面的元素，反过来也是一样，箱子外面的元素也不会影响箱子里面的元素。</p>
+<p>在详细了解 BFC 之前，我们有必要先了解一些有关 CSS 布局的基本概念。</p>
+<h3 id="1-块级元素"><a href="#1-块级元素" class="headerlink" title="1 块级元素"></a>1 块级元素</h3><p>w3.org 中的描述：</p>
+<blockquote>
+<p>Block-level elements are those elements of the source document that are formatted visually as blocks(e.g., paragraphs). The following values of the “display” property make an element block-level: “block”, “list-item”, and “table”.</p>
+</blockquote>
+<p>翻译成中文大概的意思是，块状元素是源文档在被可视化布局时，被可视化为块的元素。将元素的 display 属性设置为 “block”、”list-item” 或者 “table” 都可以将元素转化为块级元素。</p>
+<h3 id="2-块级盒子"><a href="#2-块级盒子" class="headerlink" title="2 块级盒子"></a>2 块级盒子</h3><p>w3.org 中的描述：</p>
+<blockquote>
+<p>Block-level boxes are boxes that participate in a block formatting context. Each block-level element generates a principal block-level box that contains descendant boxes and generated content and is also the box involved in any positioning scheme.</p>
+</blockquote>
+<p>翻译成中文大概的意思是，块级盒子是参与块级格式化上下文的盒子。每一个块级元素都会生成一个包含它后代盒子和生成内容的主要块级盒，并且这个盒子参与了任何定位计算。<br>也就是说，块级元素会自动生成一个块级盒子，而块级格式化上下文是由块级盒子参与的。</p>
+<h3 id="3-BFC-的创建及其规则"><a href="#3-BFC-的创建及其规则" class="headerlink" title="3 BFC 的创建及其规则"></a>3 BFC 的创建及其规则</h3><p>w3.org 中关于 BFC 的描述：</p>
+<blockquote>
+<p>Floats, absolutely positioned elements, block containers (such as inline-blocks, table-cells, and table-captions) that are not block boxes, and block boxes with “overflow” other than “visible” establish new block formatting contexts for their contents.</p>
+<p>In a block formatting context, boxes are laid out one after the other, vertically, beginning at the top of a containing block. The vertical distance between two sibling boxed is determined by the “margin” properties. Vertical margins between adjacent block-level boxes in a block formatting context collapse.</p>
+<p>In a block formatting context, each box’s left outer edge touches the left edge of the containing block (for right-to-left formatting, right edges touch). This is true even in the presence of floats (although a box’s line boxed may shrink due to the floats), unless the box established a new block formatting context (in which case the box itself may become narrower due to the floats).</p>
+</blockquote>
+<p>翻译成中文大概是：</p>
+<h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><ul>
+<li><em>浮动元素</em>，<em>绝对定位元素</em>，<em>不是块级盒子的块级包含块</em>（比如 inline-block、table-cell、table-caption）和 <em>overflow 值不是 visible 的块级盒子</em>，都会建立一个新的块级格式化上下文。</li>
+</ul>
+<h4 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h4><ul>
+<li><p>在一个块级格式化上下文中，盒子从包含块的顶部开始，垂直地一个接一个的排列，相邻（如果相邻的是父元素，那么也会折叠）两个盒子之间的垂直间距由盒子的 margin 属性值决定，在一个块状格式化上下文中相邻的连个块级盒子之间的垂直 margin 是折叠的。<br>需要注意的是，参与 BFC 布局的只有普通流 normal flow 中的块级盒，而 float 和绝对定位的元素虽然可以创建自己的 BFC，但是它们不属于普通流（浮动元素和绝对定位元素会脱离普通流），不参与包含它们的 BFC 的布局，同样也不会与其相邻元素（相邻元素是父元素也算）的 margin 进行折叠。</p>
+</li>
+<li><p>在一个块级格式化上下文中，每个盒子的左外边接触包含块的左边，即使在浮动元素参与的情况下也是如此（浮动元素会覆盖这个盒子），除非这个盒子新建了一个块级格式化上下文。</p>
+</li>
+</ul>
+<p>布局规则整理一下大概为下面 5 条：</p>
+<ol>
+<li>在 BFC 下，内部的 box 会在垂直方向上一个接一个地放置</li>
+<li>box 垂直方向的间距由 margin 决定，属于同一个 BFC 的两个相邻 box 的 margin 会发生重叠</li>
+<li>在 BFC 中，每一个盒子的左外边缘会触碰容器的左外边缘</li>
+<li>BFC 的区域不会与 float box 重叠（自适应两栏布局）</li>
+<li>计算 BFC 的高度时，浮动元素也参与计算（解决浮动塌陷）</li>
+</ol>
+<p>最后两条实际上是利用 BFC 是独立布局区域，不影响其它元素也不受其它元素影响的特性。虽然浮动元素不参与 BFC 内布局，但是仍然是 BFC 中的一部分）</p>
+<h2 id="二、层叠上下文"><a href="#二、层叠上下文" class="headerlink" title="二、层叠上下文"></a>二、层叠上下文</h2><p>层叠上下文是 HTML 元素的三维概念，可以假象为一条垂直于视窗的 z 轴。当元素创建了重叠上下文时，就可以说这个元素就拥有了一个 z 轴，它内部的子元素发生重叠时，会依据自身属性按照优先级顺序占用 z 轴（重叠上下文）上的空间，优先级最大的元素，排在最上面，离用户也最近。</p>
+<h3 id="1-层叠顺序"><a href="#1-层叠顺序" class="headerlink" title="1 层叠顺序"></a>1 层叠顺序</h3><p>层叠顺序就是层叠上下文 <em>内部元素</em> 占用 z 轴空间时的优先级顺序，它是一套排序的规则。<br><img src="/images/stacking-order.png" alt="stacking order"><br>这张图是从<a href="http://www.zhangxinxu.com/wordpress/2016/01/understand-css-stacking-context-order-z-index/" target="_blank" rel="external">张大神的博客</a>中偷来的。</p>
+<p><strong>注意：</strong></p>
+<ol>
+<li>排在最底下的 background/border 属于当前层叠上下文，即参与层叠排序的所有元素的父元素。</li>
+<li>background/border 为装饰，block 和 float 都属于布局，inline/inline-blocks 为内容，内容最上，布局次之，装饰最后的排序是合理的。</li>
+<li>难于理解的是 <em>“z-index:auto 或者看成 z-index：0 ，还有不依赖 z-index 的层叠上下文”</em> ，这一堆是什么鬼。其实是这样的：<ul>
+<li>z-index：auto 与 z-index：0 在层叠顺序的排序中权重的一样的，如果遇上了，那么后面的元素出现在前面元素的上面，另外，定位元素的 z-index 默认为 auto。</li>
+<li>这里之所以又出现层叠上下文，是因为层叠上下文里可以嵌套层叠上下文，事实上页面根元素自带重叠上下文。内部的层叠上下文同样要参与父重叠上下文的排序，如果内部层叠上下文有 z-index 值，那么就按 z-index 的值去跟其他元素比较排序；但是如果内部层叠上下文不支持 z-index 值，那么就按照 z-index：0 来算。</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-层叠上下文的创建"><a href="#2-层叠上下文的创建" class="headerlink" title="2 层叠上下文的创建"></a>2 层叠上下文的创建</h3><h4 id="CSS-2-1-标准"><a href="#CSS-2-1-标准" class="headerlink" title="CSS 2.1 标准"></a>CSS 2.1 标准</h4><ol>
+<li>页面根元素天生带有层叠上下文</li>
+<li>z-index 值为数值的定位元素</li>
+</ol>
+<h4 id="CSS-3"><a href="#CSS-3" class="headerlink" title="CSS 3"></a>CSS 3</h4><ol>
+<li>z-index 值为数值的 flex 子元素，即其父元素是 display：flex| inline-flex</li>
+<li>opacity 属性值小于 1 的元素</li>
+<li>transform 不为 none 的元素</li>
+<li>mix-blend-mode 属性值不为 “normal”的元素</li>
+<li>filter 值不为 none 的元素</li>
+<li>perspective 值不为 none 的元素</li>
+<li>isolation 值为 isolate 的元素</li>
+<li>position: fixed （目前浏览器实现不用，有的会有的不会）</li>
+</ol>
+<p>CSS 3 中创建的层叠上下文大都不会设置 z-index 属性，所以它们跟其他元素排序时按照 z-index：0 来算。即使层叠上下文的创建规则改变了，但是它们仍然遵循之前的层叠顺序的排序规则。</p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><ol>
+<li>块级格式化上下文和层叠上下文都是概念，一个可以理解成箱子，一个可以理解成 z 轴</li>
+<li>元素在一定的条件下创建块级格式化上下文/层叠上下文</li>
+<li>拥有块级格式化上下文/层叠上下文的元素的内部元素遵循一定的规则来布局或层叠</li>
+<li>拥有块级格式化上下文/层叠上下文的元素的内部可以嵌套块级格式化上下文/层叠上下文</li>
+</ol>
+<p><strong>本文参考</strong>：<br>【1】<a href="http://www.imooc.com/article/9723" target="_blank" rel="external">深入理解BFC</a><br>【2】<a href="https://www.w3.org/TR/CSS21/visuren.html#floats" target="_blank" rel="external">Visual formatting model</a><br>【3】<a href="https://www.w3ctech.com/topic/865" target="_blank" rel="external">BFC 神奇背后的原理</a><br>【4】<a href="http://web.jobbole.com/84808/" target="_blank" rel="external">什么是BFC</a><br>【5】<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context" target="_blank" rel="external">The stacking context</a><br>【6】<a href="http://www.zhangxinxu.com/wordpress/2016/01/understand-css-stacking-context-order-z-index/" target="_blank" rel="external">深入理解CSS中的层叠上下文和层叠顺序</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BFC/" rel="tag">#BFC</a>
+          
+            <a href="/tags/上下文/" rel="tag">#上下文</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/01/GET or POST/" rel="next" title="GET or POST ?">
+                <i class="fa fa-chevron-left"></i> GET or POST ?
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/05/块级格式化上下文和层叠上下文/"
+           data-title="块级格式化上下文（BFC）和层叠上下文" data-url="http://yoursite.com/2016/12/05/块级格式化上下文和层叠上下文/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="Studying···" />
+          <p class="site-author-name" itemprop="name">Studying···</p>
+          <p class="site-description motion-element" itemprop="description">生命不息 学习不止</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/changxiupeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/XiupengChang" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、BFC"><span class="nav-text">一、BFC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-块级元素"><span class="nav-text">1 块级元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-块级盒子"><span class="nav-text">2 块级盒子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-BFC-的创建及其规则"><span class="nav-text">3 BFC 的创建及其规则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建"><span class="nav-text">创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#规则"><span class="nav-text">规则</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、层叠上下文"><span class="nav-text">二、层叠上下文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-层叠顺序"><span class="nav-text">1 层叠顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-层叠上下文的创建"><span class="nav-text">2 层叠上下文的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS-2-1-标准"><span class="nav-text">CSS 2.1 标准</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS-3"><span class="nav-text">CSS 3</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、总结"><span class="nav-text">三、总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Studying···</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"changxiupeng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
