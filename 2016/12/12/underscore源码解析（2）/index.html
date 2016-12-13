@@ -87,14 +87,14 @@
 <meta name="description" content="有两个重要的内部函数对 underscore 实现迭代方法十分重要，underscore 定义的所有有关迭代的方法基本都用到了这两个内部函数。我们通过 _.each() 和 _.map() 两个迭代方法来学习一下这两个内部函数。
 1. 用 optimizeCb 优化迭代函数（回调函数）/** * each方法将ES5的forEach换为了函数式表达，既能迭代数组又能迭代对象 * @param ob">
 <meta property="og:type" content="article">
-<meta property="og:title" content="underscore源码解析(2)---有关迭代的两个内部函数">
+<meta property="og:title" content="underscore源码解析(2)--有关迭代的两个内部函数(Baseline setup)">
 <meta property="og:url" content="http://yoursite.com/2016/12/12/underscore源码解析（2）/index.html">
 <meta property="og:site_name" content="Comma's">
 <meta property="og:description" content="有两个重要的内部函数对 underscore 实现迭代方法十分重要，underscore 定义的所有有关迭代的方法基本都用到了这两个内部函数。我们通过 _.each() 和 _.map() 两个迭代方法来学习一下这两个内部函数。
 1. 用 optimizeCb 优化迭代函数（回调函数）/** * each方法将ES5的forEach换为了函数式表达，既能迭代数组又能迭代对象 * @param ob">
-<meta property="og:updated_time" content="2016-12-12T06:02:29.000Z">
+<meta property="og:updated_time" content="2016-12-13T08:01:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="underscore源码解析(2)---有关迭代的两个内部函数">
+<meta name="twitter:title" content="underscore源码解析(2)--有关迭代的两个内部函数(Baseline setup)">
 <meta name="twitter:description" content="有两个重要的内部函数对 underscore 实现迭代方法十分重要，underscore 定义的所有有关迭代的方法基本都用到了这两个内部函数。我们通过 _.each() 和 _.map() 两个迭代方法来学习一下这两个内部函数。
 1. 用 optimizeCb 优化迭代函数（回调函数）/** * each方法将ES5的forEach换为了函数式表达，既能迭代数组又能迭代对象 * @param ob">
 
@@ -120,7 +120,7 @@
   <link rel="canonical" href="http://yoursite.com/2016/12/12/underscore源码解析（2）/"/>
 
 
-  <title> underscore源码解析(2)---有关迭代的两个内部函数 | Comma's </title>
+  <title> underscore源码解析(2)--有关迭代的两个内部函数(Baseline setup) | Comma's </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -260,7 +260,7 @@
             
             
               
-                underscore源码解析(2)---有关迭代的两个内部函数
+                underscore源码解析(2)--有关迭代的两个内部函数(Baseline setup)
               
             
           </h1>
@@ -345,7 +345,7 @@
 <h4 id="3-3-isArrayLike"><a href="#3-3-isArrayLike" class="headerlink" title="3.3 isArrayLike"></a>3.3 <code>isArrayLike</code></h4><p><strong>这个函数可以判断传入的集合是不是一个数组或类数组</strong>，是的话返回 true，不是返回 false<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 数组所能拥有的最大元素数目</span></div><div class="line"><span class="keyword">var</span> MAX_ARRAY_INDEX = <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> isArrayLike = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// 获得 obj 集合的 length 属性值</span></div><div class="line">  <span class="comment">// 对象没有 length 属性，返回 undefined</span></div><div class="line">  <span class="keyword">var</span> getLength = property(<span class="string">"length"</span>),</div><div class="line">      length = getLength(obj);</div><div class="line"></div><div class="line">  <span class="comment">// 如果得到的 length 属性值是一个数字，且符合数组长度要求，</span></div><div class="line">  <span class="comment">// 那么 obj 是数组或类数组</span></div><div class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> length === <span class="string">"number"</span> &amp;&amp; length &gt;= <span class="number">0</span> &amp;&amp;</div><div class="line">      length &lt;= MAX_ARRAY_INDEX;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h4 id="3-4-isFunction"><a href="#3-4-isFunction" class="headerlink" title="3.4 isFunction"></a>3.4 <code>isFunction</code></h4><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">_.isFunction = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> obj === <span class="string">"function"</span> || <span class="literal">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="3-5-isObject"><a href="#3-5-isObject" class="headerlink" title="3.5 isObject"></a>3.5 <code>isObject</code></h4><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">_.isObject = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> type = <span class="keyword">typeof</span> obj;</div><div class="line"></div><div class="line">  <span class="comment">// 函数被认为是对象，而 undefined，null, NaN 等不被认为是对象</span></div><div class="line">  <span class="keyword">return</span> type === <span class="string">"function"</span> || type === <span class="string">"object"</span> &amp;&amp; !!obj;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="3-6-matcher"><a href="#3-6-matcher" class="headerlink" title="3.6 matcher"></a>3.6 <code>matcher</code></h4><p>matcher 函数将在下一篇文章中介绍，因为它依赖了其他几个 underscore 的关于对象的方法。</p>
+<h4 id="3-6-matcher"><a href="#3-6-matcher" class="headerlink" title="3.6 matcher"></a>3.6 <code>matcher</code></h4><p>matcher 函数将在之后的文章中介绍，因为它依赖了其他几个 underscore 中定义的关于对象的方法。</p>
 
       
     </div>
@@ -379,13 +379,17 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/11/underscore源码解析（1）/" rel="next" title="underscore源码解析(1)---框架和基础条件的设置">
-                <i class="fa fa-chevron-left"></i> underscore源码解析(1)---框架和基础条件的设置
+              <a href="/2016/12/11/underscore源码解析（1）/" rel="next" title="underscore源码解析(1)--框架和基础条件的设置(Baseline setup)">
+                <i class="fa fa-chevron-left"></i> underscore源码解析(1)--框架和基础条件的设置(Baseline setup)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/13/underscore源码解析(3)---工具函数/" rel="prev" title="underscore源码解析(3)--数据判断(Object Functions)">
+                underscore源码解析(3)--数据判断(Object Functions) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -412,7 +416,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/12/12/underscore源码解析（2）/"
-           data-title="underscore源码解析(2)---有关迭代的两个内部函数" data-url="http://yoursite.com/2016/12/12/underscore源码解析（2）/">
+           data-title="underscore源码解析(2)--有关迭代的两个内部函数(Baseline setup)" data-url="http://yoursite.com/2016/12/12/underscore源码解析（2）/">
       </div>
     
   </div>
@@ -457,7 +461,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
