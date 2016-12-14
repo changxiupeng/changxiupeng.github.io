@@ -1,0 +1,679 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="underscore,源码解析," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon2.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="这篇文章接着上篇文章，继续学习 underscore 中关于数据判断的 API。上篇文章主要介绍了数据类型，以及数据是否为空，是否有限的判断。这篇文章只介绍一个方法，判断两个数据值是否相等。这个方法应该是 underscore 中代码量和注释最多的一个方法了。
+源码// 判断 a, b 是否值相等_.isEqual = function (a, b) &amp;#123;  // 调用内部函数 eq，返回">
+<meta property="og:type" content="article">
+<meta property="og:title" content="underscore源码解析(4)--是否值相等(Object Functions)">
+<meta property="og:url" content="http://yoursite.com/2016/12/14/underscore源码解析（4）/index.html">
+<meta property="og:site_name" content="Comma's">
+<meta property="og:description" content="这篇文章接着上篇文章，继续学习 underscore 中关于数据判断的 API。上篇文章主要介绍了数据类型，以及数据是否为空，是否有限的判断。这篇文章只介绍一个方法，判断两个数据值是否相等。这个方法应该是 underscore 中代码量和注释最多的一个方法了。
+源码// 判断 a, b 是否值相等_.isEqual = function (a, b) &amp;#123;  // 调用内部函数 eq，返回">
+<meta property="og:updated_time" content="2016-12-14T15:03:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="underscore源码解析(4)--是否值相等(Object Functions)">
+<meta name="twitter:description" content="这篇文章接着上篇文章，继续学习 underscore 中关于数据判断的 API。上篇文章主要介绍了数据类型，以及数据是否为空，是否有限的判断。这篇文章只介绍一个方法，判断两个数据值是否相等。这个方法应该是 underscore 中代码量和注释最多的一个方法了。
+源码// 判断 a, b 是否值相等_.isEqual = function (a, b) &amp;#123;  // 调用内部函数 eq，返回">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/12/14/underscore源码解析（4）/"/>
+
+
+  <title> underscore源码解析(4)--是否值相等(Object Functions) | Comma's </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Comma's</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">study notes</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                underscore源码解析(4)--是否值相等(Object Functions)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-14T15:17:32+08:00" content="2016-12-14">
+              2016-12-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/underscore源码解析/" itemprop="url" rel="index">
+                    <span itemprop="name">underscore源码解析</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/14/underscore源码解析（4）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/14/underscore源码解析（4）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这篇文章接着上篇文章，继续学习 underscore 中关于数据判断的 API。上篇文章主要介绍了数据类型，以及数据是否为空，是否有限的判断。这篇文章只介绍一个方法，判断两个数据值是否相等。这个方法应该是 underscore 中代码量和注释最多的一个方法了。</p>
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 判断 a, b 是否值相等</span></div><div class="line">_.isEqual = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// 调用内部函数 eq，返回一个布尔值</span></div><div class="line">  <span class="keyword">return</span> eq(a, b);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="需要考虑的情况"><a href="#需要考虑的情况" class="headerlink" title="需要考虑的情况"></a>需要考虑的情况</h3><h4 id="1-0-0-但是这里并不认为它们是相等的"><a href="#1-0-0-但是这里并不认为它们是相等的" class="headerlink" title="1. 0 === -0, 但是这里并不认为它们是相等的"></a>1. <code>0 === -0</code>, 但是这里并不认为它们是相等的</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> (a === b) &#123;</div><div class="line">  <span class="keyword">return</span> a !== <span class="number">0</span> || <span class="number">1</span> / a === <span class="number">1</span> / b;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这段代码先判断 a，b 是否全等<br>如果全等再将 a 跟 0 相比较，如果它等于 0，那么就会返回 false（-0 === 0，所以用 a 还是 b 比较都一样），如果不等于 0，那么就可以排除这种情况<br>因为 <code>1 / 0 === Infinity</code> , <code>1 / -0 === -Infinity</code>，而 <code>Infinity !== -Infinity</code>，所以也可以用 <code>1 / a === 1 / b</code> 来排除这种情况</p>
+<h4 id="2-null-undefined-但是这里并不认为它们相等"><a href="#2-null-undefined-但是这里并不认为它们相等" class="headerlink" title="2. null == undefined 但是这里并不认为它们相等"></a>2. <code>null == undefined</code> 但是这里并不认为它们相等</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> (a == <span class="literal">null</span> || b == <span class="literal">null</span>) &#123;</div><div class="line">  <span class="keyword">return</span> a === b;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果 a，b 中至少有一个是 null，那么就用全等判断它们是否相等</p>
+<h4 id="3-如果-a，b-是下划线对象的实例"><a href="#3-如果-a，b-是下划线对象的实例" class="headerlink" title="3. 如果 a，b 是下划线对象的实例"></a>3. 如果 a，b 是下划线对象的实例</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> (a <span class="keyword">instanceof</span> _) &#123;</div><div class="line">  a = a._wrapped;</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (b <span class="keyword">instanceof</span> _) &#123;</div><div class="line">  b = b._wrapped;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这种情况下，只需要比较 a,b 两个对象中的 <code>_wrapped</code> 属性值<br>因为调用下划线构造函数时，值是存在实例的 <code>_wrapped</code>属性中的，具体可以看<a href="https://changxiupeng.github.io/2016/12/11/underscore%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%881%EF%BC%89/" target="_blank" rel="external">第一篇解读文章</a><br>也就是说可以不用比较 ab 从下划线对象中继承的属性和方法，直接比较实例化时添加的属性值即可，所以，就需要对 ab 重新赋值为它们各自的 <code>_wrapped</code> 属性值</p>
+<h4 id="4-如果-a，b-是-RegExg，String，Boolean，Number，Date-类型的值"><a href="#4-如果-a，b-是-RegExg，String，Boolean，Number，Date-类型的值" class="headerlink" title="4. 如果 a，b 是 RegExg，String，Boolean，Number，Date 类型的值"></a>4. 如果 a，b 是 <code>RegExg，String，Boolean，Number，Date</code> 类型的值</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> className = toString.call(a);</div><div class="line"></div><div class="line"><span class="comment">//如果 a，b 的数据类型都不相同，那么返回 false</span></div><div class="line"><span class="keyword">if</span> (className !== toString.call(b)) &#123;</div><div class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 数据类型相同，再来根据数据类型的不同分别进行判断</span></div><div class="line"><span class="keyword">switch</span> (className) &#123;</div><div class="line"></div><div class="line">  <span class="comment">// 因为简单的运算就可以将正则转成字符串</span></div><div class="line">  <span class="comment">// "" + /a/i === "/a/i"</span></div><div class="line">  <span class="comment">// 所以正则可以跟字符串一起判断</span></div><div class="line">  <span class="keyword">case</span> <span class="string">"[object RegExp]"</span>:</div><div class="line">  <span class="keyword">case</span> <span class="string">"[object String]"</span>:</div><div class="line">    <span class="keyword">return</span> <span class="string">""</span> + a === <span class="string">""</span> + b;</div><div class="line"></div><div class="line">  <span class="keyword">case</span> <span class="string">"[object Number]"</span>:</div><div class="line"></div><div class="line">    <span class="comment">// 数字类型首先要解决 NaN 这个特殊情况</span></div><div class="line">    <span class="comment">// NaN 的特点很明显，它是数字类型并且不等于自身</span></div><div class="line">    <span class="comment">// 而且，NaN 是唯一一个不等于自身的数字，如果 ab 都不等于自身</span></div><div class="line">    <span class="comment">// 则认为它们相等</span></div><div class="line">    <span class="comment">// 在 ab 前面加 “+”表示将其转化成数字</span></div><div class="line">    <span class="keyword">if</span> (+a !== +a) &#123;</div><div class="line">      <span class="keyword">return</span> +b !== +b;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 判断除了 NaN 之外的数字，这里要考虑到 0 的情况</span></div><div class="line">    <span class="comment">// 如果是零就需要用 1 除后比较，如果不是就直接全等比较</span></div><div class="line">    <span class="keyword">return</span> +a === <span class="number">0</span> ? <span class="number">1</span> / +a === <span class="number">1</span> / b : +a === +b;</div><div class="line"></div><div class="line">  <span class="comment">// 用加法运算符将 Date 和 Boolean 值转成数字进行比较</span></div><div class="line">  <span class="comment">// Date 转成数字后变成 UTC 的毫秒数</span></div><div class="line">  <span class="keyword">case</span> <span class="string">"[object Date]"</span>:</div><div class="line">  <span class="keyword">case</span> <span class="string">"[object Boolean]"</span>:</div><div class="line">    <span class="keyword">return</span> +a === +b;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="5-如果-a，b-是-Array-或-Object-类型"><a href="#5-如果-a，b-是-Array-或-Object-类型" class="headerlink" title="5. 如果 a，b 是 Array 或 Object 类型"></a>5. 如果 a，b 是 Array 或 Object 类型</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> areArrays = className === <span class="string">"[object Array]"</span>;</div><div class="line"></div><div class="line"><span class="comment">// 如果 a 不是数组类型</span></div><div class="line"><span class="keyword">if</span> (!areArrays) &#123;</div><div class="line"></div><div class="line">  <span class="comment">// 只要a和b有一个不是 object 类型，则认为 ab 不相等</span></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> a != <span class="string">"object"</span> || <span class="keyword">typeof</span> b != <span class="string">"object"</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 拥有不用构造器的对象是不相等的，但是不同 iframes 下的 Objects 和 Arrays 是相等的</span></div><div class="line">  <span class="keyword">var</span> aCtor = a.construtor, bCtor = b.construtor;</div><div class="line">  <span class="keyword">if</span> (aCtor !== bCtor &amp;&amp; !(_.isFunction(aCtor) &amp;&amp; aCtor <span class="keyword">instanceof</span> aCtor &amp;&amp;</div><div class="line">                           _.isFunction(bCtor) &amp;&amp; bCtor <span class="keyword">instanceof</span> bCtor)</div><div class="line">                      &amp;&amp; (<span class="string">'constructor'</span> <span class="keyword">in</span> a &amp;&amp; <span class="string">'constructor'</span> <span class="keyword">in</span> b)) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 采用栈数据结构来进行递归</span></div><div class="line"><span class="comment">// 如果 ab 内部有多层的数组或对象的嵌套，那么最外层会先进栈</span></div><div class="line"><span class="comment">// 然后层层依次进栈，最内层在栈顶</span></div><div class="line">aStack = aStack || [];</div><div class="line">bStack = bStack || [];</div><div class="line"></div><div class="line"><span class="keyword">var</span> length = aStack.length;</div><div class="line"></div><div class="line"><span class="comment">// 这里可能是为了检测对象是否有自调用</span></div><div class="line"><span class="keyword">while</span>(length--) &#123;</div><div class="line">  <span class="keyword">if</span> (aStack[length] === a) &#123;</div><div class="line">    <span class="keyword">return</span> bStack[length] === b;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 如果上面 while 中没有进入 if 中，这里就把 a 和 b 放到栈里</span></div><div class="line">aStack.push(a);</div><div class="line">aStack.push(b);</div><div class="line"></div><div class="line"><span class="comment">// 如果是数组</span></div><div class="line"><span class="keyword">if</span> (areArrays) &#123;</div><div class="line">  length = a.length;</div><div class="line"></div><div class="line">  <span class="comment">// 如果 ab 长度不相等，直接返回 false</span></div><div class="line">  <span class="keyword">if</span> (length !== b.length) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line"></div><div class="line">  <span class="comment">// 如果 ab 长度相等，那么递归比较每个元素</span></div><div class="line">  <span class="keyword">while</span> (length--) &#123;</div><div class="line"></div><div class="line">    <span class="comment">// 如果有一个元素不相等，就返回false</span></div><div class="line">    <span class="keyword">if</span> (!eq(a[length], b[length], aStack, bStack)) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">  &#125;</div><div class="line">&#125; <span class="keyword">else</span> &#123; <span class="comment">// 如果是对象</span></div><div class="line">  <span class="keyword">var</span> keys = _.keys(a), key;</div><div class="line">  length = keys.length;</div><div class="line"></div><div class="line">  <span class="comment">// 如果两个对象的属性数量不一样，那么返回 false</span></div><div class="line">  <span class="keyword">if</span> (_.keys(b).length !== length) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line"></div><div class="line">  <span class="comment">// 递归比较每个属性值是否相等</span></div><div class="line">  <span class="keyword">while</span> (length--) &#123;</div><div class="line">    key = keys[length];</div><div class="line">    <span class="keyword">if</span> (!(_.has(b, key) &amp;&amp; eq(a[key], b[key], aStack, bStack)))</div><div class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 如果上面的代码都没有返回 false，那说明这层的比较是相等的，将这一层从栈顶弹出</span></div><div class="line">aStack.pop();</div><div class="line">bStack.pop();</div><div class="line"></div><div class="line"><span class="comment">// 将这层值匹配正确的结果返回给上一层</span></div><div class="line"><span class="keyword">return</span> <span class="literal">true</span>;</div></pre></td></tr></table></figure>
+<h4 id="6-综合后源码"><a href="#6-综合后源码" class="headerlink" title="6. 综合后源码"></a>6. 综合后源码</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> eq = <span class="function"><span class="keyword">function</span>(<span class="params">a, b, aStack, bStack</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (a === b) <span class="keyword">return</span> a !== <span class="number">0</span> || <span class="number">1</span> / a === <span class="number">1</span> / b;</div><div class="line">  <span class="keyword">if</span> (a == <span class="literal">null</span> || b == <span class="literal">null</span>) <span class="keyword">return</span> a === b;</div><div class="line">  <span class="keyword">if</span> (a <span class="keyword">instanceof</span> _) a = a._wrapped;</div><div class="line">  <span class="keyword">if</span> (b <span class="keyword">instanceof</span> _) b = b._wrapped;</div><div class="line">  <span class="keyword">var</span> className = toString.call(a);</div><div class="line">  <span class="keyword">if</span> (className !== toString.call(b)) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">  <span class="keyword">switch</span> (className) &#123;</div><div class="line">    <span class="keyword">case</span> <span class="string">'[object RegExp]'</span>:</div><div class="line">    <span class="keyword">case</span> <span class="string">'[object String]'</span>:</div><div class="line">      <span class="keyword">return</span> <span class="string">''</span> + a === <span class="string">''</span> + b;</div><div class="line">    <span class="keyword">case</span> <span class="string">'[object Number]'</span>:</div><div class="line">      <span class="keyword">if</span> (+a !== +a) <span class="keyword">return</span> +b !== +b;</div><div class="line">      <span class="keyword">return</span> +a === <span class="number">0</span> ? <span class="number">1</span> / +a === <span class="number">1</span> / b : +a === +b;</div><div class="line">    <span class="keyword">case</span> <span class="string">'[object Date]'</span>:</div><div class="line">    <span class="keyword">case</span> <span class="string">'[object Boolean]'</span>:</div><div class="line">      <span class="keyword">return</span> +a === +b;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> areArrays = className === <span class="string">'[object Array]'</span>;</div><div class="line">  <span class="keyword">if</span> (!areArrays) &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> a != <span class="string">'object'</span> || <span class="keyword">typeof</span> b != <span class="string">'object'</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> aCtor = a.constructor, bCtor = b.constructor;</div><div class="line">    <span class="keyword">if</span> (aCtor !== bCtor &amp;&amp; !(_.isFunction(aCtor) &amp;&amp; aCtor <span class="keyword">instanceof</span> aCtor &amp;&amp;</div><div class="line">                             _.isFunction(bCtor) &amp;&amp; bCtor <span class="keyword">instanceof</span> bCtor)</div><div class="line">                        &amp;&amp; (<span class="string">'constructor'</span> <span class="keyword">in</span> a &amp;&amp; <span class="string">'constructor'</span> <span class="keyword">in</span> b)) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  aStack = aStack || [];</div><div class="line">  bStack = bStack || [];</div><div class="line">  <span class="keyword">var</span> length = aStack.length;</div><div class="line">  <span class="keyword">while</span> (length--) &#123;</div><div class="line">    <span class="keyword">if</span> (aStack[length] === a) <span class="keyword">return</span> bStack[length] === b;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  aStack.push(a);</div><div class="line">  bStack.push(b);</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (areArrays) &#123;</div><div class="line">    length = a.length;</div><div class="line">    <span class="keyword">if</span> (length !== b.length) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">while</span> (length--) &#123;</div><div class="line">      <span class="keyword">if</span> (!eq(a[length], b[length], aStack, bStack))</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">var</span> keys = _.keys(a), key;</div><div class="line">    length = keys.length;</div><div class="line">    <span class="keyword">if</span> (_.keys(b).length !== length) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">while</span> (length--) &#123;</div><div class="line">      key = keys[length];</div><div class="line">      <span class="keyword">if</span> (!(_.has(b, key) &amp;&amp; eq(a[key], b[key], aStack, bStack)))</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line"></div><div class="line">  aStack.pop();</div><div class="line">  bStack.pop();</div><div class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/underscore/" rel="tag">#underscore</a>
+          
+            <a href="/tags/源码解析/" rel="tag">#源码解析</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/13/underscore源码解析（3）/" rel="next" title="underscore源码解析(3)--数据判断(Object Functions)">
+                <i class="fa fa-chevron-left"></i> underscore源码解析(3)--数据判断(Object Functions)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/14/underscore源码解析（4）/"
+           data-title="underscore源码解析(4)--是否值相等(Object Functions)" data-url="http://yoursite.com/2016/12/14/underscore源码解析（4）/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="Studying···" />
+          <p class="site-author-name" itemprop="name">Studying···</p>
+          <p class="site-description motion-element" itemprop="description">生命不息 学习不止</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">51</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/changxiupeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/XiupengChang" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#源码"><span class="nav-text">源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要考虑的情况"><span class="nav-text">需要考虑的情况</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-0-0-但是这里并不认为它们是相等的"><span class="nav-text">1. 0 === -0, 但是这里并不认为它们是相等的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-null-undefined-但是这里并不认为它们相等"><span class="nav-text">2. null == undefined 但是这里并不认为它们相等</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-如果-a，b-是下划线对象的实例"><span class="nav-text">3. 如果 a，b 是下划线对象的实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-如果-a，b-是-RegExg，String，Boolean，Number，Date-类型的值"><span class="nav-text">4. 如果 a，b 是 RegExg，String，Boolean，Number，Date 类型的值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-如果-a，b-是-Array-或-Object-类型"><span class="nav-text">5. 如果 a，b 是 Array 或 Object 类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-综合后源码"><span class="nav-text">6. 综合后源码</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Studying···</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"changxiupeng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
