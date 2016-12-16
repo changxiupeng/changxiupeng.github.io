@@ -84,22 +84,22 @@
 
 
 
-<meta name="description" content="前面两篇文章我们了解了 underscore 的大致框架，以及它为了后面更好地定义方法做的一些基础设置。从这篇文献开始，我将深入学习它的 API。 首先学习的是它的对象方法部分，这篇文章将主要解读这部分关于数据判断的方法。
-1. 数据类型判断1.1 常规判断先来看一下 underscore 的源码：
-_.each([&apos;Arguments&apos;, &apos;Function&apos;, &apos;String&apos;, &apos;Numbe">
+<meta name="description" content="该项目的 GitHub 地址为 underscore-analysis，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 Watch &amp;amp;&amp;amp; Star，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 Fork，我们一起来将这个系列做好做大，一起成长。
+
+前面两篇文章我们了解了 underscore 的大致">
 <meta property="og:type" content="article">
 <meta property="og:title" content="underscore源码解析(3)--数据判断(Object Functions)">
 <meta property="og:url" content="http://yoursite.com/2016/12/13/underscore源码解析（3）/index.html">
 <meta property="og:site_name" content="Comma's">
-<meta property="og:description" content="前面两篇文章我们了解了 underscore 的大致框架，以及它为了后面更好地定义方法做的一些基础设置。从这篇文献开始，我将深入学习它的 API。 首先学习的是它的对象方法部分，这篇文章将主要解读这部分关于数据判断的方法。
-1. 数据类型判断1.1 常规判断先来看一下 underscore 的源码：
-_.each([&apos;Arguments&apos;, &apos;Function&apos;, &apos;String&apos;, &apos;Numbe">
-<meta property="og:updated_time" content="2016-12-14T06:49:26.000Z">
+<meta property="og:description" content="该项目的 GitHub 地址为 underscore-analysis，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 Watch &amp;amp;&amp;amp; Star，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 Fork，我们一起来将这个系列做好做大，一起成长。
+
+前面两篇文章我们了解了 underscore 的大致">
+<meta property="og:updated_time" content="2016-12-16T12:27:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="underscore源码解析(3)--数据判断(Object Functions)">
-<meta name="twitter:description" content="前面两篇文章我们了解了 underscore 的大致框架，以及它为了后面更好地定义方法做的一些基础设置。从这篇文献开始，我将深入学习它的 API。 首先学习的是它的对象方法部分，这篇文章将主要解读这部分关于数据判断的方法。
-1. 数据类型判断1.1 常规判断先来看一下 underscore 的源码：
-_.each([&apos;Arguments&apos;, &apos;Function&apos;, &apos;String&apos;, &apos;Numbe">
+<meta name="twitter:description" content="该项目的 GitHub 地址为 underscore-analysis，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 Watch &amp;amp;&amp;amp; Star，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 Fork，我们一起来将这个系列做好做大，一起成长。
+
+前面两篇文章我们了解了 underscore 的大致">
 
 
 
@@ -329,7 +329,9 @@ _.each([&apos;Arguments&apos;, &apos;Function&apos;, &apos;String&apos;, &apos;N
       
 
       
-        <p>前面两篇文章我们了解了 underscore 的大致框架，以及它为了后面更好地定义方法做的一些基础设置。从这篇文献开始，我将深入学习它的 API。 首先学习的是它的对象方法部分，这篇文章将主要解读这部分关于数据判断的方法。</p>
+        <p>该项目的 <strong>GitHub</strong> 地址为 <strong><a href="https://github.com/changxiupeng/underscore-analysis" target="_blank" rel="external">underscore-analysis</a></strong>，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 <strong>Watch &amp;&amp; Star</strong>，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 <strong>Fork</strong>，我们一起来将这个系列做好做大，一起成长。</p>
+<hr>
+<p>前面两篇文章我们了解了 underscore 的大致框架，以及它为了后面更好地定义方法做的一些基础设置。从这篇文献开始，我将深入学习它的 API。 首先学习的是它的对象方法部分，这篇文章将主要解读这部分关于数据判断的方法。</p>
 <h2 id="1-数据类型判断"><a href="#1-数据类型判断" class="headerlink" title="1. 数据类型判断"></a>1. 数据类型判断</h2><h3 id="1-1-常规判断"><a href="#1-1-常规判断" class="headerlink" title="1.1 常规判断"></a>1.1 常规判断</h3><p>先来看一下 underscore 的源码：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">_.each([<span class="string">'Arguments'</span>, <span class="string">'Function'</span>, <span class="string">'String'</span>, <span class="string">'Number'</span>,</div><div class="line">    <span class="string">'Date'</span>, <span class="string">'RegExp'</span>, <span class="string">'Error'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  _[<span class="string">'is'</span> + name] = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> toString.call(obj) === <span class="string">'[object '</span> + name + <span class="string">']'</span>;</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>这里调用了 underscore 的 each 方法（这个方法在 <a href="https://changxiupeng.github.io/2016/12/12/underscore%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%882%EF%BC%89/" target="_blank" rel="external">第二篇文章</a> 中有过说明），这个方法为第一个数组参数中的每个字符串元素添加一个 “is” 前缀后，将这个字符串作为 underscore 库的方法保存，每个方法的函数体内都调用了 toString （<code>var toString = Object.prototype.toString</code>）方法。</p>
@@ -482,7 +484,7 @@ _.each([&apos;Arguments&apos;, &apos;Function&apos;, &apos;String&apos;, &apos;N
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-count">53</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

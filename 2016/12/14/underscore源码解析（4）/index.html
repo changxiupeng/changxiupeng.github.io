@@ -84,19 +84,22 @@
 
 
 
-<meta name="description" content="这篇文章接着上篇文章，继续学习 underscore 中关于数据判断的 API。上篇文章主要介绍了数据类型，以及数据是否为空，是否有限的判断。这篇文章只介绍一个方法，判断两个数据值是否相等。这个方法应该是 underscore 中代码量和注释最多的一个方法了。
-源码// 判断 a, b 是否值相等_.isEqual = function (a, b) &amp;#123;  // 调用内部函数 eq，返回">
+<meta name="description" content="该项目的 GitHub 地址为 underscore-analysis，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 Watch &amp;amp;&amp;amp; Star，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 Fork，我们一起来将这个系列做好做大，一起成长。
+
+这篇文章接着上篇文章，继续学习 underscore">
 <meta property="og:type" content="article">
 <meta property="og:title" content="underscore源码解析(4)--是否值相等(Object Functions)">
 <meta property="og:url" content="http://yoursite.com/2016/12/14/underscore源码解析（4）/index.html">
 <meta property="og:site_name" content="Comma's">
-<meta property="og:description" content="这篇文章接着上篇文章，继续学习 underscore 中关于数据判断的 API。上篇文章主要介绍了数据类型，以及数据是否为空，是否有限的判断。这篇文章只介绍一个方法，判断两个数据值是否相等。这个方法应该是 underscore 中代码量和注释最多的一个方法了。
-源码// 判断 a, b 是否值相等_.isEqual = function (a, b) &amp;#123;  // 调用内部函数 eq，返回">
-<meta property="og:updated_time" content="2016-12-15T01:28:17.000Z">
+<meta property="og:description" content="该项目的 GitHub 地址为 underscore-analysis，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 Watch &amp;amp;&amp;amp; Star，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 Fork，我们一起来将这个系列做好做大，一起成长。
+
+这篇文章接着上篇文章，继续学习 underscore">
+<meta property="og:updated_time" content="2016-12-16T12:27:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="underscore源码解析(4)--是否值相等(Object Functions)">
-<meta name="twitter:description" content="这篇文章接着上篇文章，继续学习 underscore 中关于数据判断的 API。上篇文章主要介绍了数据类型，以及数据是否为空，是否有限的判断。这篇文章只介绍一个方法，判断两个数据值是否相等。这个方法应该是 underscore 中代码量和注释最多的一个方法了。
-源码// 判断 a, b 是否值相等_.isEqual = function (a, b) &amp;#123;  // 调用内部函数 eq，返回">
+<meta name="twitter:description" content="该项目的 GitHub 地址为 underscore-analysis，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 Watch &amp;amp;&amp;amp; Star，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 Fork，我们一起来将这个系列做好做大，一起成长。
+
+这篇文章接着上篇文章，继续学习 underscore">
 
 
 
@@ -326,7 +329,9 @@
       
 
       
-        <p>这篇文章接着上篇文章，继续学习 underscore 中关于数据判断的 API。上篇文章主要介绍了数据类型，以及数据是否为空，是否有限的判断。这篇文章只介绍一个方法，判断两个数据值是否相等。这个方法应该是 underscore 中代码量和注释最多的一个方法了。</p>
+        <p>该项目的 <strong>GitHub</strong> 地址为 <strong><a href="https://github.com/changxiupeng/underscore-analysis" target="_blank" rel="external">underscore-analysis</a></strong>，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 <strong>Watch &amp;&amp; Star</strong>，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 <strong>Fork</strong>，我们一起来将这个系列做好做大，一起成长。</p>
+<hr>
+<p>这篇文章接着上篇文章，继续学习 underscore 中关于数据判断的 API。上篇文章主要介绍了数据类型，以及数据是否为空，是否有限的判断。这篇文章只介绍一个方法，判断两个数据值是否相等。这个方法应该是 underscore 中代码量和注释最多的一个方法了。</p>
 <h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 判断 a, b 是否值相等</span></div><div class="line">_.isEqual = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// 调用内部函数 eq，返回一个布尔值</span></div><div class="line">  <span class="keyword">return</span> eq(a, b);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <h3 id="需要考虑的情况"><a href="#需要考虑的情况" class="headerlink" title="需要考虑的情况"></a>需要考虑的情况</h3><h4 id="1-0-0-但是这里并不认为它们是相等的"><a href="#1-0-0-但是这里并不认为它们是相等的" class="headerlink" title="1. 0 === -0, 但是这里并不认为它们是相等的"></a>1. <code>0 === -0</code>, 但是这里并不认为它们是相等的</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> (a === b) &#123;</div><div class="line">  <span class="keyword">return</span> a !== <span class="number">0</span> || <span class="number">1</span> / a === <span class="number">1</span> / b;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这段代码先判断 a，b 是否全等<br>如果全等再将 a 跟 0 相比较，如果它等于 0，那么就会返回 false（-0 === 0，所以用 a 还是 b 比较都一样），如果不等于 0，那么就可以排除这种情况<br>因为 <code>1 / 0 === Infinity</code> , <code>1 / -0 === -Infinity</code>，而 <code>Infinity !== -Infinity</code>，所以也可以用 <code>1 / a === 1 / b</code> 来排除这种情况</p>
@@ -378,8 +383,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/15/underscore源码解析（5）/" rel="prev" title="underscore源码解析(5)--属性操作(Object Functions).md">
-                underscore源码解析(5)--属性操作(Object Functions).md <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/15/underscore源码解析（5）/" rel="prev" title="underscore源码解析(5)--属性操作(Object Functions)">
+                underscore源码解析(5)--属性操作(Object Functions) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -452,7 +457,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-count">53</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
