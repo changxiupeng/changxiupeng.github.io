@@ -1,0 +1,694 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="underscore,源码解析," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon2.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="该项目的 GitHub 地址为 underscore-analysis，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 Watch &amp;amp;&amp;amp; Star，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 Fork，我们一起来将这个系列做好做大，一起成长。
+
+扩展underscore 提供了三个方法来扩展对象的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="underscore源码解析(7)--扩展和克隆(Object Functions)">
+<meta property="og:url" content="http://yoursite.com/2016/12/17/underscore源码解析（7）/index.html">
+<meta property="og:site_name" content="Comma's">
+<meta property="og:description" content="该项目的 GitHub 地址为 underscore-analysis，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 Watch &amp;amp;&amp;amp; Star，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 Fork，我们一起来将这个系列做好做大，一起成长。
+
+扩展underscore 提供了三个方法来扩展对象的">
+<meta property="og:updated_time" content="2016-12-17T07:56:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="underscore源码解析(7)--扩展和克隆(Object Functions)">
+<meta name="twitter:description" content="该项目的 GitHub 地址为 underscore-analysis，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 Watch &amp;amp;&amp;amp; Star，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 Fork，我们一起来将这个系列做好做大，一起成长。
+
+扩展underscore 提供了三个方法来扩展对象的">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/12/17/underscore源码解析（7）/"/>
+
+
+  <title> underscore源码解析(7)--扩展和克隆(Object Functions) | Comma's </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Comma's</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">study notes</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                underscore源码解析(7)--扩展和克隆(Object Functions)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-17T12:35:25+08:00" content="2016-12-17">
+              2016-12-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/underscore源码解析/" itemprop="url" rel="index">
+                    <span itemprop="name">underscore源码解析</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/17/underscore源码解析（7）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/17/underscore源码解析（7）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>该项目的 <strong>GitHub</strong> 地址为 <strong><a href="https://github.com/changxiupeng/underscore-analysis" target="_blank" rel="external">underscore-analysis</a></strong>，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 <strong>Watch &amp;&amp; Star</strong>，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 <strong>Fork</strong>，我们一起来将这个系列做好做大，一起成长。</p>
+<hr>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p>underscore 提供了三个方法来扩展对象的属性和方法：</p>
+<ol>
+<li><strong><code>_.extend(destination, objs)</code></strong></li>
+<li><strong><code>_.defaults(destination, objs)</code></strong></li>
+<li><strong><code>_.extendOwn(destination, objs)</code></strong></li>
+</ol>
+<p>这三个方法很相似，都是将 objs （一个或多个对象）中的属性浅复制到 destination 对象中。<br>不同的是：</p>
+<ul>
+<li><code>_.extend()</code> 会将 objs 的所有属性（包括继承的）一起复制，如果出现同名属性，前面的会被覆盖，既属性值取最后一次重复出现时的属性值。</li>
+<li><code>_.defaults()</code> 也是复制 objs 的所有属性，与 <code>_.extend()</code> 唯一一点区别是后面的同名属性不会覆盖前面的，最终该属性的属性值取 <strong>第一次</strong> 出现时的值。</li>
+<li><code>_.extendOwn()</code> 与 <code>_.extend()</code> 的唯一一点区别是只复制 objs 自身的属性。</li>
+</ul>
+<p><strong>示例：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> a = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">"comma"</span>,</div><div class="line">  <span class="attr">age</span>: <span class="number">26</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">"cxp"</span>,</div><div class="line">  <span class="attr">hobby</span>: <span class="string">"Programming"</span></div><div class="line">&#125;</div><div class="line">b.prototype.city = <span class="string">"Wuhan"</span>;</div><div class="line"></div><div class="line">_.extend(a, b);</div><div class="line"><span class="comment">// =&gt; &#123;name: "cxp", age: 26, hobby: "Programming", city: "Wuhan"&#125;</span></div><div class="line"></div><div class="line">_.defaults(a, b);</div><div class="line"><span class="comment">// =&gt; &#123;name: "comma", age: 26, hobby: "Programming", city: "Wuhan"&#125;</span></div><div class="line"></div><div class="line">_.extendOwn(a, b);</div><div class="line"><span class="comment">// =&gt; &#123;name: "comma", age: 26, hobby: "Programming"&#125;</span></div></pre></td></tr></table></figure></p>
+<p><strong>源码解读：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">_.extend = createAssigner(_.allKeys);</div><div class="line"></div><div class="line">_.defaults = createAssigner(_.allKeys, <span class="literal">true</span>);</div><div class="line"></div><div class="line"><span class="comment">// extendOwn 也可以写成 assign，可能是照顾到 ES6 中 Object.assign(objs)方法</span></div><div class="line"><span class="comment">// extendOwn 与 Object.assign(objs) 得到同样的结果</span></div><div class="line">_.extendOwn = _.assign = createAssigner(_.keys);</div></pre></td></tr></table></figure>
+<p>可以看出来两个方法都严重依赖了一个 underscore 的内部函数 <code>createAssigner</code><br>这个函数根据不同的要求（只复制自身属性还是包括继承属性），生成一个属性分配器函数并返回，然后由这个属性分配器函数接收具体的对象，实现属性扩展的具体逻辑</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * @param keysFunc 指定获取属性的方式</div><div class="line"> * @param undefinedOnly 同名属性是否取第一次出现时的属性值</div><div class="line"> */</div><div class="line"><span class="keyword">var</span> createAssigner = <span class="function"><span class="keyword">function</span>(<span class="params">keysFunc, undefinedOnly</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// 将属性分配器函数返回，这里只设了一个形参，表示要扩展的对象</span></div><div class="line">  <span class="comment">// 其它被复制的对象虽然没有指定形参，但是也可以传入，通过arguments 获取</span></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 获取传入的对象的个数</span></div><div class="line">    <span class="keyword">var</span> length = <span class="built_in">arguments</span>.length;</div><div class="line"></div><div class="line">    <span class="comment">// 要扩展的对象没有被传入、传入一个，或者传入一个但是值为 null，将其返回</span></div><div class="line">    <span class="keyword">if</span> (length &lt; <span class="number">2</span> &amp;&amp; obj == <span class="literal">null</span>) <span class="keyword">return</span> obj;</div><div class="line"></div><div class="line">    <span class="comment">// 遍历每一个要被复制的对象</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> index = <span class="number">1</span>; index &lt; length; index++) &#123;</div><div class="line"></div><div class="line">      <span class="comment">// 获取当前被遍历对象的属性</span></div><div class="line">      <span class="keyword">var</span> source = <span class="built_in">arguments</span>[index],</div><div class="line">          keys = keysFunc(source),</div><div class="line">          l = keys.length;</div><div class="line"></div><div class="line">        <span class="comment">// 对当前遍历对象的所有属性进行遍历</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; l; i++) &#123;</div><div class="line">          <span class="keyword">var</span> key = keys[i];</div><div class="line"></div><div class="line">          <span class="comment">// 当 undefinedOnly 为 false，既同名属性不取第一个属性值</span></div><div class="line">          <span class="comment">// 或者 obj 中没有这个属性时，将当前对象中的属性属性值添加到 obj 中</span></div><div class="line">          <span class="comment">// ---------------------------------------------------------</span></div><div class="line">          <span class="comment">// _.extend 和 _.extendOwn 方法没有传入 undefinedOnly 参数，</span></div><div class="line">          <span class="comment">// undefinedOnly === undefined, 所以 !undefinedOnly === true</span></div><div class="line">          <span class="comment">// 所以，无论 obj 中是否有 key，后面的同名 key 都会将其重写</span></div><div class="line">          <span class="comment">// ---------------------------------------------------------</span></div><div class="line">          <span class="comment">// 而 _.defaults 中 undefinedOnly 被设置为 true</span></div><div class="line">          <span class="comment">// !undefinedOnly === false 只有当 obj 中没有 key 时才会被添加</span></div><div class="line">          <span class="keyword">if</span> (!undefinedOnly || obj[key] === <span class="keyword">void</span> <span class="number">0</span>) obj[key] =</div><div class="line">              source[key];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> obj;</div><div class="line">  &#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="克隆"><a href="#克隆" class="headerlink" title="克隆"></a>克隆</h2><p>underscore 提供了一个用于对象克隆（浅）的方法:<br><strong><code>_clone(obj)</code></strong><br>该方法接收一个对象为参数，然后返回一个此对象副本，作为参数的对象中任何嵌套的对象和数组都只被复制了对应的引用给返回的对象副本。</p>
+<p><strong>示例：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> a = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">"comma"</span>,</div><div class="line">  <span class="attr">gf</span>: &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">"kxt"</span>  </div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = _.clone(a);</div><div class="line"><span class="built_in">console</span>.log(b.name); <span class="comment">// comma</span></div><div class="line"></div><div class="line"><span class="comment">// 因为是浅复制，所以引用类型共享一个内存地址</span></div><div class="line"><span class="built_in">console</span>.log(b.gf === a.gf); <span class="comment">// true</span></div><div class="line">b.gf.age = <span class="number">26</span>;</div><div class="line"><span class="built_in">console</span>.log(a.gf.age); <span class="comment">// 26</span></div></pre></td></tr></table></figure></p>
+<p><strong>注</strong>：<br>无论是数组还是对象，虽然 clone 返回的数组/对象与原来的数组/对象不在同一个地址了，比直接赋值的浅复制深，但它所执行的仍然是浅复制，返回数组/对象内部嵌套的数组和对象仍然只是引用。</p>
+<p><strong>源码解读：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">_.clone = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// 如果 obj 不是对象，则直接将其返回</span></div><div class="line">  <span class="comment">// 这里的对象指的是函数和 typeof 为 “object” （不包括 null）的数据类型</span></div><div class="line">  <span class="keyword">if</span> (!_.isObject(obj) <span class="keyword">return</span> obj);</div><div class="line"></div><div class="line">  <span class="comment">// 如果 obj 是数组，那么就将其调用 slice 方法后返回</span></div><div class="line">  <span class="comment">// 如果 obj 是对象，那么就调用 extend 方法将其复制到一个空对象中并返回</span></div><div class="line">  <span class="keyword">return</span> _.isArray(obj) ? obj.slice() : _.extend(&#123;&#125;, obj);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/underscore/" rel="tag">#underscore</a>
+          
+            <a href="/tags/源码解析/" rel="tag">#源码解析</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/16/underscore源码解析（6）/" rel="next" title="underscore源码解析(6)--查找和筛选(Object Functions)">
+                <i class="fa fa-chevron-left"></i> underscore源码解析(6)--查找和筛选(Object Functions)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/17/underscore源码解析（7）/"
+           data-title="underscore源码解析(7)--扩展和克隆(Object Functions)" data-url="http://yoursite.com/2016/12/17/underscore源码解析（7）/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="Studying···" />
+          <p class="site-author-name" itemprop="name">Studying···</p>
+          <p class="site-description motion-element" itemprop="description">生命不息 学习不止</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">54</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/changxiupeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/XiupengChang" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展"><span class="nav-text">扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#克隆"><span class="nav-text">克隆</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Studying···</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"changxiupeng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
