@@ -1,0 +1,686 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="underscore,源码解析," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon2.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="该项目的 GitHub 地址为 underscore-analysis，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 Watch &amp;amp;&amp;amp; Star，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 Fork，我们一起来将这个系列做好做大，一起成长。
+
+原生的 ES5 提供了很多关于的迭代方法，但是对于对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="underscore源码解析(8)--迭代(Collection Functions)">
+<meta property="og:url" content="http://yoursite.com/2016/12/18/underscore源码解析（8）/index.html">
+<meta property="og:site_name" content="Comma's">
+<meta property="og:description" content="该项目的 GitHub 地址为 underscore-analysis，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 Watch &amp;amp;&amp;amp; Star，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 Fork，我们一起来将这个系列做好做大，一起成长。
+
+原生的 ES5 提供了很多关于的迭代方法，但是对于对">
+<meta property="og:updated_time" content="2016-12-18T13:10:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="underscore源码解析(8)--迭代(Collection Functions)">
+<meta name="twitter:description" content="该项目的 GitHub 地址为 underscore-analysis，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 Watch &amp;amp;&amp;amp; Star，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 Fork，我们一起来将这个系列做好做大，一起成长。
+
+原生的 ES5 提供了很多关于的迭代方法，但是对于对">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/12/18/underscore源码解析（8）/"/>
+
+
+  <title> underscore源码解析(8)--迭代(Collection Functions) | Comma's </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Comma's</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">study notes</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                underscore源码解析(8)--迭代(Collection Functions)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-18T16:20:52+08:00" content="2016-12-18">
+              2016-12-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/underscore源码解析/" itemprop="url" rel="index">
+                    <span itemprop="name">underscore源码解析</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/18/underscore源码解析（8）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/18/underscore源码解析（8）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>该项目的 <strong>GitHub</strong> 地址为 <strong><a href="https://github.com/changxiupeng/underscore-analysis" target="_blank" rel="external">underscore-analysis</a></strong>，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 <strong>Watch &amp;&amp; Star</strong>，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 <strong>Fork</strong>，我们一起来将这个系列做好做大，一起成长。</p>
+<hr>
+<p>原生的 ES5 提供了很多关于的迭代方法，但是对于对象只能通过 for in 循环，或者用 Object.keys(obj) 提取出对象的属性后，再用数组的方法迭代这些提取出来的属性。underscore 针对这种情况定义了很多既可以迭代数组（包括类数组）也可以迭代对象的方法，这些方法被称为 Collection Functions（集合方法），这里的集合指的是可迭代的序列（数组或对象）。这篇文章起，我们将对这些方法进行一一解读。</p>
+<h2 id="1-each-list-iteratee-context"><a href="#1-each-list-iteratee-context" class="headerlink" title="1 _.each(list, iteratee, context)"></a>1 _.each(list, iteratee, context)</h2><p>该方法与 ES5 中的 forEach 方法类似，会遍历 <em>list</em> 中的所有元素，并按顺序用 <em>iteratee</em> 去处理每个迭代的元素，<em>iteratee</em> 被绑定了 <em>context</em> 上下文。每次调用 <em>iteratee</em> 都会传递三个参数：<em>(element, index, list)</em>。如果 <em>list</em> 是一个对象，<em>iteratee</em> 的参数是：<em>(value, key, list)</em>。返回 <em>list</em> 以方便链式调用。</p>
+<p><strong>示例</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">"comma"</span>,</div><div class="line">  <span class="attr">age</span>: <span class="number">26</span>,</div><div class="line">  <span class="attr">hobby</span>: <span class="string">"Programing"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">_.each(obj, <span class="function"><span class="keyword">function</span>(<span class="params">value, key, obj</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(key + <span class="string">"is "</span> + value);</div><div class="line">&#125;);</div><div class="line"><span class="comment">// name is comma</span></div><div class="line"><span class="comment">// age is 26</span></div><div class="line"><span class="comment">// hobby is Programing</span></div><div class="line"></div><div class="line">_.each([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="function"><span class="keyword">function</span>(<span class="params">element, index</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"index "</span> + index + <span class="string">" vs "</span> + element);</div><div class="line">&#125;);</div><div class="line"><span class="comment">// index 0 vs 1</span></div><div class="line"><span class="comment">// index 1 vs 2</span></div><div class="line"><span class="comment">// index 2 vs 3</span></div></pre></td></tr></table></figure></p>
+<p><strong>源码解读</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 该方法有两个名字 each 和 forEach</span></div><div class="line">_.each = _.forEach = <span class="function"><span class="keyword">function</span>(<span class="params">obj, iteratee, context</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// 对 iteratee 进行优化，主要是绑定上下文</span></div><div class="line">  iteratee = optimizeCb(iteratee, context);</div><div class="line">  <span class="keyword">var</span> i, length;</div><div class="line"></div><div class="line">  <span class="comment">// 如果 obj 是数组或类数组</span></div><div class="line">  <span class="keyword">if</span> (isArrayLike(obj)) &#123;</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>, length = obj.length; i &lt; length; i++) &#123;</div><div class="line"></div><div class="line">      <span class="comment">// 数组和类数组的回调中传入参数分别为（迭代值，迭代索引，迭代的数组/类数组）</span></div><div class="line">      iteratee(obj[i], i, obj);</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line"></div><div class="line">    <span class="comment">// 如果 obj 是对象</span></div><div class="line">    <span class="comment">// 获取对象的所有属性</span></div><div class="line">    <span class="keyword">var</span> keys = _.keys(obj);</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>, length = keys.length; i &lt; length; i++) &#123;</div><div class="line"></div><div class="line">      <span class="comment">// 对象的回调中传入参数分别是（迭代属性值，迭代属性，迭代对象）</span></div><div class="line">      iteratee(obj[keys[i]], keys[i], obj);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 返回传入的 obj 自身，便于链式调用</span></div><div class="line">  <span class="keyword">return</span> obj;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这个方法依赖了 <em>isArrayLike</em> 和 <em>optimizeCb</em> 两个内部函数，这两个内部函数在<a href="https://changxiupeng.github.io/2016/12/12/underscore%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%882%EF%BC%89/" target="_blank" rel="external">之前的文章</a>中介绍过，有兴趣的可以点击看一下。</p>
+<h2 id="2-map-list-iteratee-context"><a href="#2-map-list-iteratee-context" class="headerlink" title="2 _.map(list, iteratee, context)"></a>2 _.map(list, iteratee, context)</h2><p>该方法与 ES5 中的 map 方法类似，会遍历 <em>list</em> 中的所有元素，当 <em>iteratee</em> 按顺序去处理每个迭代的元素时会返回一个新元素，这个新元素被加入到该方法最后返回的数组中。 也就是说，该方法会将 <em>list</em> 中的每个元素映射为一个新元素，并最终构成一个新的数组返回。</p>
+<p><strong>示例：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">_.map([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="function"><span class="keyword">function</span>(<span class="params">element</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> ++element;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// [2,3,4]</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">"comma"</span>,</div><div class="line">  <span class="attr">age</span>: <span class="number">26</span>,</div><div class="line">  <span class="attr">hobby</span>: <span class="string">"Programing"</span></div><div class="line">&#125;</div><div class="line">_.map(obj, <span class="function"><span class="keyword">function</span>(<span class="params">value, key</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> value;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// ["comma", 26, "Programing"]</span></div></pre></td></tr></table></figure></p>
+<p><strong>源码解读：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">_.map = _.collect = <span class="function"><span class="keyword">function</span>(<span class="params">obj, iteratee, context</span>) </span>&#123;</div><div class="line"></div><div class="line">  iteratee = cb(iteratee, context);</div><div class="line"></div><div class="line">  <span class="comment">// 如果 obj 不是类数组，既是对象，那么就拿到它所有的属性</span></div><div class="line">  <span class="keyword">var</span> keys = !isArrayLike(obj) &amp;&amp;  _.keys(obj),</div><div class="line"></div><div class="line">      <span class="comment">// 属性集合 keys（如果 obj 不是对象，值为 false）或者 obj（数组）的长度</span></div><div class="line">      length = (keys || obj).length,</div><div class="line"></div><div class="line">      <span class="comment">// 初始化一个长度固定的数组</span></div><div class="line">      results = <span class="built_in">Array</span>(length);</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> index = <span class="number">0</span>; index &lt; length; index++) &#123;</div><div class="line"></div><div class="line">    <span class="comment">// 获取当前迭代的属性（针对对象）或者索引（针对数组和类数组）</span></div><div class="line">    <span class="keyword">var</span> currentKey = keys ? keys[index] : index;</div><div class="line"></div><div class="line">    <span class="comment">// 将映射的新元素加入到要返回的数组中</span></div><div class="line">    results[index] = iteratee(obj[currentKey], currentKey, obj);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> results;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="3-reduce-list-iteratee-memo-context"><a href="#3-reduce-list-iteratee-memo-context" class="headerlink" title="3 _.reduce(list, iteratee, memo, context)"></a>3 _.reduce(list, iteratee, memo, context)</h2><p>该方法把 <em>list</em> 中的所有元素归结（折叠）为一个数值返回，<em>iteratee</em> 是迭代中使用的回调函数，<em>memo</em> 是折叠时的初始值，<em>context</em> 是回调函数的上下文。underscore 还提供了一个相似的方法 reduceRight，reduce 方法是从左开始折叠，reduceRight 是从右开始折叠。</p>
+<p><strong>示例：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">_.reduce([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="function"><span class="keyword">function</span>(<span class="params">memo, num</span>) </span>&#123;<span class="keyword">return</span> memo + num;&#125;, <span class="number">0</span>);</div><div class="line"><span class="comment">// =&gt; 6</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">"comma"</span>,</div><div class="line">  <span class="attr">age</span>: <span class="number">26</span>,</div><div class="line">  <span class="attr">hobby</span>: <span class="string">"Programing"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">_.reduce(obj, <span class="function"><span class="keyword">function</span>(<span class="params">memo, value</span>) </span>&#123;<span class="keyword">return</span> memo + <span class="string">"@"</span> + value;&#125;);</div><div class="line"><span class="comment">// =&gt; comma@26@Programing</span></div></pre></td></tr></table></figure></p>
+<p><strong>源码解读：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 从左边开始折叠，该方法有三个名字 reduce、foldl、inject</span></div><div class="line">_.reduce = _.foldl = _.inject = createReduce(<span class="number">1</span>);</div><div class="line"></div><div class="line"><span class="comment">// 从右边开始折叠，该方法有两个名字 reduceRight、foldr</span></div><div class="line">_.reduceRight = _.foldr = createReduce(<span class="number">-1</span>);</div></pre></td></tr></table></figure></p>
+<p>这两个方法都严重依赖了一个内部函数 createReduce，我们来仔细看一下：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 创建一个折叠函数</span></div><div class="line"><span class="comment">// dir 为 1 时表示从左开始迭代</span></div><div class="line"><span class="comment">// dir 为 -1 表示从又开始迭代</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createReduce</span>(<span class="params">dir</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line">   * @param obj 要迭代的集合</div><div class="line">   * @param iteratee 迭代时用的回调函数</div><div class="line">   * @param memo 指定好的迭代初始值</div><div class="line">   * @param keys 如果 obj 是对象，那么 keys 就是包含了 obj 所有属性的数组</div><div class="line">   * @param length obj 的长度</div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">iterator</span>(<span class="params">obj, iteratee, memo, keys, index, length</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 对 obj 的元素进行迭代</span></div><div class="line">    <span class="keyword">for</span> (; index &gt;= <span class="number">0</span> &amp;&amp; index &lt; length; index += dir) &#123;</div><div class="line"></div><div class="line">      <span class="comment">// 获取当前迭代的元素的属性或索引</span></div><div class="line">      <span class="keyword">var</span> currentKey = keys ? keys[index] : index;</div><div class="line"></div><div class="line">      <span class="comment">// 用当前迭代的返回值重写 memo</span></div><div class="line">      memo = iteratee(memo, obj[currentKey], currentKey, obj);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//  返回迭代结束时的 memo 值，既最终结果</span></div><div class="line">    <span class="keyword">return</span> memo;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line">   * @param obj 要迭代的集合</div><div class="line">   * @param iteratee 迭代时用的回调函数</div><div class="line">   * @param memo 是迭代的初始值，每次迭代都要有返回值，并保存到 memo 中</div><div class="line">   * @param context 回调函数的上下文</div><div class="line">   */</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">obj, iteratee, memo, context</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 根据回调函数接收参数的个数（这里为4个）为其绑定上下文</span></div><div class="line">    iteratee = optimizeCb(iteratee, context, <span class="number">4</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 如果 obj 是对象，那么获取它所有的属性</span></div><div class="line">    <span class="keyword">var</span> keys = !isArrayLike(obj) &amp;&amp; _.keys(obj)，</div><div class="line"></div><div class="line">        <span class="comment">// 获取集合的长度</span></div><div class="line">        length = (keys || obj).length，</div><div class="line"></div><div class="line">        <span class="comment">// 根据迭代的方向获取迭代开始的索引值</span></div><div class="line">        index = dir &gt; <span class="number">0</span> ? <span class="number">0</span> : length - <span class="number">1</span>;</div><div class="line"></div><div class="line">    <span class="comment">// 如果没有传入初始值，那么就指定一个初始值</span></div><div class="line">    <span class="keyword">if</span> (<span class="built_in">arguments</span>.length &lt; <span class="number">3</span>) &#123;</div><div class="line"></div><div class="line">      <span class="comment">// 根据 obj 的类型来获取第一个要迭代的元素，并将其赋值给 memo</span></div><div class="line">      memo = obj[keys ? keys[index] : index];</div><div class="line"></div><div class="line">      <span class="comment">// 迭代开始的索引（属性）</span></div><div class="line">      index += dir;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> iterator(obj, iteratee, memo, keys, index, length);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这个方法之所以比 each 和 map 复杂很多，是因为要考虑到折叠的方向既从那边开始迭代，所以首先要获取迭代的初始索引和折叠的初始值。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/underscore/" rel="tag">#underscore</a>
+          
+            <a href="/tags/源码解析/" rel="tag">#源码解析</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/17/underscore源码解析（7）/" rel="next" title="underscore源码解析(7)--扩展和克隆(Object Functions)">
+                <i class="fa fa-chevron-left"></i> underscore源码解析(7)--扩展和克隆(Object Functions)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/18/underscore源码解析（8）/"
+           data-title="underscore源码解析(8)--迭代(Collection Functions)" data-url="http://yoursite.com/2016/12/18/underscore源码解析（8）/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="Studying···" />
+          <p class="site-author-name" itemprop="name">Studying···</p>
+          <p class="site-description motion-element" itemprop="description">生命不息 学习不止</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/changxiupeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/XiupengChang" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-each-list-iteratee-context"><span class="nav-text">1 _.each(list, iteratee, context)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-map-list-iteratee-context"><span class="nav-text">2 _.map(list, iteratee, context)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-reduce-list-iteratee-memo-context"><span class="nav-text">3 _.reduce(list, iteratee, memo, context)</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Studying···</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"changxiupeng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
