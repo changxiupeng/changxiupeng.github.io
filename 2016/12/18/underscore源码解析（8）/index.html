@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="underscore,源码解析," />
+  <meta name="keywords" content="源码解析,underscore," />
 
 
 
@@ -94,7 +94,7 @@
 <meta property="og:description" content="该项目的 GitHub 地址为 underscore-analysis，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 Watch &amp;amp;&amp;amp; Star，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 Fork，我们一起来将这个系列做好做大，一起成长。
 
 原生的 ES5 提供了很多关于的迭代方法，但是对于对">
-<meta property="og:updated_time" content="2016-12-18T13:10:41.000Z">
+<meta property="og:updated_time" content="2016-12-19T07:10:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="underscore源码解析(8)--迭代(Collection Functions)">
 <meta name="twitter:description" content="该项目的 GitHub 地址为 underscore-analysis，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 Watch &amp;amp;&amp;amp; Star，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 Fork，我们一起来将这个系列做好做大，一起成长。
@@ -332,10 +332,10 @@
         <p>该项目的 <strong>GitHub</strong> 地址为 <strong><a href="https://github.com/changxiupeng/underscore-analysis" target="_blank" rel="external">underscore-analysis</a></strong>，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 <strong>Watch &amp;&amp; Star</strong>，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 <strong>Fork</strong>，我们一起来将这个系列做好做大，一起成长。</p>
 <hr>
 <p>原生的 ES5 提供了很多关于的迭代方法，但是对于对象只能通过 for in 循环，或者用 Object.keys(obj) 提取出对象的属性后，再用数组的方法迭代这些提取出来的属性。underscore 针对这种情况定义了很多既可以迭代数组（包括类数组）也可以迭代对象的方法，这些方法被称为 Collection Functions（集合方法），这里的集合指的是可迭代的序列（数组或对象）。这篇文章起，我们将对这些方法进行一一解读。</p>
-<h2 id="1-each-list-iteratee-context"><a href="#1-each-list-iteratee-context" class="headerlink" title="1 _.each(list, iteratee, context)"></a>1 _.each(list, iteratee, context)</h2><p>该方法与 ES5 中的 forEach 方法类似，会遍历 <em>list</em> 中的所有元素，并按顺序用 <em>iteratee</em> 去处理每个迭代的元素，<em>iteratee</em> 被绑定了 <em>context</em> 上下文。每次调用 <em>iteratee</em> 都会传递三个参数：<em>(element, index, list)</em>。如果 <em>list</em> 是一个对象，<em>iteratee</em> 的参数是：<em>(value, key, list)</em>。返回 <em>list</em> 以方便链式调用。</p>
+<h2 id="1-each-list-iteratee-context"><a href="#1-each-list-iteratee-context" class="headerlink" title="1 _.each(list, iteratee, context)"></a>1 _.each(list, iteratee, context)</h2><p>该方法与 ES5 中的 forEach 方法类似，会遍历 <em>list</em> 中的所有元素，并按顺序用 <em>iteratee</em> 去处理每个迭代的元素，<em>iteratee</em> 被绑定了 <em>context</em> 上下文。如果 <em>list</em> 是一个数组，每次调用 <em>iteratee</em> 都会传递三个参数：<em>(element, index, list)</em>。如果 <em>list</em> 是一个对象，<em>iteratee</em> 的参数是：<em>(value, key, list)</em>。最后返回 <em>list</em> 以方便链式调用。</p>
 <p><strong>示例</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">"comma"</span>,</div><div class="line">  <span class="attr">age</span>: <span class="number">26</span>,</div><div class="line">  <span class="attr">hobby</span>: <span class="string">"Programing"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">_.each(obj, <span class="function"><span class="keyword">function</span>(<span class="params">value, key, obj</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(key + <span class="string">"is "</span> + value);</div><div class="line">&#125;);</div><div class="line"><span class="comment">// name is comma</span></div><div class="line"><span class="comment">// age is 26</span></div><div class="line"><span class="comment">// hobby is Programing</span></div><div class="line"></div><div class="line">_.each([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="function"><span class="keyword">function</span>(<span class="params">element, index</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"index "</span> + index + <span class="string">" vs "</span> + element);</div><div class="line">&#125;);</div><div class="line"><span class="comment">// index 0 vs 1</span></div><div class="line"><span class="comment">// index 1 vs 2</span></div><div class="line"><span class="comment">// index 2 vs 3</span></div></pre></td></tr></table></figure></p>
 <p><strong>源码解读</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 该方法有两个名字 each 和 forEach</span></div><div class="line">_.each = _.forEach = <span class="function"><span class="keyword">function</span>(<span class="params">obj, iteratee, context</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// 对 iteratee 进行优化，主要是绑定上下文</span></div><div class="line">  iteratee = optimizeCb(iteratee, context);</div><div class="line">  <span class="keyword">var</span> i, length;</div><div class="line"></div><div class="line">  <span class="comment">// 如果 obj 是数组或类数组</span></div><div class="line">  <span class="keyword">if</span> (isArrayLike(obj)) &#123;</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>, length = obj.length; i &lt; length; i++) &#123;</div><div class="line"></div><div class="line">      <span class="comment">// 数组和类数组的回调中传入参数分别为（迭代值，迭代索引，迭代的数组/类数组）</span></div><div class="line">      iteratee(obj[i], i, obj);</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line"></div><div class="line">    <span class="comment">// 如果 obj 是对象</span></div><div class="line">    <span class="comment">// 获取对象的所有属性</span></div><div class="line">    <span class="keyword">var</span> keys = _.keys(obj);</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>, length = keys.length; i &lt; length; i++) &#123;</div><div class="line"></div><div class="line">      <span class="comment">// 对象的回调中传入参数分别是（迭代属性值，迭代属性，迭代对象）</span></div><div class="line">      iteratee(obj[keys[i]], keys[i], obj);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 返回传入的 obj 自身，便于链式调用</span></div><div class="line">  <span class="keyword">return</span> obj;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这个方法依赖了 <em>isArrayLike</em> 和 <em>optimizeCb</em> 两个内部函数，这两个内部函数在<a href="https://changxiupeng.github.io/2016/12/12/underscore%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%882%EF%BC%89/" target="_blank" rel="external">之前的文章</a>中介绍过，有兴趣的可以点击看一下。</p>
+<p>这个方法依赖了 <em>isArrayLike</em> 和 <em>optimizeCb</em> 两个内部函数，这两个内部函数在<a href="https://changxiupeng.github.io/2016/12/12/underscore%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%882%EF%BC%89/" target="_blank" rel="external">之前的文章</a>中介绍过，有兴趣的可以看一下。</p>
 <h2 id="2-map-list-iteratee-context"><a href="#2-map-list-iteratee-context" class="headerlink" title="2 _.map(list, iteratee, context)"></a>2 _.map(list, iteratee, context)</h2><p>该方法与 ES5 中的 map 方法类似，会遍历 <em>list</em> 中的所有元素，当 <em>iteratee</em> 按顺序去处理每个迭代的元素时会返回一个新元素，这个新元素被加入到该方法最后返回的数组中。 也就是说，该方法会将 <em>list</em> 中的每个元素映射为一个新元素，并最终构成一个新的数组返回。</p>
 <p><strong>示例：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">_.map([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="function"><span class="keyword">function</span>(<span class="params">element</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> ++element;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// [2,3,4]</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">"comma"</span>,</div><div class="line">  <span class="attr">age</span>: <span class="number">26</span>,</div><div class="line">  <span class="attr">hobby</span>: <span class="string">"Programing"</span></div><div class="line">&#125;</div><div class="line">_.map(obj, <span class="function"><span class="keyword">function</span>(<span class="params">value, key</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> value;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// ["comma", 26, "Programing"]</span></div></pre></td></tr></table></figure></p>
 <p><strong>源码解读：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">_.map = _.collect = <span class="function"><span class="keyword">function</span>(<span class="params">obj, iteratee, context</span>) </span>&#123;</div><div class="line"></div><div class="line">  iteratee = cb(iteratee, context);</div><div class="line"></div><div class="line">  <span class="comment">// 如果 obj 不是类数组，既是对象，那么就拿到它所有的属性</span></div><div class="line">  <span class="keyword">var</span> keys = !isArrayLike(obj) &amp;&amp;  _.keys(obj),</div><div class="line"></div><div class="line">      <span class="comment">// 属性集合 keys（如果 obj 不是对象，值为 false）或者 obj（数组）的长度</span></div><div class="line">      length = (keys || obj).length,</div><div class="line"></div><div class="line">      <span class="comment">// 初始化一个长度固定的数组</span></div><div class="line">      results = <span class="built_in">Array</span>(length);</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> index = <span class="number">0</span>; index &lt; length; index++) &#123;</div><div class="line"></div><div class="line">    <span class="comment">// 获取当前迭代的属性（针对对象）或者索引（针对数组和类数组）</span></div><div class="line">    <span class="keyword">var</span> currentKey = keys ? keys[index] : index;</div><div class="line"></div><div class="line">    <span class="comment">// 将映射的新元素加入到要返回的数组中</span></div><div class="line">    results[index] = iteratee(obj[currentKey], currentKey, obj);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> results;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -366,9 +366,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/underscore/" rel="tag">#underscore</a>
-          
             <a href="/tags/源码解析/" rel="tag">#源码解析</a>
+          
+            <a href="/tags/underscore/" rel="tag">#underscore</a>
           
         </div>
       
@@ -384,6 +384,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/19/underscore源码解析（9）/" rel="prev" title="underscore源码解析(9)--最大最小元素(Collection Functions)">
+                underscore源码解析(9)--最大最小元素(Collection Functions) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -455,7 +459,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -472,7 +476,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
