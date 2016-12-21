@@ -86,20 +86,20 @@
 
 <meta name="description" content="该项目的 GitHub 地址为 underscore-analysis，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 Watch &amp;amp;&amp;amp; Star，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 Fork，我们一起来将这个系列做好做大，一起成长。
 
-扩展underscore 提供了三个方法来扩展对象的">
+在对象方法部分，我们已经解读过针对对象的查找和筛选了">
 <meta property="og:type" content="article">
-<meta property="og:title" content="underscore源码解析(7)--扩展和克隆(Object Functions)">
-<meta property="og:url" content="http://yoursite.com/2016/12/17/underscore源码解析（7）/index.html">
+<meta property="og:title" content="underscore源码解析(10)--集合的查找和筛选（上）(Collection Functions)">
+<meta property="og:url" content="http://yoursite.com/2016/12/20/underscore源码解析（10）/index.html">
 <meta property="og:site_name" content="Comma's">
 <meta property="og:description" content="该项目的 GitHub 地址为 underscore-analysis，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 Watch &amp;amp;&amp;amp; Star，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 Fork，我们一起来将这个系列做好做大，一起成长。
 
-扩展underscore 提供了三个方法来扩展对象的">
-<meta property="og:updated_time" content="2016-12-17T07:56:44.000Z">
+在对象方法部分，我们已经解读过针对对象的查找和筛选了">
+<meta property="og:updated_time" content="2016-12-21T08:43:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="underscore源码解析(7)--扩展和克隆(Object Functions)">
+<meta name="twitter:title" content="underscore源码解析(10)--集合的查找和筛选（上）(Collection Functions)">
 <meta name="twitter:description" content="该项目的 GitHub 地址为 underscore-analysis，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 Watch &amp;amp;&amp;amp; Star，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 Fork，我们一起来将这个系列做好做大，一起成长。
 
-扩展underscore 提供了三个方法来扩展对象的">
+在对象方法部分，我们已经解读过针对对象的查找和筛选了">
 
 
 
@@ -120,10 +120,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/17/underscore源码解析（7）/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/20/underscore源码解析（10）/"/>
 
 
-  <title> underscore源码解析(7)--扩展和克隆(Object Functions) | Comma's </title>
+  <title> underscore源码解析(10)--集合的查找和筛选（上）(Collection Functions) | Comma's </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -263,7 +263,7 @@
             
             
               
-                underscore源码解析(7)--扩展和克隆(Object Functions)
+                underscore源码解析(10)--集合的查找和筛选（上）(Collection Functions)
               
             
           </h1>
@@ -275,8 +275,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-17T12:35:25+08:00" content="2016-12-17">
-              2016-12-17
+            <time itemprop="dateCreated" datetime="2016-12-20T15:25:48+08:00" content="2016-12-20">
+              2016-12-20
             </time>
           </span>
 
@@ -305,8 +305,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/12/17/underscore源码解析（7）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/17/underscore源码解析（7）/" itemprop="commentsCount"></span>
+                <a href="/2016/12/20/underscore源码解析（10）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/20/underscore源码解析（10）/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -331,27 +331,27 @@
       
         <p>该项目的 <strong>GitHub</strong> 地址为 <strong><a href="https://github.com/changxiupeng/underscore-analysis" target="_blank" rel="external">underscore-analysis</a></strong>，所有文章都在这里，并将不断更新。如果你觉得我的解读还可以，对你学习 js 有一定的帮助，欢迎 <strong>Watch &amp;&amp; Star</strong>，你的关注和肯定必定会促使我投入更多的时间和经历做好这个系列。如果你愿意的话，也欢迎 <strong>Fork</strong>，我们一起来将这个系列做好做大，一起成长。</p>
 <hr>
-<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p>underscore 提供了三个方法来扩展对象的属性和方法：</p>
-<ol>
-<li><strong><code>_.extend(destination, objs)</code></strong></li>
-<li><strong><code>_.defaults(destination, objs)</code></strong></li>
-<li><strong><code>_.extendOwn(destination, objs)</code></strong></li>
-</ol>
-<p>这三个方法很相似，都是将 objs （一个或多个对象）中的属性浅复制到 destination 对象中。<br>不同的是：</p>
+<p>在对象方法部分，我们已经解读过<a href="https://changxiupeng.github.io/2016/12/16/underscore%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%886%EF%BC%89/" target="_blank" rel="external">针对对象的查找和筛选</a>了。这篇文章我们来介绍一下适用范围更广的查找和筛选方法。</p>
+<h2 id="find-obj-predicate-context"><a href="#find-obj-predicate-context" class="headerlink" title="_.find(obj, predicate, context)"></a>_.find(obj, predicate, context)</h2><p><strong>示例：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> even = _.find([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</div><div class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">num</span>)</span>&#123; <span class="keyword">return</span> num % <span class="number">2</span> == <span class="number">0</span>; &#125;);</div><div class="line"><span class="comment">// =&gt; 2</span></div></pre></td></tr></table></figure></p>
+<p><strong>源码解读：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">_.find = _.detect = <span class="function"><span class="keyword">function</span>(<span class="params">obj, predicate, context</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// 声明一个监听变量，用来保存数组的索引值或者对象的属性值</span></div><div class="line">  <span class="keyword">var</span> key;</div><div class="line"></div><div class="line">  <span class="comment">// 如果 obj 是一个数组或类数组</span></div><div class="line">  <span class="keyword">if</span> (isArrayLike(obj)) &#123;</div><div class="line"></div><div class="line">    <span class="comment">// 返回数组或类数组中符合 predicate 条件的元素的索引值，保存到 key 中</span></div><div class="line">    key = _.findIndex(obj, predicate, context);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line"></div><div class="line">    <span class="comment">// 如果 obj 是对象，那么返回符合 predicate 条件的属性的属性名，保存到 key</span></div><div class="line">    key = _.findKey(obj, predicate, context);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 如果 key 在对象、数组（类数组）中，那么就返回对应的值</span></div><div class="line">  <span class="keyword">if</span> (key !== <span class="keyword">void</span> <span class="number">0</span> &amp;&amp; key !== <span class="number">-1</span>) <span class="keyword">return</span> obj[key];</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><strong>依赖：</strong><br>在该方法中，主要执行逻辑由它依赖的两个方法完成：</p>
 <ul>
-<li><code>_.extend()</code> 会将 objs 的所有属性（包括继承的）一起复制，如果出现同名属性，前面的会被覆盖，既属性值取最后一次重复出现时的属性值。</li>
-<li><code>_.defaults()</code> 也是复制 objs 的所有属性，与 <code>_.extend()</code> 唯一一点区别是后面的同名属性不会覆盖前面的，最终该属性的属性值取 <strong>第一次</strong> 出现时的值。</li>
-<li><code>_.extendOwn()</code> 与 <code>_.extend()</code> 的唯一一点区别是只复制 objs 自身的属性。</li>
+<li>用于查找数组中符合条件的元素的索引的方法，<a href="#"><strong>_.findIndex()</strong></a></li>
+<li>用于查找对象中符合条件的属性值的属性名的方法，<a href="https://changxiupeng.github.io/2016/12/16/underscore%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%886%EF%BC%89/" target="_blank" rel="external"><strong>_.findKey()</strong></a></li>
 </ul>
-<p><strong>示例：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> a = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">"comma"</span>,</div><div class="line">  <span class="attr">age</span>: <span class="number">26</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">"cxp"</span>,</div><div class="line">  <span class="attr">hobby</span>: <span class="string">"Programming"</span></div><div class="line">&#125;</div><div class="line">b.prototype.city = <span class="string">"Wuhan"</span>;</div><div class="line"></div><div class="line">_.extend(a, b);</div><div class="line"><span class="comment">// =&gt; &#123;name: "cxp", age: 26, hobby: "Programming", city: "Wuhan"&#125;</span></div><div class="line"></div><div class="line">_.defaults(a, b);</div><div class="line"><span class="comment">// =&gt; &#123;name: "comma", age: 26, hobby: "Programming", city: "Wuhan"&#125;</span></div><div class="line"></div><div class="line">_.extendOwn(a, b);</div><div class="line"><span class="comment">// =&gt; &#123;name: "comma", age: 26, hobby: "Programming"&#125;</span></div></pre></td></tr></table></figure></p>
-<p><strong>源码解读：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">_.extend = createAssigner(_.allKeys);</div><div class="line"></div><div class="line">_.defaults = createAssigner(_.allKeys, <span class="literal">true</span>);</div><div class="line"></div><div class="line"><span class="comment">// extendOwn 也可以写成 assign，可能是照顾到 ES6 中 Object.assign(objs)方法</span></div><div class="line"><span class="comment">// extendOwn 与 Object.assign(objs) 得到同样的结果</span></div><div class="line">_.extendOwn = _.assign = createAssigner(_.keys);</div></pre></td></tr></table></figure>
-<p>可以看出来两个方法都严重依赖了一个 underscore 的内部函数 <code>createAssigner</code><br>这个函数根据不同的要求（只复制自身属性还是包括继承属性），生成一个属性分配器函数并返回，然后由这个属性分配器函数接收具体的对象，实现属性扩展的具体逻辑</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * @param keysFunc 指定获取属性的方式</div><div class="line"> * @param undefinedOnly 同名属性是否取第一次出现时的属性值</div><div class="line"> */</div><div class="line"><span class="keyword">var</span> createAssigner = <span class="function"><span class="keyword">function</span>(<span class="params">keysFunc, undefinedOnly</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// 将属性分配器函数返回，这里只设了一个形参，表示要扩展的对象</span></div><div class="line">  <span class="comment">// 其它被复制的对象虽然没有指定形参，但是也可以传入，通过arguments 获取</span></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 获取传入的对象的个数</span></div><div class="line">    <span class="keyword">var</span> length = <span class="built_in">arguments</span>.length;</div><div class="line"></div><div class="line">    <span class="comment">// 要扩展的对象没有被传入、传入一个，或者传入一个但是值为 null，将其返回</span></div><div class="line">    <span class="keyword">if</span> (length &lt; <span class="number">2</span> &amp;&amp; obj == <span class="literal">null</span>) <span class="keyword">return</span> obj;</div><div class="line"></div><div class="line">    <span class="comment">// 遍历每一个要被复制的对象</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> index = <span class="number">1</span>; index &lt; length; index++) &#123;</div><div class="line"></div><div class="line">      <span class="comment">// 获取当前被遍历对象的属性</span></div><div class="line">      <span class="keyword">var</span> source = <span class="built_in">arguments</span>[index],</div><div class="line">          keys = keysFunc(source),</div><div class="line">          l = keys.length;</div><div class="line"></div><div class="line">        <span class="comment">// 对当前遍历对象的所有属性进行遍历</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; l; i++) &#123;</div><div class="line">          <span class="keyword">var</span> key = keys[i];</div><div class="line"></div><div class="line">          <span class="comment">// 当 undefinedOnly 为 false，既同名属性不取第一个属性值</span></div><div class="line">          <span class="comment">// 或者 obj 中没有这个属性时，将当前对象中的属性属性值添加到 obj 中</span></div><div class="line">          <span class="comment">// ---------------------------------------------------------</span></div><div class="line">          <span class="comment">// _.extend 和 _.extendOwn 方法没有传入 undefinedOnly 参数，</span></div><div class="line">          <span class="comment">// undefinedOnly === undefined, 所以 !undefinedOnly === true</span></div><div class="line">          <span class="comment">// 所以，无论 obj 中是否有 key，后面的同名 key 都会将其重写</span></div><div class="line">          <span class="comment">// ---------------------------------------------------------</span></div><div class="line">          <span class="comment">// 而 _.defaults 中 undefinedOnly 被设置为 true</span></div><div class="line">          <span class="comment">// !undefinedOnly === false 只有当 obj 中没有 key 时才会被添加</span></div><div class="line">          <span class="keyword">if</span> (!undefinedOnly || obj[key] === <span class="keyword">void</span> <span class="number">0</span>) obj[key] =</div><div class="line">              source[key];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> obj;</div><div class="line">  &#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="克隆"><a href="#克隆" class="headerlink" title="克隆"></a>克隆</h2><p>underscore 提供了一个用于对象克隆（浅）的方法:<br><strong><code>_clone(obj)</code></strong><br>该方法接收一个对象为参数，然后返回一个此对象副本，作为参数的对象中任何嵌套的对象和数组都只被复制了对应的引用给返回的对象副本。</p>
-<p><strong>示例：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> a = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">"comma"</span>,</div><div class="line">  <span class="attr">gf</span>: &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">"kxt"</span>  </div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = _.clone(a);</div><div class="line"><span class="built_in">console</span>.log(b.name); <span class="comment">// comma</span></div><div class="line"></div><div class="line"><span class="comment">// 因为是浅复制，所以引用类型共享一个内存地址</span></div><div class="line"><span class="built_in">console</span>.log(b.gf === a.gf); <span class="comment">// true</span></div><div class="line">b.gf.age = <span class="number">26</span>;</div><div class="line"><span class="built_in">console</span>.log(a.gf.age); <span class="comment">// 26</span></div></pre></td></tr></table></figure></p>
-<p><strong>注</strong>：<br>无论是数组还是对象，虽然 clone 返回的数组/对象与原来的数组/对象不在同一个地址了，比直接赋值的浅复制深，但它所执行的仍然是浅复制，返回数组/对象内部嵌套的数组和对象仍然只是引用。</p>
-<p><strong>源码解读：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">_.clone = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// 如果 obj 不是对象，则直接将其返回</span></div><div class="line">  <span class="comment">// 这里的对象指的是函数和 typeof 为 “object” （不包括 null）的数据类型</span></div><div class="line">  <span class="keyword">if</span> (!_.isObject(obj) <span class="keyword">return</span> obj);</div><div class="line"></div><div class="line">  <span class="comment">// 如果 obj 是数组，那么就将其调用 slice 方法后返回</span></div><div class="line">  <span class="comment">// 如果 obj 是对象，那么就调用 extend 方法将其复制到一个空对象中并返回</span></div><div class="line">  <span class="keyword">return</span> _.isArray(obj) ? obj.slice() : _.extend(&#123;&#125;, obj);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="filter-list-predicate-context"><a href="#filter-list-predicate-context" class="headerlink" title="_.filter(list, predicate, context)"></a>_.filter(list, predicate, context)</h2><p>遍历 list 中的每一个值，将所有通过了 predicate 检测的值保存到一个数组中，最后将这个数组返回。<br><strong>示例：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> even = _.filter([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</div><div class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">num</span>)</span>&#123; <span class="keyword">return</span> num % <span class="number">2</span> == <span class="number">0</span>; &#125;);</div><div class="line"><span class="comment">// =&gt; [2, 4, 6]</span></div></pre></td></tr></table></figure></p>
+<p><strong>源码解读：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">_.filter = _.select = <span class="function"><span class="keyword">function</span>(<span class="params">obj, predicate, context</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// 声明一个空数组，用于保存符合 predicate 条件的集合元素</span></div><div class="line">  <span class="keyword">var</span> results = [];</div><div class="line"></div><div class="line">  <span class="comment">// 为 predicate 绑定 context 上下文</span></div><div class="line">  predicate = cb(predicate, context);</div><div class="line"></div><div class="line">  <span class="comment">// 迭代集合中的每一个元素，并对其执行一次回调</span></div><div class="line">  _.each(obj, <span class="function"><span class="keyword">function</span>(<span class="params">value, index, list</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 检查迭代中的元素是否能通过 predicate 的检测，</span></div><div class="line">    <span class="comment">// 如果能则将元素值保存到 results 中</span></div><div class="line">    <span class="keyword">if</span> (predicate(value, index, list)) results.push(value);</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  <span class="comment">// 返回包含了所有通过检测元素的数组</span></div><div class="line">  <span class="keyword">return</span> results;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><strong>依赖：</strong></p>
+<ul>
+<li><a href="https://changxiupeng.github.io/2016/12/18/underscore%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%888%EF%BC%89/" target="_blank" rel="external"> <strong>_.each()</strong></a></li>
+</ul>
+<h2 id="contains-list-item-fromIndex"><a href="#contains-list-item-fromIndex" class="headerlink" title="_.contains(list, item, fromIndex)"></a>_.contains(list, item, fromIndex)</h2><p>如果 item 是 list 的元素或者属性值，则返回 true。如果 list 是数组，可以用 fromIndex 指定从哪个位置开始查找。<br><strong>示例：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">_.contains([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="number">2</span>);</div><div class="line"><span class="comment">// =&gt; true</span></div><div class="line"></div><div class="line">_.contains([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="number">2</span>, <span class="number">2</span>);</div><div class="line"><span class="comment">// =&gt; false</span></div><div class="line"></div><div class="line">_.contains(&#123;<span class="attr">name</span>: <span class="string">"comma"</span>, <span class="attr">age</span>: <span class="number">26</span>, <span class="attr">hobby</span>: <span class="string">"Programing"</span>&#125;, <span class="string">"comma"</span>);</div><div class="line"><span class="comment">// =&gt; true</span></div></pre></td></tr></table></figure></p>
+<p><strong>源码解读：</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">_.contains = _.includes = _.include = <span class="function"><span class="keyword">function</span>(<span class="params">obj, item,</span></span></div><div class="line">    fromIndex, guard) &#123;</div><div class="line"></div><div class="line">  <span class="comment">// 如果 obj 是对象，那么就获取该对象的所有属性值</span></div><div class="line">  <span class="keyword">if</span> (!isArrayLike(obj)) obj = _.values(obj);</div><div class="line"></div><div class="line">  <span class="comment">// 如果没有指定 fromIndex ，那么就将 fromIndex 设置为 0</span></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> fromIndex != <span class="string">"number"</span> || guard) fromIndex = <span class="number">0</span>;</div><div class="line"></div><div class="line">  <span class="comment">// 用 underscore 定义的 indexOf 来检测 item 在数组或对象属性值数组中的索引</span></div><div class="line">  <span class="keyword">return</span> _.indexOf(obj, item, fromIndex) &gt;= <span class="number">0</span>;      </div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><strong>依赖：</strong></p>
+<ul>
+<li><a href="https://changxiupeng.github.io/2016/12/15/underscore%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%885%EF%BC%89/" target="_blank" rel="external"><strong>_.values()</strong></a></li>
+<li><a href="#"><strong>_.indexOf()</strong></a></li>
+</ul>
 
       
     </div>
@@ -385,17 +385,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/16/underscore源码解析（6）/" rel="next" title="underscore源码解析(6)--查找和筛选(Object Functions)">
-                <i class="fa fa-chevron-left"></i> underscore源码解析(6)--查找和筛选(Object Functions)
+              <a href="/2016/12/19/underscore源码解析（9）/" rel="next" title="underscore源码解析(9)--最大最小元素(Collection Functions)">
+                <i class="fa fa-chevron-left"></i> underscore源码解析(9)--最大最小元素(Collection Functions)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/18/underscore源码解析（8）/" rel="prev" title="underscore源码解析(8)--迭代(Collection Functions)">
-                underscore源码解析(8)--迭代(Collection Functions) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -421,8 +417,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/12/17/underscore源码解析（7）/"
-           data-title="underscore源码解析(7)--扩展和克隆(Object Functions)" data-url="http://yoursite.com/2016/12/17/underscore源码解析（7）/">
+      <div class="ds-thread" data-thread-key="2016/12/20/underscore源码解析（10）/"
+           data-title="underscore源码解析(10)--集合的查找和筛选（上）(Collection Functions)" data-url="http://yoursite.com/2016/12/20/underscore源码解析（10）/">
       </div>
     
   </div>
@@ -533,7 +529,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展"><span class="nav-text">扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#克隆"><span class="nav-text">克隆</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#find-obj-predicate-context"><span class="nav-text">_.find(obj, predicate, context)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#filter-list-predicate-context"><span class="nav-text">_.filter(list, predicate, context)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#contains-list-item-fromIndex"><span class="nav-text">_.contains(list, item, fromIndex)</span></a></li></ol></div>
             
           </div>
         </section>
